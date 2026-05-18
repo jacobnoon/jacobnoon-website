@@ -1,0 +1,3 @@
+# Netlify redirects — English is the default homepage.
+# Direct visitors of the root URL go straight to /en/.
+/                /en/                302
