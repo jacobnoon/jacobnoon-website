@@ -129,7 +129,7 @@
     </ul>`;
 
   const contactHeading = isEN ? 'Contact' : 'Kontakt';
-  const locationLabel = isEN ? 'Berlin · international' : 'Berlin · deutschlandweit';
+  const locationLabel = isEN ? 'Berlin · Europe-wide' : 'Berlin · europaweit';
   const followLabel = isEN ? 'Follow' : 'Folgen';
 
   // Social SVG icons (inline so no external deps)
@@ -150,8 +150,8 @@
     </div>`;
 
   const footerDesc = isEN
-    ? 'Trainer, coach and mediator for conflict, negotiation and leadership communication. Based in Berlin, working internationally.'
-    : 'Trainer, Coach und Mediator für Konflikt, Verhandlung und Kommunikation. Berlin-basiert, deutschlandweit und international tätig.';
+    ? 'Trainer, coach and mediator for conflict, negotiation and leadership communication. Based in Berlin, working Europe-wide and online.'
+    : 'Trainer, Coach und Mediator für Konflikt, Verhandlung und Kommunikation. Berlin-basiert, europaweit und online tätig.';
 
   const year = new Date().getFullYear();
   const footerCopy = `© ${year} Jacob Noon · Noon Coaching · Berlin`;

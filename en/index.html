@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jacob Noon – Trainer & Coach for Conflict, Negotiation & Communication</title>
-  <meta name="description" content="Jacob Noon: In-house training for conflict management, negotiation and leadership communication. For corporates and mid-market companies. Based in Berlin, working internationally.">
+  <meta name="description" content="Jacob Noon: In-house training for conflict management, negotiation and leadership communication. For corporates and mid-market companies. Based in Berlin, working Europe-wide and online.">
   <link rel="stylesheet" href="/styles.css">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -19,7 +19,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jacobnoon.com/en/">
   <meta property="og:title" content="Jacob Noon – Trainer & Coach for Conflict, Negotiation & Communication">
-  <meta property="og:description" content="Jacob Noon: In-house training for conflict management, negotiation and leadership communication. For corporates and mid-market companies. Based in Berlin, working internationally.">
+  <meta property="og:description" content="Jacob Noon: In-house training for conflict management, negotiation and leadership communication. For corporates and mid-market companies. Based in Berlin, working Europe-wide and online.">
   <meta property="og:image" content="https://jacobnoon.com/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -31,7 +31,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Jacob Noon – Trainer & Coach for Conflict, Negotiation & Communication">
-  <meta name="twitter:description" content="Jacob Noon: In-house training for conflict management, negotiation and leadership communication. For corporates and mid-market companies. Based in Berlin, working internationally.">
+  <meta name="twitter:description" content="Jacob Noon: In-house training for conflict management, negotiation and leadership communication. For corporates and mid-market companies. Based in Berlin, working Europe-wide and online.">
   <meta name="twitter:image" content="https://jacobnoon.com/og-image.jpg">
 
   <!-- Schema.org -->
@@ -275,20 +275,22 @@
     </div>
 
     <p class="section-label" style="margin-bottom:0.75rem;">Or send a message</p>
-    <form action="mailto:mail@jacobnoon.com" method="get" enctype="text/plain" style="display:flex;flex-direction:column;gap:1rem;">
+    <form name="kontakt-en" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/en/thanks/" style="display:flex;flex-direction:column;gap:1rem;">
+      <input type="hidden" name="form-name" value="kontakt-en">
+      <p style="display:none;"><label>Please leave empty: <input name="bot-field"></label></p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
         <div>
           <label style="display:block;font-size:0.85rem;font-weight:700;margin-bottom:0.4rem;letter-spacing:0.05em;text-transform:uppercase;">Name</label>
-          <input type="text" name="name" style="width:100%;padding:0.75rem;border:1px solid #e2e2e2;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:1rem;" placeholder="Your name">
+          <input type="text" name="name" required style="width:100%;padding:0.75rem;border:1px solid #e2e2e2;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:1rem;" placeholder="Your name">
         </div>
         <div>
           <label style="display:block;font-size:0.85rem;font-weight:700;margin-bottom:0.4rem;letter-spacing:0.05em;text-transform:uppercase;">Email</label>
-          <input type="email" name="email" style="width:100%;padding:0.75rem;border:1px solid #e2e2e2;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:1rem;" placeholder="your@email.com">
+          <input type="email" name="email" required style="width:100%;padding:0.75rem;border:1px solid #e2e2e2;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:1rem;" placeholder="your@email.com">
         </div>
       </div>
       <div>
         <label style="display:block;font-size:0.85rem;font-weight:700;margin-bottom:0.4rem;letter-spacing:0.05em;text-transform:uppercase;">What's it about?</label>
-        <textarea name="body" rows="5" style="width:100%;padding:0.75rem;border:1px solid #e2e2e2;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:1rem;resize:vertical;" placeholder="Topic, format, target group, timeline..."></textarea>
+        <textarea name="message" rows="5" required style="width:100%;padding:0.75rem;border:1px solid #e2e2e2;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:1rem;resize:vertical;" placeholder="Topic, format, target group, timeline..."></textarea>
       </div>
       <div>
         <button type="submit" class="btn btn--primary">Send message</button>
@@ -306,7 +308,7 @@
       </div>
       <div>
         <div class="section-label" style="margin-bottom:0.3rem;">Location</div>
-        <span style="font-weight:500;">Berlin (Germany & online, internationally)</span>
+        <span style="font-weight:500;">Berlin (Europe-wide & online)</span>
       </div>
     </div>
   </div>

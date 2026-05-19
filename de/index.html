@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jacob Noon – Trainer & Coach für Konflikt, Verhandlung & Kommunikation</title>
-  <meta name="description" content="Jacob Noon: Inhouse-Trainings für Konfliktmanagement, Verhandlung und Führungskommunikation. Für Konzerne und Mittelstand. Berlin-basiert, deutschlandweit.">
+  <meta name="description" content="Jacob Noon: Inhouse-Trainings für Konfliktmanagement, Verhandlung und Führungskommunikation. Für Konzerne und Mittelstand. Berlin-basiert, europaweit und online.">
   <link rel="stylesheet" href="/styles.css">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -19,7 +19,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jacobnoon.com/de/">
   <meta property="og:title" content="Jacob Noon – Trainer & Coach für Konflikt, Verhandlung & Kommunikation">
-  <meta property="og:description" content="Jacob Noon: Inhouse-Trainings für Konfliktmanagement, Verhandlung und Führungskommunikation. Für Konzerne und Mittelstand. Berlin-basiert, deutschlandweit.">
+  <meta property="og:description" content="Jacob Noon: Inhouse-Trainings für Konfliktmanagement, Verhandlung und Führungskommunikation. Für Konzerne und Mittelstand. Berlin-basiert, europaweit und online.">
   <meta property="og:image" content="https://jacobnoon.com/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -31,7 +31,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Jacob Noon – Trainer & Coach für Konflikt, Verhandlung & Kommunikation">
-  <meta name="twitter:description" content="Jacob Noon: Inhouse-Trainings für Konfliktmanagement, Verhandlung und Führungskommunikation. Für Konzerne und Mittelstand. Berlin-basiert, deutschlandweit.">
+  <meta name="twitter:description" content="Jacob Noon: Inhouse-Trainings für Konfliktmanagement, Verhandlung und Führungskommunikation. Für Konzerne und Mittelstand. Berlin-basiert, europaweit und online.">
   <meta name="twitter:image" content="https://jacobnoon.com/og-image.jpg">
 
   <!-- Schema.org -->
@@ -298,20 +298,22 @@
     </div>
 
     <p class="section-label" style="margin-bottom:0.75rem;">Oder eine Nachricht senden</p>
-    <form action="mailto:mail@jacobnoon.com" method="get" enctype="text/plain" style="display:flex;flex-direction:column;gap:1rem;">
+    <form name="kontakt-de" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/de/danke/" style="display:flex;flex-direction:column;gap:1rem;">
+      <input type="hidden" name="form-name" value="kontakt-de">
+      <p style="display:none;"><label>Bitte nicht ausfüllen: <input name="bot-field"></label></p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
         <div>
           <label style="display:block;font-size:0.85rem;font-weight:700;margin-bottom:0.4rem;letter-spacing:0.05em;text-transform:uppercase;">Name</label>
-          <input type="text" name="name" style="width:100%;padding:0.75rem;border:1px solid #e2e2e2;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:1rem;" placeholder="Dein Name">
+          <input type="text" name="name" required style="width:100%;padding:0.75rem;border:1px solid #e2e2e2;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:1rem;" placeholder="Dein Name">
         </div>
         <div>
           <label style="display:block;font-size:0.85rem;font-weight:700;margin-bottom:0.4rem;letter-spacing:0.05em;text-transform:uppercase;">E-Mail</label>
-          <input type="email" name="email" style="width:100%;padding:0.75rem;border:1px solid #e2e2e2;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:1rem;" placeholder="deine@email.de">
+          <input type="email" name="email" required style="width:100%;padding:0.75rem;border:1px solid #e2e2e2;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:1rem;" placeholder="deine@email.de">
         </div>
       </div>
       <div>
         <label style="display:block;font-size:0.85rem;font-weight:700;margin-bottom:0.4rem;letter-spacing:0.05em;text-transform:uppercase;">Worum geht es?</label>
-        <textarea name="body" rows="5" style="width:100%;padding:0.75rem;border:1px solid #e2e2e2;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:1rem;resize:vertical;" placeholder="Thema, Format, Zielgruppe, Zeitrahmen..."></textarea>
+        <textarea name="nachricht" rows="5" required style="width:100%;padding:0.75rem;border:1px solid #e2e2e2;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:1rem;resize:vertical;" placeholder="Thema, Format, Zielgruppe, Zeitrahmen..."></textarea>
       </div>
       <div>
         <button type="submit" class="btn btn--primary">Nachricht senden</button>
@@ -329,7 +331,7 @@
       </div>
       <div>
         <div class="section-label" style="margin-bottom:0.3rem;">Standort</div>
-        <span style="font-weight:500;">Berlin (deutschlandweit & online)</span>
+        <span style="font-weight:500;">Berlin (europaweit & online)</span>
       </div>
     </div>
   </div>
