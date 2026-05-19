@@ -101,17 +101,16 @@
       <div class="hero__text">
         <div class="hero__label">Trainer · Coach · Mediator · Berlin</div>
         <h1>Conflict isn't a bug, it's a feature.</h1>
-        <p style="font-size:1.1rem;color:rgba(255,255,255,0.5);margin-bottom:1.5rem;font-style:italic;">The most expensive conversations are the ones that never happen.</p>
+        <p style="font-size:1.1rem;color:rgba(255,255,255,0.5);margin-bottom:1.5rem;font-style:italic;">When conversations get difficult, you need someone who knows the terrain.</p>
         <p class="hero__sub">
-          In-house training for corporates and mid-market companies. Conflict, negotiation, difficult conversations.
-          Bring your real cases. We work through them in the room.
-          Whoever leaves has had the conversation they had been avoiding.
+          I design and deliver in-house training for corporates and mid-market companies –
+          on conflict management, negotiation and leadership communication.
+          No PowerPoint theory. Real situations, real challenge.
         </p>
         <div style="display:flex;gap:1rem;flex-wrap:wrap;">
           <a href="https://calendly.com/jacobnoon/virtual-coffee" target="_blank" rel="noopener" class="btn btn--primary">Book a virtual coffee</a>
           <a href="/en/trainings/" class="btn btn--outline">See training topics</a>
         </div>
-        <p style="font-size:0.85rem;color:rgba(255,255,255,0.45);margin-top:0.9rem;font-style:italic;">30 minutes, no pitch.</p>
       </div>
       <div class="hero__portrait">
         <img src="/Profilfoto23-cutout.png" alt="Jacob Noon – trainer, coach, mediator">
@@ -123,7 +122,7 @@
 <!-- REFERENZEN -->
 <section class="section--sm" style="background:#f9f9f9;border-bottom:1px solid #e2e2e2;">
   <div class="container">
-    <p class="section-label text-center" style="margin-bottom:1.5rem;">Organisations that have booked me</p>
+    <p class="section-label text-center" style="margin-bottom:1.5rem;">Clients & References</p>
     <div class="logos" style="justify-content:center;">
       <span class="logo-item">Lufthansa</span>
       <span class="logo-item">Lufthansa Technik</span>
@@ -144,27 +143,27 @@
 <!-- ANGEBOT -->
 <section class="section">
   <div class="container">
-    <p class="section-label">Three ways to work together</p>
+    <p class="section-label">What I offer</p>
     <h2 class="section-title">Three formats. One goal: capability.</h2>
-    <p class="section-intro">You bring the situation. I bring method and dramaturgy. No textbook case studies, no slide deck. What we train is what is actually happening in your team.</p>
+    <p class="section-intro">Whether in a seminar room, on-site at your office, or online – I always work with what participants actually bring. No off-the-shelf case studies.</p>
 
     <div class="grid-3">
       <div class="card">
         <div class="section-label">Training</div>
         <h3>In-house Seminars</h3>
-        <p>When a team or a leader needs to step into the conflict instead of around it. One to three days in-house, a composed arc, no slide deck.</p>
+        <p>1 to 3 days, for teams and leaders. Conflict management, negotiation, feedback, communication – methodically dense, physically activating, dramatically structured.</p>
         <a href="/en/trainings/" class="btn btn--dark" style="margin-top:1.5rem;">See topics</a>
       </div>
       <div class="card">
         <div class="section-label">Coaching</div>
         <h3>One-to-one Coaching</h3>
-        <p>For the one conversation you have been putting off. We prepare it together, rehearse it, sharpen the opening. No navel-gazing. Clear analysis, direct work.</p>
+        <p>For leaders navigating specific situations: difficult conversations, negotiations, role transitions. No navel-gazing – clear analysis, direct work.</p>
         <a href="/en/coaching/" class="btn btn--dark" style="margin-top:1.5rem;">Learn more</a>
       </div>
       <div class="card">
         <div class="section-label">Mediation</div>
         <h3>Conflict Facilitation</h3>
-        <p>When the conflict has taken on a life of its own and the conversation itself has become the problem. I hold the process. You find the form you can carry on with.</p>
+        <p>When teams or departments are stuck. I facilitate structured clarification processes – with the goal that everyone can still work together afterwards.</p>
         <a href="/en/coaching/#mediation" class="btn btn--dark" style="margin-top:1.5rem;">Learn more</a>
       </div>
     </div>
@@ -178,22 +177,22 @@
       <div>
         <p class="section-label">My approach</p>
         <h2>Experience before theory. Always.</h2>
-        <p>Most training starts with the slide. I start with the conflict. If you hear a model before you have wrestled with what it is for, you do not actually hear it. If you have felt how the same situation can tip three different ways, you listen to the model like an answer.</p>
-        <p>Three pillars carry the work. Improvisational theatre: working with what is actually happening in the room, not with what you prepared. Nonviolent Communication after Rosenberg: separating trigger from cause, finding the needs underneath the behaviour. Lived leadership experience: as founder and CEO of a tech startup, I did not learn about conflict in a seminar. I learned it in the role itself. I recognise what you are describing.</p>
+        <p>Every unit starts with a situation, a dilemma, a provocation. The cognitive framework comes after the experience – not before it. That's not a didactic trick. It's why the learning sticks.</p>
+        <p>I come from improvisational theatre. That means I can work with what's actually happening in the room – not just what's on the schedule.</p>
         <a href="/en/about/" class="btn btn--primary" style="margin-top:1.5rem;">About me</a>
       </div>
       <div style="display:flex;flex-direction:column;gap:1.5rem;">
         <div style="border-left:3px solid var(--green);padding-left:1.5rem;">
-          <h4 style="color:#fff;margin-bottom:0.3rem;">Your cases. Not mine.</h4>
-          <p style="font-size:0.9rem;">You bring the situation from your work that you could not shake. That is what we work on, not invented examples.</p>
+          <h4 style="color:#fff;margin-bottom:0.3rem;">Max. 3 min of lecture input at a time</h4>
+          <p style="font-size:0.9rem;">Then discussion or exercise. No lecture mode.</p>
         </div>
         <div style="border-left:3px solid var(--green);padding-left:1.5rem;">
-          <h4 style="color:#fff;margin-bottom:0.3rem;">Three minutes of lecture, maximum.</h4>
-          <p style="font-size:0.9rem;">Then discussion, exercise, or role-play. Anyone who wants more can read.</p>
+          <h4 style="color:#fff;margin-bottom:0.3rem;">Real situations, not textbook cases</h4>
+          <p style="font-size:0.9rem;">Participants bring their own scenarios. That's what we work through.</p>
         </div>
         <div style="border-left:3px solid var(--green);padding-left:1.5rem;">
-          <h4 style="color:#fff;margin-bottom:0.3rem;">The room is part of the training.</h4>
-          <p style="font-size:0.9rem;">Where you stand, how you sit, who is facing whom: this changes the conversation. We use that.</p>
+          <h4 style="color:#fff;margin-bottom:0.3rem;">Body and space are part of the method</h4>
+          <p style="font-size:0.9rem;">Who stands where, who sits, who moves – this is deliberate.</p>
         </div>
       </div>
     </div>
@@ -204,24 +203,24 @@
 <section class="section">
   <div class="container">
     <p class="section-label">Training topics</p>
-    <h2 class="section-title">Four topics. Booked hundreds of times.</h2>
+    <h2 class="section-title">Where I'm most frequently booked</h2>
 
     <div class="grid-2" style="margin-bottom:2rem;">
       <div style="padding:1.5rem;border:1px solid #e2e2e2;border-left:4px solid var(--green);">
         <h3 style="margin-bottom:0.5rem;">Conflict Management</h3>
-        <p class="text-muted">Conflict is not an operational glitch. It is information. Read it early and you can steer, before escalation takes over the conversation.</p>
+        <p class="text-muted">Using conflict as a source of information. Recognising and stopping escalation. Leading in tense situations.</p>
       </div>
       <div style="padding:1.5rem;border:1px solid #e2e2e2;border-left:4px solid var(--green);">
         <h3 style="margin-bottom:0.5rem;">Negotiation</h3>
-        <p class="text-muted">Most negotiations don't fail at the offer. They fail when positions get defended. We train what lies underneath.</p>
+        <p class="text-muted">Harvard principles in practice. Interests over positions. Knowing and using your BATNA.</p>
       </div>
       <div style="padding:1.5rem;border:1px solid #e2e2e2;border-left:4px solid var(--green);">
         <h3 style="margin-bottom:0.5rem;">Difficult Conversations</h3>
-        <p class="text-muted">The conversation you keep putting off. Clarity without losing trust. FEED model, NVC, four-sides communication as tools, not as a checklist.</p>
+        <p class="text-muted">Giving feedback that lands. Preparing and leading critical conversations. For HR and leadership teams.</p>
       </div>
       <div style="padding:1.5rem;border:1px solid #e2e2e2;border-left:4px solid var(--green);">
-        <h3 style="margin-bottom:0.5rem;">Leadership Communication & Applied Improv</h3>
-        <p class="text-muted">Yes-And as a leadership stance. Really listening. And: when a clear No is the stronger answer. Improv theatre as a training lab for leading under uncertainty.</p>
+        <h3 style="margin-bottom:0.5rem;">Leadership Communication</h3>
+        <p class="text-muted">Understanding how communication works across four levels. Leading effectively, with or without formal authority.</p>
       </div>
     </div>
 
@@ -235,7 +234,7 @@
 <section class="section" style="background:#f5f5f5;">
   <div class="container">
     <p class="section-label">Testimonials</p>
-    <h2 class="section-title" style="margin-bottom:3rem;">What stays after the training</h2>
+    <h2 class="section-title" style="margin-bottom:3rem;">What participants say</h2>
 
     <div class="grid-2">
       <div class="testimonial">
@@ -263,13 +262,13 @@
   <div class="container" style="max-width:700px;">
     <p class="section-label">Contact</p>
     <h2 class="section-title">Got a project in mind?</h2>
-    <p style="margin-bottom:2rem;color:var(--text-muted);">Tell me what you are working on. Format, topic, target group, timeline. I will get back within 24 hours, often sooner.</p>
+    <p style="margin-bottom:2rem;color:var(--text-muted);">Drop me a short message about what you're working on – format, topic, target group. I'll get back to you within 24 hours.</p>
 
     <!-- Calendly virtual coffee CTA -->
     <div style="background:var(--dark);color:#fff;padding:1.75rem 2rem;border-radius:4px;border-top:3px solid var(--green);margin-bottom:2.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;justify-content:space-between;">
       <div style="flex:1;min-width:240px;">
         <div style="font-family:'Oswald',sans-serif;font-size:1.25rem;color:#fff;margin-bottom:0.3rem;">Or just grab a virtual coffee.</div>
-        <p style="margin:0;color:rgba(255,255,255,0.7);font-size:0.95rem;">30 minutes, no commitment. I don't pitch.</p>
+        <p style="margin:0;color:rgba(255,255,255,0.7);font-size:0.95rem;">A 30-minute, no-strings chat. Pick a slot that works for you.</p>
       </div>
       <a href="https://calendly.com/jacobnoon/virtual-coffee" target="_blank" rel="noopener" class="btn btn--primary" style="white-space:nowrap;">Book a virtual coffee ↗</a>
     </div>

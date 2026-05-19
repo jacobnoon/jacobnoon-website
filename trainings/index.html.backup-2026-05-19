@@ -67,15 +67,15 @@
 <section class="hero" style="padding:4rem 0 3.5rem;">
   <div class="container">
     <div class="hero__label">Inhouse-Trainings</div>
-    <h1>Trainings, die treffen.</h1>
-    <p class="hero__sub">Inhouse, 6 bis 20 Personen, ein bis drei Tage. Vor Ort oder online. Ihr bringt die Fälle aus eurer Welt mit, ich bringe die Dramaturgie. Was nach der Kaffeepause noch trägt, hat ein Training getroffen.</p>
+    <h1>Trainings, die wirken,<br>weil sie treffen.</h1>
+    <p class="hero__sub">Alle Formate sind für Inhouse-Buchungen konzipiert – für Gruppen von 6 bis 20 Personen, 1 bis 3 Tage, vor Ort oder online. Ich komme zu euch.</p>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
     <p class="section-label">Kernthemen</p>
-    <h2 class="section-title">Fünf Räume. Fünf Auseinandersetzungen.</h2>
+    <h2 class="section-title">Was ich trainiere</h2>
 
     <!-- KONFLIKT -->
     <div style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start;padding:3rem 0;border-bottom:1px solid #e2e2e2;">
@@ -84,12 +84,8 @@
         <h2 style="font-size:2rem;">Konflikt&shy;management</h2>
       </div>
       <div>
-        <p>Konflikte sind keine Betriebsstörung, sondern Information. Wer früh liest, was sie zeigen, kann steuern, bevor Eskalation das Gespräch übernimmt.</p>
-        <p>In diesem Training lernen Führungskräfte und Teams, Konflikte auf drei Ebenen zu erkennen (Sache, Beziehung, Werte), Eskalationsdynamiken einzuschätzen und Gespräche zu führen, die Klarheit schaffen, ohne Vertrauen zu zerstören. Ein zentrales Element ist der Unterschied zwischen Auslöser und Ursache. Gefühle entstehen nicht durch das, was andere tun. Sie entstehen durch unsere innere Bewertung. Wer das versteht, bleibt handlungsfähig, wo andere eskalieren.</p>
-        <div style="margin-top:1.5rem;padding:1.25rem 1.5rem;background:#fafafa;border-left:3px solid var(--green);">
-          <p style="font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--green);margin:0 0 0.5rem;">Aus einem Konflikttraining</p>
-          <p style="margin:0;color:var(--text-muted);font-style:italic;">Ein Leistungsträger beschwert sich, dass er fünf Projekte stemmt, während sein Team im Schnitt zwei bearbeitet. Im Gespräch zeigt sich: Er gibt nie eine Aufgabe ab, weil er den Kollegen die Verantwortung nicht zutraut. Sie wiederum erleben jede Übernahme als Mikromanagement. Der Konflikt war kein Personenkonflikt, sondern ein Muster, das beide aufrechterhielten.</p>
-        </div>
+        <p>Konflikte sind keine Betriebsstörung. Sie sind Information. Wer früh liest, was ein Konflikt zeigt, kann steuern – bevor Eskalation das Gespräch übernimmt.</p>
+        <p>In diesem Training lernen Führungskräfte und Teams, Konflikte auf verschiedenen Ebenen zu erkennen (Sache, Beziehung, Werte), Eskalationsdynamiken einzuschätzen und Gespräche zu führen, die Klarheit schaffen, ohne Vertrauen zu zerstören. Ein zentrales Element: der Unterschied zwischen Auslöser und Ursache. Gefühle entstehen nicht durch das, was andere tun – sie entstehen durch unsere innere Bewertung. Wer das versteht, bleibt handlungsfähig, wo andere eskalieren.</p>
         <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">Glasl-Modell</span>
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">GFK nach Rosenberg</span>
@@ -108,7 +104,7 @@
       </div>
       <div>
         <p>Die meisten Verhandlungen scheitern nicht am Angebot. Sie scheitern daran, dass Positionen verteidigt werden, statt Interessen zu erkunden.</p>
-        <p>Das Training basiert auf den Harvard-Prinzipien und macht sie praxistauglich. BATNA entwickeln. Interessen hinter Positionen freilegen. Schwierige Verhandlungspartner führen, ohne zu kapitulieren. Wir verhandeln eure echten Fälle nach: die hängende Gehaltsverhandlung, das Lieferantengespräch, die interne Ressourcenverteilung. Was hier durchsimuliert wird, könnt ihr nächste Woche führen.</p>
+        <p>Dieses Training basiert auf den Harvard-Prinzipien und macht sie praxistauglich: BATNA entwickeln, Interessen hinter Positionen freilegen, schwierige Verhandlungspartner führen, ohne zu kapitulieren.</p>
         <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">Harvard-Konzept</span>
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">BATNA</span>
@@ -125,9 +121,9 @@
         <h2 style="font-size:2rem;">Schwierige Gespräche & Führungs&shy;kommunikation</h2>
       </div>
       <div>
-        <p>Feedback geben, das jemand wirklich hört. Einem Mitarbeitenden sagen, was nicht funktioniert. Teambriefings, die ankommen. Diese Gespräche verbindet eine Frage: Wie kommuniziere ich so, dass Klarheit entsteht, ohne Vertrauen zu beschädigen?</p>
-        <p>Der systemische Ausgangspunkt: Organisationen bestehen im Kern aus Kommunikation. Führungskommunikation ist deshalb keine Soft-Skill-Zugabe, sondern die eigentliche Aufgabe von Führung. Wer führt, verbindet Menschen mit der Organisation und trifft Entscheidungen, die kommuniziert werden müssen. Wie das gelingt, hängt nicht von Persönlichkeit ab, sondern von Haltung und Handwerk.</p>
-        <p>Das Training verbindet das FEED-Modell mit dem 4-Seiten-Modell nach Schulz von Thun und der GFK-Haltung nach Rosenberg. Konkret: Was ist passiert? Was fühle ich, und was hat das mit meiner Bewertung zu tun? Was brauche ich, was braucht mein Gegenüber? Teilnehmende bringen eigene Situationen mit. Die arbeiten wir durch. Das Kommunikationsspiel „Schnabel trifft Ohr" macht die vier Seiten erlebbar, bevor irgendwer das Modell hört.</p>
+        <p>Feedback geben, das jemand wirklich hört. Einem Mitarbeitenden sagen, was nicht funktioniert. Teambriefings, die ankommen. Diese Gespräche verbindet eine Frage: Wie kommuniziere ich so, dass Klarheit entsteht – ohne Vertrauen zu beschädigen?</p>
+        <p>Der systemische Ausgangspunkt: Organisationen bestehen im Kern aus Kommunikation. Führungskommunikation ist deshalb keine Soft-Skill-Zugabe – sie ist die eigentliche Aufgabe von Führung. Wer führt, verbindet Menschen mit der Organisation und trifft Entscheidungen, die er kommunizieren muss. Wie das gelingt, hängt nicht von Persönlichkeit ab, sondern von Haltung und Handwerk.</p>
+        <p>Das Training verbindet das FEED-Modell mit dem 4-Seiten-Modell (Schulz von Thun) und der GFK-Haltung nach Rosenberg. Konkret: Was ist passiert? Was fühle ich – und was hat das mit meiner Bewertung zu tun? Was brauche ich, was braucht mein Gegenüber? Teilnehmende bringen eigene Situationen mit. Die arbeiten wir durch. Mit dem Kommunikationsspiel "Schnabel trifft Ohr" als experiential layer.</p>
         <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">FEED-Modell</span>
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">4-Seiten-Modell</span>
@@ -147,7 +143,7 @@
         <h2 style="font-size:2rem;">Wirkungsvoll präsentieren</h2>
       </div>
       <div>
-        <p>Präsentationen, die jemanden erreichen, funktionieren wie gute Geschichten. Sie haben einen Helden, einen Konflikt, eine Wendung. Dieses Training bringt Storytelling-Techniken aus dem Improvisationstheater in Pitches, Briefings und interne Kommunikation. Was ihr nach zwei Tagen könnt: Folien weniger füllen und sie funktionieren lassen.</p>
+        <p>Präsentationen, die jemanden wirklich erreichen, funktionieren wie gute Geschichten. Dieses Training vermittelt Storytelling-Techniken aus dem Improvisationstheater und macht sie anwendbar für Pitches, Briefings und interne Kommunikation.</p>
         <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">Storytelling</span>
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">Impro-Methoden</span>
@@ -164,8 +160,8 @@
         <h2 style="font-size:2rem;">Applied Improvisation</h2>
       </div>
       <div>
-        <p>Improvisationstheater ist mehr als eine Kreativmethode. Es ist ein Trainingslabor für die Haltungen, die modernes Führen braucht. Zuhören bevor man antwortet. Unsicherheit aushalten. Auf das reagieren, was wirklich passiert, nicht auf das, was man erwartet hat.</p>
-        <p>Kernstück ist das Yes-And-Prinzip: Angebote annehmen, aufbauen, weiterentwickeln. Gleichzeitig trainiert Applied Improvisation das Gegenteil. Wann ist ein klares Nein die stärkere Antwort? Wo enden meine eigenen Grenzen? Die Übungen kommen aus dem professionellen Improtheater. In zwei Stunden zeigen sie, was klassische Seminare wochenlang theoretisch lassen.</p>
+        <p>Improvisationstheater ist mehr als eine Kreativmethode. Es ist ein Trainingslabor für die Haltungen, die modernes Führen braucht: zuhören bevor man antwortet, Unsicherheit aushalten, auf das reagieren, was wirklich passiert – statt auf das, was man erwartet hat.</p>
+        <p>Kernstück ist das Yes-And-Prinzip: Angebote annehmen, aufbauen, weiterentwickeln. Gleichzeitig trainiert Applied Improvisation das Gegenteil: Wann ist ein klares Nein die stärkere Antwort? Wo enden meine eigenen Grenzen? Die Übungen kommen aus dem professionellen Improtheater – und machen in kurzer Zeit sichtbar, was in Seminaren oft wochenlang theoretisch bleibt.</p>
         <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">Yes-And-Prinzip</span>
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">Grenzwahrnehmung</span>
@@ -183,8 +179,8 @@
   <div class="container" style="max-width:800px;">
     <p class="section-label">Mein Ansatz</p>
     <h2 style="margin-bottom:1.5rem;">Kein Training funktioniert wie das andere.</h2>
-    <p>Vor jedem Inhouse-Format führe ich ein Auftragsklärungsgespräch. Was ist die konkrete Situation? Welche Zielgruppe? Was soll sich danach verändert haben? Daraus entsteht ein Design. Kein konfektioniertes Seminar, das ich euch zweihundertmal gehalten habe.</p>
-    <p>Alle Trainings folgen dem Prinzip Erfahrung vor Theorie. Teilnehmende erleben zuerst, dann wird eingeordnet. Maximal drei Minuten Vortrag am Stück, danach Diskussion oder Übung. Wer das nicht aushält, ist hier falsch. Wer es aushält, hat in zwei Tagen mehr durchgearbeitet als in zwei Wochen Vorlesung.</p>
+    <p>Vor jedem Inhouse-Format führe ich ein Auftragsklärungsgespräch. Was ist die konkrete Situation? Welche Zielgruppe? Was soll sich danach verändert haben? Daraus entsteht ein Design – kein konfektioniertes Seminar.</p>
+    <p>Alle Trainings folgen dem Prinzip: Erfahrung vor Theorie. Teilnehmende erleben zuerst, dann wird eingeordnet. Max. 3 Min Vortragsinput am Stück, danach Diskussion oder Übung.</p>
     <a href="/de/#kontakt" class="btn btn--primary" style="margin-top:1.5rem;">Buchungsanfrage stellen</a>
   </div>
 </section>

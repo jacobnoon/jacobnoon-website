@@ -1,0 +1,32 @@
+# jacobnoon.com – robots.txt
+# Generated 2026-05-19
+
+User-agent: *
+Allow: /
+
+# Block legal pages from indexing (already noindex via meta, belt + braces)
+Disallow: /agb/
+Disallow: /datenschutz/
+Disallow: /impressum/
+Disallow: /stornierung/
+Disallow: /widerruf/
+Disallow: /en/terms/
+Disallow: /en/privacy/
+Disallow: /en/imprint/
+Disallow: /en/cancellation/
+Disallow: /en/cancellation-policy/
+
+# AI/LLM crawlers explicitly allowed (good for being cited in AI answers)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://jacobnoon.com/sitemap.xml

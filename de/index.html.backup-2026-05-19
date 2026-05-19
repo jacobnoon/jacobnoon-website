@@ -101,17 +101,16 @@
       <div class="hero__text">
         <div class="hero__label">Trainer · Coach · Mediator · Berlin</div>
         <h1>Konflikt ist kein Bug, sondern ein Feature.</h1>
-        <p style="font-size:1.1rem;color:rgba(255,255,255,0.5);margin-bottom:1.5rem;font-style:italic;">Die teuersten Gespräche sind die, die nicht stattfinden.</p>
+        <p style="font-size:1.1rem;color:rgba(255,255,255,0.5);margin-bottom:1.5rem;font-style:italic;">Wenn Gespräche schwierig werden, braucht es jemanden, der das kennt.</p>
         <p class="hero__sub">
-          Inhouse-Trainings für Konzerne und Mittelstand. Konflikt, Verhandlung, schwierige Gespräche.
-          Ihr bringt eure echten Fälle mit, ich mache sie zum Trainingsraum.
-          Wer hier rausgeht, hat das Gespräch geführt, das er bisher umgangen hat.
+          Ich designe und leite Inhouse-Trainings für Konzerne und Mittelstand –
+          zu Konfliktmanagement, Verhandlung und Führungskommunikation.
+          Keine Theorie-Dias. Echte Situationen, echte Auseinandersetzung.
         </p>
         <div style="display:flex;gap:1rem;flex-wrap:wrap;">
           <a href="https://calendly.com/jacobnoon/virtual-coffee" target="_blank" rel="noopener" class="btn btn--primary">Virtuellen Kaffee buchen</a>
           <a href="/trainings/" class="btn btn--outline">Trainingsthemen ansehen</a>
         </div>
-        <p style="font-size:0.85rem;color:rgba(255,255,255,0.45);margin-top:0.9rem;font-style:italic;">30 Minuten, kein Pitch.</p>
       </div>
       <div class="hero__portrait">
         <img src="/Profilfoto23-cutout.png" alt="Jacob Noon – Trainer, Coach, Mediator">
@@ -123,7 +122,7 @@
 <!-- REFERENZEN -->
 <section class="section--sm" style="background:#f9f9f9;border-bottom:1px solid #e2e2e2;">
   <div class="container">
-    <p class="section-label text-center" style="margin-bottom:1.5rem;">Diese Häuser haben mich gebucht</p>
+    <p class="section-label text-center" style="margin-bottom:1.5rem;">Referenzen</p>
     <div class="logos" style="justify-content:center;">
       <span class="logo-item">Lufthansa</span>
       <span class="logo-item">Lufthansa Technik</span>
@@ -150,10 +149,10 @@
              style="width:100%;display:block;border-radius:2px;box-shadow:0 6px 32px rgba(0,0,0,0.1);">
       </div>
       <div>
-        <p class="section-label">Wer Dich begleitet</p>
+        <p class="section-label">Jacob Noon</p>
         <h2>Trainer. Coach. Mediator.</h2>
-        <p>Über zehn Jahre habe ich Führungskräfte und Teams durch ihre schwierigsten Gespräche begleitet. Lufthansa Technik, Maersk, Aareal Bank, Siemens Energy. Mein Hintergrund ist das Theater. Das prägt meine Arbeit bis heute: Ich denke in Dramaturgien, nicht in Folien.</p>
-        <p style="color:var(--text-muted);">Ich verspreche keine Methode, die alles löst. Ich verspreche eine Person, die genau die Gespräche schon hundertfach geführt hat, vor denen ihr gerade zurückschreckt.</p>
+        <p>Über ein Jahrzehnt Erfahrung mit Konzernen und Mittelstand – von Lufthansa Technik bis Maersk. Ich komme aus dem Theater, denke in Dramaturgien und halte nichts von Trainings, die nach der Kaffeepause vergessen sind.</p>
+        <p style="color:var(--text-muted);">Kein Folienvortrag. Echte Situationen, methodisch dicht, körperlich aktivierend.</p>
         <a href="/vita/" class="btn btn--dark" style="margin-top:1.5rem;">Mehr über mich</a>
       </div>
     </div>
@@ -163,27 +162,27 @@
 <!-- ANGEBOT -->
 <section class="section">
   <div class="container">
-    <p class="section-label">Drei Wege, miteinander zu arbeiten</p>
+    <p class="section-label">Was ich anbiete</p>
     <h2 class="section-title">Drei Formate. Ein Ziel: Handlungsfähigkeit.</h2>
-    <p class="section-intro">Ihr bringt eure Situation. Ich bringe Methode und Dramaturgie. Keine Fallstudien aus dem Lehrbuch, kein Folienprogramm. Was wir trainieren, ist das, was bei euch wirklich passiert.</p>
+    <p class="section-intro">Ob im Seminarraum, beim Kunden vor Ort oder online – ich arbeite immer mit dem, was Teilnehmer mitbringen. Keine Fallstudien von der Stange.</p>
 
     <div class="grid-3">
       <div class="card">
         <div class="section-label">Training</div>
         <h3>Inhouse-Seminare</h3>
-        <p>Wenn ein Team oder eine Führungskraft systematisch schwieriger werden muss: in den Konflikt hinein, statt um ihn herum. Ein bis drei Tage Inhouse, ein durchkomponierter Bogen, kein Folienprogramm.</p>
+        <p>1 bis 3 Tage, für Teams und Führungskräfte. Konfliktmanagement, Verhandlung, Feedback, Kommunikation – methodisch dicht, körperlich aktivierend, dramaturgisch durchdacht.</p>
         <a href="/trainings/" class="btn btn--dark" style="margin-top:1.5rem;">Themen ansehen</a>
       </div>
       <div class="card">
         <div class="section-label">Coaching</div>
         <h3>Einzelcoaching</h3>
-        <p>Für das eine Gespräch, das du bisher aufgeschoben hast. Wir bereiten es zusammen vor, simulieren es, schärfen die Eröffnung. Kein Besinnungsaufsatz. Klare Analyse, direkte Arbeit.</p>
+        <p>Für Führungskräfte in konkreten Situationen: schwierige Mitarbeitergespräche, Verhandlungen, Rollenwechsel. Kein Besinnungsaufsatz – klare Analyse, direkte Arbeit.</p>
         <a href="/coaching/" class="btn btn--dark" style="margin-top:1.5rem;">Mehr erfahren</a>
       </div>
       <div class="card">
         <div class="section-label">Mediation</div>
         <h3>Konfliktmoderation</h3>
-        <p>Wenn der Konflikt sich verselbstständigt hat und das Gespräch selbst zum Problem geworden ist. Ich halte den Prozess. Ihr findet die Form, in der ihr weitermachen könnt.</p>
+        <p>Wenn Teams oder Abteilungen feststecken. Ich begleite strukturierte Klärungsprozesse – mit dem Ziel, dass alle danach noch miteinander arbeiten können.</p>
         <a href="/coaching/#mediation" class="btn btn--dark" style="margin-top:1.5rem;">Mehr erfahren</a>
       </div>
     </div>
@@ -197,8 +196,8 @@
       <div>
         <p class="section-label">Mein Ansatz</p>
         <h2>Erfahrung vor Theorie. Immer.</h2>
-        <p>Klassische Trainings beginnen mit der Folie. Ich beginne mit dem Konflikt. Wer ein Modell hören will, ohne vorher gerungen zu haben, wozu es da ist, hört es nicht. Wer erst erlebt hat, dass dieselbe Situation auf drei Arten kippen kann, hört dem Modell zu wie einer Antwort.</p>
-        <p>Drei Säulen tragen meine Arbeit. Improvisationstheater: mit dem arbeiten, was wirklich im Raum passiert, nicht mit dem, was ihr vorbereitet habt. Gewaltfreie Kommunikation nach Rosenberg: Auslöser und Ursache trennen, Bedürfnisse hinter Verhalten erkennen. Gelebte Führungserfahrung: als Gründer und CEO eines Tech-Startups habe ich Konflikte nicht im Seminar gelernt, sondern in der Verantwortung. Ich erkenne, was ihr beschreibt.</p>
+        <p>Jede Einheit beginnt mit einer Situation, einem Dilemma, einer Reizfigur. Die kognitive Einordnung folgt erst, wenn die Erfahrung da ist. Das ist kein didaktischer Trick – das ist der Grund, warum Lerneffekte halten.</p>
+        <p>Drei Säulen tragen meine Arbeit. Das Improvisationstheater: mit dem arbeiten, was wirklich im Raum passiert. Die Gewaltfreie Kommunikation nach Rosenberg: Auslöser und Ursache trennen, Bedürfnisse hinter Verhalten erkennen. Und gelebte Führungserfahrung: als Gründer und CEO von Mysseur kenne ich Konflikte nicht aus dem Lehrbuch, sondern aus der Führungsrolle selbst.</p>
         <a href="/vita/" class="btn btn--primary" style="margin-top:1.5rem;">Über mich</a>
       </div>
       <div style="display:flex;flex-direction:column;gap:1.5rem;">
@@ -207,16 +206,16 @@
                style="width:100%;display:block;border-radius:2px;max-height:260px;object-fit:cover;object-position:center top;">
         </div>
         <div style="border-left:3px solid var(--green);padding-left:1.5rem;">
-          <h4 style="color:#fff;margin-bottom:0.3rem;">Eure Fälle. Nicht meine.</h4>
-          <p style="font-size:0.9rem;">Ihr bringt die Situation aus dem Alltag mit, die ihr nicht weggekriegt habt. Daran arbeiten wir, nicht an erfundenen Beispielen.</p>
+          <h4 style="color:#fff;margin-bottom:0.3rem;">Max. 3 Min Vortragsinput am Stück</h4>
+          <p style="font-size:0.9rem;">Dann Diskussion oder Übung. Kein Vortragsmodus.</p>
         </div>
         <div style="border-left:3px solid var(--green);padding-left:1.5rem;">
-          <h4 style="color:#fff;margin-bottom:0.3rem;">Maximal drei Minuten Vortrag am Stück.</h4>
-          <p style="font-size:0.9rem;">Danach Diskussion, Übung oder Rollenspiel. Wer mehr hören will, kann lesen.</p>
+          <h4 style="color:#fff;margin-bottom:0.3rem;">Echte Situationen statt Lehrbuch-Fälle</h4>
+          <p style="font-size:0.9rem;">Teilnehmende bringen ihre eigenen Szenarien. Die arbeiten wir durch.</p>
         </div>
         <div style="border-left:3px solid var(--green);padding-left:1.5rem;">
-          <h4 style="color:#fff;margin-bottom:0.3rem;">Der Raum trainiert mit.</h4>
-          <p style="font-size:0.9rem;">Wo ihr steht, wie ihr sitzt, wer wem gegenüberliegt: das verändert das Gespräch. Wir nutzen das.</p>
+          <h4 style="color:#fff;margin-bottom:0.3rem;">Körper und Raum denken mit</h4>
+          <p style="font-size:0.9rem;">Wer steht wo, wer sitzt, wer bewegt sich – das ist Teil der Methode.</p>
         </div>
       </div>
     </div>
@@ -227,24 +226,24 @@
 <section class="section">
   <div class="container">
     <p class="section-label">Trainingsthemen</p>
-    <h2 class="section-title">Vier Themen. Hundertfach gebucht.</h2>
+    <h2 class="section-title">Wo ich am häufigsten gebucht werde</h2>
 
     <div class="grid-2" style="margin-bottom:2rem;">
       <div style="padding:1.5rem;border:1px solid #e2e2e2;border-left:4px solid var(--green);">
         <h3 style="margin-bottom:0.5rem;">Konfliktmanagement</h3>
-        <p class="text-muted">Konflikte sind keine Betriebsstörung, sondern Information. Wer früh liest, was sie zeigen, kann steuern, bevor Eskalation übernimmt.</p>
+        <p class="text-muted">Konflikte als Informationsquelle nutzen. Auslöser und Ursache trennen. Eskalation erkennen und stoppen.</p>
       </div>
       <div style="padding:1.5rem;border:1px solid #e2e2e2;border-left:4px solid var(--green);">
         <h3 style="margin-bottom:0.5rem;">Verhandlungsführung</h3>
-        <p class="text-muted">Die meisten Verhandlungen scheitern nicht am Angebot, sondern an verteidigten Positionen. Wir trainieren das, was darunter liegt.</p>
+        <p class="text-muted">Harvard-Prinzipien in der Praxis. Interessen statt Positionen. BATNA kennen und nutzen.</p>
       </div>
       <div style="padding:1.5rem;border:1px solid #e2e2e2;border-left:4px solid var(--green);">
         <h3 style="margin-bottom:0.5rem;">Schwierige Gespräche & Führungskommunikation</h3>
-        <p class="text-muted">Das Gespräch, das ihr immer wieder verschiebt. Klarheit ohne Vertrauensverlust. FEED-Modell, GFK, 4-Seiten-Modell als Werkzeug, nicht als Pflichtprogramm.</p>
+        <p class="text-muted">Feedback, das ankommt. Klarheit schaffen, ohne Vertrauen zu beschädigen. GFK-Haltung, FEED-Modell, 4-Seiten-Modell.</p>
       </div>
       <div style="padding:1.5rem;border:1px solid #e2e2e2;border-left:4px solid var(--green);">
         <h3 style="margin-bottom:0.5rem;">Applied Improvisation</h3>
-        <p class="text-muted">Yes-And als Führungshaltung. Wirklich zuhören. Und: wann ein klares Nein die stärkere Antwort ist. Improtheater als Trainingslabor für Führung unter Unsicherheit.</p>
+        <p class="text-muted">Yes-And als Führungshaltung. Wirklich zuhören. Und wissen, wann ein klares Nein die stärkere Antwort ist.</p>
       </div>
     </div>
 
@@ -258,7 +257,7 @@
 <section class="section" style="background:#f5f5f5;">
   <div class="container">
     <p class="section-label">Stimmen</p>
-    <h2 class="section-title" style="margin-bottom:3rem;">Was nach den Trainings hängenbleibt</h2>
+    <h2 class="section-title" style="margin-bottom:3rem;">Was Teilnehmende sagen</h2>
 
     <div class="grid-2">
       <div class="testimonial">
@@ -286,13 +285,13 @@
   <div class="container" style="max-width:700px;">
     <p class="section-label">Kontakt</p>
     <h2 class="section-title">Projekt im Kopf?</h2>
-    <p style="margin-bottom:2rem;color:var(--text-muted);">Schreib mir, worum es geht. Format, Thema, Zielgruppe, Zeitraum. Ich melde mich innerhalb von 24 Stunden, oft schneller.</p>
+    <p style="margin-bottom:2rem;color:var(--text-muted);">Schreib mir kurz, worum es geht – Format, Thema, Zielgruppe. Ich melde mich innerhalb von 24 Stunden.</p>
 
     <!-- Calendly virtuellen Kaffee CTA -->
     <div style="background:var(--dark);color:#fff;padding:1.75rem 2rem;border-radius:4px;border-top:3px solid var(--green);margin-bottom:2.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;justify-content:space-between;">
       <div style="flex:1;min-width:240px;">
         <div style="font-family:'Oswald',sans-serif;font-size:1.25rem;color:#fff;margin-bottom:0.3rem;">Oder einfach auf einen virtuellen Kaffee.</div>
-        <p style="margin:0;color:rgba(255,255,255,0.7);font-size:0.95rem;">30 Minuten, unverbindlich. Ich pitche nichts.</p>
+        <p style="margin:0;color:rgba(255,255,255,0.7);font-size:0.95rem;">30 Minuten, unverbindlich. Such dir einen Termin aus.</p>
       </div>
       <a href="https://calendly.com/jacobnoon/virtual-coffee" target="_blank" rel="noopener" class="btn btn--primary" style="white-space:nowrap;">Virtuellen Kaffee buchen ↗</a>
     </div>

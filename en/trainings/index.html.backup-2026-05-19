@@ -67,15 +67,15 @@
 <section class="hero" style="padding:4rem 0 3.5rem;">
   <div class="container">
     <div class="hero__label">In-house Trainings</div>
-    <h1>Training that lands.</h1>
-    <p class="hero__sub">In-house, 6 to 20 people, one to three days. On-site or online. You bring the cases from your world, I bring the dramaturgy. What still holds after the coffee break is training that landed.</p>
+    <h1>Training that works<br>because it's real.</h1>
+    <p class="hero__sub">All formats are designed for in-house bookings – groups of 6 to 20 people, 1 to 3 days, on-site or online. I come to you.</p>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
     <p class="section-label">Core topics</p>
-    <h2 class="section-title">Five rooms. Five confrontations.</h2>
+    <h2 class="section-title">What I train</h2>
 
     <!-- CONFLICT -->
     <div style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start;padding:3rem 0;border-bottom:1px solid #e2e2e2;">
@@ -84,12 +84,8 @@
         <h2 style="font-size:2rem;">Conflict Management</h2>
       </div>
       <div>
-        <p>Conflict isn't a malfunction. It's information. Read it early and you can steer, before escalation takes over the conversation.</p>
-        <p>In this training, leaders and teams learn to recognise conflict on three levels (content, relationship, values), assess escalation dynamics, and lead conversations that create clarity without damaging trust. A core element: the difference between trigger and cause. Feelings don't arise from what others do. They arise from our own inner evaluation. Whoever understands this stays able to act, where others escalate.</p>
-        <div style="margin-top:1.5rem;padding:1.25rem 1.5rem;background:#fafafa;border-left:3px solid var(--green);">
-          <p style="font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--green);margin:0 0 0.5rem;">From a conflict training</p>
-          <p style="margin:0;color:var(--text-muted);font-style:italic;">A top performer complains that he's carrying five projects while the team averages two. In the conversation it becomes clear: he never hands a task over, because he doesn't trust his colleagues with the responsibility. They in turn experience every handover as micromanagement. The conflict wasn't between two people. It was a pattern both of them kept alive.</p>
-        </div>
+        <p>Conflict isn't a malfunction. It's information. Those who can read what a conflict is showing them can intervene early – before escalation takes over the conversation.</p>
+        <p>In this training, leaders and teams learn to recognise conflict at different levels (content, relationship, values), assess escalation dynamics, and lead conversations that create clarity without destroying trust.</p>
         <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">Glasl model</span>
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">Difficult Conversations</span>
@@ -107,7 +103,7 @@
       </div>
       <div>
         <p>Most negotiations don't fail because of the offer. They fail because positions are defended instead of interests being explored.</p>
-        <p>This training is grounded in Harvard principles and makes them practical. Developing your BATNA. Uncovering interests behind positions. Handling difficult counterparts without capitulating. We rehearse your real cases: the stalled salary conversation, the supplier meeting, the internal resource fight. What you simulate here, you can take into the room next week.</p>
+        <p>This training is grounded in Harvard principles and makes them practical: developing your BATNA, uncovering interests behind positions, handling difficult counterparts without capitulating.</p>
         <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">Harvard principles</span>
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">BATNA</span>
@@ -125,8 +121,8 @@
       </div>
       <div>
         <p>Giving feedback someone actually hears. Telling a team member something isn't working. Running a team briefing that lands. These conversations share one challenge: how do you communicate with clarity without damaging trust?</p>
-        <p>The systemic starting point: organisations consist, at their core, of communication. Leadership communication is therefore not a soft-skill add-on, but the actual job of leadership. Leaders connect people to the organisation and make decisions that must be communicated. Whether that works depends not on personality, but on stance and craft.</p>
-        <p>The training combines the FEED model with the four-sides model after Schulz von Thun and a needs-based communication approach rooted in NVC. Concretely: What happened? What do I feel, and what does that say about my assumptions? What do I need, and what does the other person need? Participants bring their own situations. We work through them. The communication game "Schnabel trifft Ohr" makes the four sides tangible before anyone hears the model.</p>
+        <p>The systemic starting point: organisations consist, at their core, of communication. Leadership communication is therefore not a soft-skill add-on – it is the actual job of leadership. Leaders connect people to the organisation and make decisions they must communicate. Whether that works depends not on personality, but on stance and craft.</p>
+        <p>The training combines the FEED model with the four-sides model (Schulz von Thun) and a needs-based communication approach rooted in NVC. Concretely: What happened? What do I feel – and what does that say about my assumptions? What do I need, and what does the other person need? Participants bring their own situations. We work through them. The communication game "Schnabel trifft Ohr" adds an experiential layer.</p>
         <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">FEED model</span>
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">Four-sides model</span>
@@ -146,7 +142,7 @@
         <h2 style="font-size:2rem;">Presenting with Impact</h2>
       </div>
       <div>
-        <p>Presentations that actually reach people work like good stories. They have a hero, a conflict, a turn. This training brings storytelling techniques from improvisation theatre into pitches, briefings and internal communication. What you can do after two days: fill fewer slides, and make them work.</p>
+        <p>Presentations that actually reach people work like good stories. This training brings storytelling techniques from improvisation theatre into the context of pitches, briefings and internal communication.</p>
         <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">Storytelling</span>
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">Impro methods</span>
@@ -163,8 +159,8 @@
         <h2 style="font-size:2rem;">Applied Improvisation</h2>
       </div>
       <div>
-        <p>Improvisation theatre is more than a creativity method. It's a training lab for the mindsets modern leadership requires. Listening before responding. Tolerating uncertainty. Reacting to what's actually happening, not to what you expected.</p>
-        <p>The core is the Yes-And principle: accept what's offered, build on it, develop it further. At the same time, Applied Improvisation trains the opposite. When is a clear no the stronger response? Where do my own boundaries lie? The exercises come from professional impro theatre. In two hours, they show what classical seminars leave theoretical for weeks.</p>
+        <p>Improvisation theatre is more than a creativity method. It's a training lab for the mindsets modern leadership requires: listening before responding, tolerating uncertainty, reacting to what's actually happening rather than what you expected.</p>
+        <p>The core is the Yes-And principle: accept what's offered, build on it, develop it further. At the same time, Applied Improvisation trains the opposite: when is a clear no the stronger response? Where do my own boundaries lie? The exercises come from professional impro theatre – and make visible in a short time what seminars often spend weeks on theoretically.</p>
         <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">Yes-And principle</span>
           <span style="padding:0.3rem 0.8rem;background:#f0f0f0;border-radius:2px;font-size:0.85rem;font-weight:500;">Boundary awareness</span>
@@ -181,8 +177,8 @@
   <div class="container" style="max-width:800px;">
     <p class="section-label">How I work</p>
     <h2 style="margin-bottom:1.5rem;">No two trainings work alike.</h2>
-    <p>Before every in-house format, I run a scoping conversation. What's the specific situation? Who's the target group? What should be different afterwards? That conversation shapes the design. Not a catalogue entry I've run two hundred times.</p>
-    <p>All trainings follow the principle experience before theory. Participants live it first, then we frame it. Maximum three minutes of lecture at a stretch, then discussion or exercise. Anyone who can't bear that is in the wrong room. Anyone who can bear it has done more in two days than they would in two weeks of lectures.</p>
+    <p>Before every in-house format, I run a scoping conversation. What's the specific situation? Who's the target group? What should be different afterwards? That conversation shapes the design – not a catalogue entry.</p>
+    <p>All trainings follow the same principle: experience before theory. Participants live it first, then we frame it. Max. 3 minutes of lecture input at a stretch, then discussion or exercise.</p>
     <a href="/en/#contact" class="btn btn--primary" style="margin-top:1.5rem;">Send a booking enquiry</a>
   </div>
 </section>

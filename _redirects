@@ -1,3 +1,11 @@
-# Netlify redirects — English is the default homepage.
-# Direct visitors of the root URL go straight to /en/.
-/                /en/                302
+# Netlify redirects – language routing
+# Default for DACH (DE, AT, CH) and German browser language → /de/
+# Everyone else → /en/
+# Use 302 (temporary) so Google indexes both /de/ and /en/ separately.
+
+# Country-based first (Netlify Edge geolocation)
+/  /de/  302  Country=de,at,ch
+/  /de/  302  Language=de
+
+# Fallback for everyone else
+/  /en/  302

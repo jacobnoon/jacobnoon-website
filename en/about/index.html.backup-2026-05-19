@@ -63,7 +63,7 @@
   <div class="container">
     <div class="hero__label">About</div>
     <h1>Jacob Noon</h1>
-    <p class="hero__sub">Trainer, coach and mediator. Berlin. Over a decade in the room with corporates and mid-market companies, when the conversations get difficult.</p>
+    <p class="hero__sub">Trainer, coach and mediator. Based in Berlin. Over a decade working with leaders and teams in international organisations.</p>
   </div>
 </section>
 
@@ -75,21 +75,19 @@
         <p class="section-label">Who I am</p>
         <h2 style="margin-bottom:1.5rem;">Trainer. Dramaturg of learning.</h2>
 
-        <p>I'm not a facilitator who reads from slides. I design learning situations. They have a dramatic arc. They throw participants into the experience first and provide the framework afterwards. That's the difference between knowledge that stays and knowledge that's gone by the coffee break.</p>
+        <p>I'm not a facilitator who reads from slides. I design learning situations – with a dramatic arc that puts participants into the experience first and provides the framework afterwards. That's the difference between knowledge that stays and knowledge that's gone by the coffee break.</p>
 
-        <p>My core topics are conflict management, negotiation and leadership communication. I work with large corporates and mid-market companies, often through training providers such as Cegos, edutrainment, MR Education and Modul Training. Clients include Lufthansa, Lufthansa Technik, Siemens Energy, Maersk, BSH Hausgeräte and Aareal Bank.</p>
+        <p>My core topics are conflict management, negotiation and leadership communication. I work with large corporates and mid-market companies – often through training providers such as Cegos, edutrainment, MR Education and Modul Training. Clients include Lufthansa, Lufthansa Technik, Siemens Energy, Maersk, BSH Hausgeräte and Aareal Bank.</p>
 
-        <p>I come from the theatre. Over a decade as an actor and co-founder of a theatre company. That shaped how I look at communication: how spaces work, how bodies speak, how dynamics emerge and shift.</p>
+        <p>I come from the theatre. Over a decade as an actor and co-founder of a theatre company – that shaped how I look at communication: how spaces work, how bodies speak, how dynamics emerge and shift. I am a co-founder of die Improvisionäre, a Berlin-based improv theatre group that has been running for fifteen years.</p>
 
-        <p>My first entry into training work wasn't improv comedy. It was Forum Theatre after Augusto Boal. For a year I toured with a group, staging scenes such as sexist incidents on the U-Bahn, with an audience that didn't watch but stepped in and looked for ways out. That's where I learned what carries every training I do today: theatre stays a game, even when it gets palpably serious. And in that protected space you try out behaviour you would not dare in real life. That builds a kind of poise that holds up afterwards.</p>
+        <p>Improv theatre isn't just one method among many for me. It's a framework for understanding: How do I act under uncertainty? How do I actually listen? How do I respond to what's really happening – rather than what I expected?</p>
 
-        <p>I am a co-founder of die Improvisionäre, a Berlin-based improv theatre group that has been running for fifteen years. Improv theatre isn't just one method among many for me. It's a framework for understanding. How do I act under uncertainty? How do I actually listen? How do I respond to what's really happening, not to what I expected?</p>
+        <p>The second pillar: Nonviolent Communication (NVC) after Marshall Rosenberg. Not a technique – a stance. The core insight: feelings are not caused by what others do. They arise from our inner evaluation of a situation. Whoever can separate trigger from cause leads conversations differently. Needs-oriented rather than position-oriented. Connecting rather than dividing. This applies in conflict, in negotiation, in feedback.</p>
 
-        <p>The second pillar: Nonviolent Communication (NVC) after Marshall Rosenberg. Not a technique, but a stance. The core insight: feelings are not caused by what others do. They arise from our inner evaluation of a situation. Whoever can separate trigger from cause leads conversations differently. Needs-oriented rather than position-oriented. Connecting rather than dividing. This applies in conflict, in negotiation, in feedback.</p>
+        <p>The third pillar is systemic: leadership is not a personality phenomenon – it's an organisational one. Organisations are not machines you can control, but living systems that self-organise and respond to their environment. What leaders actually do is manage complexity: create connections, make decisions under uncertainty, balance competing demands. This perspective, shaped by Ruth Seliger's systemic understanding of leadership, changes the question I ask in training – away from "what does the leader need to do better?" towards "what does the system need?"</p>
 
-        <p>The third pillar is systemic. Leadership is not a personality phenomenon, but an organisational one. Organisations are not machines you can control. They are living systems that self-organise and respond to their environment. What leaders actually do is work with complexity. Create connections. Make decisions under uncertainty. Balance competing demands. This perspective, shaped by Ruth Seliger's systemic understanding of leadership, changes the question I ask in training. Away from "what does the leader need to do better?" towards "what does the system need?"</p>
-
-        <p>The fourth pillar is not a qualification. It's experience. I was the founder and CEO of Mysseur, a tech startup. That means I know conflict not just from the training room, but from the leadership chair itself. Deadlines that get missed. Developers who prioritise differently than founders. Decisions made under pressure with no way back. When participants bring real situations from their own leadership roles, I recognise them.</p>
+        <p>The fourth pillar is not a qualification – it's experience. I was the founder and CEO of Mysseur, a tech startup. That means I know conflict not just from the training room, but from the leadership chair itself. Deadlines that slip. Developers who prioritise differently than founders. Decisions made under pressure with no way back. When participants bring real situations from their own leadership roles, I recognise them.</p>
 
         <hr class="divider">
 
@@ -179,11 +177,7 @@
         </div>
         <div style="padding:1.5rem;background:var(--light-grey);border-left:4px solid var(--green);">
           <p class="section-label" style="margin-bottom:0.5rem;">Location</p>
-          <p style="margin:0;font-size:0.95rem;">Berlin, working in Germany and internationally.</p>
-        </div>
-        <div style="padding:1.5rem;background:var(--light-grey);border-left:4px solid var(--green);">
-          <p class="section-label" style="margin-bottom:0.5rem;">Availability</p>
-          <p style="margin:0;font-size:0.95rem;">Berlin until mid-2027. UK-based after that. In-house trainings remain available across DACH.</p>
+          <p style="margin:0;font-size:0.95rem;">Berlin – working in Germany and internationally.</p>
         </div>
         <div style="padding:1.5rem;background:var(--light-grey);border-left:4px solid var(--green);">
           <p class="section-label" style="margin-bottom:0.5rem;">Languages</p>

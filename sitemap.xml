@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepages -->
+  <url>
+    <loc>https://jacobnoon.com/de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/de/"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://jacobnoon.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/de/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Trainings -->
+  <url>
+    <loc>https://jacobnoon.com/trainings/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/trainings/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/trainings/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/trainings/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://jacobnoon.com/en/trainings/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/trainings/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/trainings/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/trainings/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Coaching -->
+  <url>
+    <loc>https://jacobnoon.com/coaching/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/coaching/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/coaching/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/coaching/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://jacobnoon.com/en/coaching/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/coaching/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/coaching/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/coaching/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Vita / About -->
+  <url>
+    <loc>https://jacobnoon.com/vita/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/vita/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/vita/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jacobnoon.com/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/vita/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/vita/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Schnabel trifft Ohr -->
+  <url>
+    <loc>https://jacobnoon.com/schnabeltrifftohr/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/schnabeltrifftohr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/schnabeltrifftohr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/schnabeltrifftohr/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jacobnoon.com/en/schnabeltrifftohr/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/schnabeltrifftohr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/schnabeltrifftohr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/schnabeltrifftohr/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Schnabel-Figuren DE -->
+  <url><loc>https://jacobnoon.com/schnabeltrifftohr/benni/</loc><priority>0.5</priority></url>
+  <url><loc>https://jacobnoon.com/schnabeltrifftohr/britta/</loc><priority>0.5</priority></url>
+  <url><loc>https://jacobnoon.com/schnabeltrifftohr/laura/</loc><priority>0.5</priority></url>
+  <url><loc>https://jacobnoon.com/schnabeltrifftohr/leo/</loc><priority>0.5</priority></url>
+  <url><loc>https://jacobnoon.com/schnabeltrifftohr/sabrina/</loc><priority>0.5</priority></url>
+  <url><loc>https://jacobnoon.com/schnabeltrifftohr/sebastian/</loc><priority>0.5</priority></url>
+  <url><loc>https://jacobnoon.com/schnabeltrifftohr/tina/</loc><priority>0.5</priority></url>
+  <url><loc>https://jacobnoon.com/schnabeltrifftohr/tom/</loc><priority>0.5</priority></url>
+
+  <!-- Schnabel-Figuren EN -->
+  <url><loc>https://jacobnoon.com/en/schnabeltrifftohr/benni/</loc><priority>0.4</priority></url>
+  <url><loc>https://jacobnoon.com/en/schnabeltrifftohr/britta/</loc><priority>0.4</priority></url>
+  <url><loc>https://jacobnoon.com/en/schnabeltrifftohr/laura/</loc><priority>0.4</priority></url>
+  <url><loc>https://jacobnoon.com/en/schnabeltrifftohr/leo/</loc><priority>0.4</priority></url>
+  <url><loc>https://jacobnoon.com/en/schnabeltrifftohr/sabrina/</loc><priority>0.4</priority></url>
+  <url><loc>https://jacobnoon.com/en/schnabeltrifftohr/sebastian/</loc><priority>0.4</priority></url>
+  <url><loc>https://jacobnoon.com/en/schnabeltrifftohr/tina/</loc><priority>0.4</priority></url>
+  <url><loc>https://jacobnoon.com/en/schnabeltrifftohr/tom/</loc><priority>0.4</priority></url>
+
+  <!-- Podcast -->
+  <url>
+    <loc>https://jacobnoon.com/needy-podcast/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/needy-podcast/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/needy-podcast/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/needy-podcast/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://jacobnoon.com/en/needy-podcast/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/needy-podcast/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/needy-podcast/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/needy-podcast/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>
