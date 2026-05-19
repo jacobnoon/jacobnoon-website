@@ -22,6 +22,7 @@
       if (path.startsWith('/en/imprint')) return '/impressum/';
       if (path.startsWith('/en/privacy')) return '/datenschutz/';
       if (path.startsWith('/en/terms')) return '/agb/';
+      if (path.startsWith('/en/cancellation-policy')) return '/stornierung/';
       if (path.startsWith('/en/cancellation')) return '/widerruf/';
       return path.replace(/^\/en/, '') || '/de/';
     } else {
@@ -39,6 +40,7 @@
       if (path.startsWith('/impressum')) return '/en/imprint/';
       if (path.startsWith('/datenschutz')) return '/en/privacy/';
       if (path.startsWith('/agb')) return '/en/terms/';
+      if (path.startsWith('/stornierung')) return '/en/cancellation-policy/';
       if (path.startsWith('/widerruf')) return '/en/cancellation/';
       return '/en/';
     }
@@ -158,18 +160,20 @@
     <a href="/en/imprint/">Imprint</a>
     <a href="/en/privacy/">Privacy</a>
     <a href="/en/terms/">Terms</a>
-    <a href="/en/cancellation/">Cancellation</a>` : `
+    <a href="/en/cancellation/">Right of Withdrawal</a>
+    <a href="/en/cancellation-policy/">Cancellation Policy</a>` : `
     <a href="/impressum/">Impressum</a>
     <a href="/datenschutz/">Datenschutz</a>
     <a href="/agb/">AGB</a>
-    <a href="/widerruf/">Widerruf</a>`;
+    <a href="/widerruf/">Widerruf</a>
+    <a href="/stornierung/">Stornierung</a>`;
 
   const footerHTML = `
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
         <div class="footer__col footer__col--brand">
-          <a href="${isEN ? '/en/' : '/de/'}" class="footer__logo"><img src="/logo.svg" alt="Jacob Noon" height="34"></a>
+          <a href="${isEN ? '/en/' : '/de/'}" class="footer__logo"><img src="/logo-white.svg" alt="Jacob Noon" height="34"></a>
           <p>${footerDesc}</p>
         </div>
         <div class="footer__col">
