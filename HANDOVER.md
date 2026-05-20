@@ -154,10 +154,17 @@ Eine **statische HTML/CSS/JS-Webseite** für Jacob Noon (Trainer, Coach, Mediato
 ## 9 · Inhaltliche Änderungen (Mai 2026)
 
 - ✅ Needy Podcast (DE) ins Deutsche übersetzt
-- ✅ EN Trainings-Struktur: 5 Module (Difficult Conversations + Leadership Communication zusammengeführt zu 03, Applied Improvisation als 05 neu)
-- ✅ Systemisches Denken nach Ruth Seliger eingebaut:
-  - DE + EN Vita/About: neuer Absatz + 4. Säule-Kachel + Seliger-Eintrag in Frameworks
-  - DE + EN Trainings Modul 03: systemischer Einstiegsabsatz + Seliger-Tag
+- ✅ Systemisches Führungsverständnis eingebaut (DE + EN Vita/About: Säule-Kachel + Framework-Eintrag) — ohne explizite Namensnennung
+- ✅ Textlicher Feinschliff über alle DE-Seiten + EN-Sync (20. Mai 2026)
+- ✅ Trainingsthemen neu strukturiert (20. Mai 2026) — Rückgrat „Konflikt ist der Stoff, Dramaturgie das Handwerk". Fünf Themen mit Konflikt-Winkel-Tags:
+  - 01 Konfliktmanagement · Konflikt direkt
+  - 02 Schwierige Gespräche & Verhandlung · Konflikt am Tisch (Merge aus Verhandlung + schwierige Gespräche)
+  - 03 Führungskommunikation · Konflikt als Feature (Eidenschink: dysfunktional → funktional)
+  - 04 Moderation · Konflikt in der Gruppe (Liberating Structures + Deep Democracy/Lewis-Methode; Jacob ist zertifiziert)
+  - 05 Wirkungsvoll präsentieren · Konflikt als Motor (Storytelling)
+  - Applied Improvisation steht jetzt separat als „Die Methode" (kein nummeriertes Thema)
+  - Startseiten (DE + EN): Trainingsthemen-Sektion ist ein 5er-Band mit Winkel-Tags
+  - Moderation-Modul grenzt sich explizit von der Mediations-Dienstleistung auf /coaching/ ab
 
 ---
 
