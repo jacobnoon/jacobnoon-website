@@ -227,9 +227,8 @@ p:last-child { margin-bottom: 0; }
 
 .nav__dropdown__trigger {
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
+  display: inline-block;
+  line-height: 1;
   font-family: 'DM Sans', sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
@@ -243,7 +242,9 @@ p:last-child { margin-bottom: 0; }
 .nav__dropdown__trigger::after {
   content: '▾';
   font-size: 0.7rem;
-  margin-top: 1px;
+  margin-left: 0.25rem;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .nav__dropdown__trigger:hover,
