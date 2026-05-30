@@ -18,6 +18,7 @@
         return path.replace(/^\/en/, '');
       }
       if (path.startsWith('/en/schnabeltrifftohr')) return '/schnabeltrifftohr/';
+      if (path.startsWith('/en/scheiterheiter')) return '/scheiterheiter/';
       if (path.startsWith('/en/needy-podcast')) return '/needy-podcast/';
       if (path.startsWith('/en/imprint')) return '/impressum/';
       if (path.startsWith('/en/privacy')) return '/datenschutz/';
@@ -36,6 +37,7 @@
         return '/en' + path;
       }
       if (path.startsWith('/schnabeltrifftohr')) return '/en/schnabeltrifftohr/';
+      if (path.startsWith('/scheiterheiter')) return '/en/scheiterheiter/';
       if (path.startsWith('/needy-podcast')) return '/en/needy-podcast/';
       if (path.startsWith('/impressum')) return '/en/imprint/';
       if (path.startsWith('/datenschutz')) return '/en/privacy/';
@@ -54,8 +56,8 @@
   }
 
   function isOtherActive() {
-    if (isEN) return path.startsWith('/en/schnabeltrifftohr') || path.startsWith('/en/needy-podcast');
-    return path.startsWith('/schnabeltrifftohr') || path.startsWith('/needy-podcast');
+    if (isEN) return path.startsWith('/en/schnabeltrifftohr') || path.startsWith('/en/needy-podcast') || path.startsWith('/en/scheiterheiter');
+    return path.startsWith('/schnabeltrifftohr') || path.startsWith('/needy-podcast') || path.startsWith('/scheiterheiter');
   }
 
   const langToggle = `<li><a href="${getOtherLangUrl()}" style="font-weight:700;color:var(--green) !important;">${isEN ? 'DE' : 'EN'}</a></li>`;
@@ -67,6 +69,7 @@
     <li class="nav__dropdown">
       <span class="nav__dropdown__trigger${isOtherActive() ? ' active' : ''}">Other</span>
       <ul class="nav__dropdown__menu">
+        <li><a href="/en/scheiterheiter/"${isActive('/en/scheiterheiter/') ? ' class="active"' : ''}>Scheiter Heiter</a></li>
         <li><a href="/en/schnabeltrifftohr/"${isActive('/en/schnabeltrifftohr/') ? ' class="active"' : ''}>Schnabel trifft Ohr</a></li>
         <li><a href="/en/needy-podcast/"${isActive('/en/needy-podcast/') ? ' class="active"' : ''}>Needy Podcast</a></li>
       </ul>
@@ -80,6 +83,7 @@
     <li class="nav__dropdown">
       <span class="nav__dropdown__trigger${isOtherActive() ? ' active' : ''}">Sonstiges</span>
       <ul class="nav__dropdown__menu">
+        <li><a href="/scheiterheiter/"${isActive('/scheiterheiter/') ? ' class="active"' : ''}>Scheiter Heiter</a></li>
         <li><a href="/schnabeltrifftohr/"${isActive('/schnabeltrifftohr/') ? ' class="active"' : ''}>Schnabel trifft Ohr</a></li>
         <li><a href="/needy-podcast/"${isActive('/needy-podcast/') ? ' class="active"' : ''}>Needy Podcast</a></li>
       </ul>
@@ -117,12 +121,14 @@
   const footerMore = isEN ? `
     <ul>
       <li><a href="/en/about/">About</a></li>
+      <li><a href="/en/scheiterheiter/">Scheiter Heiter</a></li>
       <li><a href="/en/schnabeltrifftohr/">Schnabel trifft Ohr</a></li>
       <li><a href="/en/needy-podcast/">Needy Podcast</a></li>
       <li><a href="/en/#contact">Contact</a></li>
     </ul>` : `
     <ul>
       <li><a href="/vita/">Über mich</a></li>
+      <li><a href="/scheiterheiter/">Scheiter Heiter</a></li>
       <li><a href="/schnabeltrifftohr/">Schnabel trifft Ohr</a></li>
       <li><a href="/needy-podcast/">Needy Podcast</a></li>
       <li><a href="/de/#kontakt">Kontakt</a></li>
