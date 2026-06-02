@@ -22,20 +22,40 @@
 /about/                                    /impressum/                                       301
 
 # --- Migration: Alte Trainings-Unterseiten ---------------------------------
-/trainings/kommunikation/                  /trainings/                                       301
-/trainings/selbst-und-zeitmanagement/      /trainings/                                       301
-/trainings/kollaborativ-verhandeln/        /trainings/                                       301
-/trainings/virtuelles/*                    /trainings/                                       301
+# Catch-all: Jede /trainings/* ohne echte Datei landet auf /trainings/.
+# Statische Dateien (z.B. neue echte Subpages) haben Vorrang.
+/trainings/*                               /trainings/                                       301
 
 # --- Migration: Alte Vita-Unterseiten --------------------------------------
-/vita/arbeitserfahrung/                    /vita/                                            301
+# Catch-all: gleiches Prinzip wie Trainings.
+/vita/*                                    /vita/                                            301
 
-# --- Migration: Alter Blog → Insights (Platzhalter, wird ausgebaut) --------
+# --- Migration: Alter Blog → Insights --------------------------------------
+# Jimdo-Datumspfade (z.B. /2025/04/30/artikel-name/) abfangen.
+/2023/*                                    /insights/                                        301
+/2024/*                                    /insights/                                        301
+/2025/*                                    /insights/                                        301
+/2026/*                                    /insights/                                        301
 /blog                                      /insights/                                        301
 /blog/                                     /insights/                                        301
 /blog/*                                    /insights/                                        301
 /blog-spiele/                              /insights/                                        301
 /blog-spiele/*                             /insights/                                        301
+
+# --- Migration: Alte Themen-URLs (Jimdo-Reste) -----------------------------
+/welcome/                                  /en/                                              301
+/improvisation-theatre/                    /en/trainings/                                    301
+/e-learning/                               /trainings/                                       301
+
+# --- Migration: Alte Schnabel-Figuren-URLs (Jimdo-Reste) -------------------
+/sch%C3%BCchterne-networker/               /schnabeltrifftohr/                               301
+/schüchterne-networker/                    /schnabeltrifftohr/                               301
+/passiv-networker/                         /schnabeltrifftohr/                               301
+/aggressiver-networker/                    /schnabeltrifftohr/                               301
+/dominanter-networker/                     /schnabeltrifftohr/                               301
+/strukturierter-networker/                 /schnabeltrifftohr/                               301
+/emotionaler-networker/                    /schnabeltrifftohr/                               301
+/networker/*                               /schnabeltrifftohr/                               301
 
 # --- Migration: Sonstiges --------------------------------------------------
 /sitemap/                                  /sitemap.xml                                      301

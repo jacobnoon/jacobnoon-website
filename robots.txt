@@ -1,20 +1,13 @@
 # jacobnoon.com – robots.txt
-# Generated 2026-05-19
+# Generated 2026-05-19, updated 2026-06-02
 
 User-agent: *
 Allow: /
 
-# Block legal pages from indexing (already noindex via meta, belt + braces)
-Disallow: /agb/
-Disallow: /datenschutz/
-Disallow: /impressum/
-Disallow: /stornierung/
-Disallow: /widerruf/
-Disallow: /en/terms/
-Disallow: /en/privacy/
-Disallow: /en/imprint/
-Disallow: /en/cancellation/
-Disallow: /en/cancellation-policy/
+# Legal-Pages werden NICHT mehr per Disallow blockiert.
+# Grund: noindex im HTML wirkt nur, wenn Googlebot die Seite crawlen darf.
+# robots.txt + noindex gleichzeitig ist Anti-Pattern und produziert
+# "Indexiert, obwohl durch robots.txt blockiert"-Meldungen in GSC.
 
 # AI/LLM crawlers explicitly allowed (good for being cited in AI answers)
 User-agent: GPTBot
