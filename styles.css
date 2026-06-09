@@ -374,12 +374,34 @@ p:last-child { margin-bottom: 0; }
   filter: drop-shadow(0 8px 30px rgba(0,0,0,0.45));
 }
 
+/* Kleines Foto neben der Headline — nur auf Smartphone-Hochkant sichtbar */
+.hero__portrait-mobile { display: none; }
+
 @media (max-width: 800px) {
   .hero--portrait { padding: 3rem 0 0 !important; }
   .hero__grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
   .hero__text { padding-bottom: 0; order: 1; }
-  .hero__portrait { order: 2; }
-  .hero__portrait img { max-width: 280px; }
+
+  /* Großes Portrait raus, kleines Foto neben die Headline */
+  .hero__portrait { display: none; }
+  .hero__head {
+    display: flex;
+    gap: 1.1rem;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+  }
+  .hero__head-text { flex: 1; min-width: 0; }
+  .hero__head-text h1 { margin-bottom: 0; }
+  .hero__portrait-mobile {
+    display: block;
+    width: 32%;
+    max-width: 118px;
+    height: auto;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 0.2rem;
+    filter: drop-shadow(0 6px 20px rgba(0,0,0,0.45));
+  }
 }
 
 /* ---------- Buttons ---------- */
@@ -1261,22 +1283,4 @@ p:last-child { margin-bottom: 0; }
 }
 
 @media (max-width: 480px) {
-  /* On very narrow screens, drop hero font further */
-  .hero h1 { font-size: 1.85rem; }
-  .section-title { font-size: 1.55rem; }
-  h2 { font-size: 1.55rem; }
-
-  /* CTA buttons full width on the tiniest screens */
-  .btn { display: block; text-align: center; width: 100%; }
-  .btn + .btn { margin-top: 0.6rem; }
-
-  /* Product CTA stays inline-flex but full width visually */
-  .product-card__cta { display: flex; justify-content: center; width: 100%; }
-
-  /* Logos break to fewer per row */
-  .logo-item { font-size: 0.78rem; }
-
-  /* Nav slightly smaller */
-  .nav__inner { height: 56px; }
-  .nav__logo img { height: 32px; }
-}
+  /* On very narrow screens, drop hero font f
