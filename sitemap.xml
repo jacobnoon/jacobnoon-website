@@ -74,6 +74,18 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Scheiter Heiter -->
+  <url>
+    <loc>https://jacobnoon.com/scheiterheiter/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jacobnoon.com/en/scheiterheiter/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- Coaching -->
   <url>
     <loc>https://jacobnoon.com/coaching/</loc>
