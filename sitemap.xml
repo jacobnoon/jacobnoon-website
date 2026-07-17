@@ -39,6 +39,37 @@
   </url>
   <url>
     <loc>https://jacobnoon.com/trainings/konfliktmanagement/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/trainings/konfliktmanagement/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/trainings/conflict-management/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/trainings/konfliktmanagement/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jacobnoon.com/en/trainings/conflict-management/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/trainings/konfliktmanagement/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/trainings/conflict-management/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/trainings/konfliktmanagement/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jacobnoon.com/trainings/verhandlung/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jacobnoon.com/trainings/fuehrungskommunikation/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jacobnoon.com/trainings/moderation/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jacobnoon.com/trainings/praesentationstraining/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
