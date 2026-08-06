@@ -1,0 +1,6 @@
+# jacobnoon.com – HTTP-Header (Netlify)
+
+# Danke-Seite und Käufer-Downloads aus dem Index halten.
+# Nötig, weil PDFs kein noindex-Meta-Tag tragen können.
+/danke-schnabeltrifftohr/*
+  X-Robots-Tag: noindex, nofollow
