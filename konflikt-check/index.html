@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bug oder Feature? Der Konflikt-Check – Jacob Noon</title>
+  <meta name="description" content="Ist dein Konflikt noch produktiv oder hängt er fest? Neun Regler nach Klaus Eidenschinks Leitunterscheidungen zeigen, wo es sich lohnt, zu schüren oder zu beruhigen, und welche Konfliktfähigkeit dafür nötig ist.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://jacobnoon.com/konflikt-check/">
+  <meta name="author" content="Jacob Noon">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jacobnoon.com/konflikt-check/">
+  <meta property="og:title" content="Bug oder Feature? Der Konflikt-Check">
+  <meta property="og:description" content="Neun Regler, ein Profil. Zeigt, ob dein Konflikt noch arbeitet oder festhängt, und wo Bewegung reingehört.">
+  <meta property="og:image" content="https://jacobnoon.com/og-image.jpg">
+  <meta property="og:site_name" content="Jacob Noon">
+  <meta property="og:locale" content="de_DE">
+  <style>
+    .kc-frame{width:100%;border:0;display:block;min-height:720px;background:transparent}
+  </style>
+</head>
+<body>
+
+<section class="hero" style="padding:4rem 0 2.5rem;">
+  <div class="container">
+    <div class="hero__label">Konflikt-Check</div>
+    <h1>Bug oder Feature?</h1>
+    <p class="hero__sub">Konflikte sind nicht das Problem. Das Problem ist, wenn sie festhängen. Der Check zeigt in sechs Minuten, wo dein Konflikt eingerastet ist, ob er Schüren oder Beruhigen braucht und welche Fähigkeit dafür nötig ist. Nichts wird gespeichert oder gesendet.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:1rem;">
+  <div class="container" style="max-width:800px;">
+    <iframe id="kc" class="kc-frame" src="/konflikt-check/app.html" title="Konflikt-Check: Bug oder Feature?" loading="eager"></iframe>
+    <p style="margin-top:2rem;color:var(--text-muted);font-size:0.9rem;">Grundlage: Klaus Eidenschink, „Die Kunst des Konflikts. Konflikte schüren und beruhigen lernen" (Carl-Auer). Die neun Leitunterscheidungen sind seine, Fragen, Auswertung und Formulierungen stammen von Jacob Noon. Der Check ist ein Lehrmittel, keine Diagnose.</p>
+  </div>
+</section>
+
+<script>
+  (function(){
+    var f=document.getElementById('kc');
+    window.addEventListener('message',function(e){
+      var d=e.data||{};
+      if(d.jnApp==='height'&&d.h){f.style.height=(d.h+4)+'px'}
+      if(d.jnApp==='top'){var y=f.getBoundingClientRect().top+window.pageYOffset-24;window.scrollTo({top:y,behavior:'smooth'})}
+    });
+  })();
+</script>
+<script src="/components.js"></script>
+</body>
+</html>

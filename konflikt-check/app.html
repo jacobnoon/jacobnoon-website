@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bug oder Feature?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+:root{
+  --green:#4CC265; --green-deep:#2E9A48; --green-tint:#E9F8EC;
+  --blue:#3B82C4; --blue-tint:#E7F0FA;
+  --orange:#D9552B; --orange-tint:#FBECE6;
+  --gold:#E6A817; --gold-tint:#FCF3DC;
+  --ink:#111114; --ink-2:#3E4441; --ink-3:#6B7370;
+  --line:#DCE3DE; --line-soft:#ECF0ED;
+  --bg:#F9FAFB; --card:#FFFFFF; --track:#EDF1EE;
+  --shadow:0 1px 2px rgba(17,17,20,.06), 0 8px 24px rgba(17,17,20,.06);
+  --logo-light:block; --logo-dark:none;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --green-deep:#6BD883; --green-tint:#17301D;
+    --blue-tint:#15263A; --orange-tint:#3A1D14; --gold-tint:#3A2C0E;
+    --ink:#F4F6F4; --ink-2:#C9CFCB; --ink-3:#8F9994;
+    --line:#2C332F; --line-soft:#232926;
+    --bg:#111114; --card:#1A1D1B; --track:#262B28;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    --logo-light:none; --logo-dark:block;
+  }
+}
+:root[data-theme="dark"]{
+  --green-deep:#6BD883; --green-tint:#17301D;
+  --blue-tint:#15263A; --orange-tint:#3A1D14; --gold-tint:#3A2C0E;
+  --ink:#F4F6F4; --ink-2:#C9CFCB; --ink-3:#8F9994;
+  --line:#2C332F; --line-soft:#232926;
+  --bg:#111114; --card:#1A1D1B; --track:#262B28;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+  --logo-light:none; --logo-dark:block;
+}
+*{box-sizing:border-box}
+body.embedded{background:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.os{font-family:Oswald,"Arial Narrow",Impact,sans-serif;font-weight:500;letter-spacing:.01em;text-wrap:balance;margin:0}
+h1{font-size:clamp(40px,8vw,64px);line-height:.98;text-transform:uppercase}
+h2{font-size:clamp(26px,4.5vw,34px);line-height:1.1;text-transform:uppercase}
+h3{font-size:20px;line-height:1.2;text-transform:uppercase;letter-spacing:.03em}
+p{margin:0}
+a{color:var(--green-deep)}
+.eyebrow{font-family:"DM Sans";font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-deep)}
+.muted{color:var(--ink-3)}
+.wrap{max-width:720px;margin:0 auto;padding:20px 20px 40px}
+body.embedded .wrap{padding:0 0 8px}
+.frame{background:var(--card);border-top:3px solid var(--green);border-bottom:3px solid var(--green);box-shadow:var(--shadow);position:relative}
+.frame::after{content:"";position:absolute;left:0;right:0;top:9px;height:1px;background:var(--green);opacity:.55}
+.frame::before{content:"";position:absolute;left:0;right:0;bottom:9px;height:1px;background:var(--green);opacity:.55}
+.head{display:flex;justify-content:space-between;align-items:center;padding:26px 32px 0}
+.logo{display:block;line-height:0}
+.logo img{height:36px;width:auto}
+.logo .logo-light{display:var(--logo-light,block)}
+.logo .logo-dark{display:var(--logo-dark,none)}
+.progress{height:3px;background:var(--track);margin:18px 32px 0;position:relative}
+.progress i{position:absolute;left:0;top:0;bottom:0;background:var(--green);transition:width .35s ease}
+.stepline{display:flex;justify-content:space-between;padding:8px 32px 0;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.screen{display:none;padding:28px 32px 36px}
+.screen.on{display:block}
+@media (max-width:560px){.head,.progress,.stepline,.screen{padding-left:18px;padding-right:18px}.progress{margin-left:18px;margin-right:18px}}
+.lead{font-size:18px;color:var(--ink-2);max-width:60ch}
+.stack{display:grid;gap:22px}
+.btn{font:inherit;font-weight:700;font-size:15px;border:0;cursor:pointer;padding:13px 22px;background:var(--ink);color:var(--bg);letter-spacing:.02em;transition:transform .08s}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible,.choice:focus-visible,.seg button:focus-visible,input[type=range]:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.btn.primary{background:var(--green);color:#0B1F10}
+.btn.ghost{background:transparent;color:var(--ink-2);border:1.5px solid var(--line);padding:11px 18px}
+.btn[disabled]{opacity:.4;cursor:not-allowed;transform:none}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line-soft)}
+.choices{display:grid;gap:10px}
+.choice{font:inherit;text-align:left;cursor:pointer;background:var(--card);border:1.5px solid var(--line);padding:16px 18px;color:var(--ink);display:grid;gap:3px;transition:border-color .15s,background .15s}
+.choice b{font-family:Oswald;font-weight:500;font-size:19px;text-transform:uppercase;letter-spacing:.03em}
+.choice span{color:var(--ink-3);font-size:14px}
+.choice:hover{border-color:var(--green)}
+.choice.sel{border-color:var(--green);background:var(--green-tint)}
+.choices.row{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.choices.row .choice{padding:14px 14px}
+.choices.row .choice b{font-size:17px}
+.names{display:grid;gap:8px}
+.namegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.namegrid label{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);padding:0 12px;background:var(--card)}
+.namegrid input{font:inherit;font-size:15px;border:0;background:transparent;color:var(--ink);padding:12px 0;width:100%;min-width:0}
+.namegrid input:focus{outline:none}
+.namegrid label:focus-within{border-color:var(--green)}
+.dot-a,.dot-b{flex:none;width:12px;height:12px;border-radius:50%;background:var(--green)}
+.dot-b{background:var(--blue)}
+@media (max-width:560px){.namegrid{grid-template-columns:1fr}}
+.side-row{display:grid;gap:2px;margin-top:10px}
+.side-row label{font-size:13px;color:var(--ink-2);display:flex;gap:8px;align-items:center;font-weight:500}
+/* axis block */
+.axis{border-top:1px solid var(--line-soft);padding-top:22px}
+.axis:first-child{border-top:0;padding-top:0}
+.axis .q{font-size:18px;font-weight:500;max-width:62ch;margin:4px 0 14px}
+.axis .name{display:flex;align-items:baseline;gap:10px}
+.axis .name .os{font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
+.poles{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--ink-3);margin-top:6px}
+.poles span{max-width:45%}
+.poles span:last-child{text-align:right}
+.poles b{display:block;color:var(--ink-2);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:11px;margin-bottom:1px}
+.sl{position:relative;height:34px;display:flex;align-items:center}
+.sl::before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;margin-top:-3px;background:var(--track);border-radius:3px}
+.sl::after{content:"";position:absolute;left:50%;top:8px;bottom:8px;width:2px;margin-left:-1px;background:var(--line)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;background:transparent;margin:0;position:relative;z-index:1;height:34px}
+input[type=range]::-webkit-slider-runnable-track{height:6px;background:transparent}
+input[type=range]::-moz-range-track{height:6px;background:transparent}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--green);border:3px solid var(--card);box-shadow:0 0 0 1.5px var(--green);margin-top:-9px;cursor:grab}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--green);border:3px solid var(--card);box-shadow:0 0 0 1.5px var(--green);cursor:grab}
+input[type=range].other::-webkit-slider-thumb{background:var(--card);box-shadow:0 0 0 2.5px var(--blue)}
+input[type=range].other::-moz-range-thumb{background:var(--card);box-shadow:0 0 0 2.5px var(--blue)}
+input[type=range].b::-webkit-slider-thumb{background:var(--blue);box-shadow:0 0 0 1.5px var(--blue)}
+input[type=range].b::-moz-range-thumb{background:var(--blue);box-shadow:0 0 0 1.5px var(--blue)}
+.sub{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;margin-top:14px}
+.sub label{font-size:14px;color:var(--ink-2)}
+.seg{display:inline-flex;border:1.5px solid var(--line)}
+.seg button{font:inherit;font-size:13px;font-weight:500;background:transparent;border:0;border-left:1.5px solid var(--line);padding:7px 12px;cursor:pointer;color:var(--ink-2)}
+.seg button:first-child{border-left:0}
+.seg button.sel{background:var(--ink);color:var(--bg)}
+.other-row{margin-top:12px;padding:12px 14px;background:var(--blue-tint);display:grid;gap:4px}
+.other-row label{font-size:13px;color:var(--ink-2);display:flex;gap:8px;align-items:center}
+.other-row label::before{content:"";width:10px;height:10px;border-radius:50%;border:2.5px solid var(--blue);background:var(--card)}
+@media (max-width:560px){.sub{grid-template-columns:1fr}.seg{width:100%}.seg button{flex:1}}
+/* result */
+.verdict{display:grid;gap:8px;padding:22px 24px;border-left:6px solid var(--gold);background:var(--gold-tint)}
+.verdict.bug{border-color:var(--orange);background:var(--orange-tint)}
+.verdict.schwel{border-color:var(--blue);background:var(--blue-tint)}
+.verdict h2{font-size:clamp(34px,6vw,48px)}
+.verdict p{max-width:62ch}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:2px;background:var(--track);color:var(--ink-2);vertical-align:middle}
+.pill.fix{background:var(--orange);color:#fff}
+.pill.tend{background:var(--gold-tint);color:#7A5300}
+.pill.gap{background:var(--blue-tint);color:var(--blue)}
+.dim{margin-top:22px}
+.dim h3{color:var(--ink-3);font-size:13px;letter-spacing:.14em;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.row{display:grid;grid-template-columns:120px 1fr 120px;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line-soft)}
+.row .l,.row .r{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);line-height:1.3}
+.row .r{text-align:right}
+.row .l b,.row .r b{display:block;font-family:Oswald;font-weight:500;font-size:14px;letter-spacing:.04em;color:var(--ink);text-transform:uppercase}
+.row .pills{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;margin-top:-4px}
+.track{position:relative;height:28px}
+.track::before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;margin-top:-3px;background:var(--track);border-radius:3px}
+.track::after{content:"";position:absolute;left:50%;top:5px;bottom:5px;width:2px;margin-left:-1px;background:var(--line)}
+.dot{position:absolute;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--green);border:2.5px solid var(--card);box-shadow:0 0 0 1.5px var(--green);z-index:2}
+.dot.fix{background:var(--orange);box-shadow:0 0 0 1.5px var(--orange)}
+.dot.tend{background:var(--gold);box-shadow:0 0 0 1.5px var(--gold)}
+.dot.o{background:var(--card);box-shadow:0 0 0 2.5px var(--blue);width:12px;height:12px;margin:-6px 0 0 -6px;z-index:1}
+.dot.b{background:var(--blue);box-shadow:0 0 0 1.5px var(--blue);z-index:1}
+.dot.ring{box-shadow:0 0 0 3px var(--orange)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--ink-3);margin-top:10px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+@media (max-width:560px){.row{grid-template-columns:1fr;gap:6px}.row .r{text-align:left}.row .track{order:-1}}
+.moves{display:grid;gap:14px;margin-top:10px}
+.move{padding:18px 20px;background:var(--card);border:1.5px solid var(--line);border-left:5px solid var(--orange);display:grid;gap:8px}
+.move.up{border-left-color:var(--blue)}
+.move .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.move.up .tag{color:var(--blue)}
+.move .skill{font-size:14px;color:var(--ink-2);padding-top:8px;border-top:1px dashed var(--line)}
+.move .skill b{font-weight:700;color:var(--ink)}
+.callout{padding:18px 20px;background:var(--green-tint);border-left:5px solid var(--green);display:grid;gap:6px}
+.callout.ink{background:var(--ink);color:var(--bg);border-left-color:var(--green)}
+.callout.ink .eyebrow{color:var(--green)}
+.callout.ink a{color:var(--green)}
+.quote{font-family:Oswald;font-size:clamp(22px,4vw,30px);line-height:1.15;text-transform:uppercase;font-weight:500;margin:6px 0}
+.foot{font-size:12px;color:var(--ink-3);padding:18px 32px 26px;max-width:60ch}
+.demo{font-size:13px;color:var(--ink-3);border:1px dashed var(--line);padding:10px 12px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body class="embedded">
+
+<div class="wrap">
+<div class="frame">
+  <div class="head">
+    <span class="eyebrow" id="crumb">Konflikt-Check</span>
+    <a class="logo" href="https://jacobnoon.com" target="_blank" rel="noopener" aria-label="Jacob Noon"><img class="logo-light" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIzMTQ2LjE4Mjk5OTQ1ODU4MTQiCiAgICAgICAgaGVpZ2h0PSIxNDM5LjkwMjU0NDY2NzAyNzUiIHZpZXdCb3g9IjAgMCAzMTQ2LjE4Mjk5OTQ1ODU4MTQgMTQzOS45MDI1NDQ2NjcwMjc1Ij4KCgkJCTxnIHRyYW5zZm9ybT0ic2NhbGUoNy4zMDkxNDk5NzI5MjkwNzQpIHRyYW5zbGF0ZSgxMCwgMTApIj4KCQkJCTxkZWZzIGlkPSJTdmdqc0RlZnMzMDI2Ij48L2RlZnM+PGcgaWQ9IlN2Z2pzRzMwMjciIGZlYXR1cmVLZXk9InN5bWJvbEdyb3VwQ29udGFpbmVyIiB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLDAsMCkiIGZpbGw9IiM0NmM1NjgiPjxyZWN0IHdpZHRoPSIxOTYiIGhlaWdodD0iMTc3IiByeD0iOCI+PC9yZWN0PjwvZz48ZyBpZD0iU3ZnanNHMzAyOCIgZmVhdHVyZUtleT0iRE15blV4LTAiIHRyYW5zZm9ybT0ibWF0cml4KDEuNjg5MjY1ODYxNDIxNTM2NiwwLDAsMS42ODkyNjU4NjE0MjE1MzY2LDE2LjY5NDIxNTQyMzMzODgxLDcuNDIwNDcyNzI0ODU5NDc3KSIgZmlsbD0iI2ZmZmZmZiI+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJNMjguMDM2LDkxLjUxMmMtMC4zOCwwLTAuNzY0LTAuMTA0LTEuMDk2LTAuMzI0Yy0wLjcwOC0wLjQ2Ny0xLjA0OC0xLjMzMi0wLjg0NC0yLjE1NWwzLjU1Mi0xNC4zNTNIMTUuODcyICBjLTAuOTQ0LDAtMS43NjQtMC42NTYtMS45NTYtMS41ODRMMiwxNi4zNjhjLTAuMTE2LTAuNTU2LDAuMDA0LTEuMTMyLDAuMzQtMS41ODhjMC4zMzItMC40NTYsMC44NC0wLjc1MiwxLjQwNC0wLjgxM0w5MS44MjgsNC41ICBjMC42MDctMC4wNzIsMS4yMiwwLjE1NiwxLjY0OCwwLjU5MmMwLjQyOCwwLjQzNiwwLjYzMSwxLjA1NiwwLjU0NywxLjY2bC03LjgzNiw1OC4xOTFjLTAuMTM2LDAuOTkyLTAuOTc5LDEuNzM2LTEuOTgzLDEuNzM2ICBINjEuMjE2TDI5LjI1Niw5MS4xQzI4Ljg5Miw5MS4zNzYsMjguNDY0LDkxLjUxMiwyOC4wMzYsOTEuNTEyTDI4LjAzNiw5MS41MTJ6Ij48L3BhdGg+PC9nPjxnIGlkPSJTdmdqc0czMDI5IiBmZWF0dXJlS2V5PSJ4Z2NlbnUtMCIgdHJhbnNmb3JtPSJtYXRyaXgoNS4zNTY1OTYzNzgyNzAwNTksMCwwLDUuMzU2NTk2Mzc4MjcwMDU5LDIxNC45Mjg2ODA3MDgzODIwNywtMzAuMjgyNTE2MDAzNzc2MzA1KSIgZmlsbD0iIzExMTExMSI+PHBhdGggZD0iTTAuMiAyMCBsMCAtMiBjMC4yNCAwLjAyIDAuNTIgMC4wMiAwLjc2IDAuMDIgYzAuNyAwIDEuMjYgLTAuMjYgMS4yNiAtMS4zNCBsMCAtMTAuNjggbDIuMiAwIGwwIDEwLjUyIGMwIDIuOCAtMS41IDMuNTIgLTMuMTYgMy41MiBjLTAuNCAwIC0wLjcgMCAtMS4wNiAtMC4wNCB6IE0xMC44IDYgbDIuMjQgMTQgbC0yLjIyIDAgbC0wLjM4IC0yLjU0IGwtMi43IDAgbC0wLjM4IDIuNTQgbC0yLjAyIDAgbDIuMjQgLTE0IGwzLjIyIDAgeiBNOS4wNiA4LjQ4IGwtMS4wNCA3LjA4IGwyLjEyIDAgbC0xLjA0IC03LjA4IGwtMC4wNCAwIHogTTE4LjM2IDE0Ljc4MDAwMDAwMDAwMDAwMSBsMi4wOCAwIGwwIDEuODYgYzAgMi4yNCAtMS4xMiAzLjUyIC0zLjI4IDMuNTIgcy0zLjI4IC0xLjI4IC0zLjI4IC0zLjUyIGwwIC03LjI4IGMwIC0yLjI0IDEuMTIgLTMuNTIgMy4yOCAtMy41MiBzMy4yOCAxLjI4IDMuMjggMy41MiBsMCAxLjM2IGwtMi4wOCAwIGwwIC0xLjUgYzAgLTEgLTAuNDQgLTEuMzggLTEuMTQgLTEuMzggcy0xLjE0IDAuMzggLTEuMTQgMS4zOCBsMCA3LjU2IGMwIDEgMC40NCAxLjM2IDEuMTQgMS4zNiBzMS4xNCAtMC4zNiAxLjE0IC0xLjM2IGwwIC0yIHogTTIzLjggOS4yMiBsMCA3LjU2IGMwIDEgMC40NCAxLjM4IDEuMTQgMS4zOCBzMS4xNCAtMC4zOCAxLjE0IC0xLjM4IGwwIC03LjU2IGMwIC0xIC0wLjQ0IC0xLjM4IC0xLjE0IC0xLjM4IHMtMS4xNCAwLjM4IC0xLjE0IDEuMzggeiBNMjEuNiAxNi42NCBsMCAtNy4yOCBjMCAtMi4yNCAxLjE4IC0zLjUyIDMuMzQgLTMuNTIgczMuMzQgMS4yOCAzLjM0IDMuNTIgbDAgNy4yOCBjMCAyLjI0IC0xLjE4IDMuNTIgLTMuMzQgMy41MiBzLTMuMzQgLTEuMjggLTMuMzQgLTMuNTIgeiBNMzMuMDE5OTk5OTk5OTk5OTk2IDYgYzIuMjggMCAzLjI2IDEuMDYgMy4yNiAzLjIyIGwwIDAuNSBjMCAxLjQ0IC0wLjQ0IDIuMzQgLTEuNDIgMi44IGwwIDAuMDQgYzEuMTggMC40NiAxLjY0IDEuNSAxLjY0IDIuOTggbDAgMS4xNCBjMCAyLjE2IC0xLjE0IDMuMzIgLTMuMzQgMy4zMiBsLTMuNDYgMCBsMCAtMTQgbDMuMzIgMCB6IE0zMi44Nzk5OTk5OTk5OTk5OTUgMTMuNyBsLTAuOTggMCBsMCA0LjMgbDEuMjYgMCBjMC43NCAwIDEuMTQgLTAuMzQgMS4xNCAtMS4zOCBsMCAtMS4yMiBjMCAtMS4zIC0wLjQyIC0xLjcgLTEuNDIgLTEuNyB6IE0zMi45NiA4IGwtMS4wNiAwIGwwIDMuNyBsMC44NiAwIGMwLjgyIDAgMS4zMiAtMC4zNiAxLjMyIC0xLjQ4IGwwIC0wLjc4IGMwIC0xIC0wLjM0IC0xLjQ0IC0xLjEyIC0xLjQ0IHoiPjwvcGF0aD48L2c+PGcgaWQ9IlN2Z2pzRzMwMzAiIGZlYXR1cmVLZXk9InhnY2VudS0xIiB0cmFuc2Zvcm09Im1hdHJpeCg2LjIwMDM5NzA4MTgzNDg2MywwLDAsNi4yMDAzOTcwODE4MzQ4NjMsMjExLjE2MzY5MDQ1MzU2MzYsNTEuNzg5Njg4OTY1NzE4MDY0KSIgZmlsbD0iIzExMTExMSI+PHBhdGggZD0iTTUuNSAyMCBsLTIuNyAtMTAuMTQgbC0wLjA0IDAgbDAgMTAuMTQgbC0xLjk4IDAgbDAgLTE0IGwyLjc2IDAgbDIuMjIgOC4zOCBsMC4wNCAwIGwwIC04LjM4IGwxLjk2IDAgbDAgMTQgbC0yLjI2IDAgeiBNMTEuMzYwMDAwMDAwMDAwMDAxIDkuMjIgbDAgNy41NiBjMCAxIDAuNDQgMS4zOCAxLjE0IDEuMzggczEuMTQgLTAuMzggMS4xNCAtMS4zOCBsMCAtNy41NiBjMCAtMSAtMC40NCAtMS4zOCAtMS4xNCAtMS4zOCBzLTEuMTQgMC4zOCAtMS4xNCAxLjM4IHogTTkuMTYgMTYuNjQgbDAgLTcuMjggYzAgLTIuMjQgMS4xOCAtMy41MiAzLjM0IC0zLjUyIHMzLjM0IDEuMjggMy4zNCAzLjUyIGwwIDcuMjggYzAgMi4yNCAtMS4xOCAzLjUyIC0zLjM0IDMuNTIgcy0zLjM0IC0xLjI4IC0zLjM0IC0zLjUyIHogTTE5LjI4IDkuMjIgbDAgNy41NiBjMCAxIDAuNDQgMS4zOCAxLjE0IDEuMzggczEuMTQgLTAuMzggMS4xNCAtMS4zOCBsMCAtNy41NiBjMCAtMSAtMC40NCAtMS4zOCAtMS4xNCAtMS4zOCBzLTEuMTQgMC4zOCAtMS4xNCAxLjM4IHogTTE3LjA4MDAwMDAwMDAwMDAwMiAxNi42NCBsMCAtNy4yOCBjMCAtMi4yNCAxLjE4IC0zLjUyIDMuMzQgLTMuNTIgczMuMzQgMS4yOCAzLjM0IDMuNTIgbDAgNy4yOCBjMCAyLjI0IC0xLjE4IDMuNTIgLTMuMzQgMy41MiBzLTMuMzQgLTEuMjggLTMuMzQgLTMuNTIgeiBNMjkuODgwMDAwMDAwMDAwMDAzIDIwIGwtMi43IC0xMC4xNCBsLTAuMDQgMCBsMCAxMC4xNCBsLTEuOTggMCBsMCAtMTQgbDIuNzYgMCBsMi4yMiA4LjM4IGwwLjA0IDAgbDAgLTguMzggbDEuOTYgMCBsMCAxNCBsLTIuMjYgMCB6Ij48L3BhdGg+PC9nPgoJCQk8L2c+CgkJPC9zdmc+" alt="Jacob Noon"><img class="logo-dark" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIzMTQ2LjE4Mjk5OTQ1ODU4MTQiIGhlaWdodD0iMTQzOS45MDI1NDQ2NjcwMjc1IiB2aWV3Qm94PSIwIDAgMzE0Ni4xODI5OTk0NTg1ODE0IDE0MzkuOTAyNTQ0NjY3MDI3NSI+CgkJCQoJCQk8ZyB0cmFuc2Zvcm09InNjYWxlKDcuMzA5MTQ5OTcyOTI5MDc0KSB0cmFuc2xhdGUoMTAsIDEwKSI+CgkJCQk8ZGVmcyBpZD0iU3ZnanNEZWZzMzAyNiIvPjxnIGlkPSJTdmdqc0czMDI3IiBmZWF0dXJlS2V5PSJzeW1ib2xHcm91cENvbnRhaW5lciIgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwwLDApIiBmaWxsPSJub25lIj48cmVjdCB3aWR0aD0iMTk2IiBoZWlnaHQ9IjE3NyIgcng9IjgiLz48L2c+PGcgaWQ9IlN2Z2pzRzMwMjgiIGZlYXR1cmVLZXk9IkRNeW5VeC0wIiB0cmFuc2Zvcm09Im1hdHJpeCgxLjY4OTI2NTg2MTQyMTUzNjYsMCwwLDEuNjg5MjY1ODYxNDIxNTM2NiwxNi42OTQyMTU0MjMzMzg4MSw3LjQyMDQ3MjcyNDg1OTQ3NykiIGZpbGw9IiNmZmZmZmYiPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0iTTI4LjAzNiw5MS41MTJjLTAuMzgsMC0wLjc2NC0wLjEwNC0xLjA5Ni0wLjMyNGMtMC43MDgtMC40NjctMS4wNDgtMS4zMzItMC44NDQtMi4xNTVsMy41NTItMTQuMzUzSDE1Ljg3MiAgYy0wLjk0NCwwLTEuNzY0LTAuNjU2LTEuOTU2LTEuNTg0TDIsMTYuMzY4Yy0wLjExNi0wLjU1NiwwLjAwNC0xLjEzMiwwLjM0LTEuNTg4YzAuMzMyLTAuNDU2LDAuODQtMC43NTIsMS40MDQtMC44MTNMOTEuODI4LDQuNSAgYzAuNjA3LTAuMDcyLDEuMjIsMC4xNTYsMS42NDgsMC41OTJjMC40MjgsMC40MzYsMC42MzEsMS4wNTYsMC41NDcsMS42NmwtNy44MzYsNTguMTkxYy0wLjEzNiwwLjk5Mi0wLjk3OSwxLjczNi0xLjk4MywxLjczNiAgSDYxLjIxNkwyOS4yNTYsOTEuMUMyOC44OTIsOTEuMzc2LDI4LjQ2NCw5MS41MTIsMjguMDM2LDkxLjUxMkwyOC4wMzYsOTEuNTEyeiIvPjwvZz48ZyBpZD0iU3ZnanNHMzAyOSIgZmVhdHVyZUtleT0ieGdjZW51LTAiIHRyYW5zZm9ybT0ibWF0cml4KDUuMzU2NTk2Mzc4MjcwMDU5LDAsMCw1LjM1NjU5NjM3ODI3MDA1OSwyMTQuOTI4NjgwNzA4MzgyMDcsLTMwLjI4MjUxNjAwMzc3NjMwNSkiIGZpbGw9IiNmZmYiPjxwYXRoIGQ9Ik0wLjIgMjAgbDAgLTIgYzAuMjQgMC4wMiAwLjUyIDAuMDIgMC43NiAwLjAyIGMwLjcgMCAxLjI2IC0wLjI2IDEuMjYgLTEuMzQgbDAgLTEwLjY4IGwyLjIgMCBsMCAxMC41MiBjMCAyLjggLTEuNSAzLjUyIC0zLjE2IDMuNTIgYy0wLjQgMCAtMC43IDAgLTEuMDYgLTAuMDQgeiBNMTAuOCA2IGwyLjI0IDE0IGwtMi4yMiAwIGwtMC4zOCAtMi41NCBsLTIuNyAwIGwtMC4zOCAyLjU0IGwtMi4wMiAwIGwyLjI0IC0xNCBsMy4yMiAwIHogTTkuMDYgOC40OCBsLTEuMDQgNy4wOCBsMi4xMiAwIGwtMS4wNCAtNy4wOCBsLTAuMDQgMCB6IE0xOC4zNiAxNC43ODAwMDAwMDAwMDAwMDEgbDIuMDggMCBsMCAxLjg2IGMwIDIuMjQgLTEuMTIgMy41MiAtMy4yOCAzLjUyIHMtMy4yOCAtMS4yOCAtMy4yOCAtMy41MiBsMCAtNy4yOCBjMCAtMi4yNCAxLjEyIC0zLjUyIDMuMjggLTMuNTIgczMuMjggMS4yOCAzLjI4IDMuNTIgbDAgMS4zNiBsLTIuMDggMCBsMCAtMS41IGMwIC0xIC0wLjQ0IC0xLjM4IC0xLjE0IC0xLjM4IHMtMS4xNCAwLjM4IC0xLjE0IDEuMzggbDAgNy41NiBjMCAxIDAuNDQgMS4zNiAxLjE0IDEuMzYgczEuMTQgLTAuMzYgMS4xNCAtMS4zNiBsMCAtMiB6IE0yMy44IDkuMjIgbDAgNy41NiBjMCAxIDAuNDQgMS4zOCAxLjE0IDEuMzggczEuMTQgLTAuMzggMS4xNCAtMS4zOCBsMCAtNy41NiBjMCAtMSAtMC40NCAtMS4zOCAtMS4xNCAtMS4zOCBzLTEuMTQgMC4zOCAtMS4xNCAxLjM4IHogTTIxLjYgMTYuNjQgbDAgLTcuMjggYzAgLTIuMjQgMS4xOCAtMy41MiAzLjM0IC0zLjUyIHMzLjM0IDEuMjggMy4zNCAzLjUyIGwwIDcuMjggYzAgMi4yNCAtMS4xOCAzLjUyIC0zLjM0IDMuNTIgcy0zLjM0IC0xLjI4IC0zLjM0IC0zLjUyIHogTTMzLjAxOTk5OTk5OTk5OTk5NiA2IGMyLjI4IDAgMy4yNiAxLjA2IDMuMjYgMy4yMiBsMCAwLjUgYzAgMS40NCAtMC40NCAyLjM0IC0xLjQyIDIuOCBsMCAwLjA0IGMxLjE4IDAuNDYgMS42NCAxLjUgMS42NCAyLjk4IGwwIDEuMTQgYzAgMi4xNiAtMS4xNCAzLjMyIC0zLjM0IDMuMzIgbC0zLjQ2IDAgbDAgLTE0IGwzLjMyIDAgeiBNMzIuODc5OTk5OTk5OTk5OTk1IDEzLjcgbC0wLjk4IDAgbDAgNC4zIGwxLjI2IDAgYzAuNzQgMCAxLjE0IC0wLjM0IDEuMTQgLTEuMzggbDAgLTEuMjIgYzAgLTEuMyAtMC40MiAtMS43IC0xLjQyIC0xLjcgeiBNMzIuOTYgOCBsLTEuMDYgMCBsMCAzLjcgbDAuODYgMCBjMC44MiAwIDEuMzIgLTAuMzYgMS4zMiAtMS40OCBsMCAtMC43OCBjMCAtMSAtMC4zNCAtMS40NCAtMS4xMiAtMS40NCB6Ii8+PC9nPjxnIGlkPSJTdmdqc0czMDMwIiBmZWF0dXJlS2V5PSJ4Z2NlbnUtMSIgdHJhbnNmb3JtPSJtYXRyaXgoNi4yMDAzOTcwODE4MzQ4NjMsMCwwLDYuMjAwMzk3MDgxODM0ODYzLDIxMS4xNjM2OTA0NTM1NjM2LDUxLjc4OTY4ODk2NTcxODA2NCkiIGZpbGw9IiNmZmYiPjxwYXRoIGQ9Ik01LjUgMjAgbC0yLjcgLTEwLjE0IGwtMC4wNCAwIGwwIDEwLjE0IGwtMS45OCAwIGwwIC0xNCBsMi43NiAwIGwyLjIyIDguMzggbDAuMDQgMCBsMCAtOC4zOCBsMS45NiAwIGwwIDE0IGwtMi4yNiAwIHogTTExLjM2MDAwMDAwMDAwMDAwMSA5LjIyIGwwIDcuNTYgYzAgMSAwLjQ0IDEuMzggMS4xNCAxLjM4IHMxLjE0IC0wLjM4IDEuMTQgLTEuMzggbDAgLTcuNTYgYzAgLTEgLTAuNDQgLTEuMzggLTEuMTQgLTEuMzggcy0xLjE0IDAuMzggLTEuMTQgMS4zOCB6IE05LjE2IDE2LjY0IGwwIC03LjI4IGMwIC0yLjI0IDEuMTggLTMuNTIgMy4zNCAtMy41MiBzMy4zNCAxLjI4IDMuMzQgMy41MiBsMCA3LjI4IGMwIDIuMjQgLTEuMTggMy41MiAtMy4zNCAzLjUyIHMtMy4zNCAtMS4yOCAtMy4zNCAtMy41MiB6IE0xOS4yOCA5LjIyIGwwIDcuNTYgYzAgMSAwLjQ0IDEuMzggMS4xNCAxLjM4IHMxLjE0IC0wLjM4IDEuMTQgLTEuMzggbDAgLTcuNTYgYzAgLTEgLTAuNDQgLTEuMzggLTEuMTQgLTEuMzggcy0xLjE0IDAuMzggLTEuMTQgMS4zOCB6IE0xNy4wODAwMDAwMDAwMDAwMDIgMTYuNjQgbDAgLTcuMjggYzAgLTIuMjQgMS4xOCAtMy41MiAzLjM0IC0zLjUyIHMzLjM0IDEuMjggMy4zNCAzLjUyIGwwIDcuMjggYzAgMi4yNCAtMS4xOCAzLjUyIC0zLjM0IDMuNTIgcy0zLjM0IC0xLjI4IC0zLjM0IC0zLjUyIHogTTI5Ljg4MDAwMDAwMDAwMDAwMyAyMCBsLTIuNyAtMTAuMTQgbC0wLjA0IDAgbDAgMTAuMTQgbC0xLjk4IDAgbDAgLTE0IGwyLjc2IDAgbDIuMjIgOC4zOCBsMC4wNCAwIGwwIC04LjM4IGwxLjk2IDAgbDAgMTQgbC0yLjI2IDAgeiIvPjwvZz4KCQkJPC9nPgoJCTwvc3ZnPg==" alt=""></a>
+  </div>
+  <div class="progress"><i id="bar" style="width:0%"></i></div>
+  <div class="stepline"><span id="stepname">Start</span><span id="stepnum"></span></div>
+
+  <!-- 0 START -->
+  <section class="screen on" data-step="0">
+    <div class="stack">
+      <div>
+        <h1>Bug oder<br>Feature?</h1>
+        <p class="lead" style="margin-top:14px">Ein Konflikt ist nicht das Problem. Das Problem ist, wenn er festhängt. Neun Regler, ein Profil, und am Ende die Frage, ob dieser Konflikt gerade schüren, beruhigen oder in Ruhe gelassen werden will.</p>
+      </div>
+      <div>
+        <p class="eyebrow" style="margin-bottom:10px">Von wo schaust du drauf?</p>
+        <div class="choices" id="roleChoices">
+          <button class="choice" data-role="partei"><b>Ich bin Partei</b><span>Es ist mein Konflikt. Ich stecke drin.</span></button>
+          <button class="choice" data-role="beob"><b>Ich schaue von außen</b><span>Zwei Menschen oder Gruppen in meinem Umfeld, ich bin nicht selbst Partei. Führungskraft, HR, Kollegin.</span></button>
+        </div>
+      </div>
+      <p class="muted" style="font-size:14px">Dauert etwa sechs Minuten. Nichts wird gespeichert oder gesendet. Grundlage ist die Konflikttheorie von Klaus Eidenschink.</p>
+      <div class="nav"><span></span><button class="btn primary" id="startBtn" disabled>Los</button></div>
+    </div>
+  </section>
+
+  <!-- 1 ANFANG -->
+  <section class="screen" data-step="1">
+    <div class="stack">
+      <div>
+        <p class="eyebrow">Eine Frage vorab</p>
+        <h2 style="margin-top:6px">Wer hat angefangen?</h2>
+        <p class="lead" style="margin-top:10px">Nicht lange überlegen. Erste Antwort.</p>
+      </div>
+      <div id="nameBox" class="names" hidden><p class="eyebrow" style="margin-bottom:8px">Die beiden Seiten</p><div class="namegrid"><label><span class="dot-a"></span><input id="nameA" placeholder="Seite A, z. B. Vertrieb oder Frau K."></label><label><span class="dot-b"></span><input id="nameB" placeholder="Seite B"></label></div><p class="muted" style="font-size:13px">Optional. Namen bleiben im Browser.</p></div>
+      <div class="choices row" id="startChoices"></div>
+      <div class="nav"><button class="btn ghost" data-back>Zurück</button><button class="btn primary" data-next disabled>Weiter</button></div>
+    </div>
+  </section>
+
+  <!-- 2,3,4 DIMENSIONEN -->
+  <section class="screen" data-step="2"><div class="stack"><div><p class="eyebrow">Sachdimension</p><h2 style="margin-top:6px">Worüber wird gestritten?</h2><p class="lead" style="margin-top:10px">Schieb den Regler dahin, wo der Konflikt gerade steht. Nicht, wo er hin soll.</p></div><div class="stack" id="dim-sache"></div><div class="nav"><button class="btn ghost" data-back>Zurück</button><button class="btn primary" data-next>Weiter</button></div></div></section>
+  <section class="screen" data-step="3"><div class="stack"><div><p class="eyebrow">Sozialdimension</p><h2 style="margin-top:6px">Wie wird miteinander umgegangen?</h2></div><div class="stack" id="dim-sozial"></div><div class="nav"><button class="btn ghost" data-back>Zurück</button><button class="btn primary" data-next>Weiter</button></div></div></section>
+  <section class="screen" data-step="4"><div class="stack"><div><p class="eyebrow">Zeitdimension</p><h2 style="margin-top:6px">Vergangenheit, Gegenwart, Zukunft</h2></div><div class="stack" id="dim-zeit"></div><div class="nav"><button class="btn ghost" data-back>Zurück</button><button class="btn primary" data-next>Weiter</button></div></div></section>
+
+  <!-- 5 ERGRIFFENHEIT -->
+  <section class="screen" data-step="5">
+    <div class="stack">
+      <div>
+        <p class="eyebrow" id="ergEyebrow">Die Kernfrage</p>
+        <h2 style="margin-top:6px" id="ergTitle">Hast du den Konflikt, oder hat er dich?</h2>
+      </div>
+      <div class="stack" id="erg"></div>
+      <div class="nav"><button class="btn ghost" data-back>Zurück</button><button class="btn primary" id="resultBtn" disabled>Ergebnis</button></div>
+    </div>
+  </section>
+
+  <!-- 6 ERGEBNIS -->
+  <section class="screen" data-step="6">
+    <div class="stack" id="result"></div>
+  </section>
+
+  <p class="foot">Prototyp. Theoretische Grundlage: Klaus Eidenschink, „Die Kunst des Konflikts. Konflikte schüren und beruhigen lernen" (Carl-Auer). Die neun Leitunterscheidungen sind seine, die Fragen, Bewertungslogik und Formulierungen stammen von Jacob Noon. Keine Diagnose, kein Ersatz für ein Gespräch.</p>
+</div>
+</div>
+
+<script>
+const AXES=[
+ {id:'auf',dim:'sache',name:'Aufmerksamkeit',left:'generalisiert',right:'spezifisch',
+  q:{partei:'Worum geht es gerade? Noch um die eine konkrete Sache, oder inzwischen um „immer", „nie" und „grundsätzlich"?',beob:'Streitet diese Seite noch über den konkreten Punkt, oder ist für sie längst alles Thema?'},
+  lp:'Aus der Mücke ist ein Elefant geworden',rp:'Es geht um genau einen Punkt',
+  down:'Verlagere die Aufmerksamkeit vom Generellen zum Spezifischen. Wo genau liegt der Unterschied? Wo seid ihr euch längst einig? Das Trennende eingrenzen, das Gemeinsame benennen.',
+  up:'Wenn immer nur der Einzelfall besprochen wird, kann das Bagatellisierung sein. Den Elefanten hinter der Mücke benennen: Worum geht es hier eigentlich?',
+  sdown:'Konkretisieren: Trennendes eingrenzen, Gemeinsamkeiten sichtbar machen.',sup:'Verallgemeinern dürfen: das Muster hinter dem Einzelfall aussprechen.'},
+ {id:'bes',dim:'sache',name:'Beschreibung',left:'einfältig',right:'vielfältig',
+  q:{partei:'Gibt es aus deiner Sicht genau eine richtige Lösung, oder könntest du mehrere Sichtweisen gelten lassen?',beob:'Lässt diese Seite mehrere Sichtweisen auf Problem und Lösung zu, oder gilt für sie nur eine?'},
+  lp:'Es gibt eine richtige Sicht: meine',rp:'Es gibt mehrere brauchbare Sichten',
+  down:'Die Situation ist vielfältig, die Ansichten sind einfältig. Hol weitere Perspektiven ins Spiel: Fachleute, Betroffene, die Sicht aus dem Ganzen statt aus dem eigenen Bereich.',
+  up:'Endloses Abwägen ist auch eine Fixierung. Wenn ein Einigungszwang besteht (Was? Wann? Wer?), braucht es Einfalt: einen Rahmen, eine Frist, eine Entscheidung. Ein Kompromiss darf dabei sachlich unvollkommen sein.',
+  sdown:'Perspektivwechsel: andere Sichten als brauchbar sehen können.',sup:'Entscheidungsmut: Vielfalt begrenzen und festlegen.'},
+ {id:'bew',dim:'sache',name:'Bewertung',left:'verabsolutiert',right:'unklar',
+  q:{partei:'Wie sicher bist du, dass die andere Seite falsch liegt?',beob:'Argumentiert diese Seite mit richtig und falsch, gut und böse, oder kann sie offen lassen, wer am Ende recht hat?'},
+  lp:'Ich habe recht. Punkt.',rp:'Beide könnten recht haben',
+  down:'Wer der Bewertung widerspricht, widerspricht hier der Person. Bewegung wird erst möglich, wenn die bedrohte Identität anders Halt findet: erst Anerkennung, dann die Bewertung lockern.',
+  up:'Ohne Einigkeit in den Bewertungen schwelt der Konflikt weiter. Irgendwann muss jemand sagen, was gilt. Standpunkte brauchen auch Kraft und Eindeutigkeit.',
+  sdown:'Mentalisierung und Ambiguitätstoleranz: die Welt mit den Augen des anderen sehen und Unklarheit aushalten.',sup:'Standpunkt beziehen: Bewertungen mit Entschlossenheit aufladen.'},
+ {id:'kon',dim:'sozial',name:'Kontakt',left:'feindlich',right:'dialogisch',
+  q:{partei:'Erwartest du von der anderen Seite noch irgendetwas Gutes?',beob:'Unterstellt diese Seite der anderen Absicht, oder rechnet sie noch mit guten Motiven?'},
+  lp:'Der andere will mir schaden',rp:'Der andere hat Gründe, die ich verstehen könnte',
+  down:'Der Feind legitimiert die Aggression, die Aggression schafft den Feind. Prüfe die Unterstellungen: Welche Motive könnte die andere Seite haben, die nichts mit dir zu tun haben?',
+  up:'Wer nur Dialog anbietet, kommt oft nicht zum Punkt. Der Konflikt schwelt. Hier darf jemand in den Ring steigen und Klartext sprechen, auch wenn das unfreundlich wirkt.',
+  sdown:'Unterstellungen prüfen, Motive erkunden.',sup:'Mut zum Klartext: Gegnerschaft aushalten.'},
+ {id:'rea',dim:'sozial',name:'Reaktion',left:'verneinend',right:'wählend',
+  q:{partei:'Wenn die andere Seite morgen etwas vorschlägt: Weißt du jetzt schon, dass du Nein sagst?',beob:'Sagt diese Seite reflexhaft Nein zu allem, oder wählt sie noch, worauf sie wie reagiert?'},
+  lp:'Nein. Egal, was kommt.',rp:'Kommt drauf an, was kommt',
+  down:'Der Sog zum Nein hat übernommen. Es geht nicht darum, Ja statt Nein zu sagen, sondern wieder wählen zu können: Was in der Aussage des anderen lässt sich bejahen?',
+  up:'Manche Ordnung verflüssigt sich nur, wenn jemand entschieden widerspricht. Ein Nein, das Nein bleibt, auch wenn es zum Ja gedrängt wird, bricht Konfliktsymbiosen auf.',
+  sdown:'Vom Reflex zur Wahl: im Anderen etwas Bejahbares hören.',sup:'Beim Nein bleiben, Druck aushalten.'},
+ {id:'akt',dim:'sozial',name:'Aktion',left:'sendend',right:'erkundend',
+  q:{partei:'Wer hat in den letzten Gesprächen mehr geredet als gefragt?',beob:'Redet diese Seite nur, oder erkundet sie noch, was die andere meint?'},
+  lp:'Zwei Lautsprecher, kein Mikrofon',rp:'Was könnte der andere gemeint haben?',
+  down:'Lautstärke erhöhen bringt nichts, wenn kein Mikrofon im Raum ist. Eigene Inhalte zurückstellen und auf das Bezug nehmen, was gesagt wurde. Erst verstehen, dann senden.',
+  up:'Ständiges Erkunden kann dazu dienen, den Konflikt verborgen zu halten. Manchmal braucht es eine laute, zugespitzte, unbeeindruckbare Botschaft, damit überhaupt ein Konflikt entsteht, der sich bearbeiten lässt.',
+  sdown:'Zuhören: Explore, Absorb, Transform (EAT).',sup:'Senden: Botschaft setzen, zuspitzen, dranbleiben.'},
+ {id:'erk',dim:'zeit',name:'Erklärung',left:'linear',right:'zirkulär',
+  q:{partei:'Wenn du erklärst, wie es dazu kam: Gibt es da einen Täter?',beob:'Sucht diese Seite den Schuldigen, oder sieht sie ihren eigenen Beitrag?'},
+  lp:'Einer ist schuld',rp:'Alle haben beigetragen',
+  down:'Wer einen Täter hat, wird handlungsfähig, und der Beschuldigte fühlt sich zum Zurückschlagen berechtigt. Henne oder Ei? Beides. Die bessere Frage: Was trage ich selbst gerade zum Konflikt bei?',
+  up:'Zirkulär denken kann auch verschleiern. Wo Machtverhältnisse zementiert sind, braucht es eine klare Benennung von Verantwortung, sonst gibt es keinen Konflikt, den man bearbeiten könnte.',
+  sdown:'Zirkulär denken: den eigenen Beitrag sehen, ohne Schuldfrage.',sup:'Verantwortung klar zuschreiben, wenn es nötig ist.'},
+ {id:'ziel',dim:'zeit',name:'Ziel',left:'durchsetzend',right:'unentschieden',
+  q:{partei:'Willst du gewinnen, oder darf offen bleiben, wer sich womit durchsetzt?',beob:'Will diese Seite gewinnen, oder kann sie offen lassen, wer sich womit durchsetzt?'},
+  lp:'Ich will gewinnen',rp:'Mal sehen, wer sich womit durchsetzt',
+  down:'Solange es um Sieg geht, spielt keine Rolle mehr, wer recht hat. Es gewinnt, wer länger durchhält. Unentschieden aushalten heißt: sich lösen von den Interessen, die man gerade für die eigenen hält.',
+  up:'Veränderung braucht eine Kraft, die in den Ring steigt. Wenn niemand gewinnen will, bleibt alles, wie es ist. Manchmal ist es richtig, dass es klare Verlierer gibt.',
+  sdown:'Selbst-Losigkeit: Interessen haben, ohne sie zu sein.',sup:'Kraft und Entschlossenheit: sich durchsetzen wollen.'},
+ {id:'macht',dim:'zeit',name:'Macht',left:'drohend',right:'verhandelnd',
+  q:{partei:'Steht eine Drohung im Raum? Auch eine unausgesprochene?',beob:'Droht diese Seite mit Konsequenzen, oder lotet sie aus, was sie geben und bekommen kann?'},
+  lp:'Wenn du nicht, dann ...',rp:'Gibst du mir, gebe ich dir',
+  down:'Der Bedroher hat keine Macht, außer man gibt sie ihm. Drohungen sind oft ein Ausweg aus Ohnmacht und ernten Anpassung statt Einverständnis. Zurück ins Verhandeln: Was will jede Seite wirklich, und was wäre sie bereit zu geben?',
+  up:'Wer nicht ernst genommen wird, braucht nicht zu reden. Eine glaubwürdige Konsequenz, die man wahrmachen kann und will, ist manchmal die Voraussetzung dafür, dass überhaupt verhandelt wird.',
+  sdown:'Ohnmacht aushalten, Interessen statt Positionen verhandeln.',sup:'Die eigene Alternative kennen und benennen, Konsequenzen glaubwürdig machen.'}
+];
+const DIMS={sache:'Sachdimension',sozial:'Sozialdimension',zeit:'Zeitdimension'};
+const ERG={
+ partei:[
+  {q:'Wenn die andere Seite am Ende recht hätte: Was würde das über dich sagen?',o:['Nichts. Dann hatte ich eben unrecht.','Wäre unangenehm.','Dann wäre ich als Person infrage gestellt.']},
+  {q:'Könntest du sagen: „Gut, dann nicht. Dann anders, woanders, ein anderes Mal"?',o:['Ja, es gibt andere Wege zu dem, was ich brauche.','Schwer.','Nein. So muss es sein.']},
+  {q:'Wie viel Platz nimmt der Konflikt in deinem Kopf ein, wenn du gar nicht im Gespräch bist?',o:['Kaum.','Regelmäßig.','Er läuft ständig mit.']},
+  {q:'Gibt es an dem Konflikt ein Gefühl, das du lieber nicht hättest? Scham, Schuld, Angst, Kränkung?',o:['Nein.','Ja, und ich kann es benennen.','Ja, und ich will nicht hinschauen.']}
+ ],
+ beob:[
+  {q:'Haben sich Lager gebildet?',o:['Nein.','Ansatzweise.','Ja, mit Verbündeten auf beiden Seiten.']},
+  {q:'Wird noch miteinander gesprochen oder nur noch übereinander?',o:['Miteinander.','Beides.','Nur noch übereinander.']},
+  {q:'Halten sich die Umstehenden raus? Führung, Kollegen, du selbst?',o:['Nein, es wird eingegriffen.','Zögerlich.','Alle warten ab.']},
+  {q:'Wie lange läuft das schon?',o:['Tage.','Wochen.','Monate oder länger.']}
+ ]
+};
+const STARTS={partei:[['ich','Ich'],['andere','Die andere Seite'],['beide','Beide'],['unklar','Weiß ich nicht mehr']],beob:[['a','Seite A'],['b','Seite B'],['beide','Beide'],['unklar','Unklar']]};
+function starts(){if(S.role==='partei')return STARTS.partei;return [['a',S.names.a],['b',S.names.b],['beide','Beide'],['unklar','Unklar']]}
+const STEPNAMES=['Start','Vorab','Sache','Sozial','Zeit','Kernfrage','Ergebnis'];
+
+const S={role:null,start:null,pos:{},oth:{},fix:{},erg:{},names:{a:'Seite A',b:'Seite B'}};
+AXES.forEach(a=>{S.pos[a.id]=0;S.oth[a.id]=0;S.fix[a.id]=null});
+let step=0;
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+
+function show(n){
+  step=n;
+  $$('.screen').forEach(s=>s.classList.toggle('on',+s.dataset.step===n));
+  $('#bar').style.width=(n/6*100)+'%';
+  $('#stepname').textContent=STEPNAMES[n];
+  $('#stepnum').textContent=n===0?'':`${n} / 6`;
+  $('#crumb').textContent=S.role?(S.role==='partei'?'Konflikt-Check · Ich bin Partei':'Konflikt-Check · Blick von außen'):'Konflikt-Check';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* start */
+$$('#roleChoices .choice').forEach(b=>b.addEventListener('click',()=>{
+  S.role=b.dataset.role;
+  $$('#roleChoices .choice').forEach(x=>x.classList.toggle('sel',x===b));
+  $('#startBtn').disabled=false;
+}));
+$('#startBtn').addEventListener('click',()=>{buildAll();show(1)});
+['A','B'].forEach(k=>$('#name'+k).addEventListener('input',e=>{S.names[k.toLowerCase()]=e.target.value.trim()||('Seite '+k);const bs=$$('#startChoices .choice');if(bs.length){bs[k==='A'?0:1].querySelector('b').textContent=S.names[k.toLowerCase()]}}));
+
+function buildAll(){
+  const r=S.role;
+  const sc=$('#startChoices');sc.innerHTML='';
+  $('#nameBox').hidden=r!=='beob';
+  starts().forEach(([k,l])=>{const b=document.createElement('button');b.className='choice';b.innerHTML=`<b>${l}</b>`;b.onclick=()=>{S.start=k;$$('#startChoices .choice').forEach(x=>x.classList.toggle('sel',x===b));sc.closest('.screen').querySelector('[data-next]').disabled=false};sc.appendChild(b)});
+  ['sache','sozial','zeit'].forEach(d=>{const box=$('#dim-'+d);box.innerHTML='';AXES.filter(a=>a.dim===d).forEach(a=>box.appendChild(axisEl(a)))});
+  $('#ergTitle').textContent=r==='partei'?'Hast du den Konflikt, oder hat er dich?':'Hat der Konflikt schon das System?';
+  $('#ergEyebrow').textContent=r==='partei'?'Die Kernfrage':'Die Kernfrage von außen';
+  const e=$('#erg');e.innerHTML='';
+  ERG[r].forEach((it,i)=>{const w=document.createElement('div');w.className='axis';w.innerHTML=`<p class="q">${esc(it.q)}</p><div class="choices"></div>`;const c=w.querySelector('.choices');it.o.forEach((o,v)=>{const b=document.createElement('button');b.className='choice';b.innerHTML=`<span style="color:var(--ink);font-size:15px">${esc(o)}</span>`;b.onclick=()=>{S.erg[i]=v;c.querySelectorAll('.choice').forEach(x=>x.classList.toggle('sel',x===b));$('#resultBtn').disabled=Object.keys(S.erg).length<ERG[r].length};c.appendChild(b)});e.appendChild(w)});
+}
+function axisEl(a){
+  const w=document.createElement('div');w.className='axis';
+  const P=S.role==='partei';
+  const other=P?`<div class="other-row"><label for="o-${a.id}">Wo würde die andere Seite den Regler setzen?</label><div class="sl"><input class="other" type="range" id="o-${a.id}" min="-3" max="3" step="1" value="0"></div></div>`:'';
+  const sliders=P?`<div class="sl"><input type="range" id="p-${a.id}" min="-3" max="3" step="1" value="0" aria-label="${a.name}: ${a.left} bis ${a.right}"></div>`
+   :`<div class="side-row"><label><span class="dot-a"></span>${esc(S.names.a)}</label><div class="sl"><input type="range" id="p-${a.id}" min="-3" max="3" step="1" value="0" aria-label="${esc(S.names.a)}, ${a.name}"></div></div>
+     <div class="side-row"><label><span class="dot-b"></span>${esc(S.names.b)}</label><div class="sl"><input class="other b" type="range" id="o-${a.id}" min="-3" max="3" step="1" value="0" aria-label="${esc(S.names.b)}, ${a.name}"></div></div>`;
+  w.innerHTML=`<div class="name"><span class="os">${a.name}smodus</span></div>
+  <p class="q">${esc(a.q[S.role])}</p>
+  ${P?'':'<div class="poles" style="margin:0 0 -4px"><span><b>'+a.left+'</b></span><span><b>'+a.right+'</b></span></div>'}
+  ${sliders}
+  <div class="poles"><span>${P?'<b>'+a.left+'</b>':''}${esc(a.lp)}</span><span>${P?'<b>'+a.right+'</b>':''}${esc(a.rp)}</span></div>
+  <div class="sub"><label>Ist das immer so, oder je nach Tag?</label><div class="seg" data-ax="${a.id}"><button data-v="0">Je nach Tag</button><button data-v="2">Immer so</button></div></div>
+  ${other}`;
+  w.querySelector('#p-'+a.id).oninput=e=>S.pos[a.id]=+e.target.value;
+  w.querySelector('#o-'+a.id).oninput=e=>S.oth[a.id]=+e.target.value;
+  w.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{S.fix[a.id]=+b.dataset.v;w.querySelectorAll('.seg button').forEach(x=>x.classList.toggle('sel',x===b))});
+  return w;
+}
+
+/* nav */
+$$('[data-next]').forEach(b=>b.addEventListener('click',()=>{
+  if(step>=2&&step<=4){const d=['sache','sozial','zeit'][step-2];const miss=AXES.filter(a=>a.dim===d&&S.fix[a.id]===null);if(miss.length){const el=$('#dim-'+d).querySelector(`.seg[data-ax="${miss[0].id}"]`);el.style.outline='2px solid var(--orange)';el.scrollIntoView({block:'center',behavior:'smooth'});setTimeout(()=>el.style.outline='',1600);return}}
+  if(step===1&&S.role==='beob'){$$('.side-row').forEach((row,i)=>{row.querySelector('label').lastChild.textContent=i%2?S.names.b:S.names.a})}
+  show(step+1)}));
+$$('[data-back]').forEach(b=>b.addEventListener('click',()=>show(step-1)));
+$('#resultBtn').addEventListener('click',()=>{render();show(6)});
+
+/* logic */
+function stat(p,f){f=f||0;if(f===2&&Math.abs(p)>=2)return 'fix';if(Math.abs(p)>=2)return 'tend';return 'ok'}
+function status(a){return stat(S.pos[a.id],S.fix[a.id])}
+function statusB(a){return stat(S.oth[a.id],S.fix[a.id])}
+function rank(s){return s==='fix'?2:s==='tend'?1:0}
+function render(){
+  const r=S.role,P=r==='partei';
+  const st={},stB={};AXES.forEach(a=>{st[a.id]=status(a);stB[a.id]=P?'ok':statusB(a)});
+  const fixL=a=>(st[a.id]==='fix'&&S.pos[a.id]<0)||(stB[a.id]==='fix'&&S.oth[a.id]<0);
+  const fixR=a=>(st[a.id]==='fix'&&S.pos[a.id]>0)||(stB[a.id]==='fix'&&S.oth[a.id]>0);
+  const L=AXES.filter(fixL), R=AXES.filter(fixR);
+  const E=Object.values(S.erg).reduce((s,v)=>s+v,0); const caught=E>=5;
+  const gaps=AXES.filter(a=>Math.abs(S.pos[a.id]-S.oth[a.id])>=3);
+  const NA=esc(S.names.a),NB=esc(S.names.b);
+  let v,cls,title,text;
+  if(!P&&gaps.length>=3&&L.length<3){v='schief';cls='schwel';title='Schieflage';text=`Die beiden Seiten stehen nicht im selben Konflikt. Auf ${gaps.length} Achsen liegen ${NA} und ${NB} weit auseinander: Eine Seite ist im Ring, die andere nicht. Eidenschink: Nur wenn zwei ebenbürtig im Ring stehen, lassen sich die Sachkonflikte besprechen. Die weiche Seite braucht Kompetenz <em>für</em> den Konflikt, die harte Seite Kompetenz <em>gegen</em> ihn.`}
+  else if(L.length>=3||(L.length>=2&&caught)||(L.length>=2&&L.length>R.length)){v='bug';cls='bug';title='Bug';text=`Der Konflikt ernährt sich selbst. Auf ${L.length===1?'einer Achse':L.length+' Achsen'} ist er am Widerspruchspol eingerastet: Nein erzeugt Nein, die Sache spielt kaum noch eine Rolle. Hier lohnt Beruhigen, aber nicht pauschal, sondern Achse für Achse.${R.length?` Gleichzeitig ist er auf ${R.length===1?'einer Achse':R.length+' Achsen'} am offenen Pol eingerastet, dort fehlt eher die Härte.`:''}`}
+  else if(R.length>=2&&R.length>=L.length){v='schwel';cls='schwel';title='Schwelbrand';text=`Der Konflikt wird gemieden, nicht reguliert. Auf ${R.length} Achsen ist er am offenen Pol eingerastet: viel Verständnis, viel Dialog, keine Entscheidung. Was hier fehlt, ist die Kompetenz <em>für</em> den Konflikt. Schüren.`}
+  else if(L.length+R.length<=1){v='feature';cls='';title='Feature';text='Der Konflikt bewegt sich noch. Er tut, wofür Konflikte da sind: eine Entscheidung zwischen Alternativen herbeiführen und eine neue Ordnung ermöglichen. Nicht lösen. Regulieren. Halte die Bewegung am Leben.'}
+  else {v='bug';cls='bug';title='Bug';text='Der Konflikt ist auf beiden Seiten eingerastet: an manchen Stellen zu hart, an anderen zu weich. So kann er weder entscheiden noch beruhigen. Unten steht, wo welche Bewegung fehlt.'}
+  let h='';
+  h+=`<div><p class="eyebrow">Dein Ergebnis</p><div class="verdict ${cls}" style="margin-top:10px"><h2>${title}</h2><p>${text}</p>${caught?`<p style="margin-top:6px"><span class="pill fix">${P?'Der Konflikt hat dich':'Der Konflikt hat das System'}</span></p>`:''}</div></div>`;
+  /* profile */
+  h+=`<div><p class="eyebrow">Das Bewegungsprofil</p><p class="muted" style="font-size:14px;margin-top:4px">Links der Widerspruchspol, rechts der offene Pol. Kein Pol ist falsch. Eingerastet ist das Problem.</p>`;
+  ['sache','sozial','zeit'].forEach(d=>{h+=`<div class="dim"><h3>${DIMS[d]}</h3>`;AXES.filter(a=>a.dim===d).forEach(a=>{const s=st[a.id],sb=stB[a.id];const x=(S.pos[a.id]+3)/6*100,xo=(S.oth[a.id]+3)/6*100;
+    let pills='';
+    if(P){pills=(s==='fix'?'<span class="pill fix">eingerastet</span> ':s==='tend'?'<span class="pill tend">Tendenz</span> ':'')+(gaps.includes(a)?'<span class="pill gap">Ihr seht das anders</span>':'')}
+    else{pills=(s==='fix'?`<span class="pill fix">${NA} eingerastet</span> `:s==='tend'?`<span class="pill tend">${NA}: Tendenz</span> `:'')+(sb==='fix'?`<span class="pill fix">${NB} eingerastet</span> `:sb==='tend'?`<span class="pill tend">${NB}: Tendenz</span> `:'')+(gaps.includes(a)?'<span class="pill gap">Schieflage</span>':'')}
+    const dots=P?`<i class="dot o" style="left:${xo}%" title="Einschätzung der anderen Seite"></i><i class="dot ${s==='ok'?'':s}" style="left:${x}%"></i>`
+      :`<i class="dot b ${sb==='fix'?'ring':''}" style="left:${xo}%" title="${NB}"></i><i class="dot a ${s==='fix'?'ring':''}" style="left:${x}%" title="${NA}"></i>`;
+    h+=`<div class="row"><div class="l"><b>${a.name}</b>${a.left}</div><div class="track">${dots}</div><div class="r"><b>&nbsp;</b>${a.right}</div>${pills?`<div class="pills">${pills}</div>`:''}</div>`});h+='</div>'});
+  h+=P?`<div class="legend"><span><i style="background:var(--green)"></i>beweglich</span><span><i style="background:var(--gold)"></i>weit außen, aber je nach Tag</span><span><i style="background:var(--orange)"></i>eingerastet</span><span><i style="background:var(--card);box-shadow:0 0 0 2px var(--blue)"></i>so würde es die andere Seite sehen</span></div></div>`
+      :`<div class="legend"><span><i style="background:var(--green)"></i>${NA}</span><span><i style="background:var(--blue)"></i>${NB}</span><span><i style="background:var(--card);box-shadow:0 0 0 2px var(--orange)"></i>eingerastet</span></div></div>`;
+  /* moves */
+  let items=[];
+  AXES.forEach(a=>{items.push({a,side:'a',p:S.pos[a.id],s:st[a.id]});if(!P)items.push({a,side:'b',p:S.oth[a.id],s:stB[a.id]})});
+  const fixed=items.filter(i=>i.s==='fix'), tend=items.filter(i=>i.s==='tend');
+  fixed.sort((x,y)=>Math.abs(y.p)-Math.abs(x.p));
+  const MAX=5, list=fixed.length?fixed.slice(0,MAX):tend.slice(0,2);
+  if(list.length){
+    h+=`<div><p class="eyebrow">Wo es sich lohnt reinzugehen</p><p class="muted" style="font-size:14px;margin-top:4px">${fixed.length>MAX?`${fixed.length} Stellen sind eingerastet. Hier die ${MAX} härtesten, mehr auf einmal trägt kein Gespräch.`:fixed.length?'Pro eingerasteter Achse: die Gegenbewegung und die Fähigkeit, die sie braucht.':'Nichts ist eingerastet. Hier die Achsen mit Tendenz, bevor sie es werden.'}${P?'':' Die Bewegung gehört der jeweiligen Seite. Deine Aufgabe von außen: den Rahmen schaffen, in dem sie möglich wird.'}</p><div class="moves">`;
+    list.forEach(({a,side,p})=>{const dn=p<0;const who=P?'':(side==='a'?NA:NB)+' · ';h+=`<div class="move ${dn?'':'up'}"><span class="tag">${who}${dn?'Beruhigen':'Schüren'} · ${a.name}smodus: von ${dn?a.left+' zu '+a.right:a.right+' zu '+a.left}</span><p>${esc(dn?a.down:a.up)}</p><p class="skill"><b>Fähigkeit dahinter:</b> ${esc(dn?a.sdown:a.sup)}</p></div>`});
+    h+='</div></div>';
+  } else {
+    h+=`<div class="callout"><p class="eyebrow">Wo es sich lohnt reinzugehen</p><p>Keine Achse ist eingerastet oder kippt gerade. Dein Job ist jetzt nicht, den Konflikt zu beenden, sondern ihn zu einer Entscheidung kommen zu lassen. Achte auf die Sachdimension: Wird noch über die Sache gestritten, oder wandert es Richtung Person?</p></div>`;
+  }
+  if(gaps.length&&!P){h+=`<div class="callout" style="background:var(--blue-tint);border-left-color:var(--blue)"><p class="eyebrow" style="color:var(--blue)">Asymmetrie</p><p>Auf ${gaps.length===1?'einer Achse':gaps.length+' Achsen'} (${gaps.map(a=>a.name).join(', ')}) stehen ${NA} und ${NB} drei oder mehr Schritte auseinander. Das ist kein Zufall, sondern oft das Muster selbst: Die härtere Seite eskaliert, weil sie nicht ernst genommen wird. Die weichere Seite hält den Konflikt am Leben, weil nichts entschieden wird. Beide brauchen Bewegung, in entgegengesetzte Richtungen.</p></div>`}
+  if(gaps.length&&P){h+=`<div class="callout" style="background:var(--blue-tint);border-left-color:var(--blue)"><p class="eyebrow" style="color:var(--blue)">Fremdregler</p><p>Auf ${gaps.length===1?'einer Achse':gaps.length+' Achsen'} (${gaps.map(a=>a.name).join(', ')}) liegen deine Einschätzung und die vermutete der anderen Seite drei oder mehr Schritte auseinander. Das ist selbst ein Befund: Ihr streitet nicht nur über die Sache, ihr seht auch den Streit verschieden. Wer das laut ausspricht, macht die Kommunikation wieder unvorhersehbar.</p></div>`}
+  /* anfang */
+  const erk=S.pos['erk'];
+  let an='';
+  if(S.start==='beide')an=`Du hast „Beide" gesagt. Das ist die zirkuläre Sicht, gut. Prüf einmal, ob das Überzeugung ist oder Höflichkeit. Dein Regler beim Erklärungsmodus steht ${erk<0?'trotzdem beim Täter':erk===0?'in der Mitte':'ebenfalls bei „alle haben beigetragen"'}.`;
+  else if(S.start==='unklar')an='Du hast „Unklar" gesagt. Ehrlich. Das ist oft die genaueste Antwort, denn die Frage nach dem Anfang füttert den Konflikt, sie beendet ihn nicht.';
+  else an=`Du hast gesagt: <b>${esc(starts().find(x=>x[0]===S.start)[1])}</b>. Eidenschink würde fragen: Henne oder Ei? Beides. Am Konflikt haben alle beigetragen, auch die, die sich rausgehalten haben. Wer einen Täter hat, wird handlungsfähig, und der Beschuldigte fühlt sich zum Zurückschlagen berechtigt. Die Frage nach dem Anfang ist Nahrung für den Konflikt.`;
+  h+=`<div class="callout"><p class="eyebrow">Noch mal zur ersten Frage</p><p>${an}</p></div>`;
+  /* weiche */
+  let wt,wp;
+  if(P){ if(caught){wt='Coaching';wp='Der Konflikt hat dich: Identität, Gefühl oder Strategie hängen dran. Der Impuls gegen die Konfliktlogik muss dann aus dir kommen, nicht aus einer Gesprächstechnik. Genau dafür ist Coaching da.'} else if(L.length>=2){wt='Mediation';wp='Der Konflikt ist eingerastet, du bist aber noch handlungsfähig. Eine dritte Person kann die Kommunikation wieder unvorhersehbar machen, was ihr zu zweit gerade nicht schafft.'} else {wt='Selbst weitermachen';wp='Nimm dir eine Achse vor, nicht alle. Ein Gespräch, ein Modus, eine Bewegung. Wenn es nach zwei Anläufen nicht kippt, melde dich.'} }
+  else { if(caught){wt='Konfliktmoderation im Team';wp='Der Konflikt hat das System: Lager, Übereinander-Reden, Abwarten. Das ist keine Sache für ein Vier-Augen-Gespräch mehr. Hier braucht es einen moderierten Rahmen mit allen Beteiligten.'} else if(L.length>=2){wt='Mediation zwischen den Beteiligten';wp='Die beiden Seiten sind eingerastet, das Umfeld noch nicht. Jetzt ist der Moment für eine klärende Mediation, bevor das System kippt.'} else {wt='Ein Führungsgespräch reicht vermutlich';wp='Sprich die eine Achse an, die oben steht. Und prüfe, ob dein Raushalten Teil des Musters ist. Wer sich nicht einmischt, hat den Anfang nicht verhindert.'} }
+  h+=`<div class="callout ink"><p class="eyebrow">Die Weiche</p><h3 style="font-size:24px">${wt}</h3><p>${wp}</p><p style="margin-top:8px"><a href="https://jacobnoon.com" target="_blank" rel="noopener">Gespräch mit Jacob Noon anfragen</a></p></div>`;
+  h+=`<div><p class="quote">Nicht der Pol ist das Problem.<br>Das Einrasten ist es.</p><p class="muted" style="font-size:14px">Konflikte brauchen beide Pole. Wer regulieren will, braucht Kompetenzen für und gegen den Konflikt.</p></div>`;
+  h+=`<div class="nav"><button class="btn ghost" data-back2>Zurück zu den Reglern</button><button class="btn" onclick="location.reload()">Neu starten</button></div>`;
+  $('#result').innerHTML=h;
+  $('[data-back2]').onclick=()=>show(5);
+}
+
+/* iframe integration: report height and step changes to the parent page */
+(function(){
+  function report(){try{parent.postMessage({jnApp:'height',h:document.documentElement.scrollHeight},'*')}catch(e){}}
+  var ro=window.ResizeObserver?new ResizeObserver(report):null;
+  if(ro)ro.observe(document.body);
+  window.addEventListener('load',report);
+  var _show=show;show=function(n){_show(n);try{parent.postMessage({jnApp:'top'},'*')}catch(e){};setTimeout(report,50)};
+})();
+</script>
+</body>
+</html>
