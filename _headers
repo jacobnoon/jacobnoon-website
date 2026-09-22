@@ -4,3 +4,7 @@
 # Nötig, weil PDFs kein noindex-Meta-Tag tragen können.
 /danke-schnabeltrifftohr/*
   X-Robots-Tag: noindex, nofollow
+
+# Trainings-Downloads (per QR-Code verteilt) aus dem Index halten.
+/downloads/*
+  X-Robots-Tag: noindex, nofollow
