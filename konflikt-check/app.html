@@ -162,6 +162,11 @@ input[type=range].b::-moz-range-thumb{background:var(--blue);box-shadow:0 0 0 1.
 .move.up .tag{color:var(--blue)}
 .move .skill{font-size:14px;color:var(--ink-2);padding-top:8px;border-top:1px dashed var(--line)}
 .move .skill b{font-weight:700;color:var(--ink)}
+.move .reflect{font-size:14px;color:var(--ink-2);font-style:italic}
+.move .reflect b{font-style:normal;font-weight:700;color:var(--ink)}
+.callout.func{background:var(--card);border:1.5px solid var(--line);border-left:5px solid var(--gold)}
+.callout.func .ex{font-size:13px;color:var(--ink-3)}
+.callout.cost{background:var(--gold-tint);border-left-color:var(--gold)}
 .callout{padding:18px 20px;background:var(--green-tint);border-left:5px solid var(--green);display:grid;gap:6px}
 .callout.ink{background:var(--ink);color:var(--bg);border-left-color:var(--green)}
 .callout.ink .eyebrow{color:var(--green)}
@@ -169,10 +174,38 @@ input[type=range].b::-moz-range-thumb{background:var(--blue);box-shadow:0 0 0 1.
 .quote{font-family:Oswald;font-size:clamp(22px,4vw,30px);line-height:1.15;text-transform:uppercase;font-weight:500;margin:6px 0}
 .foot{font-size:12px;color:var(--ink-3);padding:18px 32px 26px;max-width:60ch}
 .demo{font-size:13px;color:var(--ink-3);border:1px dashed var(--line);padding:10px 12px}
+.count{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.axis .name .count{margin-left:auto}
+.move .pick{justify-self:start;font:inherit;font-size:13px;font-weight:700;cursor:pointer;background:transparent;border:1.5px solid var(--line);color:var(--ink-2);padding:6px 12px;margin-top:4px}
+.move .pick:hover{border-color:var(--green)}
+.move .pick[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.move .pick[disabled]{opacity:.4;cursor:not-allowed}
+.move .pick:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.move.picked{box-shadow:0 0 0 2px var(--green)}
+.ta{font:inherit;font-size:15px;width:100%;min-height:84px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);padding:10px 12px;resize:vertical;margin-top:6px}
+.ta:focus{outline:none;border-color:var(--green)}
+.callout.counter{background:var(--orange-tint);border-left-color:var(--orange)}
+.callout.counter .eyebrow{color:var(--ink-2)}
+.callout.export{background:var(--card);border:1.5px solid var(--line);border-left:5px solid var(--green)}
+.export-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.toast{font-size:13px;color:var(--green-deep);min-height:1em}
+#printSheet{display:none}
+@media print{
+  @page{margin:18mm}
+  body{background:#fff!important;color:#111114}
+  .wrap{display:none!important}
+  #printSheet{display:block!important;font-family:"DM Sans",Arial,sans-serif;font-size:11pt;line-height:1.5;color:#111114}
+  #printSheet h1{font-family:Oswald,Arial,sans-serif;font-weight:500;text-transform:uppercase;font-size:22pt;border-bottom:3px solid #4CC265;padding-bottom:6px;margin:0 0 6px}
+  #printSheet h2{font-family:Oswald,Arial,sans-serif;font-weight:500;text-transform:uppercase;font-size:12pt;letter-spacing:.06em;color:#2E9A48;margin:16px 0 4px}
+  #printSheet ul{margin:0;padding-left:18px}
+  #printSheet li{margin:3px 0;break-inside:avoid}
+  #printSheet .m{color:#6B7370;font-size:9.5pt;margin:0}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body class="embedded">
+
 
 <div class="wrap">
 <div class="frame">
@@ -187,18 +220,18 @@ input[type=range].b::-moz-range-thumb{background:var(--blue);box-shadow:0 0 0 1.
   <section class="screen on" data-step="0">
     <div class="stack">
       <div>
-        <h1>Bug oder<br>Feature?</h1>
-        <p class="lead" style="margin-top:14px">Ein Konflikt ist nicht das Problem. Das Problem ist, wenn er festhängt. Neun Regler, ein Profil, und am Ende die Frage, ob dieser Konflikt gerade schüren, beruhigen oder in Ruhe gelassen werden will.</p>
+        <h1 id="t-title"></h1>
+        <p class="lead" style="margin-top:14px" id="t-lead"></p>
       </div>
       <div>
-        <p class="eyebrow" style="margin-bottom:10px">Von wo schaust du drauf?</p>
+        <p class="eyebrow" style="margin-bottom:10px" id="t-roleq"></p>
         <div class="choices" id="roleChoices">
-          <button class="choice" data-role="partei"><b>Ich bin Partei</b><span>Es ist mein Konflikt. Ich stecke drin.</span></button>
-          <button class="choice" data-role="beob"><b>Ich schaue von außen</b><span>Zwei Menschen oder Gruppen in meinem Umfeld, ich bin nicht selbst Partei. Führungskraft, HR, Kollegin.</span></button>
+          <button class="choice" data-role="partei"><b id="t-r1"></b><span id="t-r1s"></span></button>
+          <button class="choice" data-role="beob"><b id="t-r2"></b><span id="t-r2s"></span></button>
         </div>
       </div>
-      <p class="muted" style="font-size:14px">Dauert etwa sechs Minuten. Nichts wird gespeichert oder gesendet. Grundlage ist die Konflikttheorie von Klaus Eidenschink.</p>
-      <div class="nav"><span></span><button class="btn primary" id="startBtn" disabled>Los</button></div>
+      <p class="muted" style="font-size:14px" id="t-note"></p>
+      <div class="nav"><span></span><button class="btn primary" id="startBtn" disabled></button></div>
     </div>
   </section>
 
@@ -206,30 +239,30 @@ input[type=range].b::-moz-range-thumb{background:var(--blue);box-shadow:0 0 0 1.
   <section class="screen" data-step="1">
     <div class="stack">
       <div>
-        <p class="eyebrow">Eine Frage vorab</p>
-        <h2 style="margin-top:6px">Wer hat angefangen?</h2>
-        <p class="lead" style="margin-top:10px">Nicht lange überlegen. Erste Antwort.</p>
+        <p class="eyebrow" id="t-s1e"></p>
+        <h2 style="margin-top:6px" id="t-s1h"></h2>
+        <p class="lead" style="margin-top:10px" id="t-s1l"></p>
       </div>
-      <div id="nameBox" class="names" hidden><p class="eyebrow" style="margin-bottom:8px">Die beiden Seiten</p><div class="namegrid"><label><span class="dot-a"></span><input id="nameA" placeholder="Seite A, z. B. Vertrieb oder Frau K."></label><label><span class="dot-b"></span><input id="nameB" placeholder="Seite B"></label></div><p class="muted" style="font-size:13px">Optional. Namen bleiben im Browser.</p></div>
+      <div id="nameBox" class="names" hidden><p class="eyebrow" style="margin-bottom:8px" id="t-names"></p><div class="namegrid"><label><span class="dot-a"></span><input id="nameA"></label><label><span class="dot-b"></span><input id="nameB"></label></div><p class="muted" style="font-size:13px" id="t-namesnote"></p></div>
       <div class="choices row" id="startChoices"></div>
-      <div class="nav"><button class="btn ghost" data-back>Zurück</button><button class="btn primary" data-next disabled>Weiter</button></div>
+      <div class="nav"><button class="btn ghost" data-back></button><button class="btn primary" data-next disabled></button></div>
     </div>
   </section>
 
   <!-- 2,3,4 DIMENSIONEN -->
-  <section class="screen" data-step="2"><div class="stack"><div><p class="eyebrow">Sachdimension</p><h2 style="margin-top:6px">Worüber wird gestritten?</h2><p class="lead" style="margin-top:10px">Schieb den Regler dahin, wo der Konflikt gerade steht. Nicht, wo er hin soll.</p></div><div class="stack" id="dim-sache"></div><div class="nav"><button class="btn ghost" data-back>Zurück</button><button class="btn primary" data-next>Weiter</button></div></div></section>
-  <section class="screen" data-step="3"><div class="stack"><div><p class="eyebrow">Sozialdimension</p><h2 style="margin-top:6px">Wie wird miteinander umgegangen?</h2></div><div class="stack" id="dim-sozial"></div><div class="nav"><button class="btn ghost" data-back>Zurück</button><button class="btn primary" data-next>Weiter</button></div></div></section>
-  <section class="screen" data-step="4"><div class="stack"><div><p class="eyebrow">Zeitdimension</p><h2 style="margin-top:6px">Vergangenheit, Gegenwart, Zukunft</h2></div><div class="stack" id="dim-zeit"></div><div class="nav"><button class="btn ghost" data-back>Zurück</button><button class="btn primary" data-next>Weiter</button></div></div></section>
+  <section class="screen" data-step="2"><div class="stack"><div><p class="eyebrow" id="t-d1e"></p><h2 style="margin-top:6px" id="t-d1h"></h2><p class="lead" style="margin-top:10px" id="t-d1l"></p></div><div class="stack" id="dim-sache"></div><div class="nav"><button class="btn ghost" data-back></button><button class="btn primary" data-next></button></div></div></section>
+  <section class="screen" data-step="3"><div class="stack"><div><p class="eyebrow" id="t-d2e"></p><h2 style="margin-top:6px" id="t-d2h"></h2></div><div class="stack" id="dim-sozial"></div><div class="nav"><button class="btn ghost" data-back></button><button class="btn primary" data-next></button></div></div></section>
+  <section class="screen" data-step="4"><div class="stack"><div><p class="eyebrow" id="t-d3e"></p><h2 style="margin-top:6px" id="t-d3h"></h2></div><div class="stack" id="dim-zeit"></div><div class="nav"><button class="btn ghost" data-back></button><button class="btn primary" data-next></button></div></div></section>
 
   <!-- 5 ERGRIFFENHEIT -->
   <section class="screen" data-step="5">
     <div class="stack">
       <div>
-        <p class="eyebrow" id="ergEyebrow">Die Kernfrage</p>
-        <h2 style="margin-top:6px" id="ergTitle">Hast du den Konflikt, oder hat er dich?</h2>
+        <p class="eyebrow" id="ergEyebrow"></p>
+        <h2 style="margin-top:6px" id="ergTitle"></h2>
       </div>
       <div class="stack" id="erg"></div>
-      <div class="nav"><button class="btn ghost" data-back>Zurück</button><button class="btn primary" id="resultBtn" disabled>Ergebnis</button></div>
+      <div class="nav"><button class="btn ghost" data-back></button><button class="btn primary" id="resultBtn" disabled></button></div>
     </div>
   </section>
 
@@ -238,92 +271,355 @@ input[type=range].b::-moz-range-thumb{background:var(--blue);box-shadow:0 0 0 1.
     <div class="stack" id="result"></div>
   </section>
 
-  <p class="foot">Prototyp. Theoretische Grundlage: Klaus Eidenschink, „Die Kunst des Konflikts. Konflikte schüren und beruhigen lernen" (Carl-Auer). Die neun Leitunterscheidungen sind seine, die Fragen, Bewertungslogik und Formulierungen stammen von Jacob Noon. Keine Diagnose, kein Ersatz für ein Gespräch.</p>
+  <p class="foot" id="t-foot"></p>
 </div>
 </div>
 
+<div id="printSheet" aria-hidden="true"></div>
 <script>
-const AXES=[
+const L=(()=>{const q=new URLSearchParams(location.search).get('lang');const l=(q||document.documentElement.lang||'de').toLowerCase();return l.startsWith('en')?'en':'de'})();
+document.documentElement.lang=L;
+
+const DATA={
+de:{
+ axes:[
  {id:'auf',dim:'sache',name:'Aufmerksamkeit',left:'generalisiert',right:'spezifisch',
   q:{partei:'Worum geht es gerade? Noch um die eine konkrete Sache, oder inzwischen um „immer", „nie" und „grundsätzlich"?',beob:'Streitet diese Seite noch über den konkreten Punkt, oder ist für sie längst alles Thema?'},
   lp:'Aus der Mücke ist ein Elefant geworden',rp:'Es geht um genau einen Punkt',
   down:'Verlagere die Aufmerksamkeit vom Generellen zum Spezifischen. Wo genau liegt der Unterschied? Wo seid ihr euch längst einig? Das Trennende eingrenzen, das Gemeinsame benennen.',
   up:'Wenn immer nur der Einzelfall besprochen wird, kann das Bagatellisierung sein. Den Elefanten hinter der Mücke benennen: Worum geht es hier eigentlich?',
-  sdown:'Konkretisieren: Trennendes eingrenzen, Gemeinsamkeiten sichtbar machen.',sup:'Verallgemeinern dürfen: das Muster hinter dem Einzelfall aussprechen.'},
+  sdown:"Spezifisch bleiben: Widerspruch in der Sache und Ablehnung der Person auseinanderhalten. Gefühle einklammern, nicht wegdrücken. Dein Selbstwert hängt nicht am Rechtbekommen.",rdown:"Bei welchem Thema verlierst du das Vertrauen, dass eure Beziehung einen sachlichen Widerspruch übersteht?",
+  sup:"Grundsätzlich werden dürfen: die Grundsatzdebatte führen und keine faulen Kompromisse mehr machen. Freundlich und bestimmt zugleich, hart in der Sache, weich zur Person.",rup:"Kannst du jemandes Kompetenz grundsätzlich infrage stellen, ohne ihn als Menschen abzulehnen?"},
  {id:'bes',dim:'sache',name:'Beschreibung',left:'einfältig',right:'vielfältig',
   q:{partei:'Gibt es aus deiner Sicht genau eine richtige Lösung, oder könntest du mehrere Sichtweisen gelten lassen?',beob:'Lässt diese Seite mehrere Sichtweisen auf Problem und Lösung zu, oder gilt für sie nur eine?'},
   lp:'Es gibt eine richtige Sicht: meine',rp:'Es gibt mehrere brauchbare Sichten',
   down:'Die Situation ist vielfältig, die Ansichten sind einfältig. Hol weitere Perspektiven ins Spiel: Fachleute, Betroffene, die Sicht aus dem Ganzen statt aus dem eigenen Bereich.',
   up:'Endloses Abwägen ist auch eine Fixierung. Wenn ein Einigungszwang besteht (Was? Wann? Wer?), braucht es Einfalt: einen Rahmen, eine Frist, eine Entscheidung. Ein Kompromiss darf dabei sachlich unvollkommen sein.',
-  sdown:'Perspektivwechsel: andere Sichten als brauchbar sehen können.',sup:'Entscheidungsmut: Vielfalt begrenzen und festlegen.'},
+  sdown:"Vielfalt zulassen: an dir zweifeln, ohne dich kleinzumachen. Ungewissheit aushalten und etwas ausprobieren, statt auf die perfekte Lösung zu warten.",rdown:"Wann hast du zuletzt jemandem recht gegeben, mit dem du am Anfang des Gesprächs über Kreuz lagst?",
+  sup:"Einfalt vertreten: eine Sache ohne Wenn und Aber vertreten und dich damit angreifbar machen. Nicht zustimmen, nur um Frieden zu haben.",rup:"Weißt du in dieser Sache genug, um sie klar und gewinnend zu vertreten? Oder ersetzt gerade Lautstärke das Argument?"},
  {id:'bew',dim:'sache',name:'Bewertung',left:'verabsolutiert',right:'unklar',
   q:{partei:'Wie sicher bist du, dass die andere Seite falsch liegt?',beob:'Argumentiert diese Seite mit richtig und falsch, gut und böse, oder kann sie offen lassen, wer am Ende recht hat?'},
   lp:'Ich habe recht. Punkt.',rp:'Beide könnten recht haben',
   down:'Wer der Bewertung widerspricht, widerspricht hier der Person. Bewegung wird erst möglich, wenn die bedrohte Identität anders Halt findet: erst Anerkennung, dann die Bewertung lockern.',
   up:'Ohne Einigkeit in den Bewertungen schwelt der Konflikt weiter. Irgendwann muss jemand sagen, was gilt. Standpunkte brauchen auch Kraft und Eindeutigkeit.',
-  sdown:'Mentalisierung und Ambiguitätstoleranz: die Welt mit den Augen des anderen sehen und Unklarheit aushalten.',sup:'Standpunkt beziehen: Bewertungen mit Entschlossenheit aufladen.'},
+  sdown:"Bewertungen prüfen, nicht gleich aufgeben: merken, wenn du dich verrannt hast, anderen Kompetenz zutrauen, auch mal fünf gerade sein lassen.",rdown:"Welche Überzeugung willst du auf keinen Fall infrage gestellt sehen? Was würde passieren, wenn du es doch tust?",
+  sup:"Überzeugungen haben, die du nicht beim ersten Gegenwind relativierst. Dabei die Meinung bewerten, nie die Person.",rup:"Zweifelst du manchmal zu früh an dir, nur weil jemand dagegenhält?"},
  {id:'kon',dim:'sozial',name:'Kontakt',left:'feindlich',right:'dialogisch',
   q:{partei:'Erwartest du von der anderen Seite noch irgendetwas Gutes?',beob:'Unterstellt diese Seite der anderen Absicht, oder rechnet sie noch mit guten Motiven?'},
   lp:'Der andere will mir schaden',rp:'Der andere hat Gründe, die ich verstehen könnte',
   down:'Der Feind legitimiert die Aggression, die Aggression schafft den Feind. Prüfe die Unterstellungen: Welche Motive könnte die andere Seite haben, die nichts mit dir zu tun haben?',
   up:'Wer nur Dialog anbietet, kommt oft nicht zum Punkt. Der Konflikt schwelt. Hier darf jemand in den Ring steigen und Klartext sprechen, auch wenn das unfreundlich wirkt.',
-  sdown:'Unterstellungen prüfen, Motive erkunden.',sup:'Mut zum Klartext: Gegnerschaft aushalten.'},
+  sdown:"Dialogfähig bleiben: dich im Konflikt selbst beobachten, aufhören, den anderen ändern zu wollen, den eigenen Gefühlen misstrauen und entschlüsseln, welche Not hinter seinem Verhalten steckt.",rdown:"Was soll der andere aufgeben, anders sehen oder anders fühlen? Und wozu bräuchtest du das?",
+  sup:"Gegnerschaft anerkennen: sehen, dass jemand dir schaden will, die Schuldgefühle dabei aushalten und Grenzen markieren, an denen der Spaß aufhört. Feindlich heißt nicht vernichten wollen.",rup:"Kannst du Schuldgefühle aushalten, wenn du nicht nett bist, oder musst du sie sofort wegmachen?"},
  {id:'rea',dim:'sozial',name:'Reaktion',left:'verneinend',right:'wählend',
   q:{partei:'Wenn die andere Seite morgen etwas vorschlägt: Weißt du jetzt schon, dass du Nein sagst?',beob:'Sagt diese Seite reflexhaft Nein zu allem, oder wählt sie noch, worauf sie wie reagiert?'},
   lp:'Nein. Egal, was kommt.',rp:'Kommt drauf an, was kommt',
-  down:'Der Sog zum Nein hat übernommen. Es geht nicht darum, Ja statt Nein zu sagen, sondern wieder wählen zu können: Was in der Aussage des anderen lässt sich bejahen?',
+  down:'Der Sog zum Nein hat übernommen. Es geht nicht darum, Ja statt Nein zu sagen, sondern wieder wählen zu können: Was in der Aussage des anderen lässt sich bejahen? Und: langsamer antworten. Eine Nacht drüber schlafen ist keine Schwäche, sondern Spielraum.',
   up:'Manche Ordnung verflüssigt sich nur, wenn jemand entschieden widerspricht. Ein Nein, das Nein bleibt, auch wenn es zum Ja gedrängt wird, bricht Konfliktsymbiosen auf.',
-  sdown:'Vom Reflex zur Wahl: im Anderen etwas Bejahbares hören.',sup:'Beim Nein bleiben, Druck aushalten.'},
+  sdown:"Enttäuschbar sein: einlenken, auch wenn der andere das erst mal ausnutzt. Nachgeben können, nach einem Nein wieder Ja sagen, Widerspruch als Form von Kontakt erleben.",rdown:"Wie sehr machst du dein Einlenken davon abhängig, dass die andere Seite es sofort honoriert?",
+  sup:"Nein sagen ohne Schuldgefühl: dich gut fühlen, auch wenn es dem anderen gerade schlecht geht, und gegenhalten, wenn er Nein sagt. Auch ein Nein ist ein Kontaktangebot.",rup:"Beschäftigt dich gerade das Wohlbefinden der anderen Seite mehr als dein eigenes?"},
  {id:'akt',dim:'sozial',name:'Aktion',left:'sendend',right:'erkundend',
   q:{partei:'Wer hat in den letzten Gesprächen mehr geredet als gefragt?',beob:'Redet diese Seite nur, oder erkundet sie noch, was die andere meint?'},
   lp:'Zwei Lautsprecher, kein Mikrofon',rp:'Was könnte der andere gemeint haben?',
   down:'Lautstärke erhöhen bringt nichts, wenn kein Mikrofon im Raum ist. Eigene Inhalte zurückstellen und auf das Bezug nehmen, was gesagt wurde. Erst verstehen, dann senden.',
   up:'Ständiges Erkunden kann dazu dienen, den Konflikt verborgen zu halten. Manchmal braucht es eine laute, zugespitzte, unbeeindruckbare Botschaft, damit überhaupt ein Konflikt entsteht, der sich bearbeiten lässt.',
-  sdown:'Zuhören: Explore, Absorb, Transform (EAT).',sup:'Senden: Botschaft setzen, zuspitzen, dranbleiben.'},
+  sdown:"Erkunden: die Lage mit den Augen des anderen sehen und darauf vertrauen, dass er sein Interesse an dir behält. Dein Selbstwert bleibt stabil, auch wenn du nicht landest. Im Gespräch: EAT, also Explore, Absorb, Transform.",rdown:"Wie sehr brauchst du es, dass die andere Seite einsieht, dass du recht hast?",
+  sup:"Senden: dich zeigen, dich wichtig nehmen und behaupten, auch wenn du Ablehnung spürst. Höflichkeit kurz parken und mit Herzblut sagen, was dir wichtig ist.",rup:"Wie leicht bist du aus dem Feld zu schlagen, wenn dir jemand das Rederecht streitig macht?"},
  {id:'erk',dim:'zeit',name:'Erklärung',left:'linear',right:'zirkulär',
   q:{partei:'Wenn du erklärst, wie es dazu kam: Gibt es da einen Täter?',beob:'Sucht diese Seite den Schuldigen, oder sieht sie ihren eigenen Beitrag?'},
   lp:'Einer ist schuld',rp:'Alle haben beigetragen',
   down:'Wer einen Täter hat, wird handlungsfähig, und der Beschuldigte fühlt sich zum Zurückschlagen berechtigt. Henne oder Ei? Beides. Die bessere Frage: Was trage ich selbst gerade zum Konflikt bei?',
   up:'Zirkulär denken kann auch verschleiern. Wo Machtverhältnisse zementiert sind, braucht es eine klare Benennung von Verantwortung, sonst gibt es keinen Konflikt, den man bearbeiten könnte.',
-  sdown:'Zirkulär denken: den eigenen Beitrag sehen, ohne Schuldfrage.',sup:'Verantwortung klar zuschreiben, wenn es nötig ist.'},
+  sdown:"Zirkulär denken: Schuld zugeben und Vorwürfe anerkennen, ohne dich zu verurteilen. Du musst nicht fehlerlos sein. Verantwortung heißt Urheber sein, nicht Schuldiger.",rdown:"Kannst du einem Vorwurf mit Neugier begegnen statt mit Verteidigung?",
+  sup:"Linear benennen: falsches Verhalten klar ansprechen, Vorwürfe eindeutig zurückweisen und auch Schweigen, Rückzug und Nettigkeit als verdeckte Aggression beim Namen nennen. Das braucht ein gutes Verhältnis zur eigenen Aggression.",rup:"Kannst du klar sagen, welches Unrecht du beobachtet hast, auch wenn du selbst Fehler gemacht hast?"},
  {id:'ziel',dim:'zeit',name:'Ziel',left:'durchsetzend',right:'unentschieden',
   q:{partei:'Willst du gewinnen, oder darf offen bleiben, wer sich womit durchsetzt?',beob:'Will diese Seite gewinnen, oder kann sie offen lassen, wer sich womit durchsetzt?'},
   lp:'Ich will gewinnen',rp:'Mal sehen, wer sich womit durchsetzt',
   down:'Solange es um Sieg geht, spielt keine Rolle mehr, wer recht hat. Es gewinnt, wer länger durchhält. Unentschieden aushalten heißt: sich lösen von den Interessen, die man gerade für die eigenen hält.',
   up:'Veränderung braucht eine Kraft, die in den Ring steigt. Wenn niemand gewinnen will, bleibt alles, wie es ist. Manchmal ist es richtig, dass es klare Verlierer gibt.',
-  sdown:'Selbst-Losigkeit: Interessen haben, ohne sie zu sein.',sup:'Kraft und Entschlossenheit: sich durchsetzen wollen.'},
+  sdown:"Verlieren dürfen: ein Selbstwert, der nicht am Sieg hängt und Niederlage nicht an Scham koppelt. Offenlassen, wer vorne liegt, und neugierig sein, ob der Konflikt dich eines Besseren belehrt.",rdown:"Bleibt dein Wohlbefinden intakt, wenn du in dieser Sache verlierst? Oder schämst du dich dann?",
+  sup:"Durchsetzen: Konkurrenz genießen, für Werte kämpfen, Zivilcourage zeigen und die Schmerzen eines Kampfes tragen. Ohne Mitleid, aber ohne den anderen dafür zum Feind zu machen.",rup:"Bremst du dich aus Mitleid mit der anderen Seite, obwohl die Sache es verlangt?"},
  {id:'macht',dim:'zeit',name:'Macht',left:'drohend',right:'verhandelnd',
   q:{partei:'Steht eine Drohung im Raum? Auch eine unausgesprochene?',beob:'Droht diese Seite mit Konsequenzen, oder lotet sie aus, was sie geben und bekommen kann?'},
   lp:'Wenn du nicht, dann ...',rp:'Gibst du mir, gebe ich dir',
-  down:'Der Bedroher hat keine Macht, außer man gibt sie ihm. Drohungen sind oft ein Ausweg aus Ohnmacht und ernten Anpassung statt Einverständnis. Zurück ins Verhandeln: Was will jede Seite wirklich, und was wäre sie bereit zu geben?',
+  down:'Der Bedroher hat keine Macht, außer man gibt sie ihm. Drohungen sind oft ein Ausweg aus Ohnmacht und ernten Anpassung statt Einverständnis. Zurück ins Verhandeln: Was will jede Seite wirklich, und was wäre sie bereit zu geben? Und was macht jede Seite, wenn ihr euch nicht einigt?',
   up:'Wer nicht ernst genommen wird, braucht nicht zu reden. Eine glaubwürdige Konsequenz, die man wahrmachen kann und will, ist manchmal die Voraussetzung dafür, dass überhaupt verhandelt wird.',
-  sdown:'Ohnmacht aushalten, Interessen statt Positionen verhandeln.',sup:'Die eigene Alternative kennen und benennen, Konsequenzen glaubwürdig machen.'}
-];
-const DIMS={sache:'Sachdimension',sozial:'Sozialdimension',zeit:'Zeitdimension'};
-const ERG={
- partei:[
-  {q:'Wenn die andere Seite am Ende recht hätte: Was würde das über dich sagen?',o:['Nichts. Dann hatte ich eben unrecht.','Wäre unangenehm.','Dann wäre ich als Person infrage gestellt.']},
-  {q:'Könntest du sagen: „Gut, dann nicht. Dann anders, woanders, ein anderes Mal"?',o:['Ja, es gibt andere Wege zu dem, was ich brauche.','Schwer.','Nein. So muss es sein.']},
-  {q:'Wie viel Platz nimmt der Konflikt in deinem Kopf ein, wenn du gar nicht im Gespräch bist?',o:['Kaum.','Regelmäßig.','Er läuft ständig mit.']},
-  {q:'Gibt es an dem Konflikt ein Gefühl, das du lieber nicht hättest? Scham, Schuld, Angst, Kränkung?',o:['Nein.','Ja, und ich kann es benennen.','Ja, und ich will nicht hinschauen.']}
+  sdown:"Verhandeln: Risiko aushalten, statt auf Kontrolle zu setzen. Vorher durchdenken, was es kostet, Drohungen wahrzumachen. Auch Wichtiges loslassen und dem anderen gesichtswahrende Auswege lassen.",rdown:"Welche Gefühle hängen bei dir am Nachgeben? Und verhandelst du manchmal nur, weil du dich nicht zu kämpfen traust?",
+  sup:"Glaubwürdig drohen: wissen, was dem anderen wichtig ist, eigene Verluste in Kauf nehmen und nicht zeigen, womit man dich beeindrucken kann. Oft klüger: warnen („Das passiert, wenn …“) statt drohen („Das tue ich, wenn …“).",rup:"Traust du dir zu, den Verlust zu tragen, den eine wahrgemachte Konsequenz auch für dich hätte?"}
  ],
- beob:[
-  {q:'Haben sich Lager gebildet?',o:['Nein.','Ansatzweise.','Ja, mit Verbündeten auf beiden Seiten.']},
-  {q:'Wird noch miteinander gesprochen oder nur noch übereinander?',o:['Miteinander.','Beides.','Nur noch übereinander.']},
-  {q:'Halten sich die Umstehenden raus? Führung, Kollegen, du selbst?',o:['Nein, es wird eingegriffen.','Zögerlich.','Alle warten ab.']},
-  {q:'Wie lange läuft das schon?',o:['Tage.','Wochen.','Monate oder länger.']}
- ]
-};
-const STARTS={partei:[['ich','Ich'],['andere','Die andere Seite'],['beide','Beide'],['unklar','Weiß ich nicht mehr']],beob:[['a','Seite A'],['b','Seite B'],['beide','Beide'],['unklar','Unklar']]};
-function starts(){if(S.role==='partei')return STARTS.partei;return [['a',S.names.a],['b',S.names.b],['beide','Beide'],['unklar','Unklar']]}
-const STEPNAMES=['Start','Vorab','Sache','Sozial','Zeit','Kernfrage','Ergebnis'];
+ mode:n=>n+'smodus',
+ dims:{sache:'Sachdimension',sozial:'Sozialdimension',zeit:'Zeitdimension'},
+ erg:{
+  partei:[
+   {q:'Wenn die andere Seite am Ende recht hätte: Was würde das über dich sagen?',o:['Nichts. Dann hatte ich eben unrecht.','Wäre unangenehm.','Dann wäre ich als Person infrage gestellt.']},
+   {q:'Könntest du sagen: „Gut, dann nicht. Dann anders, woanders, ein anderes Mal"?',o:['Ja, es gibt andere Wege zu dem, was ich brauche.','Schwer.','Nein. So muss es sein.']},
+   {q:'Wie viel Platz nimmt der Konflikt in deinem Kopf ein, wenn du gar nicht im Gespräch bist?',o:['Kaum.','Regelmäßig.','Er läuft ständig mit.']},
+   {q:'Gibt es an dem Konflikt ein Gefühl, das du lieber nicht hättest? Scham, Schuld, Angst, Kränkung?',o:['Nein.','Ja, und ich kann es benennen.','Ja, und ich will nicht hinschauen.']}
+  ],
+  beob:[
+   {q:'Haben sich Lager gebildet?',o:['Nein.','Ansatzweise.','Ja, mit Verbündeten auf beiden Seiten.']},
+   {q:'Wird noch miteinander gesprochen oder nur noch übereinander?',o:['Miteinander.','Beides.','Nur noch übereinander.']},
+   {q:'Halten sich die Umstehenden raus? Führung, Kollegen, du selbst?',o:['Nein, es wird eingegriffen.','Zögerlich.','Alle warten ab.']},
+   {q:'Wie lange läuft das schon?',o:['Tage.','Wochen.','Monate oder länger.']}
+  ]
+ },
+ startsPartei:[['ich','Ich'],['andere','Die andere Seite'],['beide','Beide'],['unklar','Weiß ich nicht mehr']],
+ sideA:'Seite A',sideB:'Seite B',both:'Beide',unclear:'Unklar',
+ steps:['Start','Vorab','Sache','Sozial','Zeit','Kernfrage','Ergebnis'],
+ ui:{
+  title:'Bug oder<br>Feature?',docTitle:'Bug oder Feature?',
+  lead:'Ein Konflikt ist nicht das Problem. Das Problem ist, wenn er festhängt. Neun Regler, ein Profil, und am Ende die Frage, ob dieser Konflikt gerade schüren, beruhigen oder in Ruhe gelassen werden will.',
+  roleq:'Von wo schaust du drauf?',r1:'Ich bin Partei',r1s:'Es ist mein Konflikt. Ich stecke drin.',r2:'Ich schaue von außen',r2s:'Zwei Menschen oder Gruppen in meinem Umfeld, ich bin nicht selbst Partei. Führungskraft, HR, Kollegin.',
+  note:'Dauert etwa sechs Minuten. Nichts wird gespeichert oder gesendet. Grundlage ist die Konflikttheorie von Klaus Eidenschink.',
+  go:'Los',back:'Zurück',next:'Weiter',result:'Ergebnis',
+  crumb:'Konflikt-Check',crumbP:'Konflikt-Check · Ich bin Partei',crumbB:'Konflikt-Check · Blick von außen',
+  s1e:'Eine Frage vorab',s1h:'Wer hat angefangen?',s1l:'Nicht lange überlegen. Erste Antwort.',
+  names:'Die beiden Seiten',nameA:'Seite A, z. B. Vertrieb oder Frau K.',nameB:'Seite B',namesnote:'Optional. Namen bleiben im Browser.',
+  d1e:'Sachdimension',d1h:'Worüber wird gestritten?',d1l:'Schieb den Regler dahin, wo der Konflikt gerade steht. Nicht, wo er hin soll.',
+  d2e:'Sozialdimension',d2h:'Wie wird miteinander umgegangen?',d3e:'Zeitdimension',d3h:'Vergangenheit, Gegenwart, Zukunft',
+  fixq:'Ist das immer so, oder je nach Tag?',fix0:'Je nach Tag',fix2:'Immer so',
+  other:'Wo würde die andere Seite den Regler setzen?',
+  ergP:'Hast du den Konflikt, oder hat er dich?',ergPe:'Die Kernfrage',ergB:'Hat der Konflikt schon das System?',ergBe:'Die Kernfrage von außen',
+  foot:'Prototyp. Theoretische Grundlage: Klaus Eidenschink, „Die Kunst des Konflikts. Konflikte schüren und beruhigen lernen" (Carl-Auer). Die neun Leitunterscheidungen und die 18 Regulationskompetenzen sind seine, die Fragen, Bewertungslogik und Formulierungen stammen von Jacob Noon. Keine Diagnose, kein Ersatz für ein Gespräch.',
+  yourResult:'Dein Ergebnis',hasYou:'Der Konflikt hat dich',hasSystem:'Der Konflikt hat das System',
+  profile:'Das Bewegungsprofil',profileNote:'Links der Widerspruchspol, rechts der offene Pol. Kein Pol ist falsch. Eingerastet ist das Problem.',
+  locked:'eingerastet',tend:'Tendenz',seeDiff:'Ihr seht das anders',lopsided:'Schieflage',
+  legMoving:'beweglich',legTend:'weit außen, aber je nach Tag',legLocked:'eingerastet',legOther:'so würde es die andere Seite sehen',
+  otherView:'Einschätzung der anderen Seite',
+  movesH:'Wo es sich lohnt reinzugehen',
+  movesMany:(n,m)=>`${n} Stellen sind eingerastet. Hier die ${m} härtesten, mehr auf einmal trägt kein Gespräch.`,
+  movesFixed:'Pro eingerasteter Achse: die Gegenbewegung und die Fähigkeit, die sie braucht.',
+  movesTend:'Nichts ist eingerastet. Hier die Achsen mit Tendenz, bevor sie es werden.',
+  movesBeob:' Die Bewegung gehört der jeweiligen Seite. Deine Aufgabe von außen: den Rahmen schaffen, in dem sie möglich wird.',
+  calm:'Beruhigen',stir:'Schüren',fromTo:(a,b)=>`von ${a} zu ${b}`,skill:'Fähigkeit dahinter:',
+  noFix:'Keine Achse ist eingerastet oder kippt gerade. Dein Job ist jetzt nicht, den Konflikt zu beenden, sondern ihn zu einer Entscheidung kommen zu lassen. Achte auf die Sachdimension: Wird noch über die Sache gestritten, oder wandert es Richtung Person?',
+  axesN:n=>n===1?'einer Achse':n+' Achsen',
+  asymH:'Asymmetrie',asym:(n,list,A,B)=>`Auf ${n} (${list}) stehen ${A} und ${B} drei oder mehr Schritte auseinander. Das ist kein Zufall, sondern oft das Muster selbst: Die härtere Seite eskaliert, weil sie nicht ernst genommen wird. Die weichere Seite hält den Konflikt am Leben, weil nichts entschieden wird. Beide brauchen Bewegung, in entgegengesetzte Richtungen. Von außen heißt das oft: der weicheren Seite Rückendeckung geben. Das ist keine Parteinahme, sondern die Voraussetzung dafür, dass beide im Ring stehen.`,
+  gapH:'Fremdregler',gap:(n,list)=>`Auf ${n} (${list}) liegen deine Einschätzung und die vermutete der anderen Seite drei oder mehr Schritte auseinander. Das ist selbst ein Befund: Ihr streitet nicht nur über die Sache, ihr seht auch den Streit verschieden. Wer das laut ausspricht, macht die Kommunikation wieder unvorhersehbar.`,
+  firstH:'Noch mal zur ersten Frage',
+  firstBoth:e=>`Du hast „Beide" gesagt. Das ist die zirkuläre Sicht, gut. Prüf einmal, ob das Überzeugung ist oder Höflichkeit. Dein Regler beim Erklärungsmodus steht ${e<0?'trotzdem beim Täter':e===0?'in der Mitte':'ebenfalls bei „alle haben beigetragen"'}.`,
+  firstUnclear:'Du hast „Unklar" gesagt. Ehrlich. Das ist oft die genaueste Antwort, denn die Frage nach dem Anfang füttert den Konflikt, sie beendet ihn nicht.',
+  firstOne:x=>`Du hast gesagt: <b>${x}</b>. Eidenschink würde fragen: Henne oder Ei? Beides. Am Konflikt haben alle beigetragen, auch die, die sich rausgehalten haben. Wer einen Täter hat, wird handlungsfähig, und der Beschuldigte fühlt sich zum Zurückschlagen berechtigt. Die Frage nach dem Anfang ist Nahrung für den Konflikt.`,
+  forkH:'Die Weiche',
+  forkP:{caught:['Coaching','Der Konflikt hat dich: Identität, Gefühl oder Strategie hängen dran. Der Impuls gegen die Konfliktlogik muss dann aus dir kommen, nicht aus einer Gesprächstechnik. Es geht nicht darum, alles zu können, sondern die eigenen Gefährdungen zu kennen. Verstehen hilft beim Sortieren, Gefühle ändern sich aber nur über Erleben, und allein geht das selten. Genau dafür ist Coaching da.'],locked:['Mediation','Der Konflikt ist eingerastet, du bist aber noch handlungsfähig. Eine dritte Person kann die Kommunikation wieder unvorhersehbar machen, was ihr zu zweit gerade nicht schafft.'],self:['Selbst weitermachen','Nimm dir eine Achse vor, nicht alle. Ein Gespräch, ein Modus, eine Bewegung. Frag dich dabei: Wo könntest du den Pol wechseln, und was riskierst du damit? Wenn es nach zwei Anläufen nicht kippt, melde dich.']},
+  forkB:{caught:['Konfliktmoderation im Team','Der Konflikt hat das System: Lager, Übereinander-Reden, Abwarten. Das ist keine Sache für ein Vier-Augen-Gespräch mehr. Hier braucht es einen moderierten Rahmen mit allen Beteiligten.'],locked:['Mediation zwischen den Beteiligten','Die beiden Seiten sind eingerastet, das Umfeld noch nicht. Jetzt ist der Moment für eine klärende Mediation, bevor das System kippt.'],self:['Ein Führungsgespräch reicht vermutlich','Sprich die eine Achse an, die oben steht. Und prüfe, ob dein Raushalten Teil des Musters ist. Wer sich nicht einmischt, hat den Anfang nicht verhindert.']},
+  cta:'Gespräch mit Jacob Noon anfragen',ctaUrl:'https://jacobnoon.com/coaching/',
+  quote:'Nicht der Pol ist das Problem.<br>Das Einrasten ist es.',quoteSub:'Konflikte brauchen beide Pole. Wer regulieren will, braucht Kompetenzen für und gegen den Konflikt. Eidenschink nennt das eine „Immunisierung gegen Konfliktsog wie gegen Friedenszwang“.',
+  backSliders:'Zurück zu den Reglern',restart:'Neu starten',
+  verdictBug:'Bug',verdictSmoulder:'Schwelbrand',verdictLop:'Schieflage',verdictFeature:'Feature',
+  vBug:(n,r)=>`Der Konflikt ernährt sich selbst. Auf ${n} ist er am Widerspruchspol eingerastet: Nein erzeugt Nein, die Sache spielt kaum noch eine Rolle. Hier lohnt Beruhigen, aber nicht pauschal, sondern Achse für Achse.${r?` Gleichzeitig ist er auf ${r} am offenen Pol eingerastet, dort fehlt eher die Härte.`:''}`,
+  vSmoulder:n=>`Der Konflikt wird gemieden, nicht reguliert. Auf ${n} ist er am offenen Pol eingerastet: viel Verständnis, viel Dialog, keine Entscheidung. Was hier fehlt, ist die Kompetenz <em>für</em> den Konflikt. Schüren.`,
+  vLop:(n,A,B)=>`Die beiden Seiten stehen nicht im selben Konflikt. Auf ${n} liegen ${A} und ${B} weit auseinander: Eine Seite ist im Ring, die andere nicht. Eidenschink: Nur wenn zwei ebenbürtig im Ring stehen, lassen sich die Sachkonflikte besprechen. Die weiche Seite braucht Kompetenz <em>für</em> den Konflikt, die harte Seite Kompetenz <em>gegen</em> ihn.`,
+  vFeature:'Der Konflikt bewegt sich noch. Er tut, wofür Konflikte da sind: eine Entscheidung zwischen Alternativen herbeiführen und eine neue Ordnung ermöglichen. Nicht lösen. Regulieren. Halte die Bewegung am Leben.',
+  vMixed:'Der Konflikt ist auf beiden Seiten eingerastet: an manchen Stellen zu hart, an anderen zu weich. So kann er weder entscheiden noch beruhigen. Unten steht, wo welche Bewegung fehlt.',
+  axisOf:(i,n)=>`Achse ${i} von ${n}`,qOf:(i,n)=>`Frage ${i} von ${n}`,
+  pickNote:'Wähl bis zu zwei, die du mitnimmst. Nur die landen in deiner Zusammenfassung.',pick:'Nehm ich mit',picked:'Mitgenommen',
 
-const S={role:null,start:null,pos:{},oth:{},fix:{},erg:{},names:{a:'Seite A',b:'Seite B'}};
+  reflect:'Frag dich:',
+  funcH:'Wozu ist der Konflikt da?',
+  func:'Ob Schüren oder Beruhigen hilft, lässt sich erst sagen, wenn du eine Vermutung hast, wozu der Konflikt dient. Konflikte stellen eine Ordnung infrage, die nicht mehr trägt. Wenn deiner sprechen könnte: Was will er verändern? Und wem dient er, dir, der anderen Seite, eurer Beziehung oder dem Umfeld?',
+  funcB:'Ob Schüren oder Beruhigen hilft, lässt sich erst sagen, wenn du eine Vermutung hast, wozu der Konflikt dient. Konflikte stellen eine Ordnung infrage, die nicht mehr trägt. Wenn dieser sprechen könnte: Was will er verändern? Und wem dient er, den Beteiligten, ihrer Zusammenarbeit oder dem Team drumherum?',
+  funcEx:'Mögliche Antworten: eine Grenze neu ziehen, Rollen klären, ein Tabu sichtbar machen, eine Ungerechtigkeit beenden, ein besseres Ergebnis erzwingen, eine Trennung, die längst fällig ist.',
+  funcPh:'Deine Vermutung, optional. Eine Hypothese reicht. Sie darf falsch sein.',
+  costH:'Was kostet es, wenn es so bleibt?',
+  cost:{sache:'Angenommen, ihr einigt euch nicht: Was macht jede Seite dann? Wer diese Frage nicht beantworten will, ahnt meist, dass die Alternative teurer ist als ein Kompromiss.',sozial:'Welchen Preis zahlt ihr gerade still mit, Rückzug, Kündigungen, Oberflächlichkeit, weil euch etwas anderes wichtiger ist? Wenn ihr den Preis bewusst zahlt, ist das kein Konflikt mehr, sondern eine Entscheidung. Dann sprecht sie aus.',zeit:'Was kostet es, wenn die Entscheidung noch einmal vertagt wird? Welche Möglichkeiten ziehen vorbei, während gestritten wird?'},
+  sumFunc:'Wozu der Konflikt da ist (meine Vermutung)',sumCost:'Was es kostet, wenn es so bleibt',
+  counterH:'Was spricht dagegen?',
+  counter:{
+   bug:'Das Urteil sagt: festgefahren. Nenn einen Moment aus den letzten zwei Wochen, in dem sich doch etwas bewegt hat. Ein Satz, ein Zugeständnis, ein Lachen. Findest du keinen, stimmt das Urteil. Findest du einen, liegt dort dein Hebel.',
+   schwel:'Das Urteil sagt: Der Konflikt wird gemieden. Nenn die letzte Entscheidung, die in dieser Sache wirklich gefallen ist. Fällt dir keine ein, stimmt das Urteil. Dann die unbequeme Frage: Wem nützt es, dass nichts entschieden wird? Und eine Gegenprobe: Nicht jeder kalte Konflikt muss heiß werden. Wenn der Zeitpunkt schlecht ist oder die Kraft fehlt, darf man ihn parken. Aber ausgesprochen und mit Termin, nicht stillschweigend.',
+   lop:'Das Urteil sagt: Eine Seite ist im Ring, die andere nicht. Prüf, ob die weichere Seite still ist, weil sie einverstanden ist, oder weil sie sich nicht traut. Und ob du die härtere Seite härter siehst, als sie ist.',
+   feature:'Das Urteil sagt: Der Konflikt bewegt sich. Prüf, ob er sich bewegt oder nur im Kreis dreht. Was ist seit seinem Beginn entschieden worden? Wenn nichts: Schau noch mal auf die Regler. Warst du freundlicher als die Lage?',
+   mixed:'Das Urteil sagt: zu hart und zu weich zugleich. Welchen Teil davon würde die andere Seite unterschreiben, welchen nicht? Wo du Widerspruch erwartest, sitzt meist der blinde Fleck.'
+  },
+  counterPh:'Deine Antwort, optional. Bleibt im Browser und landet nur in deiner Zusammenfassung.',
+  exportH:'Deine Zusammenfassung',
+  exportNote:'Urteil, eingerastete Achsen, deine Karten mit Reflexionsfrage, deine Vermutung zur Funktion und deine Antwort auf die Gegenfrage. Zum Mitnehmen ins nächste Gespräch oder ins Erstgespräch mit Jacob. Nichts davon verlässt deinen Browser, bis du es selbst weitergibst.',
+  copy:'Ergebnis kopieren',pdf:'Als PDF speichern',copied:'Kopiert. Du kannst es jetzt einfügen.',copyFail:'Kopieren ging nicht automatisch. Der Text ist markiert, kopier ihn mit Strg+C bzw. Cmd+C.',
+  sumTitle:'Konflikt-Check: Zusammenfassung',sumPersp:'Perspektive',sumVerdict:'Urteil',sumLocked:'Eingerastet',sumTend:'Tendenz',sumNone:'keine Achse',
+  sumMoves:'Meine Bewegungen',sumMovesAll:'Vorgeschlagene Bewegungen (keine ausgewählt)',sumAns:'Meine Antwort:',sumFork:'Empfehlung',
+  sumSource:'Erstellt mit dem Konflikt-Check auf jacobnoon.com/konflikt-check/. Grundlage: Klaus Eidenschink, „Die Kunst des Konflikts". Keine Diagnose.'
+ }
+},
+en:{
+ axes:[
+ {id:'auf',dim:'sache',name:'Attention',left:'generalised',right:'specific',
+  q:{partei:"What's it about right now? Still the one concrete thing, or by now 'always', 'never' and 'in principle'?",beob:'Is this side still arguing about the concrete point, or has everything become the topic?'},
+  lp:'The molehill has become a mountain',rp:"It's about exactly one thing",
+  down:'Move attention from the general back to the specific. Where exactly is the difference? Where have you long agreed? Narrow down what divides you, name what you share.',
+  up:'If only the individual case ever gets discussed, that can be a way of playing it down. Name the mountain behind the molehill: what is this actually about?',
+  sdown:"Staying specific: keeping disagreement on the matter apart from rejection of the person. Bracketing your feelings rather than suppressing them. Your self-worth doesn't depend on being proved right.",rdown:"On which topic do you lose faith that your relationship will survive a disagreement on substance?",
+  sup:"Being allowed to generalise: having the debate about principles and no longer making lazy compromises. Friendly and firm at once, hard on the issue, soft on the person.",rup:"Can you question someone's competence fundamentally without rejecting them as a person?"},
+ {id:'bes',dim:'sache',name:'Description',left:'single-minded',right:'many-sided',
+  q:{partei:'From where you stand, is there exactly one right solution, or could you let several views stand?',beob:'Does this side allow several views of problem and solution, or does only one count?'},
+  lp:"There's one right view: mine",rp:'There are several workable views',
+  down:'The situation is many-sided, the views are single-minded. Bring in more perspectives: experts, the people affected, the view from the whole rather than from your own patch.',
+  up:"Endless weighing-up is a way of getting stuck too. If there's pressure to agree (what? when? who?), single-mindedness is needed: a frame, a deadline, a decision. A compromise is allowed to be imperfect on the substance.",
+  sdown:"Allowing variety: doubting yourself without making yourself small. Bearing uncertainty and trying something out instead of waiting for the perfect solution.",rdown:"When did you last concede a point to someone you strongly disagreed with at the start of the conversation?",
+  sup:"Standing for one view: arguing for something without ifs and buts, and making yourself vulnerable by doing so. Not agreeing just to keep the peace.",rup:"Do you know enough about this to argue for it clearly and persuasively? Or is volume standing in for the argument right now?"},
+ {id:'bew',dim:'sache',name:'Evaluation',left:'absolute',right:'open',
+  q:{partei:'How sure are you that the other side is wrong?',beob:"Does this side argue in right and wrong, good and bad, or can it leave open who's right in the end?"},
+  lp:"I'm right. Full stop.",rp:'Both of us could be right',
+  down:'Whoever contradicts the judgement here contradicts the person. Movement only becomes possible once the threatened identity finds a footing elsewhere: recognition first, then loosen the judgement.',
+  up:"Without agreement on what's good and right, the conflict keeps smouldering. At some point someone has to say what counts. Positions need force and clarity too.",
+  sdown:"Testing judgements rather than dropping them: noticing when you have dug yourself in, trusting others to be competent too, letting something go when there are good reasons.",rdown:"Which conviction do you never want to see questioned? What would happen if you questioned it anyway?",
+  sup:"Holding convictions you do not relativise at the first headwind. Judging the opinion, never the person.",rup:"Do you sometimes doubt yourself too early, just because someone pushes back?"},
+ {id:'kon',dim:'sozial',name:'Contact',left:'hostile',right:'dialogic',
+  q:{partei:'Do you still expect anything good from the other side?',beob:'Does this side assume the other is acting on purpose, or does it still credit them with decent motives?'},
+  lp:"They're out to hurt me",rp:'They have reasons I could understand',
+  down:'The enemy legitimises the aggression, the aggression creates the enemy. Test your assumptions: what motives could the other side have that have nothing to do with you?',
+  up:'Someone who only ever offers dialogue often never gets to the point. The conflict smoulders. Here somebody is allowed to step into the ring and speak plainly, even if it comes across as unfriendly.',
+  sdown:"Staying capable of dialogue: watching yourself in the conflict, giving up on changing the other person, mistrusting your own feelings and working out which need is driving their behaviour.",rdown:"What should the other person give up, see differently or feel differently? And what would you need that for?",
+  sup:"Acknowledging opposition: seeing that someone wants to harm you, bearing the guilt that comes with it and marking the line where the fun stops. Hostile does not mean wanting to destroy.",rup:"Can you tolerate feeling guilty when you're not being nice, or do you have to make the feeling go away at once?"},
+ {id:'rea',dim:'sozial',name:'Reaction',left:'negating',right:'choosing',
+  q:{partei:"If the other side suggests something tomorrow, do you already know you'll say no?",beob:'Does this side say no to everything on reflex, or does it still choose what to react to and how?'},
+  lp:'No. Whatever it is.',rp:'Depends what it is',
+  down:"The pull towards no has taken over. This isn't about saying yes instead of no, it's about being able to choose again: what in what the other side says could you agree with? And: answer more slowly. Sleeping on it isn't weakness, it's room to move.",
+  up:"Some arrangements only shift when somebody contradicts them firmly. A no that stays a no, even when it's pushed towards yes, breaks up conflict symbioses.",
+  sdown:"Being able to be disappointed: giving ground even if the other side exploits it at first. Being able to yield, to say yes again after a no, to experience contradiction as a form of contact.",rdown:"How much does your willingness to give ground depend on the other side rewarding it straight away?",
+  sup:"Saying no without guilt: feeling fine even when the other person is feeling bad right now, and holding firm when they say no. A no is an offer of contact too.",rup:"Are you more preoccupied with how the other side is feeling than with how you are?"},
+ {id:'akt',dim:'sozial',name:'Action',left:'broadcasting',right:'exploring',
+  q:{partei:'In the last few conversations, who did more talking than asking?',beob:'Does this side only talk, or does it still explore what the other means?'},
+  lp:'Two loudspeakers, no microphone',rp:'What might they have meant?',
+  down:"Turning up the volume does nothing if there's no microphone in the room. Park your own content and respond to what was actually said. Understand first, then broadcast.",
+  up:"Constant exploring can be a way of keeping the conflict hidden. Sometimes it takes a loud, pointed, unimpressed message before there's a conflict at all that can be worked on.",
+  sdown:"Exploring: seeing the situation through the other person's eyes and trusting that they stay interested in you. Your self-worth holds even if you don't land. In the conversation: EAT, that is Explore, Absorb, Transform.",rdown:"How much do you need the other side to admit that you are right?",
+  sup:"Broadcasting: showing yourself, taking yourself seriously and holding your ground even when you sense rejection. Parking politeness for a moment and saying with conviction what matters to you.",rup:"How easily are you knocked off your stride when someone fights you for the floor?"},
+ {id:'erk',dim:'zeit',name:'Explanation',left:'linear',right:'circular',
+  q:{partei:'When you explain how it came to this, is there a culprit?',beob:'Is this side looking for the culprit, or does it see its own contribution?'},
+  lp:"Someone's to blame",rp:'Everyone contributed',
+  down:'Having a culprit makes you feel able to act, and the accused feels entitled to hit back. Chicken or egg? Both. The better question: what am I contributing to the conflict right now?',
+  up:"Circular thinking can also be a cover. Where power relations are set in concrete, responsibility needs naming clearly, otherwise there's no conflict to work on at all.",
+  sdown:"Thinking in circles: admitting fault and acknowledging accusations without condemning yourself. You do not have to be flawless. Responsibility means being the author, not the culprit.",rdown:"Can you meet an accusation with curiosity rather than defence?",
+  sup:"Naming it in a straight line: addressing wrong behaviour clearly, rejecting accusations firmly and naming silence, withdrawal and niceness as hidden aggression. That takes a good relationship with your own aggression.",rup:"Can you say clearly what wrong you have seen, even though you have made mistakes yourself?"},
+ {id:'ziel',dim:'zeit',name:'Goal',left:'winning',right:'undecided',
+  q:{partei:'Do you want to win, or can it stay open who gets their way on what?',beob:'Does this side want to win, or can it leave open who prevails on what?'},
+  lp:'I want to win',rp:"Let's see who gets their way on what",
+  down:"As long as it's about victory, who's right no longer matters. Whoever lasts longer wins. Bearing 'undecided' means letting go of the interests you currently take to be your own.",
+  up:"Change needs a force that steps into the ring. If nobody wants to win, everything stays as it is. Sometimes it's right that there are clear losers.",
+  sdown:"Being allowed to lose: a self-worth that does not hang on victory and does not tie defeat to shame. Leaving open who is ahead, and being curious whether the conflict might teach you better.",rdown:"Does your wellbeing stay intact if you lose on this? Or would you feel ashamed?",
+  sup:"Prevailing: enjoying competition, fighting for values, showing moral courage and bearing the pain a fight brings. Without pity, but without turning the other person into an enemy to manage it.",rup:"Are you holding back out of pity for the other side, even though the matter demands otherwise?"},
+ {id:'macht',dim:'zeit',name:'Power',left:'threatening',right:'negotiating',
+  q:{partei:'Is there a threat in the room? Even an unspoken one?',beob:'Does this side threaten consequences, or does it sound out what it can give and get?'},
+  lp:"If you don't, then ...",rp:"You give me this, I'll give you that",
+  down:"The person threatening has no power unless it's handed to them. Threats are often an escape from powerlessness and harvest compliance rather than agreement. Back to negotiating: what does each side actually want, and what would it be prepared to give? And what will each side do if you don't reach agreement?",
+  up:"If you're not being taken seriously, there's no point talking. A credible consequence, one you can and will follow through on, is sometimes the precondition for any negotiation at all.",
+  sdown:"Negotiating: bearing risk instead of relying on control. Thinking through beforehand what it would cost to carry out threats. Letting go of things that matter and leaving the other side a way out that saves face.",rdown:"Which feelings are tied up for you with giving way? And do you sometimes negotiate only because you do not dare to fight?",
+  sup:"Threatening credibly: knowing what matters to the other side, accepting losses of your own and not showing what can impress you. Often wiser: warning ('this will happen if ...') rather than threatening ('this is what I will do if ...').",rup:"Do you trust yourself to bear the loss that carrying out a consequence would mean for you too?"}
+ ],
+ mode:n=>n+' mode',
+ dims:{sache:'The matter',sozial:'The social side',zeit:'Time'},
+ erg:{
+  partei:[
+   {q:'If the other side turned out to be right in the end, what would that say about you?',o:["Nothing. I'd have been wrong, that's all.",'It would sting.','It would call me into question as a person.']},
+   {q:"Could you say: 'Fine, not like this then. Some other way, somewhere else, another time'?",o:['Yes, there are other routes to what I need.','Hard.','No. It has to be this way.']},
+   {q:"How much room does the conflict take up in your head when you're not actually in the conversation?",o:['Hardly any.','A fair bit.','It runs constantly.']},
+   {q:"Is there a feeling attached to this conflict that you'd rather not have? Shame, guilt, fear, hurt?",o:['No.','Yes, and I can name it.',"Yes, and I don't want to look at it."]}
+  ],
+  beob:[
+   {q:'Have camps formed?',o:['No.','Starting to.','Yes, with allies on both sides.']},
+   {q:'Are people still talking to each other, or only about each other?',o:['To each other.','Both.','Only about each other.']},
+   {q:'Are the bystanders keeping out of it? Leadership, colleagues, you?',o:['No, people are stepping in.','Hesitantly.',"Everyone's waiting."]},
+   {q:'How long has this been going on?',o:['Days.','Weeks.','Months or longer.']}
+  ]
+ },
+ startsPartei:[['ich','Me'],['andere','The other side'],['beide','Both of us'],['unklar',"Can't remember"]],
+ sideA:'Side A',sideB:'Side B',both:'Both',unclear:'Unclear',
+ steps:['Start','First','Matter','Social','Time','Key question','Result'],
+ ui:{
+  title:'Bug or<br>Feature?',docTitle:'Bug or Feature?',
+  lead:"A conflict isn't the problem. A conflict that's stuck is. Nine sliders, one profile, and at the end the question whether this conflict needs stirring up, calming down, or leaving alone.",
+  roleq:'Where are you looking from?',r1:"I'm a party to it",r1s:"It's my conflict. I'm in it.",r2:"I'm looking from outside",r2s:"Two people or groups around me, and I'm not one of the parties. Line manager, HR, colleague.",
+  note:"Takes about six minutes. Nothing is stored or sent. Based on Klaus Eidenschink's theory of conflict.",
+  go:'Go',back:'Back',next:'Next',result:'Result',
+  crumb:'Conflict Check',crumbP:"Conflict Check · I'm a party",crumbB:'Conflict Check · View from outside',
+  s1e:'One question first',s1h:'Who started it?',s1l:"Don't overthink it. First answer.",
+  names:'The two sides',nameA:'Side A, e.g. Sales or Ms K.',nameB:'Side B',namesnote:'Optional. Names stay in your browser.',
+  d1e:'The matter',d1h:'What is the row about?',d1l:'Move the slider to where the conflict is right now. Not where it should be.',
+  d2e:'The social side',d2h:'How are they treating each other?',d3e:'Time',d3h:'Past, present, future',
+  fixq:'Is it always like this, or does it depend on the day?',fix0:'Depends on the day',fix2:'Always like this',
+  other:'Where would the other side put the slider?',
+  ergP:'Do you have the conflict, or does it have you?',ergPe:'The key question',ergB:'Has the conflict taken over the system?',ergBe:'The key question from outside',
+  foot:"Prototype. Theoretical basis: Klaus Eidenschink, 'Die Kunst des Konflikts' (The Art of Conflict, Carl-Auer, German only). The nine guiding distinctions and the 18 regulation competences are his; the questions, scoring and wording are Jacob Noon's. Not a diagnosis, and no substitute for a conversation.",
+  yourResult:'Your result',hasYou:'The conflict has you',hasSystem:'The conflict has the system',
+  profile:'The movement profile',profileNote:'Contradiction pole on the left, open pole on the right. No pole is wrong. Locked is the problem.',
+  locked:'locked',tend:'tendency',seeDiff:'You see this differently',lopsided:'Lopsided',
+  legMoving:'moving',legTend:'far out, but depends on the day',legLocked:'locked',legOther:'how the other side would see it',
+  otherView:"The other side's view",
+  movesH:"Where it's worth going in",
+  movesMany:(n,m)=>`${n} spots are locked. Here are the ${m} hardest, more than that won't fit into one conversation.`,
+  movesFixed:'For each locked axis: the counter-movement and the ability it takes.',
+  movesTend:'Nothing is locked. Here are the axes with a tendency, before they lock.',
+  movesBeob:' The movement belongs to the side in question. Your job from outside: create the frame in which it becomes possible.',
+  calm:'Calm down',stir:'Stir up',fromTo:(a,b)=>`from ${a} to ${b}`,skill:'The ability behind it:',
+  noFix:"No axis is locked or tipping right now. Your job isn't to end the conflict but to let it reach a decision. Watch the matter itself: is the argument still about the substance, or is it drifting towards the person?",
+  axesN:n=>n===1?'one axis':n+' axes',
+  asymH:'Asymmetry',asym:(n,list,A,B)=>`On ${n} (${list}) ${A} and ${B} are three or more steps apart. That's no accident, it's often the pattern itself: the harder side escalates because it isn't being taken seriously. The softer side keeps the conflict alive because nothing gets decided. Both need to move, in opposite directions. From outside that often means backing the softer side. That isn't taking sides, it's the precondition for both being in the ring.`,
+  gapH:"The other side's view",gap:(n,list)=>`On ${n} (${list}) your assessment and the one you assume for the other side are three or more steps apart. That's a finding in itself: you're not only arguing about the matter, you also see the argument differently. Saying that out loud makes the communication unpredictable again.`,
+  firstH:'Back to the first question',
+  firstBoth:e=>`You said 'Both'. That's the circular view, good. Check once whether that's conviction or politeness. Your slider on explanation mode ${e<0?'still points at a culprit':e===0?'sits in the middle':"also sits at 'everyone contributed'"}.`,
+  firstUnclear:"You said 'Unclear'. Fair. That's often the most accurate answer, because the question of who started it feeds the conflict rather than ending it.",
+  firstOne:x=>`You said: <b>${x}</b>. Eidenschink would ask: chicken or egg? Both. Everyone contributed to the conflict, including those who stayed out of it. Having a culprit makes you feel able to act, and the accused feels entitled to hit back. The question of who started it is food for the conflict.`,
+  forkH:'The fork in the road',
+  forkP:{caught:['Coaching',"The conflict has you: identity, feeling or strategy are tied up in it. The impulse against the logic of the conflict then has to come from you, not from a conversation technique. It isn't about being able to do everything, it's about knowing where you're vulnerable. Understanding helps you sort things out, but feelings only change through experience, and that rarely works alone. That's exactly what coaching is for."],locked:['Mediation',"The conflict is locked, but you can still act. A third person can make the communication unpredictable again, which is what the two of you can't manage right now."],self:['Carry on yourself',"Take on one axis, not all of them. One conversation, one mode, one movement. Ask yourself: where could you switch poles, and what would you be risking? If it hasn't tipped after two attempts, get in touch."]},
+  forkB:{caught:['Conflict facilitation in the team','The conflict has the system: camps, talking about rather than to, waiting it out. This is no longer a matter for a one-to-one. It needs a facilitated setting with everyone involved.'],locked:['Mediation between the parties',"The two sides are locked, the surroundings aren't yet. This is the moment for a clarifying mediation, before the system tips."],self:['A conversation with your team member will probably do',"Address the one axis shown above. And check whether your staying out of it is part of the pattern. Whoever doesn't step in didn't prevent the start."]},
+  cta:'Request a conversation with Jacob Noon',ctaUrl:'https://jacobnoon.com/en/coaching/',
+  quote:'Not the pole is the problem.<br>Getting stuck is.',quoteSub:'Conflicts need both poles. Regulating them takes competence for and against conflict. Eidenschink calls it being immune to the pull of conflict and to the pressure for peace alike.',
+  backSliders:'Back to the sliders',restart:'Start again',
+  verdictBug:'Bug',verdictSmoulder:'Smouldering',verdictLop:'Lopsided',verdictFeature:'Feature',
+  vBug:(n,r)=>`The conflict is feeding itself. On ${n} it has locked onto the contradiction pole: no breeds no, the actual matter barely counts any more. Calming down pays here, but not across the board, axis by axis.${r?` At the same time it's locked onto the open pole on ${r}, and there it's firmness that's missing.`:''}`,
+  vSmoulder:n=>`The conflict is being avoided, not regulated. On ${n} it's locked onto the open pole: plenty of understanding, plenty of dialogue, no decision. What's missing here is the competence <em>for</em> conflict. Stir it up.`,
+  vLop:(n,A,B)=>`The two sides aren't in the same conflict. On ${n} ${A} and ${B} are far apart: one side is in the ring, the other isn't. Eidenschink: only when two stand in the ring as equals can they discuss the actual matter. The softer side needs competence <em>for</em> conflict, the harder side competence <em>against</em> it.`,
+  vFeature:"The conflict is still moving. It's doing what conflicts are for: forcing a decision between alternatives and making a new order possible. Don't resolve it. Regulate it. Keep the movement alive.",
+  vMixed:'The conflict is locked on both sides: too hard in some places, too soft in others. That way it can neither decide nor settle. Below is where which movement is missing.',
+  axisOf:(i,n)=>`Axis ${i} of ${n}`,qOf:(i,n)=>`Question ${i} of ${n}`,
+  pickNote:'Pick up to two to take with you. Only those go into your summary.',pick:'Take this one',picked:'Taken',
+
+  reflect:'Ask yourself:',
+  funcH:'What is the conflict for?',
+  func:"Whether stirring or calming helps can only be judged once you have a hunch about what the conflict is for. Conflicts question an order that no longer holds. If yours could speak: what does it want to change? And whom does it serve: you, the other side, your relationship or the people around you?",
+  funcB:"Whether stirring or calming helps can only be judged once you have a hunch about what the conflict is for. Conflicts question an order that no longer holds. If this one could speak: what does it want to change? And whom does it serve: the people involved, how they work together, or the team around them?",
+  funcEx:'Possible answers: redrawing a boundary, clarifying roles, bringing a taboo into the open, ending an injustice, forcing a better result, a separation that is long overdue.',
+  funcPh:'Your hunch, optional. A hypothesis is enough. It is allowed to be wrong.',
+  costH:'What does it cost if it stays like this?',
+  cost:{sache:"Suppose you don't reach agreement: what will each side do then? Whoever won't answer that question usually suspects the alternative costs more than a compromise.",sozial:"What price are you quietly paying right now, withdrawal, people leaving, superficiality, because something else matters more? If you pay it knowingly, it isn't a conflict any more, it's a decision. Then say it out loud.",zeit:'What does it cost if the decision gets postponed once more? Which possibilities are passing by while the argument goes on?'},
+  sumFunc:'What the conflict is for (my hunch)',sumCost:'What it costs if it stays like this',
+  counterH:'What speaks against it?',
+  counter:{
+   bug:"The verdict says: stuck. Name one moment in the last two weeks when something did move. A sentence, a concession, a laugh. If you can't find one, the verdict stands. If you can, that's your lever.",
+   schwel:'The verdict says: the conflict is being avoided. Name the last decision that was actually made on this. If none comes to mind, the verdict stands. Then the awkward question: who benefits from nothing being decided? And a cross-check: not every cold conflict needs heating up. If the timing is bad or the energy is not there, it can be parked. But out loud and with a date, not in silence.',
+   lop:"The verdict says: one side is in the ring, the other isn't. Check whether the softer side is quiet because it agrees, or because it doesn't dare. And whether you see the harder side as harder than it is.",
+   feature:'The verdict says: the conflict is moving. Check whether it is moving or just going round in circles. What has been decided since it started? If nothing: look at the sliders again. Were you kinder than the situation?',
+   mixed:'The verdict says: too hard and too soft at once. Which part of that would the other side sign, and which not? Where you expect disagreement is usually where the blind spot sits.'
+  },
+  counterPh:'Your answer, optional. Stays in your browser and only goes into your summary.',
+  exportH:'Your summary',
+  exportNote:'Verdict, locked axes, your cards with their reflection question, your hunch about what the conflict is for and your answer to the counter-question. To take into your next conversation, or into a first call with Jacob. None of it leaves your browser until you pass it on yourself.',
+  copy:'Copy result',pdf:'Save as PDF',copied:'Copied. You can paste it now.',copyFail:"Couldn't copy automatically. The text is selected, copy it with Ctrl+C or Cmd+C.",
+  sumTitle:'Conflict Check: summary',sumPersp:'Perspective',sumVerdict:'Verdict',sumLocked:'Locked',sumTend:'Tendency',sumNone:'no axis',
+  sumMoves:'My movements',sumMovesAll:'Suggested movements (none picked)',sumAns:'My answer:',sumFork:'Recommendation',
+  sumSource:"Made with the Conflict Check at jacobnoon.com/en/conflict-check/. Based on Klaus Eidenschink, 'Die Kunst des Konflikts'. Not a diagnosis."
+ }
+}};
+const D=DATA[L], AXES=D.axes, DIMS=D.dims, ERG=D.erg, STEPNAMES=D.steps, U=D.ui;
+
+const S={role:null,start:null,pos:{},oth:{},fix:{},erg:{},names:{a:D.sideA,b:D.sideB}};
 AXES.forEach(a=>{S.pos[a.id]=0;S.oth[a.id]=0;S.fix[a.id]=null});
 let step=0;
-
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function starts(){if(S.role==='partei')return D.startsPartei;return [['a',S.names.a],['b',S.names.b],['beide',D.both],['unklar',D.unclear]]}
+
+/* static texts */
+(function(){
+  document.title=U.docTitle;
+  $('#t-title').innerHTML=U.title;
+  ['lead','roleq','r1','r1s','r2','r2s','note','s1e','s1h','s1l','names','namesnote','d1e','d1h','d1l','d2e','d2h','d3e','d3h','foot'].forEach(k=>$('#t-'+k).textContent=U[k]);
+  $('#crumb').textContent=U.crumb;$('#startBtn').textContent=U.go;$('#resultBtn').textContent=U.result;
+  $$('[data-back]').forEach(b=>b.textContent=U.back);$$('[data-next]').forEach(b=>b.textContent=U.next);
+  $('#nameA').placeholder=U.nameA;$('#nameB').placeholder=U.nameB;
+  $('#stepname').textContent=STEPNAMES[0];
+})();
 
 function show(n){
   step=n;
@@ -331,7 +627,7 @@ function show(n){
   $('#bar').style.width=(n/6*100)+'%';
   $('#stepname').textContent=STEPNAMES[n];
   $('#stepnum').textContent=n===0?'':`${n} / 6`;
-  $('#crumb').textContent=S.role?(S.role==='partei'?'Konflikt-Check · Ich bin Partei':'Konflikt-Check · Blick von außen'):'Konflikt-Check';
+  $('#crumb').textContent=S.role?(S.role==='partei'?U.crumbP:U.crumbB):U.crumb;
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -342,32 +638,32 @@ $$('#roleChoices .choice').forEach(b=>b.addEventListener('click',()=>{
   $('#startBtn').disabled=false;
 }));
 $('#startBtn').addEventListener('click',()=>{buildAll();show(1)});
-['A','B'].forEach(k=>$('#name'+k).addEventListener('input',e=>{S.names[k.toLowerCase()]=e.target.value.trim()||('Seite '+k);const bs=$$('#startChoices .choice');if(bs.length){bs[k==='A'?0:1].querySelector('b').textContent=S.names[k.toLowerCase()]}}));
+['A','B'].forEach(k=>$('#name'+k).addEventListener('input',e=>{S.names[k.toLowerCase()]=e.target.value.trim()||(k==='A'?D.sideA:D.sideB);const bs=$$('#startChoices .choice');if(bs.length){bs[k==='A'?0:1].querySelector('b').textContent=S.names[k.toLowerCase()]}}));
 
 function buildAll(){
   const r=S.role;
   const sc=$('#startChoices');sc.innerHTML='';
   $('#nameBox').hidden=r!=='beob';
-  starts().forEach(([k,l])=>{const b=document.createElement('button');b.className='choice';b.innerHTML=`<b>${l}</b>`;b.onclick=()=>{S.start=k;$$('#startChoices .choice').forEach(x=>x.classList.toggle('sel',x===b));sc.closest('.screen').querySelector('[data-next]').disabled=false};sc.appendChild(b)});
+  starts().forEach(([k,l])=>{const b=document.createElement('button');b.className='choice';b.innerHTML=`<b>${esc(l)}</b>`;b.onclick=()=>{S.start=k;$$('#startChoices .choice').forEach(x=>x.classList.toggle('sel',x===b));sc.closest('.screen').querySelector('[data-next]').disabled=false};sc.appendChild(b)});
   ['sache','sozial','zeit'].forEach(d=>{const box=$('#dim-'+d);box.innerHTML='';AXES.filter(a=>a.dim===d).forEach(a=>box.appendChild(axisEl(a)))});
-  $('#ergTitle').textContent=r==='partei'?'Hast du den Konflikt, oder hat er dich?':'Hat der Konflikt schon das System?';
-  $('#ergEyebrow').textContent=r==='partei'?'Die Kernfrage':'Die Kernfrage von außen';
+  $('#ergTitle').textContent=r==='partei'?U.ergP:U.ergB;
+  $('#ergEyebrow').textContent=r==='partei'?U.ergPe:U.ergBe;
   const e=$('#erg');e.innerHTML='';
-  ERG[r].forEach((it,i)=>{const w=document.createElement('div');w.className='axis';w.innerHTML=`<p class="q">${esc(it.q)}</p><div class="choices"></div>`;const c=w.querySelector('.choices');it.o.forEach((o,v)=>{const b=document.createElement('button');b.className='choice';b.innerHTML=`<span style="color:var(--ink);font-size:15px">${esc(o)}</span>`;b.onclick=()=>{S.erg[i]=v;c.querySelectorAll('.choice').forEach(x=>x.classList.toggle('sel',x===b));$('#resultBtn').disabled=Object.keys(S.erg).length<ERG[r].length};c.appendChild(b)});e.appendChild(w)});
+  ERG[r].forEach((it,i)=>{const w=document.createElement('div');w.className='axis';w.innerHTML=`<p class="count">${U.qOf(i+1,ERG[r].length)}</p><p class="q">${esc(it.q)}</p><div class="choices"></div>`;const c=w.querySelector('.choices');it.o.forEach((o,v)=>{const b=document.createElement('button');b.className='choice';b.innerHTML=`<span style="color:var(--ink);font-size:15px">${esc(o)}</span>`;b.onclick=()=>{S.erg[i]=v;c.querySelectorAll('.choice').forEach(x=>x.classList.toggle('sel',x===b));$('#resultBtn').disabled=Object.keys(S.erg).length<ERG[r].length};c.appendChild(b)});e.appendChild(w)});
 }
 function axisEl(a){
   const w=document.createElement('div');w.className='axis';
   const P=S.role==='partei';
-  const other=P?`<div class="other-row"><label for="o-${a.id}">Wo würde die andere Seite den Regler setzen?</label><div class="sl"><input class="other" type="range" id="o-${a.id}" min="-3" max="3" step="1" value="0"></div></div>`:'';
-  const sliders=P?`<div class="sl"><input type="range" id="p-${a.id}" min="-3" max="3" step="1" value="0" aria-label="${a.name}: ${a.left} bis ${a.right}"></div>`
+  const other=P?`<div class="other-row"><label for="o-${a.id}">${U.other}</label><div class="sl"><input class="other" type="range" id="o-${a.id}" min="-3" max="3" step="1" value="0"></div></div>`:'';
+  const sliders=P?`<div class="sl"><input type="range" id="p-${a.id}" min="-3" max="3" step="1" value="0" aria-label="${a.name}: ${a.left} / ${a.right}"></div>`
    :`<div class="side-row"><label><span class="dot-a"></span>${esc(S.names.a)}</label><div class="sl"><input type="range" id="p-${a.id}" min="-3" max="3" step="1" value="0" aria-label="${esc(S.names.a)}, ${a.name}"></div></div>
      <div class="side-row"><label><span class="dot-b"></span>${esc(S.names.b)}</label><div class="sl"><input class="other b" type="range" id="o-${a.id}" min="-3" max="3" step="1" value="0" aria-label="${esc(S.names.b)}, ${a.name}"></div></div>`;
-  w.innerHTML=`<div class="name"><span class="os">${a.name}smodus</span></div>
+  w.innerHTML=`<div class="name"><span class="os">${D.mode(a.name)}</span><span class="count">${U.axisOf(AXES.indexOf(a)+1,AXES.length)}</span></div>
   <p class="q">${esc(a.q[S.role])}</p>
   ${P?'':'<div class="poles" style="margin:0 0 -4px"><span><b>'+a.left+'</b></span><span><b>'+a.right+'</b></span></div>'}
   ${sliders}
   <div class="poles"><span>${P?'<b>'+a.left+'</b>':''}${esc(a.lp)}</span><span>${P?'<b>'+a.right+'</b>':''}${esc(a.rp)}</span></div>
-  <div class="sub"><label>Ist das immer so, oder je nach Tag?</label><div class="seg" data-ax="${a.id}"><button data-v="0">Je nach Tag</button><button data-v="2">Immer so</button></div></div>
+  <div class="sub"><label>${U.fixq}</label><div class="seg" data-ax="${a.id}"><button data-v="0">${U.fix0}</button><button data-v="2">${U.fix2}</button></div></div>
   ${other}`;
   w.querySelector('#p-'+a.id).oninput=e=>S.pos[a.id]=+e.target.value;
   w.querySelector('#o-'+a.id).oninput=e=>S.oth[a.id]=+e.target.value;
@@ -387,66 +683,119 @@ $('#resultBtn').addEventListener('click',()=>{render();show(6)});
 function stat(p,f){f=f||0;if(f===2&&Math.abs(p)>=2)return 'fix';if(Math.abs(p)>=2)return 'tend';return 'ok'}
 function status(a){return stat(S.pos[a.id],S.fix[a.id])}
 function statusB(a){return stat(S.oth[a.id],S.fix[a.id])}
-function rank(s){return s==='fix'?2:s==='tend'?1:0}
 function render(){
   const r=S.role,P=r==='partei';
   const st={},stB={};AXES.forEach(a=>{st[a.id]=status(a);stB[a.id]=P?'ok':statusB(a)});
   const fixL=a=>(st[a.id]==='fix'&&S.pos[a.id]<0)||(stB[a.id]==='fix'&&S.oth[a.id]<0);
   const fixR=a=>(st[a.id]==='fix'&&S.pos[a.id]>0)||(stB[a.id]==='fix'&&S.oth[a.id]>0);
-  const L=AXES.filter(fixL), R=AXES.filter(fixR);
+  const Lx=AXES.filter(fixL), R=AXES.filter(fixR);
   const E=Object.values(S.erg).reduce((s,v)=>s+v,0); const caught=E>=5;
   const gaps=AXES.filter(a=>Math.abs(S.pos[a.id]-S.oth[a.id])>=3);
   const NA=esc(S.names.a),NB=esc(S.names.b);
-  let v,cls,title,text;
-  if(!P&&gaps.length>=3&&L.length<3){v='schief';cls='schwel';title='Schieflage';text=`Die beiden Seiten stehen nicht im selben Konflikt. Auf ${gaps.length} Achsen liegen ${NA} und ${NB} weit auseinander: Eine Seite ist im Ring, die andere nicht. Eidenschink: Nur wenn zwei ebenbürtig im Ring stehen, lassen sich die Sachkonflikte besprechen. Die weiche Seite braucht Kompetenz <em>für</em> den Konflikt, die harte Seite Kompetenz <em>gegen</em> ihn.`}
-  else if(L.length>=3||(L.length>=2&&caught)||(L.length>=2&&L.length>R.length)){v='bug';cls='bug';title='Bug';text=`Der Konflikt ernährt sich selbst. Auf ${L.length===1?'einer Achse':L.length+' Achsen'} ist er am Widerspruchspol eingerastet: Nein erzeugt Nein, die Sache spielt kaum noch eine Rolle. Hier lohnt Beruhigen, aber nicht pauschal, sondern Achse für Achse.${R.length?` Gleichzeitig ist er auf ${R.length===1?'einer Achse':R.length+' Achsen'} am offenen Pol eingerastet, dort fehlt eher die Härte.`:''}`}
-  else if(R.length>=2&&R.length>=L.length){v='schwel';cls='schwel';title='Schwelbrand';text=`Der Konflikt wird gemieden, nicht reguliert. Auf ${R.length} Achsen ist er am offenen Pol eingerastet: viel Verständnis, viel Dialog, keine Entscheidung. Was hier fehlt, ist die Kompetenz <em>für</em> den Konflikt. Schüren.`}
-  else if(L.length+R.length<=1){v='feature';cls='';title='Feature';text='Der Konflikt bewegt sich noch. Er tut, wofür Konflikte da sind: eine Entscheidung zwischen Alternativen herbeiführen und eine neue Ordnung ermöglichen. Nicht lösen. Regulieren. Halte die Bewegung am Leben.'}
-  else {v='bug';cls='bug';title='Bug';text='Der Konflikt ist auf beiden Seiten eingerastet: an manchen Stellen zu hart, an anderen zu weich. So kann er weder entscheiden noch beruhigen. Unten steht, wo welche Bewegung fehlt.'}
+  let cls,title,text,vk;
+  if(!P&&gaps.length>=3&&Lx.length<3){cls='schwel';vk='lop';title=U.verdictLop;text=U.vLop(U.axesN(gaps.length),NA,NB)}
+  else if(Lx.length>=3||(Lx.length>=2&&caught)||(Lx.length>=2&&Lx.length>R.length)){cls='bug';vk='bug';title=U.verdictBug;text=U.vBug(U.axesN(Lx.length),R.length?U.axesN(R.length):'')}
+  else if(R.length>=2&&R.length>=Lx.length){cls='schwel';vk='schwel';title=U.verdictSmoulder;text=U.vSmoulder(U.axesN(R.length))}
+  else if(Lx.length+R.length<=1){cls='';vk='feature';title=U.verdictFeature;text=U.vFeature}
+  else {cls='bug';vk='mixed';title=U.verdictBug;text=U.vMixed}
   let h='';
-  h+=`<div><p class="eyebrow">Dein Ergebnis</p><div class="verdict ${cls}" style="margin-top:10px"><h2>${title}</h2><p>${text}</p>${caught?`<p style="margin-top:6px"><span class="pill fix">${P?'Der Konflikt hat dich':'Der Konflikt hat das System'}</span></p>`:''}</div></div>`;
+  h+=`<div><p class="eyebrow">${U.yourResult}</p><div class="verdict ${cls}" style="margin-top:10px"><h2>${title}</h2><p>${text}</p>${caught?`<p style="margin-top:6px"><span class="pill fix">${P?U.hasYou:U.hasSystem}</span></p>`:''}</div></div>`;
+  const counterQ=U.counter[vk];
+  h+=`<div class="callout counter"><p class="eyebrow">${U.counterH}</p><p>${counterQ}</p><textarea class="ta" id="counterAns" rows="3" placeholder="${U.counterPh}" aria-label="${U.counterH}"></textarea></div>`;
   /* profile */
-  h+=`<div><p class="eyebrow">Das Bewegungsprofil</p><p class="muted" style="font-size:14px;margin-top:4px">Links der Widerspruchspol, rechts der offene Pol. Kein Pol ist falsch. Eingerastet ist das Problem.</p>`;
+  h+=`<div><p class="eyebrow">${U.profile}</p><p class="muted" style="font-size:14px;margin-top:4px">${U.profileNote}</p>`;
   ['sache','sozial','zeit'].forEach(d=>{h+=`<div class="dim"><h3>${DIMS[d]}</h3>`;AXES.filter(a=>a.dim===d).forEach(a=>{const s=st[a.id],sb=stB[a.id];const x=(S.pos[a.id]+3)/6*100,xo=(S.oth[a.id]+3)/6*100;
     let pills='';
-    if(P){pills=(s==='fix'?'<span class="pill fix">eingerastet</span> ':s==='tend'?'<span class="pill tend">Tendenz</span> ':'')+(gaps.includes(a)?'<span class="pill gap">Ihr seht das anders</span>':'')}
-    else{pills=(s==='fix'?`<span class="pill fix">${NA} eingerastet</span> `:s==='tend'?`<span class="pill tend">${NA}: Tendenz</span> `:'')+(sb==='fix'?`<span class="pill fix">${NB} eingerastet</span> `:sb==='tend'?`<span class="pill tend">${NB}: Tendenz</span> `:'')+(gaps.includes(a)?'<span class="pill gap">Schieflage</span>':'')}
-    const dots=P?`<i class="dot o" style="left:${xo}%" title="Einschätzung der anderen Seite"></i><i class="dot ${s==='ok'?'':s}" style="left:${x}%"></i>`
+    if(P){pills=(s==='fix'?`<span class="pill fix">${U.locked}</span> `:s==='tend'?`<span class="pill tend">${U.tend}</span> `:'')+(gaps.includes(a)?`<span class="pill gap">${U.seeDiff}</span>`:'')}
+    else{pills=(s==='fix'?`<span class="pill fix">${NA} ${U.locked}</span> `:s==='tend'?`<span class="pill tend">${NA}: ${U.tend}</span> `:'')+(sb==='fix'?`<span class="pill fix">${NB} ${U.locked}</span> `:sb==='tend'?`<span class="pill tend">${NB}: ${U.tend}</span> `:'')+(gaps.includes(a)?`<span class="pill gap">${U.lopsided}</span>`:'')}
+    const dots=P?`<i class="dot o" style="left:${xo}%" title="${U.otherView}"></i><i class="dot ${s==='ok'?'':s}" style="left:${x}%"></i>`
       :`<i class="dot b ${sb==='fix'?'ring':''}" style="left:${xo}%" title="${NB}"></i><i class="dot a ${s==='fix'?'ring':''}" style="left:${x}%" title="${NA}"></i>`;
     h+=`<div class="row"><div class="l"><b>${a.name}</b>${a.left}</div><div class="track">${dots}</div><div class="r"><b>&nbsp;</b>${a.right}</div>${pills?`<div class="pills">${pills}</div>`:''}</div>`});h+='</div>'});
-  h+=P?`<div class="legend"><span><i style="background:var(--green)"></i>beweglich</span><span><i style="background:var(--gold)"></i>weit außen, aber je nach Tag</span><span><i style="background:var(--orange)"></i>eingerastet</span><span><i style="background:var(--card);box-shadow:0 0 0 2px var(--blue)"></i>so würde es die andere Seite sehen</span></div></div>`
-      :`<div class="legend"><span><i style="background:var(--green)"></i>${NA}</span><span><i style="background:var(--blue)"></i>${NB}</span><span><i style="background:var(--card);box-shadow:0 0 0 2px var(--orange)"></i>eingerastet</span></div></div>`;
+  h+=P?`<div class="legend"><span><i style="background:var(--green)"></i>${U.legMoving}</span><span><i style="background:var(--gold)"></i>${U.legTend}</span><span><i style="background:var(--orange)"></i>${U.legLocked}</span><span><i style="background:var(--card);box-shadow:0 0 0 2px var(--blue)"></i>${U.legOther}</span></div></div>`
+      :`<div class="legend"><span><i style="background:var(--green)"></i>${NA}</span><span><i style="background:var(--blue)"></i>${NB}</span><span><i style="background:var(--card);box-shadow:0 0 0 2px var(--orange)"></i>${U.legLocked}</span></div></div>`;
+  /* function of the conflict (Eidenschink 5.1) */
+  h+=`<div class="callout func"><p class="eyebrow">${U.funcH}</p><p>${P?U.func:U.funcB}</p><p class="ex">${U.funcEx}</p><textarea class="ta" id="funcAns" rows="2" placeholder="${U.funcPh}" aria-label="${U.funcH}"></textarea></div>`;
   /* moves */
   let items=[];
   AXES.forEach(a=>{items.push({a,side:'a',p:S.pos[a.id],s:st[a.id]});if(!P)items.push({a,side:'b',p:S.oth[a.id],s:stB[a.id]})});
   const fixed=items.filter(i=>i.s==='fix'), tend=items.filter(i=>i.s==='tend');
   fixed.sort((x,y)=>Math.abs(y.p)-Math.abs(x.p));
   const MAX=5, list=fixed.length?fixed.slice(0,MAX):tend.slice(0,2);
+  const lk=[],td=[],pole=(a,p)=>p<0?a.left:a.right;
+  AXES.forEach(a=>{
+    const pa=P?'':S.names.a+': ';
+    if(st[a.id]==='fix')lk.push(pa+a.name+' ('+pole(a,S.pos[a.id])+')');else if(st[a.id]==='tend')td.push(pa+a.name+' ('+pole(a,S.pos[a.id])+')');
+    if(!P){const pb=S.names.b+': ';if(stB[a.id]==='fix')lk.push(pb+a.name+' ('+pole(a,S.oth[a.id])+')');else if(stB[a.id]==='tend')td.push(pb+a.name+' ('+pole(a,S.oth[a.id])+')')}
+  });
+  const mv=list.map(({a,side,p})=>{const dn=p<0;return {tag:(P?'':(side==='a'?S.names.a:S.names.b)+' · ')+(dn?U.calm:U.stir)+' · '+D.mode(a.name)+': '+(dn?U.fromTo(a.left,a.right):U.fromTo(a.right,a.left)),skill:dn?a.sdown:a.sup,reflect:dn?a.rdown:a.rup}});
   if(list.length){
-    h+=`<div><p class="eyebrow">Wo es sich lohnt reinzugehen</p><p class="muted" style="font-size:14px;margin-top:4px">${fixed.length>MAX?`${fixed.length} Stellen sind eingerastet. Hier die ${MAX} härtesten, mehr auf einmal trägt kein Gespräch.`:fixed.length?'Pro eingerasteter Achse: die Gegenbewegung und die Fähigkeit, die sie braucht.':'Nichts ist eingerastet. Hier die Achsen mit Tendenz, bevor sie es werden.'}${P?'':' Die Bewegung gehört der jeweiligen Seite. Deine Aufgabe von außen: den Rahmen schaffen, in dem sie möglich wird.'}</p><div class="moves">`;
-    list.forEach(({a,side,p})=>{const dn=p<0;const who=P?'':(side==='a'?NA:NB)+' · ';h+=`<div class="move ${dn?'':'up'}"><span class="tag">${who}${dn?'Beruhigen':'Schüren'} · ${a.name}smodus: von ${dn?a.left+' zu '+a.right:a.right+' zu '+a.left}</span><p>${esc(dn?a.down:a.up)}</p><p class="skill"><b>Fähigkeit dahinter:</b> ${esc(dn?a.sdown:a.sup)}</p></div>`});
+    h+=`<div><p class="eyebrow">${U.movesH}</p><p class="muted" style="font-size:14px;margin-top:4px">${fixed.length>MAX?U.movesMany(fixed.length,MAX):fixed.length?U.movesFixed:U.movesTend}${P?'':U.movesBeob} ${U.pickNote}</p><div class="moves">`;
+    list.forEach(({a,side,p},idx)=>{const dn=p<0;const who=P?'':(side==='a'?NA:NB)+' · ';h+=`<div class="move ${dn?'':'up'}"><span class="tag">${who}${dn?U.calm:U.stir} · ${D.mode(a.name)}: ${dn?U.fromTo(a.left,a.right):U.fromTo(a.right,a.left)}</span><p>${esc(dn?a.down:a.up)}</p><p class="skill"><b>${U.skill}</b> ${esc(dn?a.sdown:a.sup)}</p><p class="reflect"><b>${U.reflect}</b> ${esc(dn?a.rdown:a.rup)}</p><button class="pick" type="button" aria-pressed="false" data-i="${idx}">${U.pick}</button></div>`});
     h+='</div></div>';
   } else {
-    h+=`<div class="callout"><p class="eyebrow">Wo es sich lohnt reinzugehen</p><p>Keine Achse ist eingerastet oder kippt gerade. Dein Job ist jetzt nicht, den Konflikt zu beenden, sondern ihn zu einer Entscheidung kommen zu lassen. Achte auf die Sachdimension: Wird noch über die Sache gestritten, oder wandert es Richtung Person?</p></div>`;
+    h+=`<div class="callout"><p class="eyebrow">${U.movesH}</p><p>${U.noFix}</p></div>`;
   }
-  if(gaps.length&&!P){h+=`<div class="callout" style="background:var(--blue-tint);border-left-color:var(--blue)"><p class="eyebrow" style="color:var(--blue)">Asymmetrie</p><p>Auf ${gaps.length===1?'einer Achse':gaps.length+' Achsen'} (${gaps.map(a=>a.name).join(', ')}) stehen ${NA} und ${NB} drei oder mehr Schritte auseinander. Das ist kein Zufall, sondern oft das Muster selbst: Die härtere Seite eskaliert, weil sie nicht ernst genommen wird. Die weichere Seite hält den Konflikt am Leben, weil nichts entschieden wird. Beide brauchen Bewegung, in entgegengesetzte Richtungen.</p></div>`}
-  if(gaps.length&&P){h+=`<div class="callout" style="background:var(--blue-tint);border-left-color:var(--blue)"><p class="eyebrow" style="color:var(--blue)">Fremdregler</p><p>Auf ${gaps.length===1?'einer Achse':gaps.length+' Achsen'} (${gaps.map(a=>a.name).join(', ')}) liegen deine Einschätzung und die vermutete der anderen Seite drei oder mehr Schritte auseinander. Das ist selbst ein Befund: Ihr streitet nicht nur über die Sache, ihr seht auch den Streit verschieden. Wer das laut ausspricht, macht die Kommunikation wieder unvorhersehbar.</p></div>`}
-  /* anfang */
+  const costQ=list.length?U.cost[list[0].a.dim]:'';
+  if(costQ)h+=`<div class="callout cost"><p class="eyebrow">${U.costH}</p><p>${costQ}</p></div>`;
+  if(gaps.length){const names=gaps.map(a=>a.name).join(', ');h+=`<div class="callout" style="background:var(--blue-tint);border-left-color:var(--blue)"><p class="eyebrow" style="color:var(--blue)">${P?U.gapH:U.asymH}</p><p>${P?U.gap(U.axesN(gaps.length),names):U.asym(U.axesN(gaps.length),names,NA,NB)}</p></div>`}
+  /* first question */
   const erk=S.pos['erk'];
-  let an='';
-  if(S.start==='beide')an=`Du hast „Beide" gesagt. Das ist die zirkuläre Sicht, gut. Prüf einmal, ob das Überzeugung ist oder Höflichkeit. Dein Regler beim Erklärungsmodus steht ${erk<0?'trotzdem beim Täter':erk===0?'in der Mitte':'ebenfalls bei „alle haben beigetragen"'}.`;
-  else if(S.start==='unklar')an='Du hast „Unklar" gesagt. Ehrlich. Das ist oft die genaueste Antwort, denn die Frage nach dem Anfang füttert den Konflikt, sie beendet ihn nicht.';
-  else an=`Du hast gesagt: <b>${esc(starts().find(x=>x[0]===S.start)[1])}</b>. Eidenschink würde fragen: Henne oder Ei? Beides. Am Konflikt haben alle beigetragen, auch die, die sich rausgehalten haben. Wer einen Täter hat, wird handlungsfähig, und der Beschuldigte fühlt sich zum Zurückschlagen berechtigt. Die Frage nach dem Anfang ist Nahrung für den Konflikt.`;
-  h+=`<div class="callout"><p class="eyebrow">Noch mal zur ersten Frage</p><p>${an}</p></div>`;
-  /* weiche */
-  let wt,wp;
-  if(P){ if(caught){wt='Coaching';wp='Der Konflikt hat dich: Identität, Gefühl oder Strategie hängen dran. Der Impuls gegen die Konfliktlogik muss dann aus dir kommen, nicht aus einer Gesprächstechnik. Genau dafür ist Coaching da.'} else if(L.length>=2){wt='Mediation';wp='Der Konflikt ist eingerastet, du bist aber noch handlungsfähig. Eine dritte Person kann die Kommunikation wieder unvorhersehbar machen, was ihr zu zweit gerade nicht schafft.'} else {wt='Selbst weitermachen';wp='Nimm dir eine Achse vor, nicht alle. Ein Gespräch, ein Modus, eine Bewegung. Wenn es nach zwei Anläufen nicht kippt, melde dich.'} }
-  else { if(caught){wt='Konfliktmoderation im Team';wp='Der Konflikt hat das System: Lager, Übereinander-Reden, Abwarten. Das ist keine Sache für ein Vier-Augen-Gespräch mehr. Hier braucht es einen moderierten Rahmen mit allen Beteiligten.'} else if(L.length>=2){wt='Mediation zwischen den Beteiligten';wp='Die beiden Seiten sind eingerastet, das Umfeld noch nicht. Jetzt ist der Moment für eine klärende Mediation, bevor das System kippt.'} else {wt='Ein Führungsgespräch reicht vermutlich';wp='Sprich die eine Achse an, die oben steht. Und prüfe, ob dein Raushalten Teil des Musters ist. Wer sich nicht einmischt, hat den Anfang nicht verhindert.'} }
-  h+=`<div class="callout ink"><p class="eyebrow">Die Weiche</p><h3 style="font-size:24px">${wt}</h3><p>${wp}</p><p style="margin-top:8px"><a href="https://jacobnoon.com" target="_blank" rel="noopener">Gespräch mit Jacob Noon anfragen</a></p></div>`;
-  h+=`<div><p class="quote">Nicht der Pol ist das Problem.<br>Das Einrasten ist es.</p><p class="muted" style="font-size:14px">Konflikte brauchen beide Pole. Wer regulieren will, braucht Kompetenzen für und gegen den Konflikt.</p></div>`;
-  h+=`<div class="nav"><button class="btn ghost" data-back2>Zurück zu den Reglern</button><button class="btn" onclick="location.reload()">Neu starten</button></div>`;
+  let an=S.start==='beide'?U.firstBoth(erk):S.start==='unklar'?U.firstUnclear:U.firstOne(esc(starts().find(x=>x[0]===S.start)[1]));
+  h+=`<div class="callout"><p class="eyebrow">${U.firstH}</p><p>${an}</p></div>`;
+  /* fork */
+  const F=P?U.forkP:U.forkB;const [wt,wp]=caught?F.caught:Lx.length>=2?F.locked:F.self;
+  h+=`<div class="callout ink"><p class="eyebrow">${U.forkH}</p><h3 style="font-size:24px">${wt}</h3><p>${wp}</p><p style="margin-top:8px"><a href="${U.ctaUrl}" target="_blank" rel="noopener">${U.cta}</a></p></div>`;
+  h+=`<div class="callout export"><p class="eyebrow">${U.exportH}</p><p>${U.exportNote}</p><div class="export-btns"><button class="btn primary" type="button" id="copyBtn">${U.copy}</button><button class="btn ghost" type="button" id="pdfBtn">${U.pdf}</button></div><p class="toast" id="copyMsg" aria-live="polite"></p><textarea class="ta" id="copyFallback" rows="8" readonly hidden></textarea></div>`;
+  h+=`<div><p class="quote">${U.quote}</p><p class="muted" style="font-size:14px">${U.quoteSub}</p></div>`;
+  h+=`<div class="nav"><button class="btn ghost" data-back2>${U.backSliders}</button><button class="btn" onclick="location.reload()">${U.restart}</button></div>`;
   $('#result').innerHTML=h;
   $('[data-back2]').onclick=()=>show(5);
+  RES={title,text:plain(text),caught,locked:lk,tend:td,moves:mv,picks:[],counterQ:plain(counterQ),costQ:plain(costQ),fork:[plain(wt),plain(wp)]};
+  $$('#result .pick').forEach(b=>b.onclick=()=>{
+    const i=+b.dataset.i,k=RES.picks.indexOf(i);
+    if(k>-1)RES.picks.splice(k,1);else if(RES.picks.length<2)RES.picks.push(i);
+    $$('#result .pick').forEach(x=>{const on=RES.picks.includes(+x.dataset.i);x.setAttribute('aria-pressed',on);x.textContent=on?U.picked:U.pick;x.closest('.move').classList.toggle('picked',on);x.disabled=!on&&RES.picks.length>=2});
+  });
+  $('#copyBtn').onclick=copySum;
+  $('#pdfBtn').onclick=printSum;
+}
+
+/* summary: copy and print, nothing leaves the browser */
+let RES=null;
+function plain(s){const d=document.createElement('div');d.innerHTML=s;return d.textContent.trim()}
+function sumMeta(){return new Date().toLocaleDateString(L==='en'?'en-GB':'de-DE',{day:'numeric',month:'long',year:'numeric'})+' · '+U.sumPersp+': '+(S.role==='partei'?U.r1:U.r2)}
+function summary(){
+  const R=RES,picked=R.moves.filter((m,i)=>R.picks.includes(i));
+  const ans=(($('#counterAns')||{}).value||'').trim();
+  const sec=[];
+  sec.push({h:U.sumVerdict,l:[R.title+(R.caught?' · '+(S.role==='partei'?U.hasYou:U.hasSystem):''),R.text]});
+  sec.push({h:U.sumLocked,l:R.locked.length?R.locked:[U.sumNone]});
+  if(R.tend.length)sec.push({h:U.sumTend,l:R.tend});
+  if(R.moves.length){const m=picked.length?picked:R.moves;sec.push({h:picked.length?U.sumMoves:U.sumMovesAll,l:m.map(x=>x.tag+'\n'+U.skill+' '+x.skill+'\n'+U.reflect+' '+x.reflect)})}
+  const fa=(($('#funcAns')||{}).value||'').trim();
+  if(fa)sec.splice(1,0,{h:U.sumFunc,l:[fa]});
+  if(R.costQ)sec.push({h:U.sumCost,l:[R.costQ]});
+  sec.push({h:U.counterH,l:[R.counterQ].concat(ans?[U.sumAns+' '+ans]:[])});
+  sec.push({h:U.sumFork,l:[R.fork[0]+': '+R.fork[1]]});
+  return sec;
+}
+function sumText(){
+  let t=U.sumTitle+'\n'+sumMeta()+'\n';
+  summary().forEach(x=>{t+='\n'+x.h.toUpperCase()+'\n'+x.l.map(y=>'- '+y.replace(/\n/g,'\n  ')).join('\n')+'\n'});
+  return t+'\n'+U.sumSource;
+}
+function copySum(){
+  const t=sumText(),msg=$('#copyMsg'),ta=$('#copyFallback');
+  const ok=()=>{ta.hidden=true;msg.textContent=U.copied};
+  const fb=()=>{ta.hidden=false;ta.value=t;ta.focus();ta.select();msg.textContent=U.copyFail};
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(ok,fb)}else fb();
+}
+function printSum(){
+  let h=`<h1>${esc(U.sumTitle)}</h1><p class="m">${esc(sumMeta())}</p>`;
+  summary().forEach(x=>{h+=`<h2>${esc(x.h)}</h2><ul>${x.l.map(y=>`<li>${esc(y).replace(/\n/g,'<br>')}</li>`).join('')}</ul>`});
+  h+=`<p class="m" style="margin-top:18px">${esc(U.sumSource)}</p>`;
+  $('#printSheet').innerHTML=h;
+  window.print();
 }
 
 /* iframe integration: report height and step changes to the parent page */
@@ -458,5 +807,6 @@ function render(){
   var _show=show;show=function(n){_show(n);try{parent.postMessage({jnApp:'top'},'*')}catch(e){};setTimeout(report,50)};
 })();
 </script>
+
 </body>
 </html>
