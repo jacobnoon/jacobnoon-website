@@ -71,7 +71,7 @@
       <ul class="nav__dropdown__menu">
         <li><a href="/en/scheiterheiter/"${isActive('/en/scheiterheiter/') ? ' class="active"' : ''}>Scheiter Heiter</a></li>
         <li><a href="/en/schnabeltrifftohr/"${isActive('/en/schnabeltrifftohr/') ? ' class="active"' : ''}>Schnabel trifft Ohr</a></li>
-        <li><a href="/en/needy-podcast/"${isActive('/en/needy-podcast/') ? ' class="active"' : ''}>Needy Podcast</a></li>
+        <!-- Needy Podcast vorerst ausgeblendet (Nov 2026): <li><a href="/en/needy-podcast/"${isActive('/en/needy-podcast/') ? ' class="active"' : ''}>Needy Podcast</a></li> -->
       </ul>
     </li>
     ${langToggle}
@@ -85,7 +85,7 @@
       <ul class="nav__dropdown__menu">
         <li><a href="/scheiterheiter/"${isActive('/scheiterheiter/') ? ' class="active"' : ''}>Scheiter Heiter</a></li>
         <li><a href="/schnabeltrifftohr/"${isActive('/schnabeltrifftohr/') ? ' class="active"' : ''}>Schnabel trifft Ohr</a></li>
-        <li><a href="/needy-podcast/"${isActive('/needy-podcast/') ? ' class="active"' : ''}>Needy Podcast</a></li>
+        <!-- Needy Podcast vorerst ausgeblendet (Nov 2026): <li><a href="/needy-podcast/"${isActive('/needy-podcast/') ? ' class="active"' : ''}>Needy Podcast</a></li> -->
       </ul>
     </li>
     ${langToggle}
@@ -123,14 +123,14 @@
       <li><a href="/en/about/">About</a></li>
       <li><a href="/en/scheiterheiter/">Scheiter Heiter</a></li>
       <li><a href="/en/schnabeltrifftohr/">Schnabel trifft Ohr</a></li>
-      <li><a href="/en/needy-podcast/">Needy Podcast</a></li>
+      <!-- <li><a href="/en/needy-podcast/">Needy Podcast</a></li> -->
       <li><a href="/en/#contact">Contact</a></li>
     </ul>` : `
     <ul>
       <li><a href="/vita/">Über mich</a></li>
       <li><a href="/scheiterheiter/">Scheiter Heiter</a></li>
       <li><a href="/schnabeltrifftohr/">Schnabel trifft Ohr</a></li>
-      <li><a href="/needy-podcast/">Needy Podcast</a></li>
+      <!-- <li><a href="/needy-podcast/">Needy Podcast</a></li> -->
       <li><a href="/de/#kontakt">Kontakt</a></li>
     </ul>`;
 
