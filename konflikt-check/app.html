@@ -245,7 +245,7 @@ de:{
     h:'Wer streitet?',
     lead:'Gib den beiden Seiten einen Namen. Das bleibt hier auf deinem Gerät.',
     a:'Seite A',b:'Seite B',phA:'z. B. Max Mustermann',phB:'z. B. Erika Mustermann',
-    selfA:'Du',selfB:'Die andere Seite',
+    selfA:'Du',selfB:'Die andere Seite',selfAd:'dir',selfBd:'der anderen Seite',
     topicL:'Worum geht es? In drei bis fünf Worten.',topicPh:'z. B. die Urlaubsplanung',
     topicHint:'Kommt in die Auswertung, damit die Sätze nach deinem Streit klingen.',
     nextQ:'Mit wem sprichst du als Nächstes?',
@@ -257,7 +257,7 @@ de:{
     zeit:'Zum Schluss die Zeit: Woher kommt es, wohin geht es, wer sitzt am längeren Hebel?'
   },
   zero:'Kommt bei uns nicht vor',
-  follow:{q:'Gilt das für beide?',both:'Beide',mostly:'Vor allem {n}',other:'Und {n}? Wo steht {n} auf dieser Achse?'},
+  follow:{q:'Gilt das für beide?',both:'Beide',mostly:'Vor allem {n}',other:'Und {n}? Wo steht {n} auf dieser Achse?',you:'Vor allem ich',otherSide:'Vor allem die andere Seite',askOther:'Und die andere Seite? Wo steht sie auf dieser Achse?',askYou:'Und du? Wo stehst du auf dieser Achse?'},
   axes:[
     {name:'Aufmerksamkeit',dim:'sache',dir:'Thema',q:'Streitet ihr noch über eine Sache, oder längst über die Person?',
      poleA:'um die Person',poleB:'bei der Sache',
@@ -382,6 +382,7 @@ de:{
       bug:'Der Streit bewegt sich nicht mehr, er wiederholt sich. Hier lohnt meist Beruhigen.',
       schwel:'Es ist still, aber nichts ist geklärt. Was hier meist fehlt, ist die Fähigkeit zu schüren.',
       schief:'Die beiden stehen auf mehreren Achsen auf entgegengesetzten Polen. Wer sich bewegt, bewegt beide.',
+      schiefSelf:'Ihr steht auf mehreren Achsen auf entgegengesetzten Polen. Wer sich bewegt, bewegt beide.',
       feature:'Der Streit arbeitet noch. Er ist unbequem, aber er bringt etwas in Bewegung.'
     },
     count:'{n} von neun Achsen {v} eingerastet, {d}.',
@@ -396,13 +397,16 @@ de:{
     hypoNone:'Du hast noch keine Hypothese, wem der Streit dient. Ohne die kann niemand beurteilen, ob eine Bewegung hilft oder schadet. Das ist dein erster Zug: Beobachte eine Woche lang, wann der Streit aufflammt. Nicht worüber, sondern wann und wer dabei ist.',
     oppH:'Entgegengesetzte Pole',
     opp:'Auf der Achse {ax} stehen {A} und {B} auf entgegengesetzten Polen. Das ist kein Zufall: Je mehr die eine Seite schürt, desto mehr beruhigt die andere, und umgekehrt. Wer sich bewegt, bewegt beide.',
+    oppMany:'Auf den Achsen {ax} stehen {A} und {B} auf entgegengesetzten Polen. Das ist kein Zufall: Je mehr die eine Seite schürt, desto mehr beruhigt die andere, und umgekehrt. Wer sich bewegt, bewegt beide.',
+    oppManySelf:'Auf den Achsen {ax} steht ihr auf entgegengesetzten Polen. Das ist kein Zufall: Je mehr die eine Seite schürt, desto mehr beruhigt die andere, und umgekehrt. Wer sich bewegt, bewegt beide. Und du bist die Seite, die du bewegen kannst.',
+    oppSelf:'Auf der Achse {ax} steht ihr auf entgegengesetzten Polen. Das ist kein Zufall: Je mehr die eine Seite schürt, desto mehr beruhigt die andere, und umgekehrt. Wer sich bewegt, bewegt beide. Und du bist die Seite, die du bewegen kannst.',
     unusedH:'Was gar nicht im Spiel ist',
     unused:'{n} Achsen kommen bei euch gar nicht vor. Das ist selbst ein Befund: Was nicht gestritten wird, wird auch nicht geklärt.',
     gegenH:'Gegenprobe',
     gegen:'Vielleicht ist der feste Pol richtig und wird nur zu zaghaft gefahren. Welche Bewegung bringt den Streit dahin, wofür er da ist?',
     profH:'Das Profil',
     dims:{sache:'Sache',sozial:'Umgang',zeit:'Zeit'},
-    st:{lock:'eingerastet',tend:'Tendenz',zero:'nicht im Spiel',both:'beide',mostly:'vor allem {n}'},
+    st:{lock:'eingerastet',tend:'Tendenz',zero:'nicht im Spiel',both:'beide',mostly:'vor allem {n}',you:'vor allem du',otherSide:'vor allem die andere Seite'},
     movesH:'Deine nächsten Züge',
     moveN:'Zug {n}',
     sayH:'Sätze, die du sagen kannst',
@@ -463,7 +467,7 @@ en:{
     h:'Who is in conflict?',
     lead:'Give the two sides a name. This stays on your device.',
     a:'Side A',b:'Side B',phA:'e.g. John Doe',phB:'e.g. Jane Doe',
-    selfA:'You',selfB:'The other side',
+    selfA:'You',selfB:'The other side',selfAd:'you',selfBd:'the other side',
     topicL:'What is it about? Three to five words.',topicPh:'e.g. the holiday rota',
     topicHint:'Goes into the write-up so the sentences sound like your conflict.',
     nextQ:'Who will you talk to next?',
@@ -475,7 +479,7 @@ en:{
     zeit:'Finally, time: where does it come from, where is it going, who holds the longer lever?'
   },
   zero:'Does not come up for us',
-  follow:{q:'Does that apply to both?',both:'Both',mostly:'Mainly {n}',other:'And {n}? Where does {n} stand on this axis?'},
+  follow:{q:'Does that apply to both?',both:'Both',mostly:'Mainly {n}',other:'And {n}? Where does {n} stand on this axis?',you:'Mainly me',otherSide:'Mainly the other side',askOther:'And the other side? Where do they stand on this axis?',askYou:'And you? Where do you stand on this axis?'},
   axes:[
     {name:'Attention',dim:'sache',dir:'Topic',q:'Are you still arguing about a matter, or about the person by now?',
      poleA:'about the person',poleB:'about the matter',
@@ -600,6 +604,7 @@ en:{
       bug:'The conflict is no longer moving, it is repeating. Calming usually pays here.',
       schwel:'It is quiet, but nothing is settled. What is usually missing here is the ability to stir.',
       schief:'The two stand on opposite poles on several axes. Whoever moves, moves both.',
+      schiefSelf:'You two stand on opposite poles on several axes. Whoever moves, moves both.',
       feature:'The conflict is still working. It is uncomfortable, but it is moving something.'
     },
     count:'{n} of nine axes {v} locked, {d}.',
@@ -614,13 +619,16 @@ en:{
     hypoNone:'You do not yet have a hypothesis about whom the conflict serves. Without one, nobody can tell whether a move helps or harms. That is your first move: for a week, notice when the conflict flares. Not what about, but when and who is present.',
     oppH:'Opposite poles',
     opp:'On the {ax} axis, {A} and {B} stand on opposite poles. That is no coincidence: the more one side stirs, the more the other calms, and vice versa. Whoever moves, moves both.',
+    oppMany:'On the {ax} axes, {A} and {B} stand on opposite poles. That is no coincidence: the more one side stirs, the more the other calms, and vice versa. Whoever moves, moves both.',
+    oppManySelf:'On the {ax} axes, the two of you stand on opposite poles. That is no coincidence: the more one side stirs, the more the other calms, and vice versa. Whoever moves, moves both. And you are the side you can move.',
+    oppSelf:'On the {ax} axis, the two of you stand on opposite poles. That is no coincidence: the more one side stirs, the more the other calms, and vice versa. Whoever moves, moves both. And you are the side you can move.',
     unusedH:'What is not in play at all',
     unused:'{n} axes do not come up for you at all. That is a finding in itself: what is not fought over does not get settled either.',
     gegenH:'Counter-check',
     gegen:'Perhaps the fixed pole is right and is only being driven too timidly. Which move takes the conflict to where it is meant to go?',
     profH:'The profile',
     dims:{sache:'Matter',sozial:'Manner',zeit:'Time'},
-    st:{lock:'locked',tend:'tendency',zero:'not in play',both:'both',mostly:'mainly {n}'},
+    st:{lock:'locked',tend:'tendency',zero:'not in play',both:'both',mostly:'mainly {n}',you:'mainly you',otherSide:'mainly the other side'},
     movesH:'Your next moves',
     moveN:'Move {n}',
     sayH:'Sentences you can say',
@@ -751,15 +759,16 @@ function renderAxis(sc,i){
   sc.innerHTML=h;
   const drawFollow=()=>{
     const f=$('#follow');f.innerHTML='';
-    if(!obs||Math.abs(S.v[i]||0)!==2)return;
+    if(Math.abs(S.v[i]||0)!==2)return;
     const F=T.follow;
     let x=`<div class="follow"><span class="fl">${F.q}</span><div class="mini" id="whoChips">
       <button class="chip${S.who[i]==='both'?' sel':''}" type="button" data-w="both">${F.both}</button>
-      <button class="chip${S.who[i]==='A'?' sel':''}" type="button" data-w="A">${esc(fill(F.mostly,{n:nameA()}))}</button>
-      <button class="chip${S.who[i]==='B'?' sel':''}" type="button" data-w="B">${esc(fill(F.mostly,{n:nameB()}))}</button></div>`;
+      <button class="chip${S.who[i]==='A'?' sel':''}" type="button" data-w="A">${esc(obs?fill(F.mostly,{n:nameA()}):F.you)}</button>
+      <button class="chip${S.who[i]==='B'?' sel':''}" type="button" data-w="B">${esc(obs?fill(F.mostly,{n:nameB()}):F.otherSide)}</button></div>`;
     if(S.who[i]==='A'||S.who[i]==='B'){
       const on=S.who[i]==='A'?nameB():nameA();
-      x+=`<span class="fl" style="margin-top:4px">${esc(fill(F.other,{n:on}))}</span><div class="chips mini" id="otherChips" style="display:grid">
+      const oq=obs?fill(F.other,{n:on}):(S.who[i]==='A'?F.askOther:F.askYou);
+      x+=`<span class="fl" style="margin-top:4px">${esc(oq)}</span><div class="chips mini" id="otherChips" style="display:grid">
       ${a.chips.map((c,k)=>`<button class="chip${S.other[i]===vals[k]?' sel':''}" type="button" data-o="${vals[k]}">${c}</button>`).join('')}
       <button class="chip zero${S.other[i]===0?' sel':''}" type="button" data-o="0">${T.zero}</button></div>`;
     }
@@ -790,13 +799,13 @@ function evaluate(){
   const isOpp=i=>typeof S.other[i]==='number'&&S.other[i]!==0&&Math.sign(S.other[i])!==Math.sign(S.v[i]);const nOpp=locked.filter(isOpp).length;
   let verdict='feature';
   if(locked.length>=3){verdict=nM===locked.length?'schwel':'bug'}
-  if(S.role!==0&&nOpp>=3)verdict='schief';
+  if(nOpp>=3)verdict='schief';
   // ranking: both first, then dimension rank, then index
-  const rank=i=>(S.role===0||S.who[i]==='both'||S.who[i]===null?2:1)*10+DIMRANK[T.axes[i].dim];
+  const rank=i=>(S.who[i]==='both'||S.who[i]===null?2:1)*10+DIMRANK[T.axes[i].dim];
   const sorted=locked.slice().sort((a,b)=>rank(b)-rank(a)||b-a);
   const top=sorted.slice(0,locked.length>=5?3:2);
   const line=i=>S.v[i]>0?T.axes[i].lesP:T.axes[i].lesM;
-  const sideTag=i=>{if(S.role===0)return'';if(S.who[i]==='A')return fill(U.st.mostly,{n:c.A});if(S.who[i]==='B')return fill(U.st.mostly,{n:c.B});return U.st.both};
+  const sideTag=i=>{if(S.role===0){if(S.who[i]==='A')return U.st.you;if(S.who[i]==='B')return U.st.otherSide;return U.st.both}if(S.who[i]==='A')return fill(U.st.mostly,{n:c.A});if(S.who[i]==='B')return fill(U.st.mostly,{n:c.B});return U.st.both};
   // count line
   let count;
   if(locked.length===0)count=U.countZero;
@@ -804,10 +813,13 @@ function evaluate(){
   else{const d=nM===0?U.dAllP:nP===0?U.dAllM:fill(U.dMix,{p:nP,m:nM});count=fill(U.count,{n:numw(locked.length),v:U.countMany,d})}
   // function
   let hypo=null;
-  if(S.f1!==null&&S.f1<4&&S.f2!==null&&S.f2<4){hypo=fill(U.hypo,{f1:fill(T.func1.les[S.f1],c),f2:T.func2.les[S.f2]})}
+  if(S.f1!==null&&S.f1<4&&S.f2!==null&&S.f2<4){hypo=fill(U.hypo,{f1:fill(T.func1.les[S.f1],S.role===0?{A:T.who.selfAd,B:T.who.selfBd}:c),f2:T.func2.les[S.f2]})}
   const f2txt=(S.f2!==null&&S.f2<4)?T.func2.les[S.f2]:null;
   // opposite lines
-  const opp=locked.filter(isOpp).map(i=>fill(U.opp,{ax:T.axes[i].name,A:c.A,B:c.B}));
+  const oppAx=locked.filter(isOpp).map(i=>T.axes[i].name);
+  const joinAnd=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+(L==='de'?' und ':' and ')+a[a.length-1];
+  const opp=oppAx.length?[fill(oppAx.length>1?(S.role===0?U.oppManySelf:U.oppMany):(S.role===0?U.oppSelf:U.opp),{ax:joinAnd(oppAx),A:c.A,B:c.B})]:[];
+  const vtext=U.vtext[verdict==='schief'&&S.role===0?'schiefSelf':verdict];
   // moves: who do we address
   let addressee=null; // name of the person the obs questions are for
   if(S.role===1){addressee=S.next===0?c.A:S.next===1?c.B:null}
@@ -828,14 +840,14 @@ function evaluate(){
     if(ask.length<3)ask.push({t:U.sayNeed,w:U.sayNeedWhy});
   }
   trio.forEach(i=>{const {ax,P}=T3(i);refl.push({t:P?ax.reflP:ax.reflM,w:ax.name})});
-  return{c,locked,nP,nM,nZero,nOpp,verdict,sorted,top,line,sideTag,count,hypo,f2txt,opp,addressee,say,ask,refl};
+  return{c,locked,nP,nM,nZero,nOpp,verdict,vtext,sorted,top,line,sideTag,count,hypo,f2txt,opp,addressee,say,ask,refl};
 }
 
 function renderResult(sc){
   const E=evaluate(), c=E.c;
   let h=`<div class="stack">`;
   // verdict
-  h+=`<div class="verdict ${E.verdict==='bug'?'bug':E.verdict==='schwel'||E.verdict==='schief'?'schwel':''}"><p class="eyebrow">${U.h}</p><h2>${U.verdict[E.verdict]}</h2><p><b>${esc(E.count)}</b> ${U.vtext[E.verdict]}${S.topic.trim()?' '+esc(fill(U.aboutTopic,c)):''}</p></div>`;
+  h+=`<div class="verdict ${E.verdict==='bug'?'bug':E.verdict==='schwel'||E.verdict==='schief'?'schwel':''}"><p class="eyebrow">${U.h}</p><h2>${U.verdict[E.verdict]}</h2><p><b>${esc(E.count)}</b> ${E.vtext}${S.topic.trim()?' '+esc(fill(U.aboutTopic,c)):''}</p></div>`;
   // lesart
   if(E.top.length){h+=`<div class="lesart"><h3>${U.lesH}</h3>${E.top.map(i=>`<p><b>${T.axes[i].name}</b>${esc(E.line(i))}${E.sideTag(i)?` <span class="muted" style="font-size:13px">(${esc(E.sideTag(i))})</span>`:''}</p>`).join('')}</div>`}
   // hypothesis
@@ -879,7 +891,7 @@ function renderResult(sc){
 
 /* ===== export ===== */
 function sumText(E){
-  const c=E.c;let t=`${T.title} · ${U.h}\n${U.verdict[E.verdict]} ${E.count} ${U.vtext[E.verdict]}\n`;
+  const c=E.c;let t=`${T.title} · ${U.h}\n${U.verdict[E.verdict]} ${E.count} ${E.vtext}\n`;
   if(S.topic.trim())t+=fill(U.aboutTopic,c)+'\n';
   t+='\n'+U.lesH.toUpperCase()+'\n'+E.top.map(i=>`- ${T.axes[i].name}: ${E.line(i)}${E.sideTag(i)?' ('+E.sideTag(i)+')':''}`).join('\n')+'\n';
   t+='\n'+U.hypoH.toUpperCase()+'\n'+(E.hypo||U.hypoNone)+'\n';
@@ -903,7 +915,7 @@ function printSum(E){
   const dots=v=>{const pos=v===2?4:v===1?3:v===-1?1:v===-2?0:-1;return[0,1,2,3,4].map(k=>`<span class="dot${k===pos?(Math.abs(v)===2?' lock':' on'):''}"></span>`).join('')};
   const tagCls=E.verdict==='bug'?'':E.verdict==='feature'?' feature':' schwel';
   let p1=`<section class="pg"><header><div><div class="kicker">${esc(fill(U.pKick1,{date}))}</div><h1>${U.p1H}</h1></div><img src="${LOGO_PRINT}" alt=""></header><main>`;
-  p1+=`<div class="pv"><div class="tag${tagCls}">${U.verdict[E.verdict]}</div><div class="count"><b>${esc(E.count)}</b> ${U.vtext[E.verdict]} ${esc(U.pRole[S.role])}${E.addressee?' '+esc(fill(U.pNext,{n:E.addressee})):''}${S.topic.trim()?' '+esc(fill(U.aboutTopic,c)):''}</div></div>`;
+  p1+=`<div class="pv"><div class="tag${tagCls}">${U.verdict[E.verdict]}</div><div class="count"><b>${esc(E.count)}</b> ${E.vtext} ${esc(U.pRole[S.role])}${E.addressee?' '+esc(fill(U.pNext,{n:E.addressee})):''}${S.topic.trim()?' '+esc(fill(U.aboutTopic,c)):''}</div></div>`;
   p1+=`<div class="pprof">`;let ld='';
   T.axes.forEach((a,i)=>{if(a.dim!==ld){p1+=`<div class="pdim">${U.dims[a.dim]} · ${esc(T.bridges[a.dim].split(':').slice(1).join(':').trim())}</div>`;ld=a.dim}
     const v=S.v[i],lock=Math.abs(v)===2;const who=lock?(E.sideTag(i)||'')+'':(v===0?U.st.zero:U.st.tend);
