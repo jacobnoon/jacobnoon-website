@@ -18,6 +18,7 @@
         return path.replace(/^\/en/, '');
       }
       if (path.startsWith('/en/schnabeltrifftohr')) return '/schnabeltrifftohr/';
+      if (path.startsWith('/en/conflict-check')) return '/konflikt-check/';
       if (path.startsWith('/en/scheiterheiter')) return '/scheiterheiter/';
       if (path.startsWith('/en/needy-podcast')) return '/needy-podcast/';
       if (path.startsWith('/en/imprint')) return '/impressum/';
@@ -37,6 +38,7 @@
         return '/en' + path;
       }
       if (path.startsWith('/schnabeltrifftohr')) return '/en/schnabeltrifftohr/';
+      if (path.startsWith('/konflikt-check')) return '/en/conflict-check/';
       if (path.startsWith('/scheiterheiter')) return '/en/scheiterheiter/';
       if (path.startsWith('/needy-podcast')) return '/en/needy-podcast/';
       if (path.startsWith('/impressum')) return '/en/imprint/';
@@ -56,8 +58,8 @@
   }
 
   function isOtherActive() {
-    if (isEN) return path.startsWith('/en/schnabeltrifftohr') || path.startsWith('/en/needy-podcast') || path.startsWith('/en/scheiterheiter');
-    return path.startsWith('/schnabeltrifftohr') || path.startsWith('/needy-podcast') || path.startsWith('/scheiterheiter');
+    if (isEN) return path.startsWith('/en/schnabeltrifftohr') || path.startsWith('/en/needy-podcast') || path.startsWith('/en/scheiterheiter') || path.startsWith('/en/conflict-check');
+    return path.startsWith('/schnabeltrifftohr') || path.startsWith('/needy-podcast') || path.startsWith('/scheiterheiter') || path.startsWith('/konflikt-check');
   }
 
   const langToggle = `<li><a href="${getOtherLangUrl()}" style="font-weight:700;color:var(--green) !important;">${isEN ? 'DE' : 'EN'}</a></li>`;
@@ -69,6 +71,7 @@
     <li class="nav__dropdown">
       <span class="nav__dropdown__trigger${isOtherActive() ? ' active' : ''}">Other</span>
       <ul class="nav__dropdown__menu">
+        <li><a href="/en/conflict-check/"${isActive('/en/conflict-check/') ? ' class="active"' : ''}>Conflict Check</a></li>
         <li><a href="/en/scheiterheiter/"${isActive('/en/scheiterheiter/') ? ' class="active"' : ''}>Scheiter Heiter</a></li>
         <li><a href="/en/schnabeltrifftohr/"${isActive('/en/schnabeltrifftohr/') ? ' class="active"' : ''}>Schnabel trifft Ohr</a></li>
         <!-- Needy Podcast vorerst ausgeblendet (Nov 2026): <li><a href="/en/needy-podcast/"${isActive('/en/needy-podcast/') ? ' class="active"' : ''}>Needy Podcast</a></li> -->
@@ -83,6 +86,7 @@
     <li class="nav__dropdown">
       <span class="nav__dropdown__trigger${isOtherActive() ? ' active' : ''}">Sonstiges</span>
       <ul class="nav__dropdown__menu">
+        <li><a href="/konflikt-check/"${isActive('/konflikt-check/') ? ' class="active"' : ''}>Konflikt-Check</a></li>
         <li><a href="/scheiterheiter/"${isActive('/scheiterheiter/') ? ' class="active"' : ''}>Scheiter Heiter</a></li>
         <li><a href="/schnabeltrifftohr/"${isActive('/schnabeltrifftohr/') ? ' class="active"' : ''}>Schnabel trifft Ohr</a></li>
         <!-- Needy Podcast vorerst ausgeblendet (Nov 2026): <li><a href="/needy-podcast/"${isActive('/needy-podcast/') ? ' class="active"' : ''}>Needy Podcast</a></li> -->

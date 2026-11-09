@@ -122,6 +122,24 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Konflikt-Check -->
+  <url>
+    <loc>https://jacobnoon.com/konflikt-check/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/konflikt-check/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/conflict-check/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/konflikt-check/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jacobnoon.com/en/conflict-check/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jacobnoon.com/konflikt-check/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/conflict-check/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/konflikt-check/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Schnabel trifft Ohr -->
   <url>
     <loc>https://jacobnoon.com/schnabeltrifftohr/</loc>
