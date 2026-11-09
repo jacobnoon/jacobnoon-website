@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bug oder Feature?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">
 <style>
 :root{
   --green:#4CC265; --green-deep:#2E9A48; --green-tint:#E9F8EC;
@@ -29,25 +29,16 @@
     --logo-light:none; --logo-dark:block;
   }
 }
-:root[data-theme="dark"]{
-  --green-deep:#6BD883; --green-tint:#17301D;
-  --blue-tint:#15263A; --orange-tint:#3A1D14; --gold-tint:#3A2C0E;
-  --ink:#F4F6F4; --ink-2:#C9CFCB; --ink-3:#8F9994;
-  --line:#2C332F; --line-soft:#232926;
-  --bg:#111114; --card:#1A1D1B; --track:#262B28;
-  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
-  --logo-light:none; --logo-dark:block;
-}
 *{box-sizing:border-box}
-body.embedded{background:transparent}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body.embedded{background:transparent}
 h1,h2,h3,.os{font-family:Oswald,"Arial Narrow",Impact,sans-serif;font-weight:500;letter-spacing:.01em;text-wrap:balance;margin:0}
-h1{font-size:clamp(40px,8vw,64px);line-height:.98;text-transform:uppercase}
-h2{font-size:clamp(26px,4.5vw,34px);line-height:1.1;text-transform:uppercase}
-h3{font-size:20px;line-height:1.2;text-transform:uppercase;letter-spacing:.03em}
+h1{font-size:clamp(36px,7vw,56px);line-height:.98;text-transform:uppercase}
+h2{font-size:clamp(24px,4.5vw,32px);line-height:1.1;text-transform:uppercase}
+h3{font-size:19px;line-height:1.2;text-transform:uppercase;letter-spacing:.03em}
 p{margin:0}
 a{color:var(--green-deep)}
-.eyebrow{font-family:"DM Sans";font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-deep)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-deep)}
 .muted{color:var(--ink-3)}
 .wrap{max-width:720px;margin:0 auto;padding:20px 20px 40px}
 body.embedded .wrap{padding:0 0 8px}
@@ -62,833 +53,883 @@ body.embedded .wrap{padding:0 0 8px}
 .progress{height:3px;background:var(--track);margin:18px 32px 0;position:relative}
 .progress i{position:absolute;left:0;top:0;bottom:0;background:var(--green);transition:width .35s ease}
 .stepline{display:flex;justify-content:space-between;padding:8px 32px 0;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
-.screen{display:none;padding:28px 32px 36px}
-.screen.on{display:block}
+.screen{padding:28px 32px 36px}
 @media (max-width:560px){.head,.progress,.stepline,.screen{padding-left:18px;padding-right:18px}.progress{margin-left:18px;margin-right:18px}}
 .lead{font-size:18px;color:var(--ink-2);max-width:60ch}
 .stack{display:grid;gap:22px}
 .btn{font:inherit;font-weight:700;font-size:15px;border:0;cursor:pointer;padding:13px 22px;background:var(--ink);color:var(--bg);letter-spacing:.02em;transition:transform .08s}
 .btn:hover{transform:translateY(-1px)}
-.btn:focus-visible,.choice:focus-visible,.seg button:focus-visible,input[type=range]:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.btn:focus-visible,.chip:focus-visible,.choice:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .btn.primary{background:var(--green);color:#0B1F10}
 .btn.ghost{background:transparent;color:var(--ink-2);border:1.5px solid var(--line);padding:11px 18px}
 .btn[disabled]{opacity:.4;cursor:not-allowed;transform:none}
-.nav{display:flex;justify-content:space-between;gap:12px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line-soft)}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:30px;padding-top:18px;border-top:1px solid var(--line-soft)}
 .choices{display:grid;gap:10px}
 .choice{font:inherit;text-align:left;cursor:pointer;background:var(--card);border:1.5px solid var(--line);padding:16px 18px;color:var(--ink);display:grid;gap:3px;transition:border-color .15s,background .15s}
 .choice b{font-family:Oswald;font-weight:500;font-size:19px;text-transform:uppercase;letter-spacing:.03em}
 .choice span{color:var(--ink-3);font-size:14px}
 .choice:hover{border-color:var(--green)}
 .choice.sel{border-color:var(--green);background:var(--green-tint)}
-.choices.row{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
-.choices.row .choice{padding:14px 14px}
-.choices.row .choice b{font-size:17px}
-.names{display:grid;gap:8px}
 .namegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.namegrid label{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);padding:0 12px;background:var(--card)}
-.namegrid input{font:inherit;font-size:15px;border:0;background:transparent;color:var(--ink);padding:12px 0;width:100%;min-width:0}
-.namegrid input:focus{outline:none}
-.namegrid label:focus-within{border-color:var(--green)}
+.namegrid label,.topic label{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);padding:0 12px;background:var(--card)}
+.namegrid input,.topic input{font:inherit;font-size:15px;border:0;background:transparent;color:var(--ink);padding:12px 0;width:100%;min-width:0}
+.namegrid input:focus,.topic input:focus{outline:none}
+.namegrid label:focus-within,.topic label:focus-within{border-color:var(--green)}
 .dot-a,.dot-b{flex:none;width:12px;height:12px;border-radius:50%;background:var(--green)}
 .dot-b{background:var(--blue)}
 @media (max-width:560px){.namegrid{grid-template-columns:1fr}}
-.side-row{display:grid;gap:2px;margin-top:10px}
-.side-row label{font-size:13px;color:var(--ink-2);display:flex;gap:8px;align-items:center;font-weight:500}
-/* axis block */
-.axis{border-top:1px solid var(--line-soft);padding-top:22px}
-.axis:first-child{border-top:0;padding-top:0}
-.axis .q{font-size:18px;font-weight:500;max-width:62ch;margin:4px 0 14px}
-.axis .name{display:flex;align-items:baseline;gap:10px}
-.axis .name .os{font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
-.poles{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--ink-3);margin-top:6px}
-.poles span{max-width:45%}
-.poles span:last-child{text-align:right}
-.poles b{display:block;color:var(--ink-2);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:11px;margin-bottom:1px}
-.sl{position:relative;height:34px;display:flex;align-items:center}
-.sl::before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;margin-top:-3px;background:var(--track);border-radius:3px}
-.sl::after{content:"";position:absolute;left:50%;top:8px;bottom:8px;width:2px;margin-left:-1px;background:var(--line)}
-input[type=range]{-webkit-appearance:none;appearance:none;width:100%;background:transparent;margin:0;position:relative;z-index:1;height:34px}
-input[type=range]::-webkit-slider-runnable-track{height:6px;background:transparent}
-input[type=range]::-moz-range-track{height:6px;background:transparent}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--green);border:3px solid var(--card);box-shadow:0 0 0 1.5px var(--green);margin-top:-9px;cursor:grab}
-input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--green);border:3px solid var(--card);box-shadow:0 0 0 1.5px var(--green);cursor:grab}
-input[type=range].other::-webkit-slider-thumb{background:var(--card);box-shadow:0 0 0 2.5px var(--blue)}
-input[type=range].other::-moz-range-thumb{background:var(--card);box-shadow:0 0 0 2.5px var(--blue)}
-input[type=range].b::-webkit-slider-thumb{background:var(--blue);box-shadow:0 0 0 1.5px var(--blue)}
-input[type=range].b::-moz-range-thumb{background:var(--blue);box-shadow:0 0 0 1.5px var(--blue)}
-.sub{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;margin-top:14px}
-.sub label{font-size:14px;color:var(--ink-2)}
-.seg{display:inline-flex;border:1.5px solid var(--line)}
-.seg button{font:inherit;font-size:13px;font-weight:500;background:transparent;border:0;border-left:1.5px solid var(--line);padding:7px 12px;cursor:pointer;color:var(--ink-2)}
-.seg button:first-child{border-left:0}
-.seg button.sel{background:var(--ink);color:var(--bg)}
-.other-row{margin-top:12px;padding:12px 14px;background:var(--blue-tint);display:grid;gap:4px}
-.other-row label{font-size:13px;color:var(--ink-2);display:flex;gap:8px;align-items:center}
-.other-row label::before{content:"";width:10px;height:10px;border-radius:50%;border:2.5px solid var(--blue);background:var(--card)}
-@media (max-width:560px){.sub{grid-template-columns:1fr}.seg{width:100%}.seg button{flex:1}}
+.field{display:grid;gap:8px}
+.field .lbl{font-size:14px;color:var(--ink-2);font-weight:500}
+.field .hint{font-size:13px;color:var(--ink-3)}
+/* chat question */
+.q-dir{font-family:Oswald;font-size:14px;text-transform:uppercase;letter-spacing:.1em;color:var(--green-deep)}
+.q{font-size:21px;font-weight:500;line-height:1.3;max-width:34ch;margin:6px 0 18px}
+.bridge{font-size:15px;color:var(--ink-3);font-style:italic;margin-bottom:14px}
+.chips{display:grid;gap:9px}
+.chip{font:inherit;font-size:15.5px;line-height:1.35;text-align:left;cursor:pointer;background:var(--card);border:1.5px solid var(--line);border-radius:22px;padding:12px 18px;color:var(--ink);transition:border-color .15s,background .15s,transform .08s}
+.chip:hover{border-color:var(--green)}
+.chip.sel{border-color:var(--green);background:var(--green-tint)}
+.chip.sel.lock{border-color:var(--orange);background:var(--orange-tint)}
+.chip.zero{color:var(--ink-3);border-style:dashed}
+.chip.zero.sel{color:var(--ink);border-style:solid}
+.follow{margin-top:16px;padding:14px 16px;background:var(--blue-tint);display:grid;gap:10px;animation:fade .25s ease}
+.follow .fl{font-size:14px;color:var(--ink-2);font-weight:500}
+.follow .mini{display:flex;flex-wrap:wrap;gap:8px}
+.mini .chip{font-size:14px;padding:8px 14px;border-radius:18px}
+.chips.mini{gap:7px}.chips.mini .chip{text-align:left;border-radius:18px}
+.mini .chip.sel{border-color:var(--blue);background:var(--card);box-shadow:inset 0 0 0 1px var(--blue)}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 /* result */
 .verdict{display:grid;gap:8px;padding:22px 24px;border-left:6px solid var(--gold);background:var(--gold-tint)}
 .verdict.bug{border-color:var(--orange);background:var(--orange-tint)}
 .verdict.schwel{border-color:var(--blue);background:var(--blue-tint)}
 .verdict h2{font-size:clamp(34px,6vw,48px)}
 .verdict p{max-width:62ch}
-.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:2px;background:var(--track);color:var(--ink-2);vertical-align:middle}
-.pill.fix{background:var(--orange);color:#fff}
-.pill.tend{background:var(--gold-tint);color:#7A5300}
-.pill.gap{background:var(--blue-tint);color:var(--blue)}
-.dim{margin-top:22px}
-.dim h3{color:var(--ink-3);font-size:13px;letter-spacing:.14em;padding-bottom:8px;border-bottom:1px solid var(--line)}
-.row{display:grid;grid-template-columns:120px 1fr 120px;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line-soft)}
-.row .l,.row .r{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);line-height:1.3}
-.row .r{text-align:right}
-.row .l b,.row .r b{display:block;font-family:Oswald;font-weight:500;font-size:14px;letter-spacing:.04em;color:var(--ink);text-transform:uppercase}
-.row .pills{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;margin-top:-4px}
-.track{position:relative;height:28px}
-.track::before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;margin-top:-3px;background:var(--track);border-radius:3px}
-.track::after{content:"";position:absolute;left:50%;top:5px;bottom:5px;width:2px;margin-left:-1px;background:var(--line)}
-.dot{position:absolute;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--green);border:2.5px solid var(--card);box-shadow:0 0 0 1.5px var(--green);z-index:2}
-.dot.fix{background:var(--orange);box-shadow:0 0 0 1.5px var(--orange)}
-.dot.tend{background:var(--gold);box-shadow:0 0 0 1.5px var(--gold)}
-.dot.o{background:var(--card);box-shadow:0 0 0 2.5px var(--blue);width:12px;height:12px;margin:-6px 0 0 -6px;z-index:1}
-.dot.b{background:var(--blue);box-shadow:0 0 0 1.5px var(--blue);z-index:1}
-.dot.ring{box-shadow:0 0 0 3px var(--orange)}
-.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--ink-3);margin-top:10px}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
-@media (max-width:560px){.row{grid-template-columns:1fr 1fr;gap:4px 12px}.row .r{text-align:right}.row .track{order:-1;grid-column:1/-1}.row .r b{display:none}}
-.moves{display:grid;gap:14px;margin-top:10px}
-.move{padding:18px 20px;background:var(--card);border:1.5px solid var(--line);border-left:5px solid var(--orange);display:grid;gap:8px}
-.move.up{border-left-color:var(--blue)}
-.move .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
-.move.up .tag{color:var(--blue)}
-.move .skill{font-size:14px;color:var(--ink-2);padding-top:8px;border-top:1px dashed var(--line)}
-.move .skill b{font-weight:700;color:var(--ink)}
-.move .reflect{font-size:14px;color:var(--ink-2);font-style:italic}
-.move .alt{font-size:14px;color:var(--ink-2);padding-top:8px;border-top:1px dashed var(--line)}
-.move .alt b{font-weight:700;color:var(--ink)}
-.move .altq{font-size:13px;font-weight:700;color:var(--ink)}
-.move .picks{display:flex;flex-wrap:wrap;gap:8px}
-.move .reflect b{font-style:normal;font-weight:700;color:var(--ink)}
-.callout.func{background:var(--card);border:1.5px solid var(--line);border-left:5px solid var(--gold)}
-.callout.func .ex{font-size:13px;color:var(--ink-3)}
-.callout.cost{background:var(--gold-tint);border-left-color:var(--gold)}
-.callout.prep{background:var(--card);border:1.5px solid var(--line);border-left:5px solid var(--green)}
-.callout.prep .picks{display:flex;flex-wrap:wrap;gap:8px}
-.callout.prep .pick{font:inherit;font-size:14px;font-weight:700;cursor:pointer;background:transparent;border:1.5px solid var(--line);color:var(--ink);padding:8px 14px}
-.callout.prep .pick[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.callout.prep .fl{display:block;font-size:14px;font-weight:700;margin-top:12px}
-.callout.prep .ta{min-height:0;margin-top:4px}
-.callout.prep .seg{margin-top:4px}
-.eat{display:grid;gap:8px;margin-top:6px}
-.eat .step{display:grid;gap:2px;font-size:14px;padding:8px 0;border-bottom:1px dashed var(--line)}
-.eat .step b{font-family:Oswald;font-weight:500;text-transform:uppercase;letter-spacing:.06em;font-size:14px}
-.eat .step em{color:var(--ink-2)}
-.callout{padding:18px 20px;background:var(--green-tint);border-left:5px solid var(--green);display:grid;gap:6px}
-.callout.ink{background:var(--ink);color:var(--bg);border-left-color:var(--green)}
-.callout.ink .eyebrow{color:var(--green)}
-.callout.ink a{color:var(--green)}
-.quote{font-family:Oswald;font-size:clamp(22px,4vw,30px);line-height:1.15;text-transform:uppercase;font-weight:500;margin:6px 0}
-.foot{font-size:12px;color:var(--ink-3);padding:18px 32px 26px;max-width:60ch}
-.demo{font-size:13px;color:var(--ink-3);border:1px dashed var(--line);padding:10px 12px}
-.count{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
-.axis .name .count{margin-left:auto}
-.move .pick{justify-self:start;font:inherit;font-size:13px;font-weight:700;cursor:pointer;background:transparent;border:1.5px solid var(--line);color:var(--ink-2);padding:6px 12px;margin-top:4px}
-.move .pick:hover{border-color:var(--green)}
-.move .pick[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.move .pick[disabled]{opacity:.4;cursor:not-allowed}
-.move .pick:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-.move.picked{box-shadow:0 0 0 2px var(--green)}
-.ta{font:inherit;font-size:15px;width:100%;min-height:84px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);padding:10px 12px;resize:vertical;margin-top:6px}
-.ta:focus{outline:none;border-color:var(--green)}
-.callout.counter{background:var(--orange-tint);border-left-color:var(--orange)}
-.callout.counter .eyebrow{color:var(--ink-2)}
-.callout.export{background:var(--card);border:1.5px solid var(--line);border-left:5px solid var(--green)}
+.lesart{display:grid;gap:12px}
+.lesart p{font-size:17px;line-height:1.5}
+.lesart p b{font-family:Oswald;font-weight:500;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--green-deep);margin-right:8px}
+.callout{padding:16px 18px;border-left:5px solid var(--blue);background:var(--blue-tint);display:grid;gap:6px}
+.callout .eyebrow{color:var(--blue)}
+.callout.gold{border-left-color:var(--gold);background:var(--gold-tint)}
+.callout.gold .eyebrow{color:#7A5300}
+.callout.dark{background:var(--ink);color:var(--bg);border-left-color:var(--green)}
+.callout.dark .eyebrow{color:var(--green)}
+.moves{display:grid;gap:12px}
+.move{border:1.5px solid var(--line);padding:16px 18px;display:grid;gap:6px}
+.move .n{font-family:Oswald;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.move .t{font-size:17px}
+.move .w{font-size:14px;color:var(--ink-3)}
+.prof{display:grid;gap:0;border:1px solid var(--line);padding:6px 14px}
+.prof .dim{font-family:Oswald;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--green-deep);padding:10px 0 4px}
+.prow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line-soft);font-size:14px}
+.prow:last-child{border-bottom:0}
+.prow .ax{font-family:Oswald;font-size:14px;letter-spacing:.04em;text-transform:uppercase}
+.prow .st{color:var(--ink-3);font-size:13px;text-align:right}
+.prow .st.lock{color:var(--orange);font-weight:700}
 .export-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
 .toast{font-size:13px;color:var(--green-deep);min-height:1em}
+.ta{font:inherit;font-size:14px;width:100%;min-height:120px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);padding:10px 12px;margin-top:8px}
+.foot{font-size:12.5px;color:var(--ink-3);padding:14px 32px 22px;max-width:70ch}
+@media (max-width:560px){.foot{padding-left:18px;padding-right:18px}}
+.lang{font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.lang a{color:var(--ink-3);text-decoration:none;margin-left:6px}
+.lang a.on{color:var(--ink);font-weight:700}
+
+/* ===== PRINT (PDF) ===== */
 #printSheet{display:none}
 @media print{
-  @page{margin:18mm}
-  body{background:#fff!important;color:#111114}
+  @page{size:A4;margin:0}
+  html,body{background:#fff!important;color:#111114!important}
   .wrap{display:none!important}
-  #printSheet{display:block!important;font-family:"DM Sans",Arial,sans-serif;font-size:11pt;line-height:1.5;color:#111114}
-  #printSheet h1{font-family:Oswald,Arial,sans-serif;font-weight:500;text-transform:uppercase;font-size:22pt;border-bottom:3px solid #4CC265;padding-bottom:6px;margin:0 0 6px}
-  #printSheet h2{font-family:Oswald,Arial,sans-serif;font-weight:500;text-transform:uppercase;font-size:12pt;letter-spacing:.06em;color:#2E9A48;margin:16px 0 4px}
-  #printSheet ul{margin:0;padding-left:18px}
-  #printSheet li{margin:3px 0;break-inside:avoid}
-  #printSheet .m{color:#6B7370;font-size:9.5pt;margin:0}
+  #printSheet{display:block!important;font-family:"DM Sans",Arial,sans-serif;font-size:10.2pt;line-height:1.42;color:#111114}
+  #printSheet *{box-sizing:border-box}
+  .pg{width:210mm;min-height:297mm;padding:14mm 16mm 12mm;page-break-after:always;display:flex;flex-direction:column}
+  .pg:last-child{page-break-after:auto}
+  .pg header{display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:4mm;border-bottom:2.2px solid #4CC265}
+  .pg .kicker{font-family:Oswald;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:8.5pt;color:#6B6F76}
+  .pg h1{font-family:Oswald;font-weight:700;font-size:24pt;line-height:1;margin:1.5mm 0 0;text-transform:uppercase;letter-spacing:.01em}
+  .pg header img{height:11mm;width:auto}
+  .pg main{flex:1;padding-top:5mm}
+  .pg footer{border-top:2.2px solid #4CC265;padding-top:2.5mm;font-size:7.6pt;color:#6B6F76;display:flex;justify-content:space-between;gap:8mm}
+  .pg h2{font-family:Oswald;font-weight:700;text-transform:uppercase;font-size:13pt;letter-spacing:.03em;margin:0 0 2mm;color:#111114}
+  .pg h2 span{color:#4CC265}
+  .pg h3{font-family:Oswald;font-weight:500;text-transform:uppercase;font-size:9.5pt;letter-spacing:.1em;color:#6B6F76;margin:0 0 1.5mm}
+  .pg p{margin:0 0 2.2mm}
+  .pv{display:flex;gap:6mm;align-items:center;margin-bottom:5mm}
+  .pv .tag{font-family:Oswald;font-weight:700;font-size:30pt;line-height:1;text-transform:uppercase;color:#D9552B}
+  .pv .tag.schwel{color:#3B82C4}.pv .tag.feature{color:#2E9A48}
+  .pv .count{font-size:10.5pt;max-width:120mm}
+  .pprof{margin:3mm 0 5mm;border:1px solid #E3E5E8;border-radius:3px;padding:3mm 4mm}
+  .prw{display:grid;grid-template-columns:30mm 26mm 1fr 26mm 30mm;align-items:center;font-size:8.6pt;padding:1.1mm 0;border-bottom:1px solid #F9FAFB}
+  .prw:last-child{border-bottom:0}
+  .prw .axis{font-family:Oswald;font-weight:500;font-size:9pt;letter-spacing:.04em;text-transform:uppercase}
+  .prw .pole{color:#6B6F76}.prw .pole.r{text-align:right}
+  .scale{display:flex;justify-content:space-between;align-items:center;padding:0 2mm;position:relative}
+  .scale:before{content:"";position:absolute;left:2mm;right:2mm;top:50%;height:1px;background:#E3E5E8}
+  .dot{width:3.2mm;height:3.2mm;border-radius:50%;background:#fff;border:1px solid #E3E5E8;position:relative}
+  .dot.on{background:#4CC265;border-color:#4CC265}
+  .dot.lock{background:#D9552B;border-color:#D9552B;width:4.2mm;height:4.2mm}
+  .prw .who{font-size:8pt;color:#6B6F76;text-align:right}.prw .who.lock{color:#D9552B;font-weight:500}
+  .pdim{font-family:Oswald;font-weight:500;font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#4CC265;padding:1.5mm 0 .5mm}
+  .ples p{font-size:10.4pt}
+  .ples p b{font-family:Oswald;font-weight:500;font-size:9pt;letter-spacing:.06em;text-transform:uppercase;color:#4CC265;margin-right:1.5mm}
+  .hypo{background:#F9FAFB;border-left:3px solid #3B82C4;padding:2.5mm 4mm;margin:3mm 0}
+  .hypo b{color:#3B82C4;font-family:Oswald;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:9pt}
+  .gegen{border-left:3px solid #E6A817;padding:2mm 4mm;margin:3mm 0 0;font-size:9.6pt}
+  .gegen b{color:#E6A817;font-family:Oswald;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:9pt}
+  .pblock{margin-bottom:4mm}
+  .pblock ol{margin:0;padding-left:5.5mm}
+  .pblock li{margin-bottom:1.8mm;padding-left:1mm}
+  .pblock li .q{font-weight:500;font-size:inherit;line-height:inherit;margin:0;max-width:none;display:inline}
+  #printSheet .q{font-size:inherit;margin:0;max-width:none}
+  .pblock li .why{display:block;color:#6B6F76;font-size:8.6pt;margin-top:.4mm}
+  .say{list-style:none;padding:0;margin:0}
+  .say li{border:1px solid #E3E5E8;border-radius:3px;padding:2.2mm 3.5mm 2.2mm 4mm;margin-bottom:1.8mm;position:relative}
+  .say li:before{content:"„";font-family:Oswald;font-weight:700;font-size:22pt;color:#4CC265;position:absolute;left:1.6mm;top:-1mm;line-height:1}
+  .say li .t{display:block;padding-left:4mm;font-size:10pt}
+  .say li .why{display:block;padding-left:4mm;color:#6B6F76;font-size:8.4pt;margin-top:.6mm}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:7mm}
+  .pframe{background:#111114;color:#fff;padding:3mm 4mm;border-radius:3px;margin-bottom:4mm}
+  .pframe h3{color:#4CC265;margin-bottom:1mm}
+  .pframe p{margin:0;font-size:9.4pt}
+  .small{font-size:8.6pt;color:#6B6F76}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body class="embedded">
-
 
 <div class="wrap">
 <div class="frame">
   <div class="head">
     <span class="eyebrow" id="crumb">Konflikt-Check</span>
-    <a class="logo" href="https://jacobnoon.com" target="_blank" rel="noopener" aria-label="Jacob Noon"><img class="logo-light" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIzMTQ2LjE4Mjk5OTQ1ODU4MTQiCiAgICAgICAgaGVpZ2h0PSIxNDM5LjkwMjU0NDY2NzAyNzUiIHZpZXdCb3g9IjAgMCAzMTQ2LjE4Mjk5OTQ1ODU4MTQgMTQzOS45MDI1NDQ2NjcwMjc1Ij4KCgkJCTxnIHRyYW5zZm9ybT0ic2NhbGUoNy4zMDkxNDk5NzI5MjkwNzQpIHRyYW5zbGF0ZSgxMCwgMTApIj4KCQkJCTxkZWZzIGlkPSJTdmdqc0RlZnMzMDI2Ij48L2RlZnM+PGcgaWQ9IlN2Z2pzRzMwMjciIGZlYXR1cmVLZXk9InN5bWJvbEdyb3VwQ29udGFpbmVyIiB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLDAsMCkiIGZpbGw9IiM0NmM1NjgiPjxyZWN0IHdpZHRoPSIxOTYiIGhlaWdodD0iMTc3IiByeD0iOCI+PC9yZWN0PjwvZz48ZyBpZD0iU3ZnanNHMzAyOCIgZmVhdHVyZUtleT0iRE15blV4LTAiIHRyYW5zZm9ybT0ibWF0cml4KDEuNjg5MjY1ODYxNDIxNTM2NiwwLDAsMS42ODkyNjU4NjE0MjE1MzY2LDE2LjY5NDIxNTQyMzMzODgxLDcuNDIwNDcyNzI0ODU5NDc3KSIgZmlsbD0iI2ZmZmZmZiI+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJNMjguMDM2LDkxLjUxMmMtMC4zOCwwLTAuNzY0LTAuMTA0LTEuMDk2LTAuMzI0Yy0wLjcwOC0wLjQ2Ny0xLjA0OC0xLjMzMi0wLjg0NC0yLjE1NWwzLjU1Mi0xNC4zNTNIMTUuODcyICBjLTAuOTQ0LDAtMS43NjQtMC42NTYtMS45NTYtMS41ODRMMiwxNi4zNjhjLTAuMTE2LTAuNTU2LDAuMDA0LTEuMTMyLDAuMzQtMS41ODhjMC4zMzItMC40NTYsMC44NC0wLjc1MiwxLjQwNC0wLjgxM0w5MS44MjgsNC41ICBjMC42MDctMC4wNzIsMS4yMiwwLjE1NiwxLjY0OCwwLjU5MmMwLjQyOCwwLjQzNiwwLjYzMSwxLjA1NiwwLjU0NywxLjY2bC03LjgzNiw1OC4xOTFjLTAuMTM2LDAuOTkyLTAuOTc5LDEuNzM2LTEuOTgzLDEuNzM2ICBINjEuMjE2TDI5LjI1Niw5MS4xQzI4Ljg5Miw5MS4zNzYsMjguNDY0LDkxLjUxMiwyOC4wMzYsOTEuNTEyTDI4LjAzNiw5MS41MTJ6Ij48L3BhdGg+PC9nPjxnIGlkPSJTdmdqc0czMDI5IiBmZWF0dXJlS2V5PSJ4Z2NlbnUtMCIgdHJhbnNmb3JtPSJtYXRyaXgoNS4zNTY1OTYzNzgyNzAwNTksMCwwLDUuMzU2NTk2Mzc4MjcwMDU5LDIxNC45Mjg2ODA3MDgzODIwNywtMzAuMjgyNTE2MDAzNzc2MzA1KSIgZmlsbD0iIzExMTExMSI+PHBhdGggZD0iTTAuMiAyMCBsMCAtMiBjMC4yNCAwLjAyIDAuNTIgMC4wMiAwLjc2IDAuMDIgYzAuNyAwIDEuMjYgLTAuMjYgMS4yNiAtMS4zNCBsMCAtMTAuNjggbDIuMiAwIGwwIDEwLjUyIGMwIDIuOCAtMS41IDMuNTIgLTMuMTYgMy41MiBjLTAuNCAwIC0wLjcgMCAtMS4wNiAtMC4wNCB6IE0xMC44IDYgbDIuMjQgMTQgbC0yLjIyIDAgbC0wLjM4IC0yLjU0IGwtMi43IDAgbC0wLjM4IDIuNTQgbC0yLjAyIDAgbDIuMjQgLTE0IGwzLjIyIDAgeiBNOS4wNiA4LjQ4IGwtMS4wNCA3LjA4IGwyLjEyIDAgbC0xLjA0IC03LjA4IGwtMC4wNCAwIHogTTE4LjM2IDE0Ljc4MDAwMDAwMDAwMDAwMSBsMi4wOCAwIGwwIDEuODYgYzAgMi4yNCAtMS4xMiAzLjUyIC0zLjI4IDMuNTIgcy0zLjI4IC0xLjI4IC0zLjI4IC0zLjUyIGwwIC03LjI4IGMwIC0yLjI0IDEuMTIgLTMuNTIgMy4yOCAtMy41MiBzMy4yOCAxLjI4IDMuMjggMy41MiBsMCAxLjM2IGwtMi4wOCAwIGwwIC0xLjUgYzAgLTEgLTAuNDQgLTEuMzggLTEuMTQgLTEuMzggcy0xLjE0IDAuMzggLTEuMTQgMS4zOCBsMCA3LjU2IGMwIDEgMC40NCAxLjM2IDEuMTQgMS4zNiBzMS4xNCAtMC4zNiAxLjE0IC0xLjM2IGwwIC0yIHogTTIzLjggOS4yMiBsMCA3LjU2IGMwIDEgMC40NCAxLjM4IDEuMTQgMS4zOCBzMS4xNCAtMC4zOCAxLjE0IC0xLjM4IGwwIC03LjU2IGMwIC0xIC0wLjQ0IC0xLjM4IC0xLjE0IC0xLjM4IHMtMS4xNCAwLjM4IC0xLjE0IDEuMzggeiBNMjEuNiAxNi42NCBsMCAtNy4yOCBjMCAtMi4yNCAxLjE4IC0zLjUyIDMuMzQgLTMuNTIgczMuMzQgMS4yOCAzLjM0IDMuNTIgbDAgNy4yOCBjMCAyLjI0IC0xLjE4IDMuNTIgLTMuMzQgMy41MiBzLTMuMzQgLTEuMjggLTMuMzQgLTMuNTIgeiBNMzMuMDE5OTk5OTk5OTk5OTk2IDYgYzIuMjggMCAzLjI2IDEuMDYgMy4yNiAzLjIyIGwwIDAuNSBjMCAxLjQ0IC0wLjQ0IDIuMzQgLTEuNDIgMi44IGwwIDAuMDQgYzEuMTggMC40NiAxLjY0IDEuNSAxLjY0IDIuOTggbDAgMS4xNCBjMCAyLjE2IC0xLjE0IDMuMzIgLTMuMzQgMy4zMiBsLTMuNDYgMCBsMCAtMTQgbDMuMzIgMCB6IE0zMi44Nzk5OTk5OTk5OTk5OTUgMTMuNyBsLTAuOTggMCBsMCA0LjMgbDEuMjYgMCBjMC43NCAwIDEuMTQgLTAuMzQgMS4xNCAtMS4zOCBsMCAtMS4yMiBjMCAtMS4zIC0wLjQyIC0xLjcgLTEuNDIgLTEuNyB6IE0zMi45NiA4IGwtMS4wNiAwIGwwIDMuNyBsMC44NiAwIGMwLjgyIDAgMS4zMiAtMC4zNiAxLjMyIC0xLjQ4IGwwIC0wLjc4IGMwIC0xIC0wLjM0IC0xLjQ0IC0xLjEyIC0xLjQ0IHoiPjwvcGF0aD48L2c+PGcgaWQ9IlN2Z2pzRzMwMzAiIGZlYXR1cmVLZXk9InhnY2VudS0xIiB0cmFuc2Zvcm09Im1hdHJpeCg2LjIwMDM5NzA4MTgzNDg2MywwLDAsNi4yMDAzOTcwODE4MzQ4NjMsMjExLjE2MzY5MDQ1MzU2MzYsNTEuNzg5Njg4OTY1NzE4MDY0KSIgZmlsbD0iIzExMTExMSI+PHBhdGggZD0iTTUuNSAyMCBsLTIuNyAtMTAuMTQgbC0wLjA0IDAgbDAgMTAuMTQgbC0xLjk4IDAgbDAgLTE0IGwyLjc2IDAgbDIuMjIgOC4zOCBsMC4wNCAwIGwwIC04LjM4IGwxLjk2IDAgbDAgMTQgbC0yLjI2IDAgeiBNMTEuMzYwMDAwMDAwMDAwMDAxIDkuMjIgbDAgNy41NiBjMCAxIDAuNDQgMS4zOCAxLjE0IDEuMzggczEuMTQgLTAuMzggMS4xNCAtMS4zOCBsMCAtNy41NiBjMCAtMSAtMC40NCAtMS4zOCAtMS4xNCAtMS4zOCBzLTEuMTQgMC4zOCAtMS4xNCAxLjM4IHogTTkuMTYgMTYuNjQgbDAgLTcuMjggYzAgLTIuMjQgMS4xOCAtMy41MiAzLjM0IC0zLjUyIHMzLjM0IDEuMjggMy4zNCAzLjUyIGwwIDcuMjggYzAgMi4yNCAtMS4xOCAzLjUyIC0zLjM0IDMuNTIgcy0zLjM0IC0xLjI4IC0zLjM0IC0zLjUyIHogTTE5LjI4IDkuMjIgbDAgNy41NiBjMCAxIDAuNDQgMS4zOCAxLjE0IDEuMzggczEuMTQgLTAuMzggMS4xNCAtMS4zOCBsMCAtNy41NiBjMCAtMSAtMC40NCAtMS4zOCAtMS4xNCAtMS4zOCBzLTEuMTQgMC4zOCAtMS4xNCAxLjM4IHogTTE3LjA4MDAwMDAwMDAwMDAwMiAxNi42NCBsMCAtNy4yOCBjMCAtMi4yNCAxLjE4IC0zLjUyIDMuMzQgLTMuNTIgczMuMzQgMS4yOCAzLjM0IDMuNTIgbDAgNy4yOCBjMCAyLjI0IC0xLjE4IDMuNTIgLTMuMzQgMy41MiBzLTMuMzQgLTEuMjggLTMuMzQgLTMuNTIgeiBNMjkuODgwMDAwMDAwMDAwMDAzIDIwIGwtMi43IC0xMC4xNCBsLTAuMDQgMCBsMCAxMC4xNCBsLTEuOTggMCBsMCAtMTQgbDIuNzYgMCBsMi4yMiA4LjM4IGwwLjA0IDAgbDAgLTguMzggbDEuOTYgMCBsMCAxNCBsLTIuMjYgMCB6Ij48L3BhdGg+PC9nPgoJCQk8L2c+CgkJPC9zdmc+" alt="Jacob Noon"><img class="logo-dark" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIzMTQ2LjE4Mjk5OTQ1ODU4MTQiIGhlaWdodD0iMTQzOS45MDI1NDQ2NjcwMjc1IiB2aWV3Qm94PSIwIDAgMzE0Ni4xODI5OTk0NTg1ODE0IDE0MzkuOTAyNTQ0NjY3MDI3NSI+CgkJCQoJCQk8ZyB0cmFuc2Zvcm09InNjYWxlKDcuMzA5MTQ5OTcyOTI5MDc0KSB0cmFuc2xhdGUoMTAsIDEwKSI+CgkJCQk8ZGVmcyBpZD0iU3ZnanNEZWZzMzAyNiIvPjxnIGlkPSJTdmdqc0czMDI3IiBmZWF0dXJlS2V5PSJzeW1ib2xHcm91cENvbnRhaW5lciIgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwwLDApIiBmaWxsPSJub25lIj48cmVjdCB3aWR0aD0iMTk2IiBoZWlnaHQ9IjE3NyIgcng9IjgiLz48L2c+PGcgaWQ9IlN2Z2pzRzMwMjgiIGZlYXR1cmVLZXk9IkRNeW5VeC0wIiB0cmFuc2Zvcm09Im1hdHJpeCgxLjY4OTI2NTg2MTQyMTUzNjYsMCwwLDEuNjg5MjY1ODYxNDIxNTM2NiwxNi42OTQyMTU0MjMzMzg4MSw3LjQyMDQ3MjcyNDg1OTQ3NykiIGZpbGw9IiNmZmZmZmYiPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0iTTI4LjAzNiw5MS41MTJjLTAuMzgsMC0wLjc2NC0wLjEwNC0xLjA5Ni0wLjMyNGMtMC43MDgtMC40NjctMS4wNDgtMS4zMzItMC44NDQtMi4xNTVsMy41NTItMTQuMzUzSDE1Ljg3MiAgYy0wLjk0NCwwLTEuNzY0LTAuNjU2LTEuOTU2LTEuNTg0TDIsMTYuMzY4Yy0wLjExNi0wLjU1NiwwLjAwNC0xLjEzMiwwLjM0LTEuNTg4YzAuMzMyLTAuNDU2LDAuODQtMC43NTIsMS40MDQtMC44MTNMOTEuODI4LDQuNSAgYzAuNjA3LTAuMDcyLDEuMjIsMC4xNTYsMS42NDgsMC41OTJjMC40MjgsMC40MzYsMC42MzEsMS4wNTYsMC41NDcsMS42NmwtNy44MzYsNTguMTkxYy0wLjEzNiwwLjk5Mi0wLjk3OSwxLjczNi0xLjk4MywxLjczNiAgSDYxLjIxNkwyOS4yNTYsOTEuMUMyOC44OTIsOTEuMzc2LDI4LjQ2NCw5MS41MTIsMjguMDM2LDkxLjUxMkwyOC4wMzYsOTEuNTEyeiIvPjwvZz48ZyBpZD0iU3ZnanNHMzAyOSIgZmVhdHVyZUtleT0ieGdjZW51LTAiIHRyYW5zZm9ybT0ibWF0cml4KDUuMzU2NTk2Mzc4MjcwMDU5LDAsMCw1LjM1NjU5NjM3ODI3MDA1OSwyMTQuOTI4NjgwNzA4MzgyMDcsLTMwLjI4MjUxNjAwMzc3NjMwNSkiIGZpbGw9IiNmZmYiPjxwYXRoIGQ9Ik0wLjIgMjAgbDAgLTIgYzAuMjQgMC4wMiAwLjUyIDAuMDIgMC43NiAwLjAyIGMwLjcgMCAxLjI2IC0wLjI2IDEuMjYgLTEuMzQgbDAgLTEwLjY4IGwyLjIgMCBsMCAxMC41MiBjMCAyLjggLTEuNSAzLjUyIC0zLjE2IDMuNTIgYy0wLjQgMCAtMC43IDAgLTEuMDYgLTAuMDQgeiBNMTAuOCA2IGwyLjI0IDE0IGwtMi4yMiAwIGwtMC4zOCAtMi41NCBsLTIuNyAwIGwtMC4zOCAyLjU0IGwtMi4wMiAwIGwyLjI0IC0xNCBsMy4yMiAwIHogTTkuMDYgOC40OCBsLTEuMDQgNy4wOCBsMi4xMiAwIGwtMS4wNCAtNy4wOCBsLTAuMDQgMCB6IE0xOC4zNiAxNC43ODAwMDAwMDAwMDAwMDEgbDIuMDggMCBsMCAxLjg2IGMwIDIuMjQgLTEuMTIgMy41MiAtMy4yOCAzLjUyIHMtMy4yOCAtMS4yOCAtMy4yOCAtMy41MiBsMCAtNy4yOCBjMCAtMi4yNCAxLjEyIC0zLjUyIDMuMjggLTMuNTIgczMuMjggMS4yOCAzLjI4IDMuNTIgbDAgMS4zNiBsLTIuMDggMCBsMCAtMS41IGMwIC0xIC0wLjQ0IC0xLjM4IC0xLjE0IC0xLjM4IHMtMS4xNCAwLjM4IC0xLjE0IDEuMzggbDAgNy41NiBjMCAxIDAuNDQgMS4zNiAxLjE0IDEuMzYgczEuMTQgLTAuMzYgMS4xNCAtMS4zNiBsMCAtMiB6IE0yMy44IDkuMjIgbDAgNy41NiBjMCAxIDAuNDQgMS4zOCAxLjE0IDEuMzggczEuMTQgLTAuMzggMS4xNCAtMS4zOCBsMCAtNy41NiBjMCAtMSAtMC40NCAtMS4zOCAtMS4xNCAtMS4zOCBzLTEuMTQgMC4zOCAtMS4xNCAxLjM4IHogTTIxLjYgMTYuNjQgbDAgLTcuMjggYzAgLTIuMjQgMS4xOCAtMy41MiAzLjM0IC0zLjUyIHMzLjM0IDEuMjggMy4zNCAzLjUyIGwwIDcuMjggYzAgMi4yNCAtMS4xOCAzLjUyIC0zLjM0IDMuNTIgcy0zLjM0IC0xLjI4IC0zLjM0IC0zLjUyIHogTTMzLjAxOTk5OTk5OTk5OTk5NiA2IGMyLjI4IDAgMy4yNiAxLjA2IDMuMjYgMy4yMiBsMCAwLjUgYzAgMS40NCAtMC40NCAyLjM0IC0xLjQyIDIuOCBsMCAwLjA0IGMxLjE4IDAuNDYgMS42NCAxLjUgMS42NCAyLjk4IGwwIDEuMTQgYzAgMi4xNiAtMS4xNCAzLjMyIC0zLjM0IDMuMzIgbC0zLjQ2IDAgbDAgLTE0IGwzLjMyIDAgeiBNMzIuODc5OTk5OTk5OTk5OTk1IDEzLjcgbC0wLjk4IDAgbDAgNC4zIGwxLjI2IDAgYzAuNzQgMCAxLjE0IC0wLjM0IDEuMTQgLTEuMzggbDAgLTEuMjIgYzAgLTEuMyAtMC40MiAtMS43IC0xLjQyIC0xLjcgeiBNMzIuOTYgOCBsLTEuMDYgMCBsMCAzLjcgbDAuODYgMCBjMC44MiAwIDEuMzIgLTAuMzYgMS4zMiAtMS40OCBsMCAtMC43OCBjMCAtMSAtMC4zNCAtMS40NCAtMS4xMiAtMS40NCB6Ii8+PC9nPjxnIGlkPSJTdmdqc0czMDMwIiBmZWF0dXJlS2V5PSJ4Z2NlbnUtMSIgdHJhbnNmb3JtPSJtYXRyaXgoNi4yMDAzOTcwODE4MzQ4NjMsMCwwLDYuMjAwMzk3MDgxODM0ODYzLDIxMS4xNjM2OTA0NTM1NjM2LDUxLjc4OTY4ODk2NTcxODA2NCkiIGZpbGw9IiNmZmYiPjxwYXRoIGQ9Ik01LjUgMjAgbC0yLjcgLTEwLjE0IGwtMC4wNCAwIGwwIDEwLjE0IGwtMS45OCAwIGwwIC0xNCBsMi43NiAwIGwyLjIyIDguMzggbDAuMDQgMCBsMCAtOC4zOCBsMS45NiAwIGwwIDE0IGwtMi4yNiAwIHogTTExLjM2MDAwMDAwMDAwMDAwMSA5LjIyIGwwIDcuNTYgYzAgMSAwLjQ0IDEuMzggMS4xNCAxLjM4IHMxLjE0IC0wLjM4IDEuMTQgLTEuMzggbDAgLTcuNTYgYzAgLTEgLTAuNDQgLTEuMzggLTEuMTQgLTEuMzggcy0xLjE0IDAuMzggLTEuMTQgMS4zOCB6IE05LjE2IDE2LjY0IGwwIC03LjI4IGMwIC0yLjI0IDEuMTggLTMuNTIgMy4zNCAtMy41MiBzMy4zNCAxLjI4IDMuMzQgMy41MiBsMCA3LjI4IGMwIDIuMjQgLTEuMTggMy41MiAtMy4zNCAzLjUyIHMtMy4zNCAtMS4yOCAtMy4zNCAtMy41MiB6IE0xOS4yOCA5LjIyIGwwIDcuNTYgYzAgMSAwLjQ0IDEuMzggMS4xNCAxLjM4IHMxLjE0IC0wLjM4IDEuMTQgLTEuMzggbDAgLTcuNTYgYzAgLTEgLTAuNDQgLTEuMzggLTEuMTQgLTEuMzggcy0xLjE0IDAuMzggLTEuMTQgMS4zOCB6IE0xNy4wODAwMDAwMDAwMDAwMDIgMTYuNjQgbDAgLTcuMjggYzAgLTIuMjQgMS4xOCAtMy41MiAzLjM0IC0zLjUyIHMzLjM0IDEuMjggMy4zNCAzLjUyIGwwIDcuMjggYzAgMi4yNCAtMS4xOCAzLjUyIC0zLjM0IDMuNTIgcy0zLjM0IC0xLjI4IC0zLjM0IC0zLjUyIHogTTI5Ljg4MDAwMDAwMDAwMDAwMyAyMCBsLTIuNyAtMTAuMTQgbC0wLjA0IDAgbDAgMTAuMTQgbC0xLjk4IDAgbDAgLTE0IGwyLjc2IDAgbDIuMjIgOC4zOCBsMC4wNCAwIGwwIC04LjM4IGwxLjk2IDAgbDAgMTQgbC0yLjI2IDAgeiIvPjwvZz4KCQkJPC9nPgoJCTwvc3ZnPg==" alt=""></a>
+    <a class="logo" href="https://jacobnoon.com" target="_blank" rel="noopener" aria-label="Jacob Noon"><img class="logo-light" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIzMTQ2LjE4Mjk5OTQ1ODU4MTQiCiAgICAgICAgaGVpZ2h0PSIxNDM5LjkwMjU0NDY2NzAyNzUiIHZpZXdCb3g9IjAgMCAzMTQ2LjE4Mjk5OTQ1ODU4MTQgMTQzOS45MDI1NDQ2NjcwMjc1Ij4KCgkJCTxnIHRyYW5zZm9ybT0ic2NhbGUoNy4zMDkxNDk5NzI5MjkwNzQpIHRyYW5zbGF0ZSgxMCwgMTApIj4KCQkJCTxkZWZzIGlkPSJTdmdqc0RlZnMzMDI2Ij48L2RlZnM+PGcgaWQ9IlN2Z2pzRzMwMjciIGZlYXR1cmVLZXk9InN5bWJvbEdyb3VwQ29udGFpbmVyIiB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLDAsMCkiIGZpbGw9IiM0NmM1NjgiPjxyZWN0IHdpZHRoPSIxOTYiIGhlaWdodD0iMTc3IiByeD0iOCI+PC9yZWN0PjwvZz48ZyBpZD0iU3ZnanNHMzAyOCIgZmVhdHVyZUtleT0iRE15blV4LTAiIHRyYW5zZm9ybT0ibWF0cml4KDEuNjg5MjY1ODYxNDIxNTM2NiwwLDAsMS42ODkyNjU4NjE0MjE1MzY2LDE2LjY5NDIxNTQyMzMzODgxLDcuNDIwNDcyNzI0ODU5NDc3KSIgZmlsbD0iI2ZmZmZmZiI+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJNMjguMDM2LDkxLjUxMmMtMC4zOCwwLTAuNzY0LTAuMTA0LTEuMDk2LTAuMzI0Yy0wLjcwOC0wLjQ2Ny0xLjA0OC0xLjMzMi0wLjg0NC0yLjE1NWwzLjU1Mi0xNC4zNTNIMTUuODcyICBjLTAuOTQ0LDAtMS43NjQtMC42NTYtMS45NTYtMS41ODRMMiwxNi4zNjhjLTAuMTE2LTAuNTU2LDAuMDA0LTEuMTMyLDAuMzQtMS41ODhjMC4zMzItMC40NTYsMC44NC0wLjc1MiwxLjQwNC0wLjgxM0w5MS44MjgsNC41ICBjMC42MDctMC4wNzIsMS4yMiwwLjE1NiwxLjY0OCwwLjU5MmMwLjQyOCwwLjQzNiwwLjYzMSwxLjA1NiwwLjU0NywxLjY2bC03LjgzNiw1OC4xOTFjLTAuMTM2LDAuOTkyLTAuOTc5LDEuNzM2LTEuOTgzLDEuNzM2ICBINjEuMjE2TDI5LjI1Niw5MS4xQzI4Ljg5Miw5MS4zNzYsMjguNDY0LDkxLjUxMiwyOC4wMzYsOTEuNTEyTDI4LjAzNiw5MS41MTJ6Ij48L3BhdGg+PC9nPjxnIGlkPSJTdmdqc0czMDI5IiBmZWF0dXJlS2V5PSJ4Z2NlbnUtMCIgdHJhbnNmb3JtPSJtYXRyaXgoNS4zNTY1OTYzNzgyNzAwNTksMCwwLDUuMzU2NTk2Mzc4MjcwMDU5LDIxNC45Mjg2ODA3MDgzODIwNywtMzAuMjgyNTE2MDAzNzc2MzA1KSIgZmlsbD0iIzExMTExMSI+PHBhdGggZD0iTTAuMiAyMCBsMCAtMiBjMC4yNCAwLjAyIDAuNTIgMC4wMiAwLjc2IDAuMDIgYzAuNyAwIDEuMjYgLTAuMjYgMS4yNiAtMS4zNCBsMCAtMTAuNjggbDIuMiAwIGwwIDEwLjUyIGMwIDIuOCAtMS41IDMuNTIgLTMuMTYgMy41MiBjLTAuNCAwIC0wLjcgMCAtMS4wNiAtMC4wNCB6IE0xMC44IDYgbDIuMjQgMTQgbC0yLjIyIDAgbC0wLjM4IC0yLjU0IGwtMi43IDAgbC0wLjM4IDIuNTQgbC0yLjAyIDAgbDIuMjQgLTE0IGwzLjIyIDAgeiBNOS4wNiA4LjQ4IGwtMS4wNCA3LjA4IGwyLjEyIDAgbC0xLjA0IC03LjA4IGwtMC4wNCAwIHogTTE4LjM2IDE0Ljc4MDAwMDAwMDAwMDAwMSBsMi4wOCAwIGwwIDEuODYgYzAgMi4yNCAtMS4xMiAzLjUyIC0zLjI4IDMuNTIgcy0zLjI4IC0xLjI4IC0zLjI4IC0zLjUyIGwwIC03LjI4IGMwIC0yLjI0IDEuMTIgLTMuNTIgMy4yOCAtMy41MiBzMy4yOCAxLjI4IDMuMjggMy41MiBsMCAxLjM2IGwtMi4wOCAwIGwwIC0xLjUgYzAgLTEgLTAuNDQgLTEuMzggLTEuMTQgLTEuMzggcy0xLjE0IDAuMzggLTEuMTQgMS4zOCBsMCA3LjU2IGMwIDEgMC40NCAxLjM2IDEuMTQgMS4zNiBzMS4xNCAtMC4zNiAxLjE0IC0xLjM2IGwwIC0yIHogTTIzLjggOS4yMiBsMCA3LjU2IGMwIDEgMC40NCAxLjM4IDEuMTQgMS4zOCBzMS4xNCAtMC4zOCAxLjE0IC0xLjM4IGwwIC03LjU2IGMwIC0xIC0wLjQ0IC0xLjM4IC0xLjE0IC0xLjM4IHMtMS4xNCAwLjM4IC0xLjE0IDEuMzggeiBNMjEuNiAxNi42NCBsMCAtNy4yOCBjMCAtMi4yNCAxLjE4IC0zLjUyIDMuMzQgLTMuNTIgczMuMzQgMS4yOCAzLjM0IDMuNTIgbDAgNy4yOCBjMCAyLjI0IC0xLjE4IDMuNTIgLTMuMzQgMy41MiBzLTMuMzQgLTEuMjggLTMuMzQgLTMuNTIgeiBNMzMuMDE5OTk5OTk5OTk5OTk2IDYgYzIuMjggMCAzLjI2IDEuMDYgMy4yNiAzLjIyIGwwIDAuNSBjMCAxLjQ0IC0wLjQ0IDIuMzQgLTEuNDIgMi44IGwwIDAuMDQgYzEuMTggMC40NiAxLjY0IDEuNSAxLjY0IDIuOTggbDAgMS4xNCBjMCAyLjE2IC0xLjE0IDMuMzIgLTMuMzQgMy4zMiBsLTMuNDYgMCBsMCAtMTQgbDMuMzIgMCB6IE0zMi44Nzk5OTk5OTk5OTk5OTUgMTMuNyBsLTAuOTggMCBsMCA0LjMgbDEuMjYgMCBjMC43NCAwIDEuMTQgLTAuMzQgMS4xNCAtMS4zOCBsMCAtMS4yMiBjMCAtMS4zIC0wLjQyIC0xLjcgLTEuNDIgLTEuNyB6IE0zMi45NiA4IGwtMS4wNiAwIGwwIDMuNyBsMC44NiAwIGMwLjgyIDAgMS4zMiAtMC4zNiAxLjMyIC0xLjQ4IGwwIC0wLjc4IGMwIC0xIC0wLjM0IC0xLjQ0IC0xLjEyIC0xLjQ0IHoiPjwvcGF0aD48L2c+PGcgaWQ9IlN2Z2pzRzMwMzAiIGZlYXR1cmVLZXk9InhnY2VudS0xIiB0cmFuc2Zvcm09Im1hdHJpeCg2LjIwMDM5NzA4MTgzNDg2MywwLDAsNi4yMDAzOTcwODE4MzQ4NjMsMjExLjE2MzY5MDQ1MzU2MzYsNTEuNzg5Njg4OTY1NzE4MDY0KSIgZmlsbD0iIzExMTExMSI+PHBhdGggZD0iTTUuNSAyMCBsLTIuNyAtMTAuMTQgbC0wLjA0IDAgbDAgMTAuMTQgbC0xLjk4IDAgbDAgLTE0IGwyLjc2IDAgbDIuMjIgOC4zOCBsMC4wNCAwIGwwIC04LjM4IGwxLjk2IDAgbDAgMTQgbC0yLjI2IDAgeiBNMTEuMzYwMDAwMDAwMDAwMDAxIDkuMjIgbDAgNy41NiBjMCAxIDAuNDQgMS4zOCAxLjE0IDEuMzggczEuMTQgLTAuMzggMS4xNCAtMS4zOCBsMCAtNy41NiBjMCAtMSAtMC40NCAtMS4zOCAtMS4xNCAtMS4zOCBzLTEuMTQgMC4zOCAtMS4xNCAxLjM4IHogTTkuMTYgMTYuNjQgbDAgLTcuMjggYzAgLTIuMjQgMS4xOCAtMy41MiAzLjM0IC0zLjUyIHMzLjM0IDEuMjggMy4zNCAzLjUyIGwwIDcuMjggYzAgMi4yNCAtMS4xOCAzLjUyIC0zLjM0IDMuNTIgcy0zLjM0IC0xLjI4IC0zLjM0IC0zLjUyIHogTTE5LjI4IDkuMjIgbDAgNy41NiBjMCAxIDAuNDQgMS4zOCAxLjE0IDEuMzggczEuMTQgLTAuMzggMS4xNCAtMS4zOCBsMCAtNy41NiBjMCAtMSAtMC40NCAtMS4zOCAtMS4xNCAtMS4zOCBzLTEuMTQgMC4zOCAtMS4xNCAxLjM4IHogTTE3LjA4MDAwMDAwMDAwMDAwMiAxNi42NCBsMCAtNy4yOCBjMCAtMi4yNCAxLjE4IC0zLjUyIDMuMzQgLTMuNTIgczMuMzQgMS4yOCAzLjM0IDMuNTIgbDAgNy4yOCBjMCAyLjI0IC0xLjE4IDMuNTIgLTMuMzQgMy41MiBzLTMuMzQgLTEuMjggLTMuMzQgLTMuNTIgeiBNMjkuODgwMDAwMDAwMDAwMDAzIDIwIGwtMi43IC0xMC4xNCBsLTAuMDQgMCBsMCAxMC4xNCBsLTEuOTggMCBsMCAtMTQgbDIuNzYgMCBsMi4yMiA4LjM4IGwwLjA0IDAgbDAgLTguMzggbDEuOTYgMCBsMCAxNCBsLTIuMjYgMCB6Ij48L3BhdGg+PC9nPgoJCQk8L2c+CgkJPC9zdmc+" alt=""><img class="logo-dark" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIzMTQ2LjE4Mjk5OTQ1ODU4MTQiIGhlaWdodD0iMTQzOS45MDI1NDQ2NjcwMjc1IiB2aWV3Qm94PSIwIDAgMzE0Ni4xODI5OTk0NTg1ODE0IDE0MzkuOTAyNTQ0NjY3MDI3NSI+CgkJCQoJCQk8ZyB0cmFuc2Zvcm09InNjYWxlKDcuMzA5MTQ5OTcyOTI5MDc0KSB0cmFuc2xhdGUoMTAsIDEwKSI+CgkJCQk8ZGVmcyBpZD0iU3ZnanNEZWZzMzAyNiIvPjxnIGlkPSJTdmdqc0czMDI3IiBmZWF0dXJlS2V5PSJzeW1ib2xHcm91cENvbnRhaW5lciIgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwwLDApIiBmaWxsPSJub25lIj48cmVjdCB3aWR0aD0iMTk2IiBoZWlnaHQ9IjE3NyIgcng9IjgiLz48L2c+PGcgaWQ9IlN2Z2pzRzMwMjgiIGZlYXR1cmVLZXk9IkRNeW5VeC0wIiB0cmFuc2Zvcm09Im1hdHJpeCgxLjY4OTI2NTg2MTQyMTUzNjYsMCwwLDEuNjg5MjY1ODYxNDIxNTM2NiwxNi42OTQyMTU0MjMzMzg4MSw3LjQyMDQ3MjcyNDg1OTQ3NykiIGZpbGw9IiNmZmZmZmYiPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0iTTI4LjAzNiw5MS41MTJjLTAuMzgsMC0wLjc2NC0wLjEwNC0xLjA5Ni0wLjMyNGMtMC43MDgtMC40NjctMS4wNDgtMS4zMzItMC44NDQtMi4xNTVsMy41NTItMTQuMzUzSDE1Ljg3MiAgYy0wLjk0NCwwLTEuNzY0LTAuNjU2LTEuOTU2LTEuNTg0TDIsMTYuMzY4Yy0wLjExNi0wLjU1NiwwLjAwNC0xLjEzMiwwLjM0LTEuNTg4YzAuMzMyLTAuNDU2LDAuODQtMC43NTIsMS40MDQtMC44MTNMOTEuODI4LDQuNSAgYzAuNjA3LTAuMDcyLDEuMjIsMC4xNTYsMS42NDgsMC41OTJjMC40MjgsMC40MzYsMC42MzEsMS4wNTYsMC41NDcsMS42NmwtNy44MzYsNTguMTkxYy0wLjEzNiwwLjk5Mi0wLjk3OSwxLjczNi0xLjk4MywxLjczNiAgSDYxLjIxNkwyOS4yNTYsOTEuMUMyOC44OTIsOTEuMzc2LDI4LjQ2NCw5MS41MTIsMjguMDM2LDkxLjUxMkwyOC4wMzYsOTEuNTEyeiIvPjwvZz48ZyBpZD0iU3ZnanNHMzAyOSIgZmVhdHVyZUtleT0ieGdjZW51LTAiIHRyYW5zZm9ybT0ibWF0cml4KDUuMzU2NTk2Mzc4MjcwMDU5LDAsMCw1LjM1NjU5NjM3ODI3MDA1OSwyMTQuOTI4NjgwNzA4MzgyMDcsLTMwLjI4MjUxNjAwMzc3NjMwNSkiIGZpbGw9IiNmZmYiPjxwYXRoIGQ9Ik0wLjIgMjAgbDAgLTIgYzAuMjQgMC4wMiAwLjUyIDAuMDIgMC43NiAwLjAyIGMwLjcgMCAxLjI2IC0wLjI2IDEuMjYgLTEuMzQgbDAgLTEwLjY4IGwyLjIgMCBsMCAxMC41MiBjMCAyLjggLTEuNSAzLjUyIC0zLjE2IDMuNTIgYy0wLjQgMCAtMC43IDAgLTEuMDYgLTAuMDQgeiBNMTAuOCA2IGwyLjI0IDE0IGwtMi4yMiAwIGwtMC4zOCAtMi41NCBsLTIuNyAwIGwtMC4zOCAyLjU0IGwtMi4wMiAwIGwyLjI0IC0xNCBsMy4yMiAwIHogTTkuMDYgOC40OCBsLTEuMDQgNy4wOCBsMi4xMiAwIGwtMS4wNCAtNy4wOCBsLTAuMDQgMCB6IE0xOC4zNiAxNC43ODAwMDAwMDAwMDAwMDEgbDIuMDggMCBsMCAxLjg2IGMwIDIuMjQgLTEuMTIgMy41MiAtMy4yOCAzLjUyIHMtMy4yOCAtMS4yOCAtMy4yOCAtMy41MiBsMCAtNy4yOCBjMCAtMi4yNCAxLjEyIC0zLjUyIDMuMjggLTMuNTIgczMuMjggMS4yOCAzLjI4IDMuNTIgbDAgMS4zNiBsLTIuMDggMCBsMCAtMS41IGMwIC0xIC0wLjQ0IC0xLjM4IC0xLjE0IC0xLjM4IHMtMS4xNCAwLjM4IC0xLjE0IDEuMzggbDAgNy41NiBjMCAxIDAuNDQgMS4zNiAxLjE0IDEuMzYgczEuMTQgLTAuMzYgMS4xNCAtMS4zNiBsMCAtMiB6IE0yMy44IDkuMjIgbDAgNy41NiBjMCAxIDAuNDQgMS4zOCAxLjE0IDEuMzggczEuMTQgLTAuMzggMS4xNCAtMS4zOCBsMCAtNy41NiBjMCAtMSAtMC40NCAtMS4zOCAtMS4xNCAtMS4zOCBzLTEuMTQgMC4zOCAtMS4xNCAxLjM4IHogTTIxLjYgMTYuNjQgbDAgLTcuMjggYzAgLTIuMjQgMS4xOCAtMy41MiAzLjM0IC0zLjUyIHMzLjM0IDEuMjggMy4zNCAzLjUyIGwwIDcuMjggYzAgMi4yNCAtMS4xOCAzLjUyIC0zLjM0IDMuNTIgcy0zLjM0IC0xLjI4IC0zLjM0IC0zLjUyIHogTTMzLjAxOTk5OTk5OTk5OTk5NiA2IGMyLjI4IDAgMy4yNiAxLjA2IDMuMjYgMy4yMiBsMCAwLjUgYzAgMS40NCAtMC40NCAyLjM0IC0xLjQyIDIuOCBsMCAwLjA0IGMxLjE4IDAuNDYgMS42NCAxLjUgMS42NCAyLjk4IGwwIDEuMTQgYzAgMi4xNiAtMS4xNCAzLjMyIC0zLjM0IDMuMzIgbC0zLjQ2IDAgbDAgLTE0IGwzLjMyIDAgeiBNMzIuODc5OTk5OTk5OTk5OTk1IDEzLjcgbC0wLjk4IDAgbDAgNC4zIGwxLjI2IDAgYzAuNzQgMCAxLjE0IC0wLjM0IDEuMTQgLTEuMzggbDAgLTEuMjIgYzAgLTEuMyAtMC40MiAtMS43IC0xLjQyIC0xLjcgeiBNMzIuOTYgOCBsLTEuMDYgMCBsMCAzLjcgbDAuODYgMCBjMC44MiAwIDEuMzIgLTAuMzYgMS4zMiAtMS40OCBsMCAtMC43OCBjMCAtMSAtMC4zNCAtMS40NCAtMS4xMiAtMS40NCB6Ii8+PC9nPjxnIGlkPSJTdmdqc0czMDMwIiBmZWF0dXJlS2V5PSJ4Z2NlbnUtMSIgdHJhbnNmb3JtPSJtYXRyaXgoNi4yMDAzOTcwODE4MzQ4NjMsMCwwLDYuMjAwMzk3MDgxODM0ODYzLDIxMS4xNjM2OTA0NTM1NjM2LDUxLjc4OTY4ODk2NTcxODA2NCkiIGZpbGw9IiNmZmYiPjxwYXRoIGQ9Ik01LjUgMjAgbC0yLjcgLTEwLjE0IGwtMC4wNCAwIGwwIDEwLjE0IGwtMS45OCAwIGwwIC0xNCBsMi43NiAwIGwyLjIyIDguMzggbDAuMDQgMCBsMCAtOC4zOCBsMS45NiAwIGwwIDE0IGwtMi4yNiAwIHogTTExLjM2MDAwMDAwMDAwMDAwMSA5LjIyIGwwIDcuNTYgYzAgMSAwLjQ0IDEuMzggMS4xNCAxLjM4IHMxLjE0IC0wLjM4IDEuMTQgLTEuMzggbDAgLTcuNTYgYzAgLTEgLTAuNDQgLTEuMzggLTEuMTQgLTEuMzggcy0xLjE0IDAuMzggLTEuMTQgMS4zOCB6IE05LjE2IDE2LjY0IGwwIC03LjI4IGMwIC0yLjI0IDEuMTggLTMuNTIgMy4zNCAtMy41MiBzMy4zNCAxLjI4IDMuMzQgMy41MiBsMCA3LjI4IGMwIDIuMjQgLTEuMTggMy41MiAtMy4zNCAzLjUyIHMtMy4zNCAtMS4yOCAtMy4zNCAtMy41MiB6IE0xOS4yOCA5LjIyIGwwIDcuNTYgYzAgMSAwLjQ0IDEuMzggMS4xNCAxLjM4IHMxLjE0IC0wLjM4IDEuMTQgLTEuMzggbDAgLTcuNTYgYzAgLTEgLTAuNDQgLTEuMzggLTEuMTQgLTEuMzggcy0xLjE0IDAuMzggLTEuMTQgMS4zOCB6IE0xNy4wODAwMDAwMDAwMDAwMDIgMTYuNjQgbDAgLTcuMjggYzAgLTIuMjQgMS4xOCAtMy41MiAzLjM0IC0zLjUyIHMzLjM0IDEuMjggMy4zNCAzLjUyIGwwIDcuMjggYzAgMi4yNCAtMS4xOCAzLjUyIC0zLjM0IDMuNTIgcy0zLjM0IC0xLjI4IC0zLjM0IC0zLjUyIHogTTI5Ljg4MDAwMDAwMDAwMDAwMyAyMCBsLTIuNyAtMTAuMTQgbC0wLjA0IDAgbDAgMTAuMTQgbC0xLjk4IDAgbDAgLTE0IGwyLjc2IDAgbDIuMjIgOC4zOCBsMC4wNCAwIGwwIC04LjM4IGwxLjk2IDAgbDAgMTQgbC0yLjI2IDAgeiIvPjwvZz4KCQkJPC9nPgoJCTwvc3ZnPg==" alt=""></a>
   </div>
   <div class="progress"><i id="bar" style="width:0%"></i></div>
-  <div class="stepline"><span id="stepname">Start</span><span id="stepnum"></span></div>
-
-  <!-- 0 START -->
-  <section class="screen on" data-step="0">
-    <div class="stack">
-      <div>
-        <h1 id="t-title"></h1>
-        <p class="lead" style="margin-top:14px" id="t-lead"></p>
-      </div>
-      <div>
-        <p class="eyebrow" style="margin-bottom:10px" id="t-roleq"></p>
-        <div class="choices" id="roleChoices">
-          <button class="choice" data-role="partei"><b id="t-r1"></b><span id="t-r1s"></span></button>
-          <button class="choice" data-role="beob"><b id="t-r2"></b><span id="t-r2s"></span></button>
-        </div>
-      </div>
-      <p class="muted" style="font-size:14px" id="t-note"></p>
-      <div class="nav"><span></span><button class="btn primary" id="startBtn" disabled></button></div>
-    </div>
-  </section>
-
-  <!-- 1 ANFANG -->
-  <section class="screen" data-step="1">
-    <div class="stack">
-      <div>
-        <p class="eyebrow" id="t-s1e"></p>
-        <h2 style="margin-top:6px" id="t-s1h"></h2>
-        <p class="lead" style="margin-top:10px" id="t-s1l"></p>
-      </div>
-      <div id="nameBox" class="names" hidden><p class="eyebrow" style="margin-bottom:8px" id="t-names"></p><div class="namegrid"><label><span class="dot-a"></span><input id="nameA"></label><label><span class="dot-b"></span><input id="nameB"></label></div><p class="muted" style="font-size:13px" id="t-namesnote"></p></div>
-      <div class="choices row" id="startChoices"></div>
-      <div class="nav"><button class="btn ghost" data-back></button><button class="btn primary" data-next disabled></button></div>
-    </div>
-  </section>
-
-  <!-- 2,3,4 DIMENSIONEN -->
-  <section class="screen" data-step="2"><div class="stack"><div><p class="eyebrow" id="t-d1e"></p><h2 style="margin-top:6px" id="t-d1h"></h2><p class="lead" style="margin-top:10px" id="t-d1l"></p></div><div class="stack" id="dim-sache"></div><div class="nav"><button class="btn ghost" data-back></button><button class="btn primary" data-next></button></div></div></section>
-  <section class="screen" data-step="3"><div class="stack"><div><p class="eyebrow" id="t-d2e"></p><h2 style="margin-top:6px" id="t-d2h"></h2></div><div class="stack" id="dim-sozial"></div><div class="nav"><button class="btn ghost" data-back></button><button class="btn primary" data-next></button></div></div></section>
-  <section class="screen" data-step="4"><div class="stack"><div><p class="eyebrow" id="t-d3e"></p><h2 style="margin-top:6px" id="t-d3h"></h2></div><div class="stack" id="dim-zeit"></div><div class="nav"><button class="btn ghost" data-back></button><button class="btn primary" data-next></button></div></div></section>
-
-  <!-- 5 ERGRIFFENHEIT -->
-  <section class="screen" data-step="5">
-    <div class="stack">
-      <div>
-        <p class="eyebrow" id="ergEyebrow"></p>
-        <h2 style="margin-top:6px" id="ergTitle"></h2>
-      </div>
-      <div class="stack" id="erg"></div>
-      <div class="nav"><button class="btn ghost" data-back></button><button class="btn primary" id="resultBtn" disabled></button></div>
-    </div>
-  </section>
-
-  <!-- 6 ERGEBNIS -->
-  <section class="screen" data-step="6">
-    <div class="stack" id="result"></div>
-  </section>
-
-  <p class="foot" id="t-foot"></p>
+  <div class="stepline"><span id="stepname"></span><span id="stepnum"></span></div>
+  <section class="screen" id="screen"></section>
+  <p class="foot" id="foot"></p>
 </div>
 </div>
 
 <div id="printSheet" aria-hidden="true"></div>
+
 <script>
 const L=(()=>{const q=new URLSearchParams(location.search).get('lang');const l=(q||document.documentElement.lang||'de').toLowerCase();return l.startsWith('en')?'en':'de'})();
 document.documentElement.lang=L;
+const LOGO_PRINT="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIzMTQ2LjE4Mjk5OTQ1ODU4MTQiCiAgICAgICAgaGVpZ2h0PSIxNDM5LjkwMjU0NDY2NzAyNzUiIHZpZXdCb3g9IjAgMCAzMTQ2LjE4Mjk5OTQ1ODU4MTQgMTQzOS45MDI1NDQ2NjcwMjc1Ij4KCgkJCTxnIHRyYW5zZm9ybT0ic2NhbGUoNy4zMDkxNDk5NzI5MjkwNzQpIHRyYW5zbGF0ZSgxMCwgMTApIj4KCQkJCTxkZWZzIGlkPSJTdmdqc0RlZnMzMDI2Ij48L2RlZnM+PGcgaWQ9IlN2Z2pzRzMwMjciIGZlYXR1cmVLZXk9InN5bWJvbEdyb3VwQ29udGFpbmVyIiB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLDAsMCkiIGZpbGw9IiM0NmM1NjgiPjxyZWN0IHdpZHRoPSIxOTYiIGhlaWdodD0iMTc3IiByeD0iOCI+PC9yZWN0PjwvZz48ZyBpZD0iU3ZnanNHMzAyOCIgZmVhdHVyZUtleT0iRE15blV4LTAiIHRyYW5zZm9ybT0ibWF0cml4KDEuNjg5MjY1ODYxNDIxNTM2NiwwLDAsMS42ODkyNjU4NjE0MjE1MzY2LDE2LjY5NDIxNTQyMzMzODgxLDcuNDIwNDcyNzI0ODU5NDc3KSIgZmlsbD0iI2ZmZmZmZiI+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJNMjguMDM2LDkxLjUxMmMtMC4zOCwwLTAuNzY0LTAuMTA0LTEuMDk2LTAuMzI0Yy0wLjcwOC0wLjQ2Ny0xLjA0OC0xLjMzMi0wLjg0NC0yLjE1NWwzLjU1Mi0xNC4zNTNIMTUuODcyICBjLTAuOTQ0LDAtMS43NjQtMC42NTYtMS45NTYtMS41ODRMMiwxNi4zNjhjLTAuMTE2LTAuNTU2LDAuMDA0LTEuMTMyLDAuMzQtMS41ODhjMC4zMzItMC40NTYsMC44NC0wLjc1MiwxLjQwNC0wLjgxM0w5MS44MjgsNC41ICBjMC42MDctMC4wNzIsMS4yMiwwLjE1NiwxLjY0OCwwLjU5MmMwLjQyOCwwLjQzNiwwLjYzMSwxLjA1NiwwLjU0NywxLjY2bC03LjgzNiw1OC4xOTFjLTAuMTM2LDAuOTkyLTAuOTc5LDEuNzM2LTEuOTgzLDEuNzM2ICBINjEuMjE2TDI5LjI1Niw5MS4xQzI4Ljg5Miw5MS4zNzYsMjguNDY0LDkxLjUxMiwyOC4wMzYsOTEuNTEyTDI4LjAzNiw5MS41MTJ6Ij48L3BhdGg+PC9nPjxnIGlkPSJTdmdqc0czMDI5IiBmZWF0dXJlS2V5PSJ4Z2NlbnUtMCIgdHJhbnNmb3JtPSJtYXRyaXgoNS4zNTY1OTYzNzgyNzAwNTksMCwwLDUuMzU2NTk2Mzc4MjcwMDU5LDIxNC45Mjg2ODA3MDgzODIwNywtMzAuMjgyNTE2MDAzNzc2MzA1KSIgZmlsbD0iIzExMTExMSI+PHBhdGggZD0iTTAuMiAyMCBsMCAtMiBjMC4yNCAwLjAyIDAuNTIgMC4wMiAwLjc2IDAuMDIgYzAuNyAwIDEuMjYgLTAuMjYgMS4yNiAtMS4zNCBsMCAtMTAuNjggbDIuMiAwIGwwIDEwLjUyIGMwIDIuOCAtMS41IDMuNTIgLTMuMTYgMy41MiBjLTAuNCAwIC0wLjcgMCAtMS4wNiAtMC4wNCB6IE0xMC44IDYgbDIuMjQgMTQgbC0yLjIyIDAgbC0wLjM4IC0yLjU0IGwtMi43IDAgbC0wLjM4IDIuNTQgbC0yLjAyIDAgbDIuMjQgLTE0IGwzLjIyIDAgeiBNOS4wNiA4LjQ4IGwtMS4wNCA3LjA4IGwyLjEyIDAgbC0xLjA0IC03LjA4IGwtMC4wNCAwIHogTTE4LjM2IDE0Ljc4MDAwMDAwMDAwMDAwMSBsMi4wOCAwIGwwIDEuODYgYzAgMi4yNCAtMS4xMiAzLjUyIC0zLjI4IDMuNTIgcy0zLjI4IC0xLjI4IC0zLjI4IC0zLjUyIGwwIC03LjI4IGMwIC0yLjI0IDEuMTIgLTMuNTIgMy4yOCAtMy41MiBzMy4yOCAxLjI4IDMuMjggMy41MiBsMCAxLjM2IGwtMi4wOCAwIGwwIC0xLjUgYzAgLTEgLTAuNDQgLTEuMzggLTEuMTQgLTEuMzggcy0xLjE0IDAuMzggLTEuMTQgMS4zOCBsMCA3LjU2IGMwIDEgMC40NCAxLjM2IDEuMTQgMS4zNiBzMS4xNCAtMC4zNiAxLjE0IC0xLjM2IGwwIC0yIHogTTIzLjggOS4yMiBsMCA3LjU2IGMwIDEgMC40NCAxLjM4IDEuMTQgMS4zOCBzMS4xNCAtMC4zOCAxLjE0IC0xLjM4IGwwIC03LjU2IGMwIC0xIC0wLjQ0IC0xLjM4IC0xLjE0IC0xLjM4IHMtMS4xNCAwLjM4IC0xLjE0IDEuMzggeiBNMjEuNiAxNi42NCBsMCAtNy4yOCBjMCAtMi4yNCAxLjE4IC0zLjUyIDMuMzQgLTMuNTIgczMuMzQgMS4yOCAzLjM0IDMuNTIgbDAgNy4yOCBjMCAyLjI0IC0xLjE4IDMuNTIgLTMuMzQgMy41MiBzLTMuMzQgLTEuMjggLTMuMzQgLTMuNTIgeiBNMzMuMDE5OTk5OTk5OTk5OTk2IDYgYzIuMjggMCAzLjI2IDEuMDYgMy4yNiAzLjIyIGwwIDAuNSBjMCAxLjQ0IC0wLjQ0IDIuMzQgLTEuNDIgMi44IGwwIDAuMDQgYzEuMTggMC40NiAxLjY0IDEuNSAxLjY0IDIuOTggbDAgMS4xNCBjMCAyLjE2IC0xLjE0IDMuMzIgLTMuMzQgMy4zMiBsLTMuNDYgMCBsMCAtMTQgbDMuMzIgMCB6IE0zMi44Nzk5OTk5OTk5OTk5OTUgMTMuNyBsLTAuOTggMCBsMCA0LjMgbDEuMjYgMCBjMC43NCAwIDEuMTQgLTAuMzQgMS4xNCAtMS4zOCBsMCAtMS4yMiBjMCAtMS4zIC0wLjQyIC0xLjcgLTEuNDIgLTEuNyB6IE0zMi45NiA4IGwtMS4wNiAwIGwwIDMuNyBsMC44NiAwIGMwLjgyIDAgMS4zMiAtMC4zNiAxLjMyIC0xLjQ4IGwwIC0wLjc4IGMwIC0xIC0wLjM0IC0xLjQ0IC0xLjEyIC0xLjQ0IHoiPjwvcGF0aD48L2c+PGcgaWQ9IlN2Z2pzRzMwMzAiIGZlYXR1cmVLZXk9InhnY2VudS0xIiB0cmFuc2Zvcm09Im1hdHJpeCg2LjIwMDM5NzA4MTgzNDg2MywwLDAsNi4yMDAzOTcwODE4MzQ4NjMsMjExLjE2MzY5MDQ1MzU2MzYsNTEuNzg5Njg4OTY1NzE4MDY0KSIgZmlsbD0iIzExMTExMSI+PHBhdGggZD0iTTUuNSAyMCBsLTIuNyAtMTAuMTQgbC0wLjA0IDAgbDAgMTAuMTQgbC0xLjk4IDAgbDAgLTE0IGwyLjc2IDAgbDIuMjIgOC4zOCBsMC4wNCAwIGwwIC04LjM4IGwxLjk2IDAgbDAgMTQgbC0yLjI2IDAgeiBNMTEuMzYwMDAwMDAwMDAwMDAxIDkuMjIgbDAgNy41NiBjMCAxIDAuNDQgMS4zOCAxLjE0IDEuMzggczEuMTQgLTAuMzggMS4xNCAtMS4zOCBsMCAtNy41NiBjMCAtMSAtMC40NCAtMS4zOCAtMS4xNCAtMS4zOCBzLTEuMTQgMC4zOCAtMS4xNCAxLjM4IHogTTkuMTYgMTYuNjQgbDAgLTcuMjggYzAgLTIuMjQgMS4xOCAtMy41MiAzLjM0IC0zLjUyIHMzLjM0IDEuMjggMy4zNCAzLjUyIGwwIDcuMjggYzAgMi4yNCAtMS4xOCAzLjUyIC0zLjM0IDMuNTIgcy0zLjM0IC0xLjI4IC0zLjM0IC0zLjUyIHogTTE5LjI4IDkuMjIgbDAgNy41NiBjMCAxIDAuNDQgMS4zOCAxLjE0IDEuMzggczEuMTQgLTAuMzggMS4xNCAtMS4zOCBsMCAtNy41NiBjMCAtMSAtMC40NCAtMS4zOCAtMS4xNCAtMS4zOCBzLTEuMTQgMC4zOCAtMS4xNCAxLjM4IHogTTE3LjA4MDAwMDAwMDAwMDAwMiAxNi42NCBsMCAtNy4yOCBjMCAtMi4yNCAxLjE4IC0zLjUyIDMuMzQgLTMuNTIgczMuMzQgMS4yOCAzLjM0IDMuNTIgbDAgNy4yOCBjMCAyLjI0IC0xLjE4IDMuNTIgLTMuMzQgMy41MiBzLTMuMzQgLTEuMjggLTMuMzQgLTMuNTIgeiBNMjkuODgwMDAwMDAwMDAwMDAzIDIwIGwtMi43IC0xMC4xNCBsLTAuMDQgMCBsMCAxMC4xNCBsLTEuOTggMCBsMCAtMTQgbDIuNzYgMCBsMi4yMiA4LjM4IGwwLjA0IDAgbDAgLTguMzggbDEuOTYgMCBsMCAxNCBsLTIuMjYgMCB6Ij48L3BhdGg+PC9nPgoJCQk8L2c+CgkJPC9zdmc+";
 
+/* =========================================================
+   DATA · alle Texte, DE und EN. Achsen: Wert +2 schüren eingerastet, +1 Tendenz schüren,
+   -1 Tendenz beruhigen, -2 beruhigen eingerastet, 0 kommt nicht vor.
+   ========================================================= */
 const DATA={
 de:{
- axes:[
- {id:'auf',dim:'sache',name:'Aufmerksamkeit',left:'generalisiert',right:'spezifisch',
-  q:{partei:'Worum geht es gerade? Noch um die eine konkrete Sache, oder inzwischen um „immer", „nie" und „grundsätzlich"?',beob:'Streitet diese Seite noch über den konkreten Punkt, oder ist für sie längst alles Thema?'},
-  lp:'Aus der Mücke ist ein Elefant geworden',rp:'Es geht um genau einen Punkt',
-  down:'Verlagere die Aufmerksamkeit vom Generellen zum Spezifischen. Wo genau liegt der Unterschied? Wo seid ihr euch längst einig? Das Trennende eingrenzen, das Gemeinsame benennen.',
-  up:'Wenn immer nur der Einzelfall besprochen wird, kann das Bagatellisierung sein. Den Elefanten hinter der Mücke benennen: Worum geht es hier eigentlich?',
-  sdown:"Spezifisch bleiben: Widerspruch in der Sache und Ablehnung der Person auseinanderhalten. Gefühle einklammern, nicht wegdrücken. Dein Selbstwert hängt nicht am Rechtbekommen.",rdown:"Bei welchem Thema verlierst du das Vertrauen, dass eure Beziehung einen sachlichen Widerspruch übersteht?",
-  sup:"Grundsätzlich werden dürfen: die Grundsatzdebatte führen und keine faulen Kompromisse mehr machen. Freundlich und bestimmt zugleich, hart in der Sache, weich zur Person.",rup:"Kannst du jemandes Kompetenz grundsätzlich infrage stellen, ohne ihn als Menschen abzulehnen?",
-  altDown:"Oder ist der Elefant echt? Wenn jeder Einzelfall nur ein Symptom ist, hilft Eingrenzen nicht. Dann die Grundsatzfrage einmal sauber stellen, statt sie in jedem Detail anzudeuten.",altUp:"Oder ist es wirklich nur der eine Punkt? Dann kläre genau den, mit Termin, statt ihn zum Dauerthema zu machen."},
- {id:'bes',dim:'sache',name:'Beschreibung',left:'einfältig',right:'vielfältig',
-  q:{partei:'Gibt es aus deiner Sicht genau eine richtige Lösung, oder könntest du mehrere Sichtweisen gelten lassen?',beob:'Lässt diese Seite mehrere Sichtweisen auf Problem und Lösung zu, oder gilt für sie nur eine?'},
-  lp:'Es gibt eine richtige Sicht: meine',rp:'Es gibt mehrere brauchbare Sichten',
-  down:'Die Situation ist vielfältig, die Ansichten sind einfältig. Hol weitere Perspektiven ins Spiel: Fachleute, Betroffene, die Sicht aus dem Ganzen statt aus dem eigenen Bereich.',
-  up:'Endloses Abwägen ist auch eine Fixierung. Wenn ein Einigungszwang besteht (Was? Wann? Wer?), braucht es Einfalt: einen Rahmen, eine Frist, eine Entscheidung. Ein Kompromiss darf dabei sachlich unvollkommen sein.',
-  sdown:"Vielfalt zulassen: an dir zweifeln, ohne dich kleinzumachen. Ungewissheit aushalten und etwas ausprobieren, statt auf die perfekte Lösung zu warten.",rdown:"Wann hast du zuletzt jemandem recht gegeben, mit dem du am Anfang des Gesprächs über Kreuz lagst?",
-  sup:"Einfalt vertreten: eine Sache ohne Wenn und Aber vertreten und dich damit angreifbar machen. Nicht zustimmen, nur um Frieden zu haben.",rup:"Weißt du in dieser Sache genug, um sie klar und gewinnend zu vertreten? Oder ersetzt gerade Lautstärke das Argument?",
-  altDown:"Oder gibt es wirklich nur eine Lösung, und du vertrittst sie zu schwach? Dann nicht öffnen, sondern klar, begründet und mit Frist vertreten.",altUp:"Oder braucht die Sache tatsächlich noch Perspektiven? Dann hol sie gezielt und mit Frist, nicht als endloses Abwägen."},
- {id:'bew',dim:'sache',name:'Bewertung',left:'verabsolutiert',right:'unklar',
-  q:{partei:'Wie sicher bist du, dass die andere Seite falsch liegt?',beob:'Argumentiert diese Seite mit richtig und falsch, gut und böse, oder kann sie offen lassen, wer am Ende recht hat?'},
-  lp:'Ich habe recht. Punkt.',rp:'Beide könnten recht haben',
-  down:'Wer der Bewertung widerspricht, widerspricht hier der Person. Bewegung wird erst möglich, wenn die bedrohte Identität anders Halt findet: erst Anerkennung, dann die Bewertung lockern.',
-  up:'Ohne Einigkeit in den Bewertungen schwelt der Konflikt weiter. Irgendwann muss jemand sagen, was gilt. Standpunkte brauchen auch Kraft und Eindeutigkeit.',
-  sdown:"Bewertungen prüfen, nicht gleich aufgeben: merken, wenn du dich verrannt hast, anderen Kompetenz zutrauen, auch mal fünf gerade sein lassen.",rdown:"Welche Überzeugung willst du auf keinen Fall infrage gestellt sehen? Was würde passieren, wenn du es doch tust?",
-  sup:"Überzeugungen haben, die du nicht beim ersten Gegenwind relativierst. Dabei die Meinung bewerten, nie die Person.",rup:"Zweifelst du manchmal zu früh an dir, nur weil jemand dagegenhält?",
-  altDown:"Oder ist die Sache so wichtig, dass sie eine klare Bewertung braucht? Dann bewerte die Meinung, nie die Person, und steh dazu.",altUp:"Oder ist Offenhalten richtig, weil niemand genug weiß? Dann sag das laut und setz den Zeitpunkt, an dem entschieden wird."},
- {id:'kon',dim:'sozial',name:'Kontakt',left:'feindlich',right:'dialogisch',
-  q:{partei:'Erwartest du von der anderen Seite noch irgendetwas Gutes?',beob:'Unterstellt diese Seite der anderen Absicht, oder rechnet sie noch mit guten Motiven?'},
-  lp:'Der andere will mir schaden',rp:'Der andere hat Gründe, die ich verstehen könnte',
-  down:'Der Feind legitimiert die Aggression, die Aggression schafft den Feind. Prüfe die Unterstellungen: Welche Motive könnte die andere Seite haben, die nichts mit dir zu tun haben?',
-  up:'Wer nur Dialog anbietet, kommt oft nicht zum Punkt. Der Konflikt schwelt. Hier darf jemand in den Ring steigen und Klartext sprechen, auch wenn das unfreundlich wirkt.',
-  sdown:"Dialogfähig bleiben: dich im Konflikt selbst beobachten, aufhören, den anderen ändern zu wollen, den eigenen Gefühlen misstrauen und entschlüsseln, welche Not hinter seinem Verhalten steckt.",rdown:"Was soll der andere aufgeben, anders sehen oder anders fühlen? Und wozu bräuchtest du das?",
-  sup:"Gegnerschaft anerkennen: sehen, dass jemand dir schaden will, die Schuldgefühle dabei aushalten und Grenzen markieren, an denen der Spaß aufhört. Feindlich heißt nicht vernichten wollen.",rup:"Kannst du Schuldgefühle aushalten, wenn du nicht nett bist, oder musst du sie sofort wegmachen?",
-  altDown:"Oder stimmt die Gegnerschaft, und du gibst sie nur nicht zu? Wer dir schaden will, braucht kein Dialogangebot, sondern eine Grenze.",altUp:"Oder ist Dialog richtig, aber zu weich? Dann sag auch im Dialog, was dich stört, statt nur zu verstehen."},
- {id:'rea',dim:'sozial',name:'Reaktion',left:'verneinend',right:'wählend',
-  q:{partei:'Wenn die andere Seite morgen etwas vorschlägt: Weißt du jetzt schon, dass du Nein sagst?',beob:'Sagt diese Seite reflexhaft Nein zu allem, oder wählt sie noch, worauf sie wie reagiert?'},
-  lp:'Nein. Egal, was kommt.',rp:'Kommt drauf an, was kommt',
-  down:'Der Sog zum Nein hat übernommen. Es geht nicht darum, Ja statt Nein zu sagen, sondern wieder wählen zu können: Was in der Aussage des anderen lässt sich bejahen? Und: langsamer antworten. Eine Nacht drüber schlafen ist keine Schwäche, sondern Spielraum.',
-  up:'Manche Ordnung verflüssigt sich nur, wenn jemand entschieden widerspricht. Ein Nein, das Nein bleibt, auch wenn es zum Ja gedrängt wird, bricht Konfliktsymbiosen auf.',
-  sdown:"Enttäuschbar sein: einlenken, auch wenn der andere das erst mal ausnutzt. Nachgeben können, nach einem Nein wieder Ja sagen, Widerspruch als Form von Kontakt erleben.",rdown:"Wie sehr machst du dein Einlenken davon abhängig, dass die andere Seite es sofort honoriert?",
-  sup:"Nein sagen ohne Schuldgefühl: dich gut fühlen, auch wenn es dem anderen gerade schlecht geht, und gegenhalten, wenn er Nein sagt. Auch ein Nein ist ein Kontaktangebot.",rup:"Beschäftigt dich gerade das Wohlbefinden der anderen Seite mehr als dein eigenes?",
-  altDown:"Oder ist dein Nein nicht das Problem, sondern zu leise? Wenn es eine Ordnung bricht, die gebrochen gehört, bleib einmal deutlich dabei, statt es unter Druck zurückzunehmen.",altUp:"Oder wählst du richtig, nur zu leise? Dann sprich das Ja aus, das du gehört hast. Und das Nein auch."},
- {id:'akt',dim:'sozial',name:'Aktion',left:'sendend',right:'erkundend',
-  q:{partei:'Wer hat in den letzten Gesprächen mehr geredet als gefragt?',beob:'Redet diese Seite nur, oder erkundet sie noch, was die andere meint?'},
-  lp:'Zwei Lautsprecher, kein Mikrofon',rp:'Was könnte der andere gemeint haben?',
-  down:'Lautstärke erhöhen bringt nichts, wenn kein Mikrofon im Raum ist. Eigene Inhalte zurückstellen und auf das Bezug nehmen, was gesagt wurde. Erst verstehen, dann senden.',
-  up:'Ständiges Erkunden kann dazu dienen, den Konflikt verborgen zu halten. Manchmal braucht es eine laute, zugespitzte, unbeeindruckbare Botschaft, damit überhaupt ein Konflikt entsteht, der sich bearbeiten lässt.',
-  sdown:"Erkunden: die Lage mit den Augen des anderen sehen und darauf vertrauen, dass er sein Interesse an dir behält. Dein Selbstwert bleibt stabil, auch wenn du nicht landest. Im Gespräch: EAT, also Einfühlen, Akzeptieren, Transformieren.",rdown:"Wie sehr brauchst du es, dass die andere Seite einsieht, dass du recht hast?",
-  sup:"Senden: dich zeigen, dich wichtig nehmen und behaupten, auch wenn du Ablehnung spürst. Höflichkeit kurz parken und mit Herzblut sagen, was dir wichtig ist.",rup:"Wie leicht bist du aus dem Feld zu schlagen, wenn dir jemand das Rederecht streitig macht?",
-  altDown:"Oder wurde die Botschaft nie wirklich gesetzt, nur wiederholt? Dann einmal zugespitzt und unmissverständlich senden, statt lauter.",altUp:"Oder ist Fragen richtig, aber ohne Konsequenz? Dann erkunde einmal gründlich und sag danach, was du daraus schließt."},
- {id:'erk',dim:'zeit',name:'Erklärung',left:'linear',right:'zirkulär',
-  q:{partei:'Wenn du erklärst, wie es dazu kam: Gibt es da einen Täter?',beob:'Sucht diese Seite den Schuldigen, oder sieht sie ihren eigenen Beitrag?'},
-  lp:'Einer ist schuld',rp:'Alle haben beigetragen',
-  down:'Wer einen Täter hat, wird handlungsfähig, und der Beschuldigte fühlt sich zum Zurückschlagen berechtigt. Henne oder Ei? Beides. Die bessere Frage: Was trage ich selbst gerade zum Konflikt bei?',
-  up:'Zirkulär denken kann auch verschleiern. Wo Machtverhältnisse zementiert sind, braucht es eine klare Benennung von Verantwortung, sonst gibt es keinen Konflikt, den man bearbeiten könnte.',
-  sdown:"Zirkulär denken: Schuld zugeben und Vorwürfe anerkennen, ohne dich zu verurteilen. Du musst nicht fehlerlos sein. Verantwortung heißt Urheber sein, nicht Schuldiger.",rdown:"Kannst du einem Vorwurf mit Neugier begegnen statt mit Verteidigung?",
-  sup:"Linear benennen: falsches Verhalten klar ansprechen, Vorwürfe eindeutig zurückweisen und auch Schweigen, Rückzug und Nettigkeit als verdeckte Aggression beim Namen nennen. Das braucht ein gutes Verhältnis zur eigenen Aggression.",rup:"Kannst du klar sagen, welches Unrecht du beobachtet hast, auch wenn du selbst Fehler gemacht hast?",
-  altDown:"Oder gibt es hier eine Verantwortung, die benannt gehört? Dann benenne sie einmal klar, ohne Anklagerunde.",altUp:"Oder stimmt die zirkuläre Sicht, nur ohne Folgen? Dann benenne deinen eigenen Beitrag konkret, nicht als Formel."},
- {id:'ziel',dim:'zeit',name:'Ziel',left:'durchsetzend',right:'unentschieden',
-  q:{partei:'Willst du gewinnen, oder darf offen bleiben, wer sich womit durchsetzt?',beob:'Will diese Seite gewinnen, oder kann sie offen lassen, wer sich womit durchsetzt?'},
-  lp:'Ich will gewinnen',rp:'Mal sehen, wer sich womit durchsetzt',
-  down:'Solange es um Sieg geht, spielt keine Rolle mehr, wer recht hat. Es gewinnt, wer länger durchhält. Unentschieden aushalten heißt: sich lösen von den Interessen, die man gerade für die eigenen hält.',
-  up:'Veränderung braucht eine Kraft, die in den Ring steigt. Wenn niemand gewinnen will, bleibt alles, wie es ist. Manchmal ist es richtig, dass es klare Verlierer gibt.',
-  sdown:"Verlieren dürfen: ein Selbstwert, der nicht am Sieg hängt und Niederlage nicht an Scham koppelt. Offenlassen, wer vorne liegt, und neugierig sein, ob der Konflikt dich eines Besseren belehrt.",rdown:"Bleibt dein Wohlbefinden intakt, wenn du in dieser Sache verlierst? Oder schämst du dich dann?",
-  sup:"Durchsetzen: Konkurrenz genießen, für Werte kämpfen, Zivilcourage zeigen und die Schmerzen eines Kampfes tragen. Ohne Mitleid, aber ohne den anderen dafür zum Feind zu machen.",rup:"Bremst du dich aus Mitleid mit der anderen Seite, obwohl die Sache es verlangt?",
-  altDown:"Oder ist es richtig, dass du gewinnen willst, weil sonst etwas verloren geht? Dann setz dich durch, ohne den anderen zum Feind zu machen.",altUp:"Oder ist Unentschieden richtig, weil beide Wege taugen? Dann vereinbart, wie und wann entschieden wird."},
- {id:'macht',dim:'zeit',name:'Macht',left:'drohend',right:'verhandelnd',
-  q:{partei:'Steht eine Drohung im Raum? Auch eine unausgesprochene?',beob:'Droht diese Seite mit Konsequenzen, oder lotet sie aus, was sie geben und bekommen kann?'},
-  lp:'Wenn du nicht, dann ...',rp:'Gibst du mir, gebe ich dir',
-  down:'Der Bedroher hat keine Macht, außer man gibt sie ihm. Drohungen sind oft ein Ausweg aus Ohnmacht und ernten Anpassung statt Einverständnis. Zurück ins Verhandeln: Was will jede Seite wirklich, und was wäre sie bereit zu geben? Und was macht jede Seite, wenn ihr euch nicht einigt?',
-  up:'Wer nicht ernst genommen wird, braucht nicht zu reden. Eine glaubwürdige Konsequenz, die man wahrmachen kann und will, ist manchmal die Voraussetzung dafür, dass überhaupt verhandelt wird.',
-  sdown:"Verhandeln: Risiko aushalten, statt auf Kontrolle zu setzen. Vorher durchdenken, was es kostet, Drohungen wahrzumachen. Auch Wichtiges loslassen und dem anderen gesichtswahrende Auswege lassen.",rdown:"Welche Gefühle hängen bei dir am Nachgeben? Und verhandelst du manchmal nur, weil du dich nicht zu kämpfen traust?",
-  sup:"Glaubwürdig drohen: wissen, was dem anderen wichtig ist, eigene Verluste in Kauf nehmen und nicht zeigen, womit man dich beeindrucken kann. Oft klüger: warnen („Das passiert, wenn …“) statt drohen („Das tue ich, wenn …“).",rup:"Traust du dir zu, den Verlust zu tragen, den eine wahrgemachte Konsequenz auch für dich hätte?",
-  altDown:"Oder ist die Drohung berechtigt, nur nicht glaubwürdig? Dann warne statt zu drohen: eine Konsequenz, die du tragen kannst und willst, einmal ausgesprochen.",altUp:"Oder ist Verhandeln richtig, nur ohne Alternative? Dann kenn deine, bevor du weiterverhandelst."}
- ],
- mode:n=>({Kontakt:'Kontaktmodus',Ziel:'Zielmodus',Macht:'Machtmodus'})[n]||n+'smodus',
- dims:{sache:'Sachdimension',sozial:'Sozialdimension',zeit:'Zeitdimension'},
- erg:{
-  partei:[
-   {q:'Wenn die andere Seite am Ende recht hätte: Was würde das über dich sagen?',o:['Nichts. Dann hatte ich eben unrecht.','Wäre unangenehm.','Dann wäre ich als Person infrage gestellt.']},
-   {q:'Könntest du sagen: „Gut, dann nicht. Dann anders, woanders, ein anderes Mal"?',o:['Ja, es gibt andere Wege zu dem, was ich brauche.','Schwer.','Nein. So muss es sein.']},
-   {q:'Wie viel Platz nimmt der Konflikt in deinem Kopf ein, wenn du gar nicht im Gespräch bist?',o:['Kaum.','Regelmäßig.','Er läuft ständig mit.']},
-   {q:'Gibt es an dem Konflikt ein Gefühl, das du lieber nicht hättest? Scham, Schuld, Angst, Kränkung?',o:['Nein.','Ja, und ich kann es benennen.','Ja, und ich will nicht hinschauen.']}
-  ],
-  beob:[
-   {q:'Haben sich Lager gebildet?',o:['Nein.','Ansatzweise.','Ja, mit Verbündeten auf beiden Seiten.']},
-   {q:'Wird noch miteinander gesprochen oder nur noch übereinander?',o:['Miteinander.','Beides.','Nur noch übereinander.']},
-   {q:'Halten sich die Umstehenden raus? Führung, Kollegen, du selbst?',o:['Nein, es wird eingegriffen.','Zögerlich.','Alle warten ab.']},
-   {q:'Wie lange läuft das schon?',o:['Tage.','Wochen.','Monate oder länger.']}
-  ]
- },
- startsPartei:[['ich','Ich'],['andere','Die andere Seite'],['beide','Beide'],['unklar','Weiß ich nicht mehr']],
- sideA:'Seite A',sideB:'Seite B',both:'Beide',unclear:'Unklar',
- steps:['Start','Vorab','Sache','Sozial','Zeit','Kernfrage','Ergebnis'],
- ui:{
-  title:'Bug oder<br>Feature?',docTitle:'Bug oder Feature?',
-  lead:'Ein Konflikt ist nicht das Problem. Das Problem ist, wenn er festhängt. Neun Regler, ein Profil, und am Ende die Frage, ob dieser Konflikt gerade schüren, beruhigen oder in Ruhe gelassen werden will.',
-  roleq:'Von wo schaust du drauf?',r1:'Ich bin Partei',r1s:'Es ist mein Konflikt. Ich stecke drin.',r2:'Ich schaue von außen',r2s:'Zwei Menschen oder Gruppen in meinem Umfeld, ich bin nicht selbst Partei. Führungskraft, HR, Kollegin.',
-  note:'Dauert etwa sechs Minuten. Nichts wird gespeichert oder gesendet. Grundlage ist die Konflikttheorie von Klaus Eidenschink.',
-  go:'Los',back:'Zurück',next:'Weiter',result:'Ergebnis',
-  crumb:'Konflikt-Check',crumbP:'Konflikt-Check · Ich bin Partei',crumbB:'Konflikt-Check · Blick von außen',
-  s1e:'Eine Frage vorab',s1h:'Wer hat angefangen?',s1l:'Nicht lange überlegen. Erste Antwort.',
-  names:'Die beiden Seiten',nameA:'Seite A, z. B. Vertrieb oder Frau K.',nameB:'Seite B',namesnote:'Optional. Namen bleiben im Browser.',
-  d1e:'Sachdimension',d1h:'Worüber wird gestritten?',d1l:'Schieb den Regler dahin, wo der Konflikt gerade steht. Nicht, wo er hin soll.',
-  d2e:'Sozialdimension',d2h:'Wie wird miteinander umgegangen?',d3e:'Zeitdimension',d3h:'Vergangenheit, Gegenwart, Zukunft',
-  fixq:'Ist das immer so, oder je nach Tag?',fix0:'Je nach Tag',fix2:'Immer so',
-  other:'Wo würde die andere Seite den Regler setzen?',
-  ergP:'Hast du den Konflikt, oder hat er dich?',ergPe:'Die Kernfrage',ergB:'Hat der Konflikt schon das System?',ergBe:'Die Kernfrage von außen',
-  foot:'Prototyp. Theoretische Grundlage: Klaus Eidenschink, „Die Kunst des Konflikts. Konflikte schüren und beruhigen lernen" (Carl-Auer). Die neun Leitunterscheidungen und die 18 Regulationskompetenzen sind seine, die Fragen, Bewertungslogik und Formulierungen stammen von Jacob Noon. Keine Diagnose, kein Ersatz für ein Gespräch.',
-  yourResult:'Dein Ergebnis',hasYou:'Der Konflikt hat dich',hasSystem:'Der Konflikt hat das System',
-  profile:'Das Bewegungsprofil',profileNote:'Links der Widerspruchspol, rechts der offene Pol. Kein Pol ist falsch. Eingerastet ist das Problem.',
-  locked:'eingerastet',tend:'Tendenz',seeDiff:'Ihr seht das anders',lopsided:'Schieflage',
-  legMoving:'beweglich',legTend:'weit außen, aber je nach Tag',legLocked:'eingerastet',legOther:'so würde es die andere Seite sehen',
-  otherView:'Einschätzung der anderen Seite',
-  movesH:'Wo es sich lohnt reinzugehen',
-  movesMany:(n,m)=>`${n} Stellen sind eingerastet. Hier die ${m} härtesten, mehr auf einmal trägt kein Gespräch.`,
-  movesFixed:'Pro eingerasteter Achse: die Gegenbewegung, die Fähigkeit dahinter und die Gegenprobe. Welche Bewegung bringt den Konflikt dahin, wofür er da ist?',
-  movesTend:'Nichts ist eingerastet. Hier die Achsen mit Tendenz, bevor sie es werden.',
-  movesBeob:' Die Bewegung gehört der jeweiligen Seite. Deine Aufgabe von außen: den Rahmen schaffen, in dem sie möglich wird.',
-  calm:'Beruhigen',stir:'Schüren',fromTo:(a,b)=>`von ${a} zu ${b}`,skill:'Fähigkeit dahinter:',
-  noFix:'Keine Achse ist eingerastet oder kippt gerade. Dein Job ist jetzt nicht, den Konflikt zu beenden, sondern ihn zu einer Entscheidung kommen zu lassen. Achte auf die Sachdimension: Wird noch über die Sache gestritten, oder wandert es Richtung Person?',
-  axesN:n=>n===1?'einer Achse':n+' Achsen',
-  asymH:'Asymmetrie',asym:(n,list,A,B)=>`Auf ${n} (${list}) stehen ${A} und ${B} drei oder mehr Schritte auseinander. Das ist kein Zufall, sondern oft das Muster selbst: Die härtere Seite eskaliert, weil sie nicht ernst genommen wird. Die weichere Seite hält den Konflikt am Leben, weil nichts entschieden wird. Beide brauchen Bewegung, in entgegengesetzte Richtungen. Von außen heißt das oft: der weicheren Seite Rückendeckung geben. Das ist keine Parteinahme, sondern die Voraussetzung dafür, dass beide im Ring stehen.`,
-  gapH:'Wie die andere Seite es wohl sieht',gap:(n,list)=>`Auf ${n} (${list}) liegen deine Einschätzung und die vermutete der anderen Seite drei oder mehr Schritte auseinander. Das ist selbst ein Befund: Ihr streitet nicht nur über die Sache, ihr seht auch den Streit verschieden. Wer das laut ausspricht, macht die Kommunikation wieder unvorhersehbar.`,
-  unusedH:'Was gar nicht im Spiel ist',unused:(list)=>`${list}: Diese Achsen stehen in der Mitte. Das kann Beweglichkeit sein. Es kann auch heißen, dass dieser Modus in eurem Konflikt gar nicht vorkommt. Eidenschink: Was nie bedient wird, ist selbst ein Befund. Was wäre, wenn hier jemand den Pol wechseln würde?`,
-  firstH:'Noch mal zur ersten Frage',
-  firstBoth:e=>`Du hast „Beide" gesagt. Das ist die zirkuläre Sicht, gut. Prüf einmal, ob das Überzeugung ist oder Höflichkeit. Dein Regler beim Erklärungsmodus steht ${e<0?'trotzdem beim Täter':e===0?'in der Mitte':'ebenfalls bei „alle haben beigetragen"'}.`,
-  firstUnclear:'Du hast „Unklar" gesagt. Ehrlich. Das ist oft die genaueste Antwort, denn wer den Anfang klärt, hat noch keinen Schuldigen. Und erst die Schuldfrage füttert den Konflikt.',
-  firstOne:x=>`Du hast gesagt: <b>${x}</b>. Eidenschink würde fragen: Henne oder Ei? Beides. Am Konflikt haben alle beigetragen, auch die, die sich rausgehalten haben. Wer einen Täter hat, wird handlungsfähig, und der Beschuldigte fühlt sich zum Zurückschlagen berechtigt. Den Anfang zu klären ist erlaubt. Einen Schuldigen zu suchen füttert den Konflikt.`,
-  forkH:'Die Weiche',
-  forkP:{caught:['Coaching','Der Konflikt hat dich: Identität, Gefühl oder Strategie hängen dran. Der Impuls gegen die Konfliktlogik muss dann aus dir kommen, nicht aus einer Gesprächstechnik. Es geht nicht darum, alles zu können, sondern die eigenen Gefährdungen zu kennen. Verstehen hilft beim Sortieren, Gefühle ändern sich aber nur über Erleben, und allein geht das selten. Genau dafür ist Coaching da.'],locked:['Mediation','Der Konflikt ist eingerastet, du bist aber noch handlungsfähig. Eine dritte Person kann die Kommunikation wieder unvorhersehbar machen, was ihr zu zweit gerade nicht schafft.'],self:['Selbst weitermachen','Nimm dir eine Achse vor, nicht alle. Ein Gespräch, ein Modus, eine Bewegung. Frag dich dabei: Wo könntest du den Pol wechseln, und was riskierst du damit? Wenn es nach zwei Anläufen nicht kippt, melde dich.']},
-  forkB:{caught:['Konfliktmoderation im Team','Der Konflikt hat das System: Lager, Übereinander-Reden, Abwarten. Das ist keine Sache für ein Vier-Augen-Gespräch mehr. Hier braucht es einen moderierten Rahmen mit allen Beteiligten.'],locked:['Mediation zwischen den Beteiligten','Die beiden Seiten sind eingerastet, das Umfeld noch nicht. Jetzt ist der Moment für eine klärende Mediation, bevor das System kippt.'],self:['Ein Führungsgespräch reicht vermutlich','Sprich die eine Achse an, die oben steht. Und prüfe, ob dein Raushalten Teil des Musters ist. Wer sich nicht einmischt, hat den Anfang nicht verhindert.']},
-  cta:'Gespräch mit Jacob Noon anfragen',ctaUrl:'https://jacobnoon.com/coaching/',
-  quote:'Nicht der Pol ist das Problem.<br>Das Einrasten ist es.',quoteSub:'Konflikte brauchen beide Pole. Wer regulieren will, muss beides können: schüren und beruhigen. Eidenschink nennt das eine „Immunisierung gegen Konfliktsog wie gegen Friedenszwang“.',
-  backSliders:'Zurück zu den Reglern',restart:'Neu starten',
-  verdictBug:'Bug',verdictSmoulder:'Schwelbrand',verdictLop:'Schieflage',verdictFeature:'Feature',
-  vBug:(n,r)=>`Der Konflikt ernährt sich selbst. Auf ${n} ist er am Widerspruchspol eingerastet: Nein erzeugt Nein, die Sache spielt kaum noch eine Rolle. Hier lohnt meist Beruhigen, aber nicht pauschal, sondern Achse für Achse.${r?` Gleichzeitig ist er auf ${r} am offenen Pol eingerastet, dort fehlt eher die Härte.`:''}`,
-  vSmoulder:n=>`Der Konflikt wird gemieden, nicht reguliert. Auf ${n} ist er am offenen Pol eingerastet: viel Verständnis, viel Dialog, keine Entscheidung. Was hier meist fehlt, ist die Fähigkeit zu schüren.`,
-  vLop:(n,A,B)=>`Die beiden Seiten stehen nicht im selben Konflikt. Auf ${n} liegen ${A} und ${B} weit auseinander: Eine Seite ist im Ring, die andere nicht. Eidenschink: Nur wenn zwei ebenbürtig im Ring stehen, lassen sich die Sachkonflikte besprechen. Die weiche Seite muss schüren lernen, die harte beruhigen.`,
-  vFeature:'Der Konflikt bewegt sich noch. Er tut, wofür Konflikte da sind: eine Entscheidung zwischen Alternativen herbeiführen und eine neue Ordnung ermöglichen. Nicht lösen. Regulieren. Halte die Bewegung am Leben.',
-  vMixed:'Der Konflikt ist auf beiden Seiten eingerastet: an manchen Stellen zu hart, an anderen zu weich. So kann er weder entscheiden noch beruhigen. Unten steht, wo welche Bewegung fehlt.',
-  axisOf:(i,n)=>`Achse ${i} von ${n}`,qOf:(i,n)=>`Frage ${i} von ${n}`,
-  pickNote:'Wähl bis zu zwei, die du mitnimmst. Nur die landen in deiner Zusammenfassung.',pick:'Nehm ich mit',picked:'Mitgenommen',
-
-  reflect:'Frag dich:',altH:'Gegenprobe:',altQ:'Welche Bewegung bringt den Konflikt dahin, wofür er da ist?',sharper:'Prägnanter',pickDir:d=>'Mitnehmen: '+d,
-  funcH:'Wozu ist der Konflikt da?',
-  func:'Ob Schüren oder Beruhigen hilft, lässt sich erst sagen, wenn du eine Vermutung hast, wozu der Konflikt dient. Konflikte stellen eine Ordnung infrage, die nicht mehr trägt. Wenn deiner sprechen könnte: Was will er verändern? Und wem dient er, dir, der anderen Seite, eurer Beziehung oder dem Umfeld?',
-  funcB:'Ob Schüren oder Beruhigen hilft, lässt sich erst sagen, wenn du eine Vermutung hast, wozu der Konflikt dient. Konflikte stellen eine Ordnung infrage, die nicht mehr trägt. Wenn dieser sprechen könnte: Was will er verändern? Und wem dient er, den Beteiligten, ihrer Zusammenarbeit oder dem Team drumherum?',
-  funcEx:'Mögliche Antworten: eine Grenze neu ziehen, Rollen klären, ein Tabu sichtbar machen, eine Ungerechtigkeit beenden, ein besseres Ergebnis erzwingen, eine Trennung, die längst fällig ist.',
-  funcPh:'Deine Vermutung, optional. Eine Hypothese reicht. Sie darf falsch sein.',
-  costH:'Was kostet es, wenn es so bleibt?',
-  cost:{sache:'Angenommen, ihr einigt euch nicht: Was macht jede Seite dann? Wer diese Frage nicht beantworten will, ahnt meist, dass die Alternative teurer ist als ein Kompromiss.',sozial:'Welchen Preis zahlt ihr gerade still mit, Rückzug, Kündigungen, Oberflächlichkeit, weil euch etwas anderes wichtiger ist? Wenn ihr den Preis bewusst zahlt, ist das kein Konflikt mehr, sondern eine Entscheidung. Dann sprecht sie aus.',zeit:'Was kostet es, wenn die Entscheidung noch einmal vertagt wird? Welche Möglichkeiten ziehen vorbei, während gestritten wird?'},
-  sumFunc:'Wozu der Konflikt da ist (meine Vermutung)',sumCost:'Was es kostet, wenn es so bleibt',
-
-  prepH:'Und jetzt konkret',prepLead:'Ein Gespräch, ein Zug. Was willst du als Nächstes tun?',prepSpeak:'Ich will es ansprechen',prepListen:'Ich will zuhören',
-  feedH:'Ansprechen mit FEED',feedNote:'Vier Sätze in dieser Reihenfolge: das Beobachtbare, die Wirkung, das Gefühl, die Richtung. Das Interesse dazwischen ist die Brücke von Gefühl zu Richtung.',
-  feed:[
-   ['Facts: Was ist faktisch passiert?','Beobachtbar, ohne Deutung. „Am Dienstag hast du die Deadline ohne Rücksprache verschoben.“'],
-   ['Effect: Welche Wirkung hat das?','Sachlich und persönlich. „Dadurch musste ich dem Kunden absagen.“'],
-   ['Emotion: Wie geht es dir damit?','Ein Gefühl, ein Wort. „Das hat mich geärgert.“'],
-   ['Interesse: Was brauchst du eigentlich?','Das Bedürfnis hinter der Forderung. „Ich brauche Verlässlichkeit bei Terminen.“'],
-   ['Direction: Was soll anders werden?','Konkret, einmal, prüfbar. „Sag mir vorher Bescheid, wenn sich ein Termin verschiebt.“']
-  ],
-  dirH:'Richtung',dirAsk:'Als Bitte',dirDemand:'Als Forderung',
-  dirHint:{bug:'Dein Konflikt ist am Widerspruchspol eingerastet. Eine Bitte beruhigt, weil sie der anderen Seite die Wahl lässt. „Kannst du mir vorher Bescheid sagen?“',schwel:'Dein Konflikt wird gemieden. Eine Forderung schürt, weil sie klarmacht, dass hier eine Entscheidung fällig ist. „Ich erwarte, dass du mir vorher Bescheid sagst.“',lop:'Die weichere Seite braucht hier eher die Forderung, die härtere die Bitte. Wähl nach der Seite, von der du sprichst.',feature:'Eine Bitte lässt die Wahl und beruhigt. Eine Forderung nimmt sie und schürt. Wähl, was der Konflikt gerade braucht.',mixed:'Eine Bitte lässt die Wahl und beruhigt. Eine Forderung nimmt sie und schürt. Wähl nach der Achse, an der du ansetzt.'},
-  eatH:'Zuhören mit EAT',eatNote:'Erst einfühlen, dann annehmen, dann erst bewegen. Am Anfang keine Fragen. Wer als Erstes fragt, verhört. Die Frage kommt im dritten Schritt.',
-  eat:[
-   ['Einfühlen','Was ist bei der anderen Seite gerade los? Nicht, was sie sagt, sondern wie es ihr geht.','„Du bist gerade richtig unter Druck.“'],
-   ['Akzeptieren','Stehen lassen. Ohne Bewertung, ohne Aber, ohne gleich zu antworten.','„Okay. Ich sehe das.“'],
-   ['Transformieren','Erst jetzt die Sache. Eine Frage, die aus dem Gehörten kommt.','„Was bräuchtest du, damit das anders läuft?“']
-  ],
-  eatQ:'Was hat die andere Seite gesagt, das du stehen lassen kannst?',eatPh:'Ein Satz von ihr, ohne dein Aber.',
-  sumFeed:'Mein nächster Zug: ansprechen (FEED)',sumEat:'Mein nächster Zug: zuhören (EAT)',sumDir:'Richtung:',
-  counterH:'Was spricht dagegen?',
-  counter:{
-   bug:'Das Urteil sagt: festgefahren. Nenn einen Moment aus den letzten zwei Wochen, in dem sich doch etwas bewegt hat. Ein Satz, ein Zugeständnis, ein Lachen. Findest du keinen, stimmt das Urteil. Findest du einen, liegt dort dein Hebel.',
-   schwel:'Das Urteil sagt: Der Konflikt wird gemieden. Nenn die letzte Entscheidung, die in dieser Sache wirklich gefallen ist. Fällt dir keine ein, stimmt das Urteil. Dann die unbequeme Frage: Wem nützt es, dass nichts entschieden wird? Und eine Gegenprobe: Nicht jeder kalte Konflikt muss heiß werden. Wenn der Zeitpunkt schlecht ist oder die Kraft fehlt, darf man ihn parken. Aber ausgesprochen und mit Termin, nicht stillschweigend.',
-   lop:'Das Urteil sagt: Eine Seite ist im Ring, die andere nicht. Prüf, ob die weichere Seite still ist, weil sie einverstanden ist, oder weil sie sich nicht traut. Und ob du die härtere Seite härter siehst, als sie ist.',
-   feature:'Das Urteil sagt: Der Konflikt bewegt sich. Prüf, ob er sich bewegt oder nur im Kreis dreht. Was ist seit seinem Beginn entschieden worden? Wenn nichts: Schau noch mal auf die Regler. Warst du freundlicher als die Lage?',
-   mixed:'Das Urteil sagt: zu hart und zu weich zugleich. Welchen Teil davon würde die andere Seite unterschreiben, welchen nicht? Wo du Widerspruch erwartest, sitzt meist der blinde Fleck.'
+  title:'Bug oder Feature?',
+  crumb:'Konflikt-Check',
+  steps:{start:'Start',who:'Beteiligte',sache:'Sache',sozial:'Umgang',zeit:'Zeit',func:'Funktion',result:'Ergebnis'},
+  of:'von',
+  back:'Zurück',next:'Weiter',toResult:'Zur Auswertung',restart:'Noch einmal',
+  intro:{
+    h:'Bug oder Feature?',
+    lead:'Nicht jeder Streit ist ein Problem. Manche arbeiten. Elf Fragen, ein paar Antippen, und du weißt, ob dieser hier festhängt, wo, und was du als Nächstes tun kannst.',
+    note:'Nichts verlässt deinen Browser. Keine Anmeldung, keine Speicherung. Am Ende gibt es eine Auswertung zum Kopieren oder als PDF.',
+    roleQ:'Bevor wir loslegen: Wo stehst du in diesem Streit?',
+    roles:[
+      ['Ich stecke drin.','Du bist eine der beiden Seiten.'],
+      ['Ich stehe daneben, aber es betrifft mich.','Partnerin, Kollege, Familie. Du bist nicht Partei, aber auch nicht neutral.'],
+      ['Ich schaue von außen drauf.','Beraterin, Führungskraft, Mediator.']
+    ]
   },
-  counterPh:'Deine Antwort, optional. Bleibt im Browser und landet nur in deiner Zusammenfassung.',
-  exportH:'Deine Zusammenfassung',
-  exportNote:'Urteil, eingerastete Achsen, deine Karten mit Reflexionsfrage, deine Vermutung zur Funktion und deine Antwort auf die Gegenfrage. Zum Mitnehmen ins nächste Gespräch oder ins Erstgespräch mit Jacob. Nichts davon verlässt deinen Browser, bis du es selbst weitergibst.',
-  copy:'Ergebnis kopieren',pdf:'Als PDF speichern',copied:'Kopiert. Du kannst es jetzt einfügen.',copyFail:'Kopieren ging nicht automatisch. Der Text ist markiert, kopier ihn mit Strg+C bzw. Cmd+C.',
-  sumTitle:'Konflikt-Check: Zusammenfassung',sumPersp:'Perspektive',sumVerdict:'Urteil',sumLocked:'Eingerastet',sumTend:'Tendenz',sumNone:'keine Achse',
-  sumMoves:'Meine Bewegungen',sumMovesAll:'Vorgeschlagene Bewegungen (keine ausgewählt)',sumAns:'Meine Antwort:',sumFork:'Empfehlung',
-  sumSource:'Erstellt mit dem Konflikt-Check auf jacobnoon.com/konflikt-check/. Grundlage: Klaus Eidenschink, „Die Kunst des Konflikts". Keine Diagnose.'
- }
+  who:{
+    h:'Wer streitet?',
+    lead:'Gib den beiden Seiten einen Namen. Das bleibt hier auf deinem Gerät.',
+    a:'Seite A',b:'Seite B',phA:'z. B. Max Mustermann',phB:'z. B. Erika Mustermann',
+    selfA:'Du',selfB:'Die andere Seite',
+    topicL:'Worum geht es? In drei bis fünf Worten.',topicPh:'z. B. die Urlaubsplanung',
+    topicHint:'Kommt in die Auswertung, damit die Sätze nach deinem Streit klingen.',
+    nextQ:'Mit wem sprichst du als Nächstes?',
+    nextBoth:'Mit beiden',nextNone:'Weiß ich noch nicht'
+  },
+  bridges:{
+    sache:'Erst die Sache: Worüber wird gestritten?',
+    sozial:'Jetzt der Umgang: Wie wird gestritten?',
+    zeit:'Zum Schluss die Zeit: Woher kommt es, wohin geht es, wer sitzt am längeren Hebel?'
+  },
+  zero:'Kommt bei uns nicht vor',
+  follow:{q:'Gilt das für beide?',both:'Beide',mostly:'Vor allem {n}',other:'Und {n}? Wo steht {n} auf dieser Achse?'},
+  axes:[
+    {name:'Aufmerksamkeit',dim:'sache',dir:'Thema',q:'Streitet ihr noch über eine Sache, oder längst über die Person?',
+     poleA:'um die Person',poleB:'bei der Sache',
+     chips:['Nur noch um die Person. Egal worum es geht, es landet bei „so bist du eben".','Meist wird es grundsätzlich.','Meist bleibt es bei der Sache.','Nur um die Sache. Die Person wird nie zum Thema, auch wenn es passen würde.'],
+     lesP:'Es geht nicht mehr um die Sache, sondern um die Person. Jeder Anlass bestätigt, was man vom anderen längst weiß.',
+     lesM:'Es bleibt sauber bei der Sache, auch da, wo längst die Person das Thema wäre. Das hält den Frieden und verhindert die Klärung.',
+     partyP:'Nenn beim nächsten Mal nur den Anlass, mit Datum und Wortlaut. Kein „immer", kein „du bist".',
+     partyM:'Sag einmal den Satz, der seit Monaten ausgelassen wird: „Es geht nicht um {thema}. Es geht darum, dass ich mich auf dich nicht verlassen kann."',
+     obsP:'Worum ging es beim letzten Mal konkret, ohne das Wort „immer"?',
+     obsM:'Wenn es nicht um {thema} ginge, worum ginge es dann?',
+     whyP:'Beobachtung statt Bewertung. FEED: Facts.',whyM:'Die Person zum Thema machen, hart in der Sache, weich zur Person.',
+     reflP:'Bei welchem Thema verlierst du das Vertrauen, dass eure Beziehung einen sachlichen Widerspruch übersteht?',
+     reflM:'Kannst du jemandes Kompetenz grundsätzlich infrage stellen, ohne ihn als Menschen abzulehnen?'},
+    {name:'Beschreibung',dim:'sache',dir:'Sachlage',q:'Wie fest steht für jede Seite, was passiert ist?',
+     poleA:'Version in Stein',poleB:'alles offen',
+     chips:['Jede Seite hat ihre Version in Stein. Zweifel gibt es nicht.','Die Versionen sind ziemlich fest.','Es gibt Zwischentöne und „vielleicht".','Alles ist offen, niemand legt sich fest, auch wenn es nötig wäre.'],
+     lesP:'Jede Seite hat ihre Geschichte fertig. Es gibt nichts mehr zu erfahren, nur noch zu beweisen.',
+     lesM:'Niemand legt sich fest. Alles bleibt in der Schwebe, und so muss sich auch niemand angreifbar machen.',
+     partyP:'Markier deine Geschichte als Annahme: „Ich gehe von folgender Hypothese aus …" Von der Gewissheit zur Neugier.',
+     partyM:'Leg dich fest: „Aus meiner Sicht, zum jetzigen Zeitpunkt, mit den Informationen, die ich habe, will ich, dass du X tust, weil Y."',
+     obsP:'Was an deiner Version bist du dir am wenigsten sicher?',
+     obsM:'Wenn du dich heute festlegen müsstest, wie lautet dein Satz?',
+     whyP:'Facts als Hypothese. Difficult Conversations.',whyM:'FEED komplett. „Zum jetzigen Zeitpunkt" lässt die Tür offen.',
+     reflP:'Wann hast du zuletzt jemandem recht gegeben, mit dem du am Anfang des Gesprächs über Kreuz lagst?',
+     reflM:'Weißt du in dieser Sache genug, um sie klar und gewinnend zu vertreten? Oder ersetzt gerade Lautstärke das Argument?'},
+    {name:'Bewertung',dim:'sache',dir:'Urteil',q:'Wie wird bewertet, was die andere Seite tut?',
+     poleA:'absolut',poleB:'niemand urteilt',
+     chips:['Urteile sind absolut: „Das macht man nicht." Punkt.','Urteile sind klar und werden selten relativiert.','Urteile werden geprüft, man lässt mal fünf gerade sein.','Niemand traut sich ein Urteil. Alles ist „Ansichtssache", auch das, was nicht geht.'],
+     lesP:'Die Urteile sind endgültig. Wer dagegenhält, ist nicht anderer Meinung, sondern falsch.',
+     lesM:'Niemand traut sich ein Urteil. Dadurch bleibt auch das stehen, was eigentlich nicht geht.',
+     partyP:'Trenn Meinung und Person: „Ich halte das für falsch" statt „Du bist …". Und frag dich laut: „Was müsste passieren, damit ich mein Urteil prüfe?"',
+     partyM:'Fäll ein Urteil und lass es stehen, auch bei Gegenwind: „Das geht so nicht. Punkt." Nicht beim ersten Widerspruch relativieren.',
+     obsP:'Was müsste passieren, damit du dein Urteil prüfst?',
+     obsM:'Was findest du hier eindeutig falsch, und warum sagst du es nicht?',
+     whyP:'Rosenberg: Beobachtung statt Bewertung. Anerkennen ist nicht zustimmen.',whyM:'Ein knappes FEED auf allen vier Seiten der Nachricht.',
+     reflP:'Welche Überzeugung willst du auf keinen Fall infrage gestellt sehen? Was würde passieren, wenn du es doch tust?',
+     reflM:'Zweifelst du manchmal zu früh an dir, nur weil jemand dagegenhält?'},
+    {name:'Kontakt',dim:'sozial',dir:'Umgang',q:'Wie geht ihr miteinander um, als Gegner oder als Gesprächspartner?',
+     poleA:'als Gegner',poleB:'nur Verständnis',
+     chips:['Als Gegner. Schaden ist erlaubt, und Schweigen oder Ignorieren gehört dazu.','Eher als Gegner, mit Misstrauen.','Man redet noch und versucht zu verstehen.','Nur Verständnis, auch da, wo jemand gerade wirklich schadet.'],
+     lesP:'Ihr behandelt euch als Gegner. Dazu gehört auch das Schweigen und Ignorieren, das wie Ruhe aussieht.',
+     lesM:'Ihr versteht einander so gründlich, dass niemand mehr sagen kann: „Das hat mir geschadet."',
+     partyP:'Entschlüssel die Not hinter dem Verhalten, bevor du reagierst, und sprich sie aus, ohne Fragezeichen: „Ich merke, dass dich {thema} nicht loslässt."',
+     partyM:'Markier eine Grenze und nenn das Bedürfnis dahinter: „Da hört für mich der Spaß auf, weil ich … brauche." Dann das Schuldgefühl aushalten.',
+     obsP:'Was will die andere Seite, das du ihr gerade nicht zutraust?',
+     obsM:'Wo hat die andere Seite dir geschadet, und wem hast du das gesagt?',
+     whyP:'EAT: Einfühlen. Erst wenn die andere Seite nickt, kommt deine Frage.',whyM:'Rosenberg: Grenze, Bedürfnis, Angebot.',
+     reflP:'Was soll der andere aufgeben, anders sehen oder anders fühlen? Und wozu bräuchtest du das?',
+     reflM:'Kannst du Schuldgefühle aushalten, wenn du nicht nett bist, oder musst du sie sofort wegmachen?'},
+    {name:'Reaktion',dim:'sozial',dir:'Reaktion',q:'Was passiert, wenn eine Seite einen Vorschlag macht?',
+     poleA:'Reflex-Nein',poleB:'immer Ja',
+     chips:['Reflex-Nein. Egal was kommt, die Antwort ist Nein, Abblocken, oder es wird einfach über den Vorschlag hinweggeredet.','Meist Nein, mit Ausnahmen.','Es wird abgewogen, manchmal Ja, manchmal Nein.','Immer Ja oder Nachgeben, nur damit Ruhe ist.'],
+     lesP:'Egal was kommt, die Antwort ist Nein. Zwei Neins füttern sich gegenseitig: je mehr Druck, desto dichter die Tür.',
+     lesM:'Es wird immer nachgegeben. Das hält die Oberfläche glatt, und darunter sammelt sich, was nicht gesagt wurde.',
+     partyP:'Antworte langsamer. Eine Nacht zwischen Vorschlag und Nein. Oder nur: „Schwierig." Weder Ja noch Nein, kauft Zeit, hält den Kontakt.',
+     partyM:'Sag einmal Nein ohne Begründung und ohne Entschuldigung. Oder das weiche Nein: „Das ist zum jetzigen Zeitpunkt schwer vorstellbar. Was ich mir vorstellen könnte: …"',
+     obsP:'Was wäre das kleinste Ja, das du dir vorstellen kannst?',
+     obsM:'Wann hast du zuletzt Nein gesagt, und was ist passiert?',
+     whyP:'Schranner. Bei Druck: drei Sekunden Pause, dann weiterrühren, EAT oder benennen.',whyM:'Verneinungskompetenz: auch ein Nein ist ein Kontaktangebot.',
+     reflP:'Wie sehr machst du dein Einlenken davon abhängig, dass die andere Seite es sofort honoriert?',
+     reflM:'Beschäftigt dich gerade das Wohlbefinden der anderen Seite mehr als dein eigenes?'},
+    {name:'Aktion',dim:'sozial',dir:'Reden und Zuhören',q:'Wer erklärt, wer fragt nach?',
+     poleA:'nur senden',poleB:'nur fragen',
+     chips:['Beide senden nur. Niemand fragt, wie es der anderen Seite geht.','Es wird mehr gesendet als gefragt.','Mindestens eine Seite fragt nach und hört zu.','Es wird nur gefragt und verstanden. Niemand sagt, was er selbst will.'],
+     lesP:'Beide senden, niemand fragt. Jede Seite erklärt, keine will verstehen.',
+     lesM:'Es wird nur gefragt und verstanden. Was jede Seite selbst will, bleibt ungesagt.',
+     partyP:'Stell eine Frage, bevor du erklärst, und halt die Antwort aus. Zurück ins Senden erst nach der Erlaubnis: „Bist du bereit, meine Sicht zu hören?"',
+     partyM:'Höflichkeit kurz parken und mit Herzblut sagen, was dir wichtig ist. FEED bis zum Ende, ohne Unterbrechungen zu beantworten. Dann Stille.',
+     obsP:'Was weißt du darüber, wie es der anderen Seite damit geht?',
+     obsM:'Was willst du selbst, und wann hast du es das letzte Mal gesagt?',
+     whyP:'EAT komplett, dann Anti-Ja-Aber: zuhören, verstärken, Erlaubnis holen, neues FEED.',whyM:'Risotto-Methode: weiterrühren. Die Stille gehört der Gegenseite.',
+     reflP:'Wie sehr brauchst du es, dass die andere Seite einsieht, dass du recht hast?',
+     reflM:'Wie leicht bist du aus dem Feld zu schlagen, wenn dir jemand das Rederecht streitig macht?'},
+    {name:'Erklärung',dim:'zeit',dir:'Schuld und Beitrag',q:'Wer hat angefangen, und wer sieht seinen eigenen Anteil?',
+     poleA:'ein Schuldiger',poleB:'alles „komplex"',
+     chips:['Es gibt einen Schuldigen. Fertig.','Meist hat eine Seite angefangen.','Beide sehen, dass sie beitragen.','Alles ist „komplex" und „wir beide". Niemand benennt, was falsch lief.'],
+     lesP:'Es gibt einen Schuldigen. Solange der feststeht, muss niemand schauen, was er selbst beiträgt.',
+     lesM:'Alles ist „komplex" und „wir beide". So wird nie benannt, was wirklich falsch lief.',
+     partyP:'Benenn einen eigenen Anteil, konkret, ohne Aber. Verantwortung heißt Urheber sein, nicht Schuldiger.',
+     partyM:'Sag einmal klar, welches Unrecht du beobachtet hast, auch wenn du selbst Fehler gemacht hast. Und nenn Schweigen und Rückzug beim Namen: Das ist auch Aggression, nur leise.',
+     obsP:'Was war dein Beitrag, dass es so weit kam?',
+     obsM:'Was lief hier falsch, egal wer angefangen hat?',
+     whyP:'Difficult Conversations: von Schuld zu Beitrag.',whyM:'FEED: Facts und Effect, linear benannt.',
+     reflP:'Kannst du einem Vorwurf mit Neugier begegnen statt mit Verteidigung?',
+     reflM:'Kannst du klar sagen, welches Unrecht du beobachtet hast, auch wenn du selbst Fehler gemacht hast?'},
+    {name:'Ziel',dim:'zeit',dir:'Ausgang',q:'Worum geht es am Ende, ums Gewinnen oder um eine Lösung?',
+     poleA:'gewinnen',poleB:'niemand entscheidet',
+     chips:['Ums Gewinnen. Die andere Seite soll einlenken.','Jede Seite will eher recht behalten.','Es ist offen, wie es ausgeht.','Niemand will etwas entscheiden. Es bleibt offen, auch wenn es weh tut.'],
+     lesP:'Es geht ums Gewinnen. Einlenken wäre eine Niederlage, also lenkt niemand ein.',
+     lesM:'Niemand will entscheiden. Der Streit bleibt offen, weil Offenlassen weniger weh tut als Verlieren.',
+     partyP:'Sag, was du bereit bist zu verlieren: „Mir ist wichtiger, dass …, als dass ich bei {thema} recht behalte."',
+     partyM:'Entscheide, auch auf die Gefahr zu verlieren: „Ich lege das jetzt fest, und wenn es falsch war, trage ich das."',
+     obsP:'Was passiert mit dir, wenn du das hier verlierst?',
+     obsM:'Was würdest du entscheiden, wenn du heute entscheiden müsstest?',
+     whyP:'Harvard: Interessen statt Positionen. Und wer gewinnt, gönnt den Sieg.',whyM:'Nachgeben ist das Angstsignal. Erst Competing, dann das Fenster im Konjunktiv.',
+     reflP:'Bleibt dein Wohlbefinden intakt, wenn du in dieser Sache verlierst? Oder schämst du dich dann?',
+     reflM:'Bremst du dich aus Mitleid mit der anderen Seite, obwohl die Sache es verlangt?'},
+    {name:'Macht',dim:'zeit',dir:'Druck',q:'Womit wird Druck gemacht, mit Drohungen oder mit Angeboten?',
+     poleA:'drohen',poleB:'niemand setzt etwas ein',
+     chips:['Mit Drohungen, offen oder verdeckt: Rückzug, Abbruch, Geld, Schweigen.','Druck liegt in der Luft, wird aber nicht ausgesprochen.','Es wird verhandelt, mit Auswegen für beide.','Niemand setzt etwas ein. Jede Seite gibt lieber nach, als Risiko zu tragen.'],
+     lesP:'Es wird gedroht, auch verdeckt. Wer droht, muss liefern oder verliert Glaubwürdigkeit.',
+     lesM:'Niemand setzt etwas ein. Jede Seite gibt nach, bevor es riskant wird. Dadurch wird nichts entschieden.',
+     partyP:'Warne statt zu drohen, in drei Schritten: eine echte Gemeinsamkeit, ein Automatismus mit Datum („Ab dem … passiert automatisch …"), und die Wahl zurückgeben: „Was meinst du, was sollten wir beide jetzt tun?"',
+     partyM:'Klär vorher, was du machst, wenn ihr euch nicht einigt. Dann setz einmal etwas ein: „Mir bleibt sonst keine andere Möglichkeit, als …"',
+     obsP:'Was kostet es dich, wenn du die Konsequenz wirklich ziehst?',
+     obsM:'Was machst du, wenn ihr euch nicht einigt? Und weiß die andere Seite das?',
+     whyP:'Schranner: Warnung statt Drohung. Prüffrage: Läuft der Automatismus wirklich?',whyM:'BATNA als innerer Anker. Wer gehen kann, verhandelt anders.',
+     reflP:'Welche Gefühle hängen bei dir am Nachgeben? Und verhandelst du manchmal nur, weil du dich nicht zu kämpfen traust?',
+     reflM:'Traust du dir zu, den Verlust zu tragen, den eine wahrgemachte Konsequenz auch für dich hätte?'}
+  ],
+  func1:{dir:'Wem nützt er?',q:'Letzter Scheinwerfer, der wichtigste. Angenommen, der Streit ist für irgendwen nützlich. Für wen am ehesten?',
+    opts:['Für {A}.','Für {B}.','Für die Beziehung der beiden.','Für jemanden drumherum: Kinder, Eltern, Team, Chef.','Weiß ich nicht.'],
+    optsSelf:['Für mich.','Für die andere Seite.','Für unsere Beziehung.','Für jemanden drumherum: Kinder, Eltern, Team, Chef.','Weiß ich nicht.'],
+    les:['am ehesten {A}','am ehesten {B}','am ehesten eurer Beziehung selbst, die etwas zeigen will, was ihr beide nicht aussprechen würdet','am ehesten jemandem außerhalb von euch beiden. Dann endet er auch zwischen euch nicht, solange sich dort nichts ändert']},
+  func2:{dir:'Was passt nicht mehr?',q:'Und wenn der Streit sprechen könnte: Was würde er sagen, das nicht mehr passt?',
+    opts:['Wer entscheidet.','Wie nah oder wie getrennt wir sind.','Was wir voneinander erwarten dürfen.','Eine Regel oder Abmachung, die nicht mehr trägt.','Weiß ich nicht.'],
+    les:['die alte Verteilung, wer hier das Sagen hat','die Nähe oder der Abstand, den ihr bisher hattet','das, was ihr bisher voneinander erwarten durftet,','eine Abmachung, die früher getragen hat']},
+  res:{
+    h:'Die Auswertung',
+    verdict:{bug:'Bug.',schwel:'Schwelbrand.',schief:'Schieflage.',feature:'Feature.'},
+    vtext:{
+      bug:'Der Streit bewegt sich nicht mehr, er wiederholt sich. Hier lohnt meist Beruhigen.',
+      schwel:'Es ist still, aber nichts ist geklärt. Was hier meist fehlt, ist die Fähigkeit zu schüren.',
+      schief:'Die beiden stehen auf mehreren Achsen auf entgegengesetzten Polen. Wer sich bewegt, bewegt beide.',
+      feature:'Der Streit arbeitet noch. Er ist unbequem, aber er bringt etwas in Bewegung.'
+    },
+    count:'{n} von neun Achsen {v} eingerastet, {d}.',
+    countOne:'ist',countMany:'sind',
+    dAllP:'alle auf Schüren',dAllM:'alle auf Beruhigen',dMix:'{p} auf Schüren, {m} auf Beruhigen',
+    countZero:'Keine Achse ist eingerastet. Es gibt Tendenzen, aber nichts sitzt fest.',
+    countFew:'Nur {n} {v} eingerastet. Genau da lohnt der Blick.',
+    aboutTopic:'Es geht um {thema}.',
+    lesH:'Lesart',
+    hypoH:'Eine Hypothese, die falsch sein kann',
+    hypo:'Der Streit nützt {f1} und sagt, dass {f2} nicht mehr passt. Prüf, was das in dir auslöst, bevor du es benutzt.',
+    hypoNone:'Du hast noch keine Hypothese, wem der Streit dient. Ohne die kann niemand beurteilen, ob eine Bewegung hilft oder schadet. Das ist dein erster Zug: Beobachte eine Woche lang, wann der Streit aufflammt. Nicht worüber, sondern wann und wer dabei ist.',
+    oppH:'Entgegengesetzte Pole',
+    opp:'Auf der Achse {ax} stehen {A} und {B} auf entgegengesetzten Polen. Das ist kein Zufall: Je mehr die eine Seite schürt, desto mehr beruhigt die andere, und umgekehrt. Wer sich bewegt, bewegt beide.',
+    unusedH:'Was gar nicht im Spiel ist',
+    unused:'{n} Achsen kommen bei euch gar nicht vor. Das ist selbst ein Befund: Was nicht gestritten wird, wird auch nicht geklärt.',
+    gegenH:'Gegenprobe',
+    gegen:'Vielleicht ist der feste Pol richtig und wird nur zu zaghaft gefahren. Welche Bewegung bringt den Streit dahin, wofür er da ist?',
+    profH:'Das Profil',
+    dims:{sache:'Sache',sozial:'Umgang',zeit:'Zeit'},
+    st:{lock:'eingerastet',tend:'Tendenz',zero:'nicht im Spiel',both:'beide',mostly:'vor allem {n}'},
+    movesH:'Deine nächsten Züge',
+    moveN:'Zug {n}',
+    sayH:'Sätze, die du sagen kannst',
+    askH:'Fragen, die du stellen kannst',
+    askHTo:'Fragen an {n}',
+    askHOther:'Fragen an die andere Seite',
+    reflH:'Fragen zum Reflektieren',
+    reflSub:'Für dich. Oder für die Person, mit der du sprichst, wo sie sich wiedererkennt.',
+    reflSubSelf:'Für dich. Jede zielt auf die Fähigkeit, die auf dem anderen Pol fehlt.',
+    frameH:'Bevor du redest',
+    frame2:'Du stehst daneben, aber es betrifft dich. Alles, was heimlich läuft, macht dich zur Partei. Der erste Satz ist deshalb kein Inhalt, sondern ein Rahmen: „{other} weiß, dass wir reden, und ich erzähle hinterher, worüber. Nicht jedes Detail, aber das Thema. Passt das für dich?"',
+    frame3:'Nimm nicht die Sache in die Hand. Frag beide Seiten getrennt: „Was brauchst du von mir?" Und sag es weiter, nicht als Bote, sondern als Spiegel.',
+    frame1P:'Dein Werkzeug ist EAT: Einfühlen, Akzeptieren, Transformieren. Nenn zuerst, was du bei der anderen Seite wahrnimmst, ohne Fragezeichen. Erst wenn sie sich gesehen fühlt, kommt deine Frage. Dann dein FEED, und wieder hören.',
+    frame1M:'Dein Werkzeug ist FEED: Facts, Effect, Emotion, Direction. Vier Sätze, gewaltfrei und klar. Die Direction als Forderung, nicht als Bitte, damit eine Entscheidung fällig wird. Dann Stille.',
+    sayFrame:'{other} weiß, dass wir reden, und ich erzähle hinterher, worüber.',
+    sayEat:'Ich merke, dass dich {thema} nicht loslässt. Und dass du dich damit allein fühlst.',
+    sayEatWhy:'Einfühlen ohne Fragezeichen. Erst wenn die andere Seite nickt, kommt deine Frage.',
+    sayHypo:'Darf ich dir meinen Eindruck sagen? Er kann ganz falsch sein. Ich glaube, der Streit sagt, dass {f2} nicht mehr passt.',
+    sayHypoWhy:'Die Hypothese als Angebot, nicht als Urteil. Dann schweigen und schauen, was passiert.',
+    sayNeed:'Was brauchst du von mir?',
+    sayNeedWhy:'Macht die Erwartung der anderen Seite zu ihrer Bitte, nicht zu deinem Auftrag.',
+    whyFrame:'Transparenz nimmt die Koalition, ohne abzuweisen.',
+    exportH:'Mitnehmen',
+    exportNote:'Zwei Seiten als PDF: die Diagnose und deine nächsten Züge. Oder als Text zum Einfügen. Nichts wird gesendet oder gespeichert.',
+    copy:'Text kopieren',pdf:'Als PDF speichern',copied:'Kopiert. Du kannst es jetzt einfügen.',copyFail:'Kopieren ging nicht automatisch. Der Text ist markiert, kopier ihn mit Strg+C bzw. Cmd+C.',
+    coachH:'Hilft das nicht weiter?',
+    coach:'Manche Streits brauchen eine dritte Person im Raum. Ein Erstgespräch klärt, ob das hier so einer ist.',
+    coachBtn:'Zum Coaching',coachUrl:'https://jacobnoon.com/coaching/',
+    p1H:'Was ist das für ein Streit?',p2H:'Was jetzt?',
+    pKick1:'Konflikt-Check · Auswertung · {date}',pKick2:'Konflikt-Check · Nächste Züge{to}',pTo:' · Gespräch mit {n}',
+    pRole:['Beschrieben aus deiner Sicht: mittendrin.','Beschrieben aus deiner Sicht: daneben, aber betroffen.','Beschrieben aus deiner Sicht: von außen.'],
+    pNext:'Nächstes Gespräch: mit {n}.',
+    pFoot1:'Grundlage: Klaus Eidenschink, „Die Kunst des Konflikts" (Carl-Auer). Neun Leitunterscheidungen, 18 Regulationskompetenzen.',
+    pFoot2:'FEED: Facts, Effect, Emotion, Direction. EAT: Einfühlen, Akzeptieren, Transformieren. FEED. EAT. REPEAT.',
+    pSite:'jacobnoon.com/konflikt-check',
+    pCoach:'Hilft das nicht weiter? jacobnoon.com/coaching'
+  },
+  foot:'Grundlage: Klaus Eidenschink, „Die Kunst des Konflikts. Konflikte schüren und beruhigen lernen" (Carl-Auer). Die neun Leitunterscheidungen und die 18 Regulationskompetenzen sind seine, Auswahl und Formulierungen von Jacob Noon. Eine Einschätzung, keine Diagnose.'
 },
 en:{
- axes:[
- {id:'auf',dim:'sache',name:'Attention',left:'generalised',right:'specific',
-  q:{partei:"What's it about right now? Still the one concrete thing, or by now 'always', 'never' and 'in principle'?",beob:'Is this side still arguing about the concrete point, or has everything become the topic?'},
-  lp:'The molehill has become a mountain',rp:"It's about exactly one thing",
-  down:'Move attention from the general back to the specific. Where exactly is the difference? Where have you long agreed? Narrow down what divides you, name what you share.',
-  up:'If only the individual case ever gets discussed, that can be a way of playing it down. Name the mountain behind the molehill: what is this actually about?',
-  sdown:"Staying specific: keeping disagreement on the matter apart from rejection of the person. Bracketing your feelings rather than suppressing them. Your self-worth doesn't depend on being proved right.",rdown:"On which topic do you lose faith that your relationship will survive a disagreement on substance?",
-  sup:"Being allowed to generalise: having the debate about principles and no longer making lazy compromises. Friendly and firm at once, hard on the issue, soft on the person.",rup:"Can you question someone's competence fundamentally without rejecting them as a person?",
-  altDown:"Or is the mountain real? If every single case is only a symptom, narrowing down won't help. Then raise the question of principle once, properly, instead of hinting at it in every detail.",altUp:"Or is it really just the one point? Then settle exactly that, with a date, instead of making it a permanent topic."},
- {id:'bes',dim:'sache',name:'Description',left:'single-minded',right:'many-sided',
-  q:{partei:'From where you stand, is there exactly one right solution, or could you let several views stand?',beob:'Does this side allow several views of problem and solution, or does only one count?'},
-  lp:"There's one right view: mine",rp:'There are several workable views',
-  down:'The situation is many-sided, the views are single-minded. Bring in more perspectives: experts, the people affected, the view from the whole rather than from your own patch.',
-  up:"Endless weighing-up is a way of getting stuck too. If there's pressure to agree (what? when? who?), single-mindedness is needed: a frame, a deadline, a decision. A compromise is allowed to be imperfect on the substance.",
-  sdown:"Allowing variety: doubting yourself without making yourself small. Bearing uncertainty and trying something out instead of waiting for the perfect solution.",rdown:"When did you last concede a point to someone you strongly disagreed with at the start of the conversation?",
-  sup:"Standing for one view: arguing for something without ifs and buts, and making yourself vulnerable by doing so. Not agreeing just to keep the peace.",rup:"Do you know enough about this to argue for it clearly and persuasively? Or is volume standing in for the argument right now?",
-  altDown:"Or is there really only one solution, and you're arguing for it too weakly? Then don't open up. Argue it clearly, with reasons and a deadline.",altUp:"Or does the matter genuinely need more perspectives? Then bring them in deliberately and with a deadline, not as endless weighing-up."},
- {id:'bew',dim:'sache',name:'Evaluation',left:'absolute',right:'open',
-  q:{partei:'How sure are you that the other side is wrong?',beob:"Does this side argue in right and wrong, good and bad, or can it leave open who's right in the end?"},
-  lp:"I'm right. Full stop.",rp:'Both of us could be right',
-  down:'Whoever contradicts the judgement here contradicts the person. Movement only becomes possible once the threatened identity finds a footing elsewhere: recognition first, then loosen the judgement.',
-  up:"Without agreement on what's good and right, the conflict keeps smouldering. At some point someone has to say what counts. Positions need force and clarity too.",
-  sdown:"Testing judgements rather than dropping them: noticing when you have dug yourself in, trusting others to be competent too, letting something go when there are good reasons.",rdown:"Which conviction do you never want to see questioned? What would happen if you questioned it anyway?",
-  sup:"Holding convictions you do not relativise at the first headwind. Judging the opinion, never the person.",rup:"Do you sometimes doubt yourself too early, just because someone pushes back?",
-  altDown:"Or does the matter need a clear judgement because it is that important? Then judge the opinion, never the person, and stand by it.",altUp:"Or is keeping it open right, because nobody knows enough yet? Then say so out loud and set the date when it gets decided."},
- {id:'kon',dim:'sozial',name:'Contact',left:'hostile',right:'dialogic',
-  q:{partei:'Do you still expect anything good from the other side?',beob:'Does this side assume the other is acting on purpose, or does it still credit them with decent motives?'},
-  lp:"They're out to hurt me",rp:'They have reasons I could understand',
-  down:'The enemy legitimises the aggression, the aggression creates the enemy. Test your assumptions: what motives could the other side have that have nothing to do with you?',
-  up:'Someone who only ever offers dialogue often never gets to the point. The conflict smoulders. Here somebody is allowed to step into the ring and speak plainly, even if it comes across as unfriendly.',
-  sdown:"Staying capable of dialogue: watching yourself in the conflict, giving up on changing the other person, mistrusting your own feelings and working out which need is driving their behaviour.",rdown:"What should the other person give up, see differently or feel differently? And what would you need that for?",
-  sup:"Acknowledging opposition: seeing that someone wants to harm you, bearing the guilt that comes with it and marking the line where the fun stops. Hostile does not mean wanting to destroy.",rup:"Can you tolerate feeling guilty when you're not being nice, or do you have to make the feeling go away at once?",
-  altDown:"Or is the opposition real, and you just won't admit it? Someone who wants to harm you needs a boundary, not an offer of dialogue.",altUp:"Or is dialogue right, but too soft? Then say what bothers you inside the dialogue, instead of only understanding."},
- {id:'rea',dim:'sozial',name:'Reaction',left:'negating',right:'choosing',
-  q:{partei:"If the other side suggests something tomorrow, do you already know you'll say no?",beob:'Does this side say no to everything on reflex, or does it still choose what to react to and how?'},
-  lp:'No. Whatever it is.',rp:'Depends what it is',
-  down:"The pull towards no has taken over. This isn't about saying yes instead of no, it's about being able to choose again: what in what the other side says could you agree with? And: answer more slowly. Sleeping on it isn't weakness, it's room to move.",
-  up:"Some arrangements only shift when somebody contradicts them firmly. A no that stays a no, even when it's pushed towards yes, breaks up conflict symbioses.",
-  sdown:"Being able to be disappointed: giving ground even if the other side exploits it at first. Being able to yield, to say yes again after a no, to experience contradiction as a form of contact.",rdown:"How much does your willingness to give ground depend on the other side rewarding it straight away?",
-  sup:"Saying no without guilt: feeling fine even when the other person is feeling bad right now, and holding firm when they say no. A no is an offer of contact too.",rup:"Are you more preoccupied with how the other side is feeling than with how you are?",
-  altDown:"Or isn't your no the problem, just too quiet? If it breaks an arrangement that deserves breaking, stay with it clearly, once, instead of taking it back under pressure.",altUp:"Or are you choosing rightly, just too quietly? Then say the yes you heard out loud. And the no as well."},
- {id:'akt',dim:'sozial',name:'Action',left:'broadcasting',right:'exploring',
-  q:{partei:'In the last few conversations, who did more talking than asking?',beob:'Does this side only talk, or does it still explore what the other means?'},
-  lp:'Two loudspeakers, no microphone',rp:'What might they have meant?',
-  down:"Turning up the volume does nothing if there's no microphone in the room. Park your own content and respond to what was actually said. Understand first, then broadcast.",
-  up:"Constant exploring can be a way of keeping the conflict hidden. Sometimes it takes a loud, pointed, unimpressed message before there's a conflict at all that can be worked on.",
-  sdown:"Exploring: seeing the situation through the other person's eyes and trusting that they stay interested in you. Your self-worth holds even if you don't land. In the conversation: EAT, that is Empathise, Accept, Transform.",rdown:"How much do you need the other side to admit that you are right?",
-  sup:"Broadcasting: showing yourself, taking yourself seriously and holding your ground even when you sense rejection. Parking politeness for a moment and saying with conviction what matters to you.",rup:"How easily are you knocked off your stride when someone fights you for the floor?",
-  altDown:"Or has the message never actually been set, only repeated? Then send it once, pointed and unmistakable, instead of louder.",altUp:"Or is asking right, but without consequence? Then explore thoroughly once and afterwards say what you conclude."},
- {id:'erk',dim:'zeit',name:'Explanation',left:'linear',right:'circular',
-  q:{partei:'When you explain how it came to this, is there a culprit?',beob:'Is this side looking for the culprit, or does it see its own contribution?'},
-  lp:"Someone's to blame",rp:'Everyone contributed',
-  down:'Having a culprit makes you feel able to act, and the accused feels entitled to hit back. Chicken or egg? Both. The better question: what am I contributing to the conflict right now?',
-  up:"Circular thinking can also be a cover. Where power relations are set in concrete, responsibility needs naming clearly, otherwise there's no conflict to work on at all.",
-  sdown:"Thinking in circles: admitting fault and acknowledging accusations without condemning yourself. You do not have to be flawless. Responsibility means being the author, not the culprit.",rdown:"Can you meet an accusation with curiosity rather than defence?",
-  sup:"Naming it in a straight line: addressing wrong behaviour clearly, rejecting accusations firmly and naming silence, withdrawal and niceness as hidden aggression. That takes a good relationship with your own aggression.",rup:"Can you say clearly what wrong you have seen, even though you have made mistakes yourself?",
-  altDown:"Or is there a responsibility here that needs naming? Then name it once, clearly, without a round of accusations.",altUp:"Or is the circular view right, just without consequences? Then name your own contribution concretely, not as a formula."},
- {id:'ziel',dim:'zeit',name:'Goal',left:'winning',right:'undecided',
-  q:{partei:'Do you want to win, or can it stay open who gets their way on what?',beob:'Does this side want to win, or can it leave open who prevails on what?'},
-  lp:'I want to win',rp:"Let's see who gets their way on what",
-  down:"As long as it's about victory, who's right no longer matters. Whoever lasts longer wins. Bearing 'undecided' means letting go of the interests you currently take to be your own.",
-  up:"Change needs a force that steps into the ring. If nobody wants to win, everything stays as it is. Sometimes it's right that there are clear losers.",
-  sdown:"Being allowed to lose: a self-worth that does not hang on victory and does not tie defeat to shame. Leaving open who is ahead, and being curious whether the conflict might teach you better.",rdown:"Does your wellbeing stay intact if you lose on this? Or would you feel ashamed?",
-  sup:"Prevailing: enjoying competition, fighting for values, showing moral courage and bearing the pain a fight brings. Without pity, but without turning the other person into an enemy to manage it.",rup:"Are you holding back out of pity for the other side, even though the matter demands otherwise?",
-  altDown:"Or is wanting to win right, because otherwise something is lost? Then prevail, without turning the other into an enemy.",altUp:"Or is undecided right, because both routes work? Then agree how and when it gets decided."},
- {id:'macht',dim:'zeit',name:'Power',left:'threatening',right:'negotiating',
-  q:{partei:'Is there a threat in the room? Even an unspoken one?',beob:'Does this side threaten consequences, or does it sound out what it can give and get?'},
-  lp:"If you don't, then ...",rp:"You give me this, I'll give you that",
-  down:"The person threatening has no power unless it's handed to them. Threats are often an escape from powerlessness and harvest compliance rather than agreement. Back to negotiating: what does each side actually want, and what would it be prepared to give? And what will each side do if you don't reach agreement?",
-  up:"If you're not being taken seriously, there's no point talking. A credible consequence, one you can and will follow through on, is sometimes the precondition for any negotiation at all.",
-  sdown:"Negotiating: bearing risk instead of relying on control. Thinking through beforehand what it would cost to carry out threats. Letting go of things that matter and leaving the other side a way out that saves face.",rdown:"Which feelings are tied up for you with giving way? And do you sometimes negotiate only because you do not dare to fight?",
-  sup:"Threatening credibly: knowing what matters to the other side, accepting losses of your own and not showing what can impress you. Often wiser: warning ('this will happen if ...') rather than threatening ('this is what I will do if ...').",rup:"Do you trust yourself to bear the loss that carrying out a consequence would mean for you too?",
-  altDown:"Or is the threat justified, just not credible? Then warn instead of threatening: a consequence you can and will carry, said once.",altUp:"Or is negotiating right, just without an alternative? Then know yours before you negotiate any further."}
- ],
- mode:n=>n+' mode',
- dims:{sache:'The matter',sozial:'The social side',zeit:'Time'},
- erg:{
-  partei:[
-   {q:'If the other side turned out to be right in the end, what would that say about you?',o:["Nothing. I'd have been wrong, that's all.",'It would sting.','It would call me into question as a person.']},
-   {q:"Could you say: 'Fine, not like this then. Some other way, somewhere else, another time'?",o:['Yes, there are other routes to what I need.','Hard.','No. It has to be this way.']},
-   {q:"How much room does the conflict take up in your head when you're not actually in the conversation?",o:['Hardly any.','A fair bit.','It runs constantly.']},
-   {q:"Is there a feeling attached to this conflict that you'd rather not have? Shame, guilt, fear, hurt?",o:['No.','Yes, and I can name it.',"Yes, and I don't want to look at it."]}
-  ],
-  beob:[
-   {q:'Have camps formed?',o:['No.','Starting to.','Yes, with allies on both sides.']},
-   {q:'Are people still talking to each other, or only about each other?',o:['To each other.','Both.','Only about each other.']},
-   {q:'Are the bystanders keeping out of it? Leadership, colleagues, you?',o:['No, people are stepping in.','Hesitantly.',"Everyone's waiting."]},
-   {q:'How long has this been going on?',o:['Days.','Weeks.','Months or longer.']}
-  ]
- },
- startsPartei:[['ich','Me'],['andere','The other side'],['beide','Both of us'],['unklar',"Can't remember"]],
- sideA:'Side A',sideB:'Side B',both:'Both',unclear:'Unclear',
- steps:['Start','First','Matter','Social','Time','Key question','Result'],
- ui:{
-  title:'Bug or<br>Feature?',docTitle:'Bug or Feature?',
-  lead:"A conflict isn't the problem. A conflict that's stuck is. Nine sliders, one profile, and at the end the question whether this conflict needs stirring up, calming down, or leaving alone.",
-  roleq:'Where are you looking from?',r1:"I'm a party to it",r1s:"It's my conflict. I'm in it.",r2:"I'm looking from outside",r2s:"Two people or groups around me, and I'm not one of the parties. Line manager, HR, colleague.",
-  note:"Takes about six minutes. Nothing is stored or sent. Based on Klaus Eidenschink's theory of conflict.",
-  go:'Go',back:'Back',next:'Next',result:'Result',
-  crumb:'Conflict Check',crumbP:"Conflict Check · I'm a party",crumbB:'Conflict Check · View from outside',
-  s1e:'One question first',s1h:'Who started it?',s1l:"Don't overthink it. First answer.",
-  names:'The two sides',nameA:'Side A, e.g. Sales or Ms K.',nameB:'Side B',namesnote:'Optional. Names stay in your browser.',
-  d1e:'The matter',d1h:'What is the row about?',d1l:'Move the slider to where the conflict is right now. Not where it should be.',
-  d2e:'The social side',d2h:'How are they treating each other?',d3e:'Time',d3h:'Past, present, future',
-  fixq:'Is it always like this, or does it depend on the day?',fix0:'Depends on the day',fix2:'Always like this',
-  other:'Where would the other side put the slider?',
-  ergP:'Do you have the conflict, or does it have you?',ergPe:'The key question',ergB:'Has the conflict taken over the system?',ergBe:'The key question from outside',
-  foot:"Prototype. Theoretical basis: Klaus Eidenschink, 'Die Kunst des Konflikts' (The Art of Conflict, Carl-Auer, German only). The nine guiding distinctions and the 18 regulation competences are his; the questions, scoring and wording are Jacob Noon's. Not a diagnosis, and no substitute for a conversation.",
-  yourResult:'Your result',hasYou:'The conflict has you',hasSystem:'The conflict has the system',
-  profile:'The movement profile',profileNote:'Contradiction pole on the left, open pole on the right. No pole is wrong. Locked is the problem.',
-  locked:'locked',tend:'tendency',seeDiff:'You see this differently',lopsided:'Lopsided',
-  legMoving:'moving',legTend:'far out, but depends on the day',legLocked:'locked',legOther:'how the other side would see it',
-  otherView:"The other side's view",
-  movesH:"Where it's worth going in",
-  movesMany:(n,m)=>`${n} spots are locked. Here are the ${m} hardest, more than that won't fit into one conversation.`,
-  movesFixed:'For each locked axis: the counter-movement, the ability behind it and the cross-check. Which movement takes the conflict to what it is for?',
-  movesTend:'Nothing is locked. Here are the axes with a tendency, before they lock.',
-  movesBeob:' The movement belongs to the side in question. Your job from outside: create the frame in which it becomes possible.',
-  calm:'Calm down',stir:'Stir up',fromTo:(a,b)=>`from ${a} to ${b}`,skill:'The ability behind it:',
-  noFix:"No axis is locked or tipping right now. Your job isn't to end the conflict but to let it reach a decision. Watch the matter itself: is the argument still about the substance, or is it drifting towards the person?",
-  axesN:n=>n===1?'one axis':n+' axes',
-  asymH:'Asymmetry',asym:(n,list,A,B)=>`On ${n} (${list}) ${A} and ${B} are three or more steps apart. That's no accident, it's often the pattern itself: the harder side escalates because it isn't being taken seriously. The softer side keeps the conflict alive because nothing gets decided. Both need to move, in opposite directions. From outside that often means backing the softer side. That isn't taking sides, it's the precondition for both being in the ring.`,
-  gapH:"The other side's view",gap:(n,list)=>`On ${n} (${list}) your assessment and the one you assume for the other side are three or more steps apart. That's a finding in itself: you're not only arguing about the matter, you also see the argument differently. Saying that out loud makes the communication unpredictable again.`,
-  unusedH:"What isn't in play at all",unused:(list)=>`${list}: these axes sit in the middle. That can be flexibility. It can also mean this mode never shows up in your conflict at all. Eidenschink: what never gets used is a finding in itself. What if somebody switched poles here?`,
-  firstH:'Back to the first question',
-  firstBoth:e=>`You said 'Both'. That's the circular view, good. Check once whether that's conviction or politeness. Your slider on explanation mode ${e<0?'still points at a culprit':e===0?'sits in the middle':"also sits at 'everyone contributed'"}.`,
-  firstUnclear:"You said 'Unclear'. Fair. That's often the most accurate answer, because clarifying the start doesn't name a culprit. It's the blame question that feeds the conflict.",
-  firstOne:x=>`You said: <b>${x}</b>. Eidenschink would ask: chicken or egg? Both. Everyone contributed to the conflict, including those who stayed out of it. Having a culprit makes you feel able to act, and the accused feels entitled to hit back. Clarifying how it started is fine. Hunting for the culprit feeds the conflict.`,
-  forkH:'The fork in the road',
-  forkP:{caught:['Coaching',"The conflict has you: identity, feeling or strategy are tied up in it. The impulse against the logic of the conflict then has to come from you, not from a conversation technique. It isn't about being able to do everything, it's about knowing where you're vulnerable. Understanding helps you sort things out, but feelings only change through experience, and that rarely works alone. That's exactly what coaching is for."],locked:['Mediation',"The conflict is locked, but you can still act. A third person can make the communication unpredictable again, which is what the two of you can't manage right now."],self:['Carry on yourself',"Take on one axis, not all of them. One conversation, one mode, one movement. Ask yourself: where could you switch poles, and what would you be risking? If it hasn't tipped after two attempts, get in touch."]},
-  forkB:{caught:['Conflict facilitation in the team','The conflict has the system: camps, talking about rather than to, waiting it out. This is no longer a matter for a one-to-one. It needs a facilitated setting with everyone involved.'],locked:['Mediation between the parties',"The two sides are locked, the surroundings aren't yet. This is the moment for a clarifying mediation, before the system tips."],self:['A conversation with your team member will probably do',"Address the one axis shown above. And check whether your staying out of it is part of the pattern. Whoever doesn't step in didn't prevent the start."]},
-  cta:'Request a conversation with Jacob Noon',ctaUrl:'https://jacobnoon.com/en/coaching/',
-  quote:'Not the pole is the problem.<br>Getting stuck is.',quoteSub:'Conflicts need both poles. Regulating them means being able to do both: stir up and calm down. Eidenschink calls it being immune to the pull of conflict and to the pressure for peace alike.',
-  backSliders:'Back to the sliders',restart:'Start again',
-  verdictBug:'Bug',verdictSmoulder:'Smouldering',verdictLop:'Lopsided',verdictFeature:'Feature',
-  vBug:(n,r)=>`The conflict is feeding itself. On ${n} it has locked onto the contradiction pole: no breeds no, the actual matter barely counts any more. Calming down usually pays here, but not across the board, axis by axis.${r?` At the same time it's locked onto the open pole on ${r}, and there it's firmness that's missing.`:''}`,
-  vSmoulder:n=>`The conflict is being avoided, not regulated. On ${n} it's locked onto the open pole: plenty of understanding, plenty of dialogue, no decision. What's usually missing here is the ability to stir things up.`,
-  vLop:(n,A,B)=>`The two sides aren't in the same conflict. On ${n} ${A} and ${B} are far apart: one side is in the ring, the other isn't. Eidenschink: only when two stand in the ring as equals can they discuss the actual matter. The softer side has to learn to stir up, the harder side to calm down.`,
-  vFeature:"The conflict is still moving. It's doing what conflicts are for: forcing a decision between alternatives and making a new order possible. Don't resolve it. Regulate it. Keep the movement alive.",
-  vMixed:'The conflict is locked on both sides: too hard in some places, too soft in others. That way it can neither decide nor settle. Below is where which movement is missing.',
-  axisOf:(i,n)=>`Axis ${i} of ${n}`,qOf:(i,n)=>`Question ${i} of ${n}`,
-  pickNote:'Pick up to two to take with you. Only those go into your summary.',pick:'Take this one',picked:'Taken',
-
-  reflect:'Ask yourself:',altH:'Cross-check:',altQ:'Which movement takes the conflict to what it is for?',sharper:'Sharper',pickDir:d=>'Take: '+d,
-  funcH:'What is the conflict for?',
-  func:"Whether stirring or calming helps can only be judged once you have a hunch about what the conflict is for. Conflicts question an order that no longer holds. If yours could speak: what does it want to change? And whom does it serve: you, the other side, your relationship or the people around you?",
-  funcB:"Whether stirring or calming helps can only be judged once you have a hunch about what the conflict is for. Conflicts question an order that no longer holds. If this one could speak: what does it want to change? And whom does it serve: the people involved, how they work together, or the team around them?",
-  funcEx:'Possible answers: redrawing a boundary, clarifying roles, bringing a taboo into the open, ending an injustice, forcing a better result, a separation that is long overdue.',
-  funcPh:'Your hunch, optional. A hypothesis is enough. It is allowed to be wrong.',
-  costH:'What does it cost if it stays like this?',
-  cost:{sache:"Suppose you don't reach agreement: what will each side do then? Whoever won't answer that question usually suspects the alternative costs more than a compromise.",sozial:"What price are you quietly paying right now, withdrawal, people leaving, superficiality, because something else matters more? If you pay it knowingly, it isn't a conflict any more, it's a decision. Then say it out loud.",zeit:'What does it cost if the decision gets postponed once more? Which possibilities are passing by while the argument goes on?'},
-  sumFunc:'What the conflict is for (my hunch)',sumCost:'What it costs if it stays like this',
-
-  prepH:'And now, concretely',prepLead:'One conversation, one move. What do you want to do next?',prepSpeak:'I want to raise it',prepListen:'I want to listen',
-  feedH:'Raising it with FEED',feedNote:'Four sentences in this order: what was observable, the effect, the feeling, the direction. The interest in between is the bridge from feeling to direction.',
-  feed:[
-   ['Facts: what actually happened?',"Observable, no interpretation. 'On Tuesday you moved the deadline without checking with me.'"],
-   ['Effect: what did that do?',"Practical and personal. 'Because of that I had to cancel on the client.'"],
-   ['Emotion: how do you feel about it?',"One feeling, one word. 'That annoyed me.'"],
-   ['Interest: what do you actually need?',"The need behind the demand. 'I need to be able to rely on dates.'"],
-   ['Direction: what should change?',"Concrete, once, checkable. 'Tell me beforehand when a date moves.'"]
-  ],
-  dirH:'Direction',dirAsk:'As a request',dirDemand:'As a demand',
-  dirHint:{bug:"Your conflict is locked on the contradiction pole. A request calms, because it leaves the other side a choice. 'Could you let me know beforehand?'",schwel:"Your conflict is being avoided. A demand stirs, because it makes clear a decision is due. 'I expect you to let me know beforehand.'",lop:'The softer side needs the demand here, the harder side the request. Choose by the side you are speaking from.',feature:'A request leaves the choice and calms. A demand takes it and stirs. Choose what the conflict needs right now.',mixed:'A request leaves the choice and calms. A demand takes it and stirs. Choose by the axis you are working on.'},
-  eatH:'Listening with EAT',eatNote:"Empathise first, then accept, only then move. No questions at the start. Whoever asks first is interrogating. The question comes in step three.",
-  eat:[
-   ['Empathise',"What is going on for the other side right now? Not what they say, but how they are.","'You're really under pressure right now.'"],
-   ['Accept',"Let it stand. No judgement, no but, no answering straight away.","'Okay. I see that.'"],
-   ['Transform',"Only now the matter. One question that comes from what you heard.","'What would you need for this to go differently?'"]
-  ],
-  eatQ:'What has the other side said that you can let stand?',eatPh:'One sentence of theirs, without your but.',
-  sumFeed:'My next move: raise it (FEED)',sumEat:'My next move: listen (EAT)',sumDir:'Direction:',
-  counterH:'What speaks against it?',
-  counter:{
-   bug:"The verdict says: stuck. Name one moment in the last two weeks when something did move. A sentence, a concession, a laugh. If you can't find one, the verdict stands. If you can, that's your lever.",
-   schwel:'The verdict says: the conflict is being avoided. Name the last decision that was actually made on this. If none comes to mind, the verdict stands. Then the awkward question: who benefits from nothing being decided? And a cross-check: not every cold conflict needs heating up. If the timing is bad or the energy is not there, it can be parked. But out loud and with a date, not in silence.',
-   lop:"The verdict says: one side is in the ring, the other isn't. Check whether the softer side is quiet because it agrees, or because it doesn't dare. And whether you see the harder side as harder than it is.",
-   feature:'The verdict says: the conflict is moving. Check whether it is moving or just going round in circles. What has been decided since it started? If nothing: look at the sliders again. Were you kinder than the situation?',
-   mixed:'The verdict says: too hard and too soft at once. Which part of that would the other side sign, and which not? Where you expect disagreement is usually where the blind spot sits.'
+  title:'Bug or Feature?',
+  crumb:'Conflict Check',
+  steps:{start:'Start',who:'Who',sache:'Matter',sozial:'Manner',zeit:'Time',func:'Function',result:'Result'},
+  of:'of',
+  back:'Back',next:'Next',toResult:'See the result',restart:'Start again',
+  intro:{
+    h:'Bug or Feature?',
+    lead:'Not every row is a problem. Some of them are doing work. Eleven questions, a few taps, and you will know whether this one is stuck, where, and what you can do next.',
+    note:'Nothing leaves your browser. No sign-up, nothing stored. At the end you get a write-up to copy or save as a PDF.',
+    roleQ:'Before we start: where do you stand in this conflict?',
+    roles:[
+      ['I am in it.','You are one of the two sides.'],
+      ['I am next to it, but it affects me.','Partner, colleague, family. Not a party, but not neutral either.'],
+      ['I am looking at it from outside.','Coach, manager, mediator.']
+    ]
   },
-  counterPh:'Your answer, optional. Stays in your browser and only goes into your summary.',
-  exportH:'Your summary',
-  exportNote:'Verdict, locked axes, your cards with their reflection question, your hunch about what the conflict is for and your answer to the counter-question. To take into your next conversation, or into a first call with Jacob. None of it leaves your browser until you pass it on yourself.',
-  copy:'Copy result',pdf:'Save as PDF',copied:'Copied. You can paste it now.',copyFail:"Couldn't copy automatically. The text is selected, copy it with Ctrl+C or Cmd+C.",
-  sumTitle:'Conflict Check: summary',sumPersp:'Perspective',sumVerdict:'Verdict',sumLocked:'Locked',sumTend:'Tendency',sumNone:'no axis',
-  sumMoves:'My movements',sumMovesAll:'Suggested movements (none picked)',sumAns:'My answer:',sumFork:'Recommendation',
-  sumSource:"Made with the Conflict Check at jacobnoon.com/en/conflict-check/. Based on Klaus Eidenschink, 'Die Kunst des Konflikts'. Not a diagnosis."
- }
-}};
-const D=DATA[L], AXES=D.axes, DIMS=D.dims, ERG=D.erg, STEPNAMES=D.steps, U=D.ui;
+  who:{
+    h:'Who is in conflict?',
+    lead:'Give the two sides a name. This stays on your device.',
+    a:'Side A',b:'Side B',phA:'e.g. John Doe',phB:'e.g. Jane Doe',
+    selfA:'You',selfB:'The other side',
+    topicL:'What is it about? Three to five words.',topicPh:'e.g. the holiday rota',
+    topicHint:'Goes into the write-up so the sentences sound like your conflict.',
+    nextQ:'Who will you talk to next?',
+    nextBoth:'Both',nextNone:'Not sure yet'
+  },
+  bridges:{
+    sache:'First the matter: what is the conflict about?',
+    sozial:'Now the manner: how is it being fought?',
+    zeit:'Finally, time: where does it come from, where is it going, who holds the longer lever?'
+  },
+  zero:'Does not come up for us',
+  follow:{q:'Does that apply to both?',both:'Both',mostly:'Mainly {n}',other:'And {n}? Where does {n} stand on this axis?'},
+  axes:[
+    {name:'Attention',dim:'sache',dir:'Topic',q:'Are you still arguing about a matter, or about the person by now?',
+     poleA:'about the person',poleB:'about the matter',
+     chips:['Only about the person now. Whatever it is, it ends with "that is just what you are like".','It usually turns into something fundamental.','It usually stays with the matter.','Only about the matter. The person is never the topic, even when it would fit.'],
+     lesP:'It is no longer about the matter but about the person. Every incident confirms what each already knows about the other.',
+     lesM:'It stays cleanly with the matter, even where the person has long been the real topic. That keeps the peace and prevents the clearing.',
+     partyP:'Next time, name only the incident, with date and wording. No "always", no "you are".',
+     partyM:'Say the sentence that has been left out for months: "This is not about {thema}. It is about the fact that I cannot rely on you."',
+     obsP:'What was it about last time, concretely, without the word "always"?',
+     obsM:'If it were not about {thema}, what would it be about?',
+     whyP:'Observation instead of judgement. FEED: Facts.',whyM:'Make the person the topic. Hard on the matter, soft on the person.',
+     reflP:'On which topic do you lose trust that your relationship can survive a factual disagreement?',
+     reflM:'Can you question someone\'s competence outright without rejecting them as a person?'},
+    {name:'Description',dim:'sache',dir:'The facts',q:'How fixed is each side\'s account of what happened?',
+     poleA:'set in stone',poleB:'all open',
+     chips:['Each side has its version set in stone. No doubt anywhere.','The versions are fairly fixed.','There are shades and "maybes".','Everything is open, nobody commits, even when it would be needed.'],
+     lesP:'Each side has its story finished. There is nothing left to learn, only to prove.',
+     lesM:'Nobody commits. Everything stays in suspension, so nobody has to make themselves vulnerable.',
+     partyP:'Mark your story as an assumption: "My working hypothesis is …" From certainty to curiosity.',
+     partyM:'Commit: "From my point of view, at this moment, with the information I have, I want you to do X, because Y."',
+     obsP:'Which part of your version are you least sure of?',
+     obsM:'If you had to commit today, what would your sentence be?',
+     whyP:'Facts as hypothesis. Difficult Conversations.',whyM:'Full FEED. "At this moment" keeps the door open.',
+     reflP:'When did you last concede to someone you were at odds with at the start of the conversation?',
+     reflM:'Do you know enough about this matter to argue it clearly and winningly? Or is volume replacing the argument?'},
+    {name:'Evaluation',dim:'sache',dir:'Judgement',q:'How is the other side\'s behaviour judged?',
+     poleA:'absolute',poleB:'nobody judges',
+     chips:['Judgements are absolute: "You just don\'t do that." Full stop.','Judgements are clear and rarely softened.','Judgements get checked; people let things slide.','Nobody dares to judge. Everything is "a matter of opinion", even what is plainly not on.'],
+     lesP:'The judgements are final. Whoever pushes back is not of a different opinion but wrong.',
+     lesM:'Nobody dares to judge. So even what is plainly not on stays standing.',
+     partyP:'Separate opinion and person: "I think that is wrong" instead of "You are …". And ask yourself out loud: "What would have to happen for me to check my judgement?"',
+     partyM:'Make a judgement and let it stand, even against pushback: "This does not work like this. Full stop." Do not soften at the first objection.',
+     obsP:'What would have to happen for you to check your judgement?',
+     obsM:'What do you find plainly wrong here, and why don\'t you say it?',
+     whyP:'Rosenberg: observation, not evaluation. Acknowledging is not agreeing.',whyM:'A short FEED on all four sides of the message.',
+     reflP:'Which conviction do you refuse to see questioned? What would happen if you did?',
+     reflM:'Do you sometimes doubt yourself too early, just because someone pushes back?'},
+    {name:'Contact',dim:'sozial',dir:'Manner',q:'How do you treat each other, as opponents or as people in conversation?',
+     poleA:'as opponents',poleB:'only understanding',
+     chips:['As opponents. Harm is allowed, and silence or ignoring is part of it.','More like opponents, with distrust.','You still talk and try to understand.','Only understanding, even where someone is doing real harm right now.'],
+     lesP:'You treat each other as opponents. That includes the silence and ignoring that looks like calm.',
+     lesM:'You understand each other so thoroughly that nobody can say any more: "That harmed me."',
+     partyP:'Decode the need behind the behaviour before you react, and say it, without a question mark: "I can see that {thema} will not let you go."',
+     partyM:'Mark a boundary and name the need behind it: "This is where it stops for me, because I need …" Then sit with the guilt.',
+     obsP:'What does the other side want that you do not credit them with right now?',
+     obsM:'Where has the other side harmed you, and who have you told?',
+     whyP:'EAT: Empathise. Only when the other side nods does your question come.',whyM:'Rosenberg: boundary, need, offer.',
+     reflP:'What should the other person give up, see differently or feel differently? And what would you need that for?',
+     reflM:'Can you bear feeling guilty when you are not nice, or do you have to make it go away at once?'},
+    {name:'Reaction',dim:'sozial',dir:'Reaction',q:'What happens when one side makes a proposal?',
+     poleA:'reflex no',poleB:'always yes',
+     chips:['A reflex no. Whatever comes, the answer is no, a block, or the proposal is simply talked over.','Mostly no, with exceptions.','It gets weighed; sometimes yes, sometimes no.','Always yes or giving in, just to have peace.'],
+     lesP:'Whatever comes, the answer is no. Two nos feed each other: the more pressure, the tighter the door.',
+     lesM:'There is always giving in. That keeps the surface smooth, and underneath collects what was never said.',
+     partyP:'Answer more slowly. A night between proposal and no. Or just: "Difficult." Neither yes nor no, buys time, keeps contact.',
+     partyM:'Say no once without a reason and without an apology. Or the soft no: "That is hard to imagine at this moment. What I could imagine: …"',
+     obsP:'What is the smallest yes you can imagine?',
+     obsM:'When did you last say no, and what happened?',
+     whyP:'Schranner. Under pressure: three seconds of silence, then keep stirring, EAT, or name it.',whyM:'The competence to say no: a no is also an offer of contact.',
+     reflP:'How much do you make your giving way depend on the other side honouring it at once?',
+     reflM:'Are you more concerned with the other side\'s wellbeing right now than with your own?'},
+    {name:'Action',dim:'sozial',dir:'Talking and listening',q:'Who explains, who asks?',
+     poleA:'only sending',poleB:'only asking',
+     chips:['Both only send. Nobody asks how the other side is doing.','More is sent than asked.','At least one side asks and listens.','Only asking and understanding. Nobody says what they want themselves.'],
+     lesP:'Both send, nobody asks. Each side explains, neither wants to understand.',
+     lesM:'Only asking and understanding. What each side wants itself stays unsaid.',
+     partyP:'Ask a question before you explain, and bear the answer. Back to sending only after permission: "Are you willing to hear my view?"',
+     partyM:'Park politeness for a moment and say with heart what matters to you. FEED to the end, without answering interruptions. Then silence.',
+     obsP:'What do you know about how the other side is doing with this?',
+     obsM:'What do you want yourself, and when did you last say it?',
+     whyP:'Full EAT, then anti-yes-but: listen, strengthen, get permission, new FEED.',whyM:'Risotto method: keep stirring. The silence belongs to the other side.',
+     reflP:'How much do you need the other side to see that you are right?',
+     reflM:'How easily are you driven off the field when someone disputes your right to speak?'},
+    {name:'Explanation',dim:'zeit',dir:'Blame and contribution',q:'Who started it, and who sees their own part?',
+     poleA:'one culprit',poleB:'all "complex"',
+     chips:['There is a culprit. Done.','Usually one side started it.','Both see that they contribute.','Everything is "complex" and "both of us". Nobody names what went wrong.'],
+     lesP:'There is a culprit. As long as that is settled, nobody has to look at their own contribution.',
+     lesM:'Everything is "complex" and "both of us". So what really went wrong never gets named.',
+     partyP:'Name one contribution of your own, concretely, without a "but". Responsibility means being the author, not the guilty one.',
+     partyM:'Say clearly, once, which wrong you observed, even if you made mistakes yourself. And call silence and withdrawal by their name: that is aggression too, only quiet.',
+     obsP:'What was your contribution to it getting this far?',
+     obsM:'What went wrong here, whoever started it?',
+     whyP:'Difficult Conversations: from blame to contribution.',whyM:'FEED: Facts and Effect, named in a straight line.',
+     reflP:'Can you meet an accusation with curiosity instead of defence?',
+     reflM:'Can you say clearly which wrong you observed, even if you made mistakes yourself?'},
+    {name:'Goal',dim:'zeit',dir:'Outcome',q:'What is it about in the end, winning or a solution?',
+     poleA:'winning',poleB:'nobody decides',
+     chips:['About winning. The other side is to give in.','Each side would rather be proved right.','It is open how it ends.','Nobody wants to decide anything. It stays open, even when it hurts.'],
+     lesP:'It is about winning. Giving way would be a defeat, so nobody gives way.',
+     lesM:'Nobody wants to decide. The conflict stays open because leaving it open hurts less than losing.',
+     partyP:'Say what you are willing to lose: "It matters more to me that …, than that I am proved right about {thema}."',
+     partyM:'Decide, even at the risk of losing: "I am settling this now, and if it was wrong, I will carry that."',
+     obsP:'What happens to you if you lose this?',
+     obsM:'What would you decide if you had to decide today?',
+     whyP:'Harvard: interests, not positions. And whoever wins lets the other side keep face.',whyM:'Giving in is the fear signal. First competing, then the window in the conditional.',
+     reflP:'Does your wellbeing stay intact if you lose on this? Or do you feel ashamed?',
+     reflM:'Do you hold back out of pity for the other side, although the matter demands otherwise?'},
+    {name:'Power',dim:'zeit',dir:'Pressure',q:'How is pressure applied, with threats or with offers?',
+     poleA:'threatening',poleB:'nobody puts anything in',
+     chips:['With threats, open or covert: withdrawal, break-off, money, silence.','Pressure is in the air but not spoken.','There is negotiation, with ways out for both.','Nobody puts anything on the line. Each side would rather give in than carry a risk.'],
+     lesP:'There are threats, covert ones too. Whoever threatens has to deliver or loses credibility.',
+     lesM:'Nobody puts anything on the line. Each side gives in before it gets risky. So nothing gets decided.',
+     partyP:'Warn instead of threatening, in three steps: a real common ground, an automatic process with a date ("From the … this happens automatically"), and hand the choice back: "What do you think we should both do now?"',
+     partyM:'Work out beforehand what you will do if you cannot agree. Then put something in, once: "Otherwise I have no option but to …"',
+     obsP:'What does it cost you if you really follow through?',
+     obsM:'What do you do if you cannot agree? And does the other side know?',
+     whyP:'Schranner: warning instead of threat. Check: is the automatic process real?',whyM:'BATNA as an inner anchor. Whoever can walk negotiates differently.',
+     reflP:'Which feelings are attached to giving in for you? And do you sometimes negotiate only because you do not dare to fight?',
+     reflM:'Can you bear the loss that a consequence, once carried out, would also mean for you?'}
+  ],
+  func1:{dir:'Who benefits?',q:'Last spotlight, the most important one. Suppose the conflict is useful to someone. To whom, most likely?',
+    opts:['To {A}.','To {B}.','To the relationship between the two.','To someone around them: children, parents, team, boss.','I don\'t know.'],
+    optsSelf:['To me.','To the other side.','To our relationship.','To someone around us: children, parents, team, boss.','I don\'t know.'],
+    les:['most likely {A}','most likely {B}','most likely your relationship itself, which wants to show something neither of you would say out loud','most likely someone outside the two of you. Then it will not end between you either, as long as nothing changes there']},
+  func2:{dir:'What no longer fits?',q:'And if the conflict could speak: what would it say no longer fits?',
+    opts:['Who decides.','How close or how separate we are.','What we may expect of each other.','A rule or agreement that no longer holds.','I don\'t know.'],
+    les:['the old arrangement of who has the say here','the closeness or distance you have had so far','what you have been allowed to expect of each other','an agreement that used to hold']},
+  res:{
+    h:'The result',
+    verdict:{bug:'Bug.',schwel:'Smouldering.',schief:'Lopsided.',feature:'Feature.'},
+    vtext:{
+      bug:'The conflict is no longer moving, it is repeating. Calming usually pays here.',
+      schwel:'It is quiet, but nothing is settled. What is usually missing here is the ability to stir.',
+      schief:'The two stand on opposite poles on several axes. Whoever moves, moves both.',
+      feature:'The conflict is still working. It is uncomfortable, but it is moving something.'
+    },
+    count:'{n} of nine axes {v} locked, {d}.',
+    countOne:'is',countMany:'are',
+    dAllP:'all on stirring',dAllM:'all on calming',dMix:'{p} on stirring, {m} on calming',
+    countZero:'No axis is locked. There are tendencies, but nothing is stuck.',
+    countFew:'Only {n} {v} locked. That is exactly where to look.',
+    aboutTopic:'It is about {thema}.',
+    lesH:'Reading',
+    hypoH:'A hypothesis that may be wrong',
+    hypo:'The conflict serves {f1} and says that {f2} no longer fits. Check what that stirs in you before you use it.',
+    hypoNone:'You do not yet have a hypothesis about whom the conflict serves. Without one, nobody can tell whether a move helps or harms. That is your first move: for a week, notice when the conflict flares. Not what about, but when and who is present.',
+    oppH:'Opposite poles',
+    opp:'On the {ax} axis, {A} and {B} stand on opposite poles. That is no coincidence: the more one side stirs, the more the other calms, and vice versa. Whoever moves, moves both.',
+    unusedH:'What is not in play at all',
+    unused:'{n} axes do not come up for you at all. That is a finding in itself: what is not fought over does not get settled either.',
+    gegenH:'Counter-check',
+    gegen:'Perhaps the fixed pole is right and is only being driven too timidly. Which move takes the conflict to where it is meant to go?',
+    profH:'The profile',
+    dims:{sache:'Matter',sozial:'Manner',zeit:'Time'},
+    st:{lock:'locked',tend:'tendency',zero:'not in play',both:'both',mostly:'mainly {n}'},
+    movesH:'Your next moves',
+    moveN:'Move {n}',
+    sayH:'Sentences you can say',
+    askH:'Questions you can ask',
+    askHTo:'Questions for {n}',
+    askHOther:'Questions for the other side',
+    reflH:'Questions to reflect on',
+    reflSub:'For you. Or for the person you are talking to, wherever they recognise themselves.',
+    reflSubSelf:'For you. Each aims at the ability missing on the other pole.',
+    frameH:'Before you talk',
+    frame2:'You are next to it, but it affects you. Anything that runs in secret makes you a party. So the first sentence is not content but a frame: "{other} knows we are talking, and I will tell them afterwards what about. Not every detail, but the topic. Is that all right with you?"',
+    frame3:'Do not take the matter into your own hands. Ask both sides separately: "What do you need from me?" And pass it on, not as a messenger but as a mirror.',
+    frame1P:'Your tool is EAT: Empathise, Accept, Transform. First name what you perceive in the other side, without a question mark. Only when they feel seen does your question come. Then your FEED, and listen again.',
+    frame1M:'Your tool is FEED: Facts, Effect, Emotion, Direction. Four sentences, non-violent and clear. The Direction as a demand, not a request, so that a decision becomes due. Then silence.',
+    sayFrame:'{other} knows we are talking, and I will tell them afterwards what about.',
+    sayEat:'I can see that {thema} will not let you go. And that you feel alone with it.',
+    sayEatWhy:'Empathising without a question mark. Only when the other side nods does your question come.',
+    sayHypo:'May I tell you my impression? It may be completely wrong. I think the conflict is saying that {f2} no longer fits.',
+    sayHypoWhy:'The hypothesis as an offer, not a verdict. Then be quiet and see what happens.',
+    sayNeed:'What do you need from me?',
+    sayNeedWhy:'Turns the other side\'s expectation into their request, not your assignment.',
+    whyFrame:'Transparency removes the coalition without rejecting anyone.',
+    exportH:'Take it with you',
+    exportNote:'Two pages as a PDF: the diagnosis and your next moves. Or as text to paste. Nothing is sent or stored.',
+    copy:'Copy text',pdf:'Save as PDF',copied:'Copied. You can paste it now.',copyFail:"Couldn't copy automatically. The text is selected, copy it with Ctrl+C or Cmd+C.",
+    coachH:'Not getting you further?',
+    coach:'Some conflicts need a third person in the room. A first conversation clears up whether this is one of them.',
+    coachBtn:'Coaching',coachUrl:'https://jacobnoon.com/en/coaching/',
+    p1H:'What kind of conflict is this?',p2H:'What now?',
+    pKick1:'Conflict Check · Result · {date}',pKick2:'Conflict Check · Next moves{to}',pTo:' · talking to {n}',
+    pRole:['Described from your view: in the middle of it.','Described from your view: next to it, but affected.','Described from your view: from outside.'],
+    pNext:'Next conversation: with {n}.',
+    pFoot1:'Based on Klaus Eidenschink, "Die Kunst des Konflikts" (Carl-Auer, German). Nine guiding distinctions, 18 regulation competences.',
+    pFoot2:'FEED: Facts, Effect, Emotion, Direction. EAT: Empathise, Accept, Transform. FEED. EAT. REPEAT.',
+    pSite:'jacobnoon.com/en/conflict-check',
+    pCoach:'Not getting you further? jacobnoon.com/en/coaching'
+  },
+  foot:'Based on Klaus Eidenschink, "Die Kunst des Konflikts. Konflikte schüren und beruhigen lernen" (Carl-Auer, German only). The nine guiding distinctions and the 18 regulation competences are his; selection and wording by Jacob Noon. An assessment, not a diagnosis.'
+}
+};
+const T=DATA[L], U=T.res;
+document.title=T.title;
 
-const S={role:null,start:null,pos:{},oth:{},posT:{},othT:{},fix:{},erg:{},names:{a:D.sideA,b:D.sideB}};
-AXES.forEach(a=>{S.pos[a.id]=0;S.oth[a.id]=0;S.fix[a.id]=null});
+/* ===== state ===== */
+const S={role:null,A:'',B:'',topic:'',next:null,v:Array(9).fill(null),who:Array(9).fill(null),other:Array(9).fill(null),f1:null,f2:null};
 let step=0;
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
-function starts(){if(S.role==='partei')return D.startsPartei;return [['a',S.names.a],['b',S.names.b],['beide',D.both],['unklar',D.unclear]]}
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const NUM={de:['null','eine','zwei','drei','vier','fünf','sechs','sieben','acht','neun'],en:['none','one','two','three','four','five','six','seven','eight','nine']};const numl=n=>NUM[L][n]||String(n);const numw=n=>{const w=numl(n);return w.charAt(0).toUpperCase()+w.slice(1)};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fill=(s,o)=>String(s).replace(/\{(\w+)\}/g,(m,k)=>o[k]!==undefined?o[k]:m);
+const nameA=()=>S.role===0?T.who.selfA:(S.A||T.who.a);
+const nameB=()=>S.role===0?T.who.selfB:(S.B||T.who.b);
+const topic=()=>S.topic.trim()||(L==='de'?'das Thema':'the matter');
+const ctx=()=>({A:nameA(),B:nameB(),thema:topic()});
 
-/* static texts */
-(function(){
-  document.title=U.docTitle;
-  $('#t-title').innerHTML=U.title;
-  ['lead','roleq','r1','r1s','r2','r2s','note','s1e','s1h','s1l','names','namesnote','d1e','d1h','d1l','d2e','d2h','d3e','d3h','foot'].forEach(k=>$('#t-'+k).textContent=U[k]);
-  $('#crumb').textContent=U.crumb;$('#startBtn').textContent=U.go;$('#resultBtn').textContent=U.result;
-  $$('[data-back]').forEach(b=>b.textContent=U.back);$$('[data-next]').forEach(b=>b.textContent=U.next);
-  $('#nameA').placeholder=U.nameA;$('#nameB').placeholder=U.nameB;
-  $('#stepname').textContent=STEPNAMES[0];
-})();
-
+/* steps: 0 role, 1 who, 2..10 axes, 11 f1, 12 f2, 13 result */
+const NSTEPS=14;
+function stepMeta(n){
+  if(n===0)return[T.steps.start,''];
+  if(n===1)return[T.steps.who,''];
+  if(n>=2&&n<=10){const a=T.axes[n-2];return[T.steps[a.dim],`${n-1} ${T.of} 11`]}
+  if(n===11||n===12)return[T.steps.func,`${n-1} ${T.of} 11`];
+  return[T.steps.result,''];
+}
 function show(n){
-  step=n;
-  $$('.screen').forEach(s=>s.classList.toggle('on',+s.dataset.step===n));
-  $('#bar').style.width=(n/6*100)+'%';
-  $('#stepname').textContent=STEPNAMES[n];
-  $('#stepnum').textContent=n===0?'':`${n} / 6`;
-  $('#crumb').textContent=S.role?(S.role==='partei'?U.crumbP:U.crumbB):U.crumb;
-  window.scrollTo({top:0,behavior:'smooth'});
+  step=Math.max(0,Math.min(NSTEPS-1,n));
+  const sc=$('#screen');sc.innerHTML='';
+  const [nm,num]=stepMeta(step);$('#stepname').textContent=nm;$('#stepnum').textContent=num;
+  $('#bar').style.width=(step/(NSTEPS-1)*100)+'%';
+  $('#crumb').textContent=T.crumb;
+  if(step===0)renderStart(sc);
+  else if(step===1)renderWho(sc);
+  else if(step<=10)renderAxis(sc,step-2);
+  else if(step===11)renderFunc(sc,1);
+  else if(step===12)renderFunc(sc,2);
+  else renderResult(sc);
+  window.scrollTo({top:0,behavior:'instant'});
 }
-
-/* start */
-$$('#roleChoices .choice').forEach(b=>b.addEventListener('click',()=>{
-  S.role=b.dataset.role;
-  $$('#roleChoices .choice').forEach(x=>x.classList.toggle('sel',x===b));
-  $('#startBtn').disabled=false;
-}));
-$('#startBtn').addEventListener('click',()=>{buildAll();show(1)});
-['A','B'].forEach(k=>$('#name'+k).addEventListener('input',e=>{S.names[k.toLowerCase()]=e.target.value.trim()||(k==='A'?D.sideA:D.sideB);const bs=$$('#startChoices .choice');if(bs.length){bs[k==='A'?0:1].querySelector('b').textContent=S.names[k.toLowerCase()]}}));
-
-function buildAll(){
-  const r=S.role;
-  const sc=$('#startChoices');sc.innerHTML='';
-  $('#nameBox').hidden=r!=='beob';
-  starts().forEach(([k,l])=>{const b=document.createElement('button');b.className='choice';b.innerHTML=`<b>${esc(l)}</b>`;b.onclick=()=>{S.start=k;$$('#startChoices .choice').forEach(x=>x.classList.toggle('sel',x===b));sc.closest('.screen').querySelector('[data-next]').disabled=false};sc.appendChild(b)});
-  ['sache','sozial','zeit'].forEach(d=>{const box=$('#dim-'+d);box.innerHTML='';AXES.filter(a=>a.dim===d).forEach(a=>box.appendChild(axisEl(a)))});
-  $('#ergTitle').textContent=r==='partei'?U.ergP:U.ergB;
-  $('#ergEyebrow').textContent=r==='partei'?U.ergPe:U.ergBe;
-  const e=$('#erg');e.innerHTML='';
-  ERG[r].forEach((it,i)=>{const w=document.createElement('div');w.className='axis';w.innerHTML=`<p class="count">${U.qOf(i+1,ERG[r].length)}</p><p class="q">${esc(it.q)}</p><div class="choices"></div>`;const c=w.querySelector('.choices');it.o.forEach((o,v)=>{const b=document.createElement('button');b.className='choice';b.innerHTML=`<span style="color:var(--ink);font-size:15px">${esc(o)}</span>`;b.onclick=()=>{S.erg[i]=v;c.querySelectorAll('.choice').forEach(x=>x.classList.toggle('sel',x===b));$('#resultBtn').disabled=Object.keys(S.erg).length<ERG[r].length};c.appendChild(b)});e.appendChild(w)});
+function nav(sc,canNext,nextLabel){
+  const d=document.createElement('div');d.className='nav';
+  d.innerHTML=`<button class="btn ghost" type="button" id="back"${step===0?' disabled':''}>${T.back}</button><button class="btn primary" type="button" id="next"${canNext?'':' disabled'}>${nextLabel||T.next}</button>`;
+  sc.appendChild(d);
+  $('#back').onclick=()=>show(step-1);
+  $('#next').onclick=()=>show(step+1);
 }
-function axisEl(a){
-  const w=document.createElement('div');w.className='axis';
-  const P=S.role==='partei';
-  const other=P?`<div class="other-row"><label for="o-${a.id}">${U.other}</label><div class="sl"><input class="other" type="range" id="o-${a.id}" min="-3" max="3" step="1" value="0"></div></div>`:'';
-  const sliders=P?`<div class="sl"><input type="range" id="p-${a.id}" min="-3" max="3" step="1" value="0" aria-label="${a.name}: ${a.left} / ${a.right}"></div>`
-   :`<div class="side-row"><label><span class="dot-a"></span>${esc(S.names.a)}</label><div class="sl"><input type="range" id="p-${a.id}" min="-3" max="3" step="1" value="0" aria-label="${esc(S.names.a)}, ${a.name}"></div></div>
-     <div class="side-row"><label><span class="dot-b"></span>${esc(S.names.b)}</label><div class="sl"><input class="other b" type="range" id="o-${a.id}" min="-3" max="3" step="1" value="0" aria-label="${esc(S.names.b)}, ${a.name}"></div></div>`;
-  w.innerHTML=`<div class="name"><span class="os">${D.mode(a.name)}</span><span class="count">${U.axisOf(AXES.indexOf(a)+1,AXES.length)}</span></div>
-  <p class="q">${esc(a.q[S.role])}</p>
-  ${P?'':'<div class="poles" style="margin:0 0 -4px"><span><b>'+a.left+'</b></span><span><b>'+a.right+'</b></span></div>'}
-  ${sliders}
-  <div class="poles"><span>${P?'<b>'+a.left+'</b>':''}${esc(a.lp)}</span><span>${P?'<b>'+a.right+'</b>':''}${esc(a.rp)}</span></div>
-  <div class="sub"><label>${U.fixq}</label><div class="seg" data-ax="${a.id}"><button data-v="0">${U.fix0}</button><button data-v="2">${U.fix2}</button></div></div>
-  ${other}`;
-  const sub=w.querySelector('.sub'),upd=()=>{sub.hidden=!(Math.abs(S.pos[a.id])>=2||(!P&&Math.abs(S.oth[a.id])>=2))};upd();
-  w.querySelector('#p-'+a.id).oninput=e=>{S.pos[a.id]=+e.target.value;S.posT[a.id]=1;upd()};
-  w.querySelector('#o-'+a.id).oninput=e=>{S.oth[a.id]=+e.target.value;S.othT[a.id]=1;upd()};
-  w.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{S.fix[a.id]=+b.dataset.v;w.querySelectorAll('.seg button').forEach(x=>x.classList.toggle('sel',x===b))});
-  return w;
+function setNext(ok){const b=$('#next');if(b)b.disabled=!ok}
+
+/* ===== screens ===== */
+function renderStart(sc){
+  const i=T.intro;
+  sc.innerHTML=`<div class="stack">
+    <div><h1>${i.h}</h1><p class="lead" style="margin-top:14px">${i.lead}</p><p class="muted" style="margin-top:10px;font-size:14px">${i.note}</p></div>
+    <div><p class="q" style="font-size:19px;margin-top:0">${i.roleQ}</p>
+      <div class="choices" id="roles">${i.roles.map((r,k)=>`<button class="choice${S.role===k?' sel':''}" type="button" data-k="${k}"><b>${r[0]}</b><span>${r[1]}</span></button>`).join('')}</div></div>
+    <p class="lang">${L==='de'?'<a class="on">DE</a><a href="?lang=en">EN</a>':'<a href="?lang=de">DE</a><a class="on">EN</a>'}</p>
+  </div>`;
+  $$('#roles .choice').forEach(b=>b.onclick=()=>{S.role=+b.dataset.k;$$('#roles .choice').forEach(x=>x.classList.toggle('sel',x===b));setNext(true)});
+  nav(sc,S.role!==null);
 }
-
-/* nav */
-$$('[data-next]').forEach(b=>b.addEventListener('click',()=>{
-  if(step>=2&&step<=4){const d=['sache','sozial','zeit'][step-2];const miss=AXES.filter(a=>a.dim===d&&S.fix[a.id]===null&&(Math.abs(S.pos[a.id])>=2||(S.role!=='partei'&&Math.abs(S.oth[a.id])>=2)));if(miss.length){const el=$('#dim-'+d).querySelector(`.seg[data-ax="${miss[0].id}"]`);el.style.outline='2px solid var(--orange)';el.scrollIntoView({block:'center',behavior:'smooth'});setTimeout(()=>el.style.outline='',1600);return}}
-  if(step===1&&S.role==='beob'){$$('.side-row').forEach((row,i)=>{row.querySelector('label').lastChild.textContent=i%2?S.names.b:S.names.a})}
-  show(step+1)}));
-$$('[data-back]').forEach(b=>b.addEventListener('click',()=>show(step-1)));
-$('#resultBtn').addEventListener('click',()=>{render();show(6)});
-
-/* logic */
-function stat(p,f){f=f||0;if(f===2&&Math.abs(p)>=2)return 'fix';if(Math.abs(p)>=2)return 'tend';return 'ok'}
-function status(a){return stat(S.pos[a.id],S.fix[a.id])}
-function statusB(a){return stat(S.oth[a.id],S.fix[a.id])}
-function render(){
-  const r=S.role,P=r==='partei';
-  const st={},stB={};AXES.forEach(a=>{st[a.id]=status(a);stB[a.id]=P?'ok':statusB(a)});
-  const fixL=a=>(st[a.id]==='fix'&&S.pos[a.id]<0)||(stB[a.id]==='fix'&&S.oth[a.id]<0);
-  const fixR=a=>(st[a.id]==='fix'&&S.pos[a.id]>0)||(stB[a.id]==='fix'&&S.oth[a.id]>0);
-  const Lx=AXES.filter(fixL), R=AXES.filter(fixR);
-  const E=Object.values(S.erg).reduce((s,v)=>s+v,0); const caught=E>=5;
-  const gaps=AXES.filter(a=>S.posT[a.id]&&S.othT[a.id]&&Math.abs(S.pos[a.id]-S.oth[a.id])>=3);
-  const NA=esc(S.names.a),NB=esc(S.names.b);
-  let cls,title,text,vk;
-  if(!P&&gaps.length>=3&&Lx.length<3){cls='schwel';vk='lop';title=U.verdictLop;text=U.vLop(U.axesN(gaps.length),NA,NB)}
-  else if(Lx.length>=3||(Lx.length>=2&&caught)||(Lx.length>=2&&Lx.length>R.length)){cls='bug';vk='bug';title=U.verdictBug;text=U.vBug(U.axesN(Lx.length),R.length?U.axesN(R.length):'')}
-  else if(R.length>=2&&R.length>=Lx.length){cls='schwel';vk='schwel';title=U.verdictSmoulder;text=U.vSmoulder(U.axesN(R.length))}
-  else if(Lx.length+R.length<=1){cls='';vk='feature';title=U.verdictFeature;text=U.vFeature}
-  else {cls='bug';vk='mixed';title=U.verdictBug;text=U.vMixed}
-  let h='';
-  h+=`<div><p class="eyebrow">${U.yourResult}</p><div class="verdict ${cls}" style="margin-top:10px"><h2>${title}</h2><p>${text}</p>${caught?`<p style="margin-top:6px"><span class="pill fix">${P?U.hasYou:U.hasSystem}</span></p>`:''}</div></div>`;
-  const counterQ=U.counter[vk];
-  h+=`<div class="callout counter"><p class="eyebrow">${U.counterH}</p><p>${counterQ}</p><textarea class="ta" id="counterAns" rows="3" placeholder="${U.counterPh}" aria-label="${U.counterH}"></textarea></div>`;
-  /* profile */
-  h+=`<div><p class="eyebrow">${U.profile}</p><p class="muted" style="font-size:14px;margin-top:4px">${U.profileNote}</p>`;
-  ['sache','sozial','zeit'].forEach(d=>{h+=`<div class="dim"><h3>${DIMS[d]}</h3>`;AXES.filter(a=>a.dim===d).forEach(a=>{const s=st[a.id],sb=stB[a.id];const x=(S.pos[a.id]+3)/6*100,xo=(S.oth[a.id]+3)/6*100;
-    let pills='';
-    if(P){pills=(s==='fix'?`<span class="pill fix">${U.locked}</span> `:s==='tend'?`<span class="pill tend">${U.tend}</span> `:'')+(gaps.includes(a)?`<span class="pill gap">${U.seeDiff}</span>`:'')}
-    else{pills=(s==='fix'?`<span class="pill fix">${NA} ${U.locked}</span> `:s==='tend'?`<span class="pill tend">${NA}: ${U.tend}</span> `:'')+(sb==='fix'?`<span class="pill fix">${NB} ${U.locked}</span> `:sb==='tend'?`<span class="pill tend">${NB}: ${U.tend}</span> `:'')+(gaps.includes(a)?`<span class="pill gap">${U.lopsided}</span>`:'')}
-    const dots=P?`${S.othT[a.id]?`<i class="dot o" style="left:${xo}%" title="${U.otherView}"></i>`:''}<i class="dot ${s==='ok'?'':s}" style="left:${x}%"></i>`
-      :`<i class="dot b ${sb==='fix'?'ring':''}" style="left:${xo}%" title="${NB}"></i><i class="dot a ${s==='fix'?'ring':''}" style="left:${x}%" title="${NA}"></i>`;
-    h+=`<div class="row"><div class="l"><b>${a.name}</b>${a.left}</div><div class="track">${dots}</div><div class="r"><b>&nbsp;</b>${a.right}</div>${pills?`<div class="pills">${pills}</div>`:''}</div>`});h+='</div>'});
-  h+=P?`<div class="legend"><span><i style="background:var(--green)"></i>${U.legMoving}</span><span><i style="background:var(--gold)"></i>${U.legTend}</span><span><i style="background:var(--orange)"></i>${U.legLocked}</span><span><i style="background:var(--card);box-shadow:0 0 0 2px var(--blue)"></i>${U.legOther}</span></div></div>`
-      :`<div class="legend"><span><i style="background:var(--green)"></i>${NA}</span><span><i style="background:var(--blue)"></i>${NB}</span><span><i style="background:var(--card);box-shadow:0 0 0 2px var(--orange)"></i>${U.legLocked}</span></div></div>`;
-  /* function of the conflict (Eidenschink 5.1) */
-  h+=`<div class="callout func"><p class="eyebrow">${U.funcH}</p><p>${P?U.func:U.funcB}</p><p class="ex">${U.funcEx}</p><textarea class="ta" id="funcAns" rows="2" placeholder="${U.funcPh}" aria-label="${U.funcH}"></textarea></div>`;
-  /* moves */
-  let items=[];
-  AXES.forEach(a=>{items.push({a,side:'a',p:S.pos[a.id],s:st[a.id]});if(!P)items.push({a,side:'b',p:S.oth[a.id],s:stB[a.id]})});
-  const fixed=items.filter(i=>i.s==='fix'), tend=items.filter(i=>i.s==='tend');
-  fixed.sort((x,y)=>Math.abs(y.p)-Math.abs(x.p));
-  const MAX=5, list=fixed.length?fixed.slice(0,MAX):tend.slice(0,2);
-  const lk=[],td=[],pole=(a,p)=>p<0?a.left:a.right;
-  AXES.forEach(a=>{
-    const pa=P?'':S.names.a+': ';
-    if(st[a.id]==='fix')lk.push(pa+a.name+' ('+pole(a,S.pos[a.id])+')');else if(st[a.id]==='tend')td.push(pa+a.name+' ('+pole(a,S.pos[a.id])+')');
-    if(!P){const pb=S.names.b+': ';if(stB[a.id]==='fix')lk.push(pb+a.name+' ('+pole(a,S.oth[a.id])+')');else if(stB[a.id]==='tend')td.push(pb+a.name+' ('+pole(a,S.oth[a.id])+')')}
-  });
-  const mv=list.map(({a,side,p})=>{const dn=p<0;return {tag:(P?'':(side==='a'?S.names.a:S.names.b)+' · ')+(dn?U.calm:U.stir)+' · '+D.mode(a.name)+': '+(dn?U.fromTo(a.left,a.right):U.fromTo(a.right,a.left)),skill:dn?a.sdown:a.sup,reflect:dn?a.rdown:a.rup,altTag:(P?'':(side==='a'?S.names.a:S.names.b)+' · ')+U.sharper+' · '+D.mode(a.name)+': '+(dn?a.left:a.right),alt:dn?a.altDown:a.altUp}});
-  if(list.length){
-    h+=`<div><p class="eyebrow">${U.movesH}</p><p class="muted" style="font-size:14px;margin-top:4px">${fixed.length>MAX?U.movesMany(fixed.length,MAX):fixed.length?U.movesFixed:U.movesTend}${P?'':U.movesBeob} ${U.pickNote}</p><div class="moves">`;
-    list.forEach(({a,side,p},idx)=>{const dn=p<0;const who=P?'':(side==='a'?NA:NB)+' · ';h+=`<div class="move ${dn?'':'up'}"><span class="tag">${who}${dn?U.calm:U.stir} · ${D.mode(a.name)}: ${dn?U.fromTo(a.left,a.right):U.fromTo(a.right,a.left)}</span><p>${esc(dn?a.down:a.up)}</p><p class="skill"><b>${U.skill}</b> ${esc(dn?a.sdown:a.sup)}</p><p class="reflect"><b>${U.reflect}</b> ${esc(dn?a.rdown:a.rup)}</p><p class="alt"><b>${U.altH}</b> ${esc(dn?a.altDown:a.altUp)}</p><div class="picks"><button class="pick" type="button" aria-pressed="false" data-i="${idx}" data-dir="main">${U.pickDir(dn?U.calm:U.stir)}</button><button class="pick" type="button" aria-pressed="false" data-i="${idx}" data-dir="alt">${U.pickDir(U.sharper)}</button></div></div>`});
-    h+='</div></div>';
-  } else {
-    h+=`<div class="callout"><p class="eyebrow">${U.movesH}</p><p>${U.noFix}</p></div>`;
+function renderWho(sc){
+  const w=T.who, obs=S.role!==0;
+  let h=`<div class="stack"><div><h2>${obs?w.h:(L==='de'?'Worum geht es?':'What is it about?')}</h2>${obs?`<p class="lead" style="margin-top:10px">${w.lead}</p>`:''}</div>`;
+  if(obs){h+=`<div class="namegrid"><label><i class="dot-a"></i><input id="nA" placeholder="${w.phA}" value="${esc(S.A)}" aria-label="${w.a}"></label><label><i class="dot-b"></i><input id="nB" placeholder="${w.phB}" value="${esc(S.B)}" aria-label="${w.b}"></label></div>`}
+  h+=`<div class="field topic"><span class="lbl">${w.topicL}</span><label><input id="topic" placeholder="${w.topicPh}" value="${esc(S.topic)}" maxlength="60"></label><span class="hint">${w.topicHint}</span></div>`;
+  if(S.role===1){h+=`<div class="field"><span class="lbl">${w.nextQ}</span><div class="chips mini" id="nextChips" style="display:flex;flex-wrap:wrap"></div></div>`}
+  h+=`</div>`;
+  sc.innerHTML=h;
+  const upd=()=>{if(obs){S.A=$('#nA').value;S.B=$('#nB').value}S.topic=$('#topic').value;if(S.role===1)drawNext();setNext(ok())};
+  const ok=()=>obs?(S.A.trim()&&S.B.trim()):true;
+  function drawNext(){
+    const c=$('#nextChips');if(!c)return;
+    const opts=[[0,S.A.trim()||w.a],[1,S.B.trim()||w.b],[2,w.nextBoth],[3,w.nextNone]];
+    c.innerHTML=opts.map(o=>`<button class="chip${S.next===o[0]?' sel':''}" type="button" data-k="${o[0]}">${esc(o[1])}</button>`).join('');
+    $$('#nextChips .chip').forEach(b=>b.onclick=()=>{S.next=+b.dataset.k;drawNext()});
   }
-  const costQ=list.length?U.cost[list[0].a.dim]:'';
-  if(costQ)h+=`<div class="callout cost"><p class="eyebrow">${U.costH}</p><p>${costQ}</p></div>`;
-  /* next move: FEED or EAT */
-  const dirDefault=(vk==='schwel'||vk==='lop')?'demand':'ask';
-  h+=`<div class="callout prep"><p class="eyebrow">${U.prepH}</p><p>${U.prepLead}</p><div class="picks"><button class="pick" type="button" data-prep="feed" aria-pressed="false">${U.prepSpeak}</button><button class="pick" type="button" data-prep="eat" aria-pressed="false">${U.prepListen}</button></div>
-  <div id="prepFeed" hidden><p class="eyebrow" style="margin-top:12px">${U.feedH}</p><p class="muted" style="font-size:14px">${U.feedNote}</p>${U.feed.map((f,i)=>`<label class="fl" for="feed${i}">${esc(f[0])}</label><textarea class="ta" id="feed${i}" rows="2" placeholder="${esc(f[1])}"></textarea>`).join('')}
-   <p class="fl">${U.dirH}</p><div class="seg" id="dirSeg"><button type="button" data-dir="ask" class="${dirDefault==='ask'?'sel':''}">${U.dirAsk}</button><button type="button" data-dir="demand" class="${dirDefault==='demand'?'sel':''}">${U.dirDemand}</button></div><p class="muted" style="font-size:14px;margin-top:6px">${U.dirHint[vk]}</p></div>
-  <div id="prepEat" hidden><p class="eyebrow" style="margin-top:12px">${U.eatH}</p><p class="muted" style="font-size:14px">${U.eatNote}</p><div class="eat">${U.eat.map(e=>`<div class="step"><b>${esc(e[0])}</b><span>${esc(e[1])}</span><em>${esc(e[2])}</em></div>`).join('')}</div><label class="fl" for="eatAns">${U.eatQ}</label><textarea class="ta" id="eatAns" rows="2" placeholder="${esc(U.eatPh)}"></textarea></div></div>`;
+  $$('#screen input').forEach(i=>i.addEventListener('input',upd));
+  if(S.role===1)drawNext();
+  nav(sc,ok());
+}
+function renderAxis(sc,i){
+  const a=T.axes[i], obs=S.role!==0;
+  const first=i===0||T.axes[i-1].dim!==a.dim;
+  const vals=[2,1,-1,-2];
+  let h=`<div>${first?`<p class="bridge">${T.bridges[a.dim]}</p>`:''}<p class="q-dir">${a.dir}</p><p class="q">${a.q}</p>
+  <div class="chips" id="chips">${a.chips.map((c,k)=>`<button class="chip${S.v[i]===vals[k]?' sel':''}${Math.abs(vals[k])===2?' lock':''}" type="button" data-v="${vals[k]}">${c}</button>`).join('')}
+  <button class="chip zero${S.v[i]===0?' sel':''}" type="button" data-v="0">${T.zero}</button></div>
+  <div id="follow"></div></div>`;
+  sc.innerHTML=h;
+  const drawFollow=()=>{
+    const f=$('#follow');f.innerHTML='';
+    if(!obs||Math.abs(S.v[i]||0)!==2)return;
+    const F=T.follow;
+    let x=`<div class="follow"><span class="fl">${F.q}</span><div class="mini" id="whoChips">
+      <button class="chip${S.who[i]==='both'?' sel':''}" type="button" data-w="both">${F.both}</button>
+      <button class="chip${S.who[i]==='A'?' sel':''}" type="button" data-w="A">${esc(fill(F.mostly,{n:nameA()}))}</button>
+      <button class="chip${S.who[i]==='B'?' sel':''}" type="button" data-w="B">${esc(fill(F.mostly,{n:nameB()}))}</button></div>`;
+    if(S.who[i]==='A'||S.who[i]==='B'){
+      const on=S.who[i]==='A'?nameB():nameA();
+      x+=`<span class="fl" style="margin-top:4px">${esc(fill(F.other,{n:on}))}</span><div class="chips mini" id="otherChips" style="display:grid">
+      ${a.chips.map((c,k)=>`<button class="chip${S.other[i]===vals[k]?' sel':''}" type="button" data-o="${vals[k]}">${c}</button>`).join('')}
+      <button class="chip zero${S.other[i]===0?' sel':''}" type="button" data-o="0">${T.zero}</button></div>`;
+    }
+    x+=`</div>`;f.innerHTML=x;
+    $$('#whoChips .chip').forEach(b=>b.onclick=()=>{S.who[i]=b.dataset.w;if(S.who[i]==='both')S.other[i]=null;drawFollow();});
+    $$('#otherChips .chip').forEach(b=>b.onclick=()=>{S.other[i]=+b.dataset.o;drawFollow();});
+  };
+  $$('#chips .chip').forEach(b=>b.onclick=()=>{S.v[i]=+b.dataset.v;$$('#chips .chip').forEach(x=>x.classList.toggle('sel',x===b));if(Math.abs(S.v[i])!==2){S.who[i]=null;S.other[i]=null}drawFollow();setNext(true)});
+  drawFollow();
+  nav(sc,S.v[i]!==null);
+}
+function renderFunc(sc,k){
+  const F=k===1?T.func1:T.func2;
+  const opts=(k===1&&S.role===0)?F.optsSelf:F.opts;
+  const cur=k===1?S.f1:S.f2;
+  sc.innerHTML=`<div><p class="q-dir">${F.dir}</p><p class="q">${F.q}</p><div class="chips" id="chips">${opts.map((o,j)=>`<button class="chip${cur===j?' sel':''}" type="button" data-j="${j}">${esc(fill(o,ctx()))}</button>`).join('')}</div></div>`;
+  $$('#chips .chip').forEach(b=>b.onclick=()=>{if(k===1)S.f1=+b.dataset.j;else S.f2=+b.dataset.j;$$('#chips .chip').forEach(x=>x.classList.toggle('sel',x===b));setNext(true)});
+  nav(sc,cur!==null,k===2?T.toResult:T.next);
+}
 
-  if(gaps.length){const names=gaps.map(a=>a.name).join(', ');h+=`<div class="callout" style="background:var(--blue-tint);border-left-color:var(--blue)"><p class="eyebrow" style="color:var(--blue)">${P?U.gapH:U.asymH}</p><p>${P?U.gap(U.axesN(gaps.length),names):U.asym(U.axesN(gaps.length),names,NA,NB)}</p></div>`}
-  const unused=AXES.filter(a=>S.pos[a.id]===0&&(P||S.oth[a.id]===0));
-  if(unused.length>=4)h+=`<div class="callout" style="background:var(--card);border:1.5px solid var(--line)"><p class="eyebrow">${U.unusedH}</p><p>${U.unused(unused.map(a=>a.name).join(', '))}</p></div>`;
-  /* first question */
-  const erk=S.pos['erk'];
-  let an=S.start==='beide'?U.firstBoth(erk):S.start==='unklar'?U.firstUnclear:U.firstOne(esc(starts().find(x=>x[0]===S.start)[1]));
-  h+=`<div class="callout"><p class="eyebrow">${U.firstH}</p><p>${an}</p></div>`;
-  /* fork */
-  const F=P?U.forkP:U.forkB;const [wt,wp]=caught?F.caught:Lx.length>=2?F.locked:F.self;
-  h+=`<div class="callout ink"><p class="eyebrow">${U.forkH}</p><h3 style="font-size:24px">${wt}</h3><p>${wp}</p><p style="margin-top:8px"><a href="${U.ctaUrl}" target="_blank" rel="noopener">${U.cta}</a></p></div>`;
-  h+=`<div class="callout export"><p class="eyebrow">${U.exportH}</p><p>${U.exportNote}</p><div class="export-btns"><button class="btn primary" type="button" id="copyBtn">${U.copy}</button><button class="btn ghost" type="button" id="pdfBtn">${U.pdf}</button></div><p class="toast" id="copyMsg" aria-live="polite"></p><textarea class="ta" id="copyFallback" rows="8" readonly hidden></textarea></div>`;
-  h+=`<div><p class="quote">${U.quote}</p><p class="muted" style="font-size:14px">${U.quoteSub}</p></div>`;
-  h+=`<div class="nav"><button class="btn ghost" data-back2>${U.backSliders}</button><button class="btn" onclick="location.reload()">${U.restart}</button></div>`;
-  $('#result').innerHTML=h;
-  $('[data-back2]').onclick=()=>show(5);
-  RES={title,text:plain(text),caught,locked:lk,tend:td,moves:mv,picks:[],counterQ:plain(counterQ),costQ:plain(costQ),fork:[plain(wt),plain(wp)]};
-  $$('#result .move .pick').forEach(b=>b.onclick=()=>{
-    const i=+b.dataset.i,dir=b.dataset.dir,k=RES.picks.findIndex(p=>p.i===i);
-    if(k>-1&&RES.picks[k].dir===dir)RES.picks.splice(k,1);else if(k>-1)RES.picks[k].dir=dir;else if(RES.picks.length<2)RES.picks.push({i,dir});
-    $$('#result .move .pick').forEach(x=>{const xi=+x.dataset.i,pk=RES.picks.find(p=>p.i===xi),on=!!pk&&pk.dir===x.dataset.dir;x.setAttribute('aria-pressed',on);x.closest('.move').classList.toggle('picked',!!pk);x.disabled=!pk&&RES.picks.length>=2});
+/* ===== evaluation ===== */
+const DIMRANK={zeit:3,sozial:2,sache:1};
+function evaluate(){
+  const c=ctx();
+  const locked=[];S.v.forEach((v,i)=>{if(Math.abs(v)===2)locked.push(i)});
+  const nP=locked.filter(i=>S.v[i]>0).length, nM=locked.length-nP;
+  const nZero=S.v.filter(v=>v===0).length;
+  const isOpp=i=>typeof S.other[i]==='number'&&S.other[i]!==0&&Math.sign(S.other[i])!==Math.sign(S.v[i]);const nOpp=locked.filter(isOpp).length;
+  let verdict='feature';
+  if(locked.length>=3){verdict=nM===locked.length?'schwel':'bug'}
+  if(S.role!==0&&nOpp>=3)verdict='schief';
+  // ranking: both first, then dimension rank, then index
+  const rank=i=>(S.role===0||S.who[i]==='both'||S.who[i]===null?2:1)*10+DIMRANK[T.axes[i].dim];
+  const sorted=locked.slice().sort((a,b)=>rank(b)-rank(a)||b-a);
+  const top=sorted.slice(0,locked.length>=5?3:2);
+  const line=i=>S.v[i]>0?T.axes[i].lesP:T.axes[i].lesM;
+  const sideTag=i=>{if(S.role===0)return'';if(S.who[i]==='A')return fill(U.st.mostly,{n:c.A});if(S.who[i]==='B')return fill(U.st.mostly,{n:c.B});return U.st.both};
+  // count line
+  let count;
+  if(locked.length===0)count=U.countZero;
+  else if(locked.length<3)count=fill(U.countFew,{n:numl(locked.length),v:locked.length===1?U.countOne:U.countMany});
+  else{const d=nM===0?U.dAllP:nP===0?U.dAllM:fill(U.dMix,{p:nP,m:nM});count=fill(U.count,{n:numw(locked.length),v:U.countMany,d})}
+  // function
+  let hypo=null;
+  if(S.f1!==null&&S.f1<4&&S.f2!==null&&S.f2<4){hypo=fill(U.hypo,{f1:fill(T.func1.les[S.f1],c),f2:T.func2.les[S.f2]})}
+  const f2txt=(S.f2!==null&&S.f2<4)?T.func2.les[S.f2]:null;
+  // opposite lines
+  const opp=locked.filter(isOpp).map(i=>fill(U.opp,{ax:T.axes[i].name,A:c.A,B:c.B}));
+  // moves: who do we address
+  let addressee=null; // name of the person the obs questions are for
+  if(S.role===1){addressee=S.next===0?c.A:S.next===1?c.B:null}
+  // sentences / questions / reflections from top axes (up to 3)
+  const trio=sorted.slice(0,3);
+  const T3=i=>({ax:T.axes[i],P:S.v[i]>0});
+  const say=[],ask=[],refl=[];
+  if(S.role===0){
+    trio.forEach(i=>{const {ax,P}=T3(i);say.push({t:fill(P?ax.partyP:ax.partyM,c),w:ax.name+' · '+(P?ax.whyP:ax.whyM)})});
+    trio.forEach(i=>{const {ax,P}=T3(i);ask.push({t:fill(P?ax.obsP:ax.obsM,c),w:ax.name})});
+  }else{
+    const other=S.role===1&&S.next===0?c.B:S.role===1&&S.next===1?c.A:null;
+    if(S.role===1)say.push({t:fill(U.sayFrame,{other:other||(L==='de'?'Die andere Seite':'The other side')}),w:U.whyFrame});
+    say.push({t:fill(U.sayEat,c),w:U.sayEatWhy});
+    if(f2txt)say.push({t:fill(U.sayHypo,{f2:f2txt}),w:U.sayHypoWhy});
+    else say.push({t:U.sayNeed,w:U.sayNeedWhy});
+    trio.forEach(i=>{const {ax,P}=T3(i);ask.push({t:fill(P?ax.obsP:ax.obsM,c),w:ax.name})});
+    if(ask.length<3)ask.push({t:U.sayNeed,w:U.sayNeedWhy});
+  }
+  trio.forEach(i=>{const {ax,P}=T3(i);refl.push({t:P?ax.reflP:ax.reflM,w:ax.name})});
+  return{c,locked,nP,nM,nZero,nOpp,verdict,sorted,top,line,sideTag,count,hypo,f2txt,opp,addressee,say,ask,refl};
+}
+
+function renderResult(sc){
+  const E=evaluate(), c=E.c;
+  let h=`<div class="stack">`;
+  // verdict
+  h+=`<div class="verdict ${E.verdict==='bug'?'bug':E.verdict==='schwel'||E.verdict==='schief'?'schwel':''}"><p class="eyebrow">${U.h}</p><h2>${U.verdict[E.verdict]}</h2><p><b>${esc(E.count)}</b> ${U.vtext[E.verdict]}${S.topic.trim()?' '+esc(fill(U.aboutTopic,c)):''}</p></div>`;
+  // lesart
+  if(E.top.length){h+=`<div class="lesart"><h3>${U.lesH}</h3>${E.top.map(i=>`<p><b>${T.axes[i].name}</b>${esc(E.line(i))}${E.sideTag(i)?` <span class="muted" style="font-size:13px">(${esc(E.sideTag(i))})</span>`:''}</p>`).join('')}</div>`}
+  // hypothesis
+  h+=`<div class="callout"><p class="eyebrow">${U.hypoH}</p><p>${esc(E.hypo||U.hypoNone)}</p></div>`;
+  E.opp.forEach(o=>{h+=`<div class="callout"><p class="eyebrow">${U.oppH}</p><p>${esc(o)}</p></div>`});
+  if(E.nZero>=4)h+=`<div class="callout"><p class="eyebrow">${U.unusedH}</p><p>${esc(fill(U.unused,{n:numw(E.nZero)}))}</p></div>`;
+  if(E.locked.length)h+=`<div class="callout gold"><p class="eyebrow">${U.gegenH}</p><p>${U.gegen}</p></div>`;
+  // frame
+  const frame=S.role===1?fill(U.frame2,{other:(S.next===0?c.B:S.next===1?c.A:(L==='de'?'Die andere Seite':'The other side'))}):S.role===2?U.frame3:(E.nP>=E.nM?U.frame1P:U.frame1M);
+  h+=`<div class="callout dark"><p class="eyebrow">${U.frameH}</p><p>${esc(frame)}</p></div>`;
+  // moves
+  h+=`<div><h3>${U.movesH}</h3><div class="moves" style="margin-top:12px">`;
+  const askH=E.addressee?fill(U.askHTo,{n:E.addressee}):(S.role===0?U.askHOther:U.askH);
+  h+=`<div class="move"><span class="n">${U.sayH}</span>${E.say.map(s=>`<p class="t">„${esc(s.t)}"</p><p class="w">${esc(s.w)}</p>`).join('')}</div>`;
+  h+=`<div class="move"><span class="n">${esc(askH)}</span>${E.ask.map(s=>`<p class="t">${esc(s.t)}</p><p class="w">${esc(s.w)}</p>`).join('')}</div>`;
+  if(E.refl.length)h+=`<div class="move"><span class="n">${U.reflH}</span><p class="w">${S.role===0?U.reflSubSelf:U.reflSub}</p>${E.refl.map(s=>`<p class="t">${esc(s.t)}</p><p class="w">${esc(s.w)}</p>`).join('')}</div>`;
+  h+=`</div></div>`;
+  // profile
+  h+=`<div><h3>${U.profH}</h3><div class="prof" style="margin-top:12px">`;
+  let lastDim='';
+  T.axes.forEach((a,i)=>{
+    if(a.dim!==lastDim){h+=`<div class="dim">${U.dims[a.dim]}</div>`;lastDim=a.dim}
+    const v=S.v[i];let st,cls='';
+    if(Math.abs(v)===2){st=(v>0?a.poleA:a.poleB)+' · '+U.st.lock+(E.sideTag(i)?', '+E.sideTag(i):'');cls='lock'}
+    else if(v===0)st=U.st.zero;
+    else st=(v>0?a.poleA:a.poleB)+' · '+U.st.tend;
+    h+=`<div class="prow"><span class="ax">${a.name}</span><span class="st ${cls}">${esc(st)}</span></div>`;
   });
-
-  PREP={mode:null,dir:dirDefault};
-  $$('#result [data-prep]').forEach(b=>b.onclick=()=>{const m=b.dataset.prep;PREP.mode=PREP.mode===m?null:m;$$('#result [data-prep]').forEach(x=>x.setAttribute('aria-pressed',x.dataset.prep===PREP.mode));$('#prepFeed').hidden=PREP.mode!=='feed';$('#prepEat').hidden=PREP.mode!=='eat';try{parent.postMessage({jnApp:'height',h:document.documentElement.scrollHeight},'*')}catch(e){}});
-  $$('#dirSeg button').forEach(b=>b.onclick=()=>{PREP.dir=b.dataset.dir;$$('#dirSeg button').forEach(x=>x.classList.toggle('sel',x===b))});
-  $('#copyBtn').onclick=copySum;
-  $('#pdfBtn').onclick=printSum;
+  h+=`</div></div>`;
+  // export
+  h+=`<div class="callout" style="background:var(--card);border:1.5px solid var(--line);border-left:5px solid var(--green)"><p class="eyebrow" style="color:var(--green-deep)">${U.exportH}</p><p>${U.exportNote}</p><div class="export-btns"><button class="btn primary" type="button" id="pdfBtn">${U.pdf}</button><button class="btn ghost" type="button" id="copyBtn">${U.copy}</button></div><p class="toast" id="copyMsg"></p><textarea class="ta" id="copyFallback" hidden></textarea></div>`;
+  h+=`<div class="callout gold"><p class="eyebrow">${U.coachH}</p><p>${U.coach}</p><div class="export-btns"><a class="btn" href="${U.coachUrl}" target="_blank" rel="noopener">${U.coachBtn}</a></div></div>`;
+  h+=`<div class="nav"><button class="btn ghost" type="button" id="back">${T.back}</button><button class="btn ghost" type="button" id="restart">${T.restart}</button></div>`;
+  h+=`</div>`;
+  sc.innerHTML=h;
+  $('#back').onclick=()=>show(step-1);
+  $('#restart').onclick=()=>{location.href=location.pathname+(L==='en'?'?lang=en':'')};
+  $('#copyBtn').onclick=()=>copySum(E);
+  $('#pdfBtn').onclick=()=>printSum(E);
 }
 
-/* summary: copy and print, nothing leaves the browser */
-let RES=null,PREP=null;
-function plain(s){const d=document.createElement('div');d.innerHTML=s;return d.textContent.trim()}
-function sumMeta(){return new Date().toLocaleDateString(L==='en'?'en-GB':'de-DE',{day:'numeric',month:'long',year:'numeric'})+' · '+U.sumPersp+': '+(S.role==='partei'?U.r1:U.r2)}
-function summary(){
-  const R=RES,picked=R.picks.map(p=>Object.assign({},R.moves[p.i],{dir:p.dir}));
-  const ans=(($('#counterAns')||{}).value||'').trim();
-  const sec=[];
-  sec.push({h:U.sumVerdict,l:[R.title+(R.caught?' · '+(S.role==='partei'?U.hasYou:U.hasSystem):''),R.text]});
-  sec.push({h:U.sumLocked,l:R.locked.length?R.locked:[U.sumNone]});
-  if(R.tend.length)sec.push({h:U.sumTend,l:R.tend});
-  if(R.moves.length){const m=picked.length?picked:R.moves;sec.push({h:picked.length?U.sumMoves:U.sumMovesAll,l:m.map(x=>x.dir==='alt'?x.altTag+'\n'+x.alt:x.tag+'\n'+U.skill+' '+x.skill+'\n'+U.reflect+' '+x.reflect)})}
-  const fa=(($('#funcAns')||{}).value||'').trim();
-  if(fa)sec.splice(1,0,{h:U.sumFunc,l:[fa]});
-  if(R.costQ)sec.push({h:U.sumCost,l:[R.costQ]});
-
-  if(PREP&&PREP.mode==='feed'){const l=U.feed.map((f,i)=>{const v=(($('#feed'+i)||{}).value||'').trim();return v?f[0].split(':')[0]+': '+v:null}).filter(Boolean);l.push(U.sumDir+' '+(PREP.dir==='demand'?U.dirDemand:U.dirAsk));sec.push({h:U.sumFeed,l})}
-  if(PREP&&PREP.mode==='eat'){const v=(($('#eatAns')||{}).value||'').trim();sec.push({h:U.sumEat,l:U.eat.map(e=>e[0]+': '+e[1]+' '+e[2]).concat(v?[U.eatQ+' '+v]:[])})}
-  sec.push({h:U.counterH,l:[R.counterQ].concat(ans?[U.sumAns+' '+ans]:[])});
-  sec.push({h:U.sumFork,l:[R.fork[0]+': '+R.fork[1]]});
-  return sec;
+/* ===== export ===== */
+function sumText(E){
+  const c=E.c;let t=`${T.title} · ${U.h}\n${U.verdict[E.verdict]} ${E.count} ${U.vtext[E.verdict]}\n`;
+  if(S.topic.trim())t+=fill(U.aboutTopic,c)+'\n';
+  t+='\n'+U.lesH.toUpperCase()+'\n'+E.top.map(i=>`- ${T.axes[i].name}: ${E.line(i)}${E.sideTag(i)?' ('+E.sideTag(i)+')':''}`).join('\n')+'\n';
+  t+='\n'+U.hypoH.toUpperCase()+'\n'+(E.hypo||U.hypoNone)+'\n';
+  E.opp.forEach(o=>{t+='\n'+U.oppH.toUpperCase()+'\n'+o+'\n'});
+  if(E.locked.length)t+='\n'+U.gegenH.toUpperCase()+'\n'+U.gegen+'\n';
+  t+='\n'+U.sayH.toUpperCase()+'\n'+E.say.map(s=>`- „${s.t}" (${s.w})`).join('\n')+'\n';
+  t+='\n'+(E.addressee?fill(U.askHTo,{n:E.addressee}):S.role===0?U.askHOther:U.askH).toUpperCase()+'\n'+E.ask.map(s=>`- ${s.t} (${s.w})`).join('\n')+'\n';
+  if(E.refl.length)t+='\n'+U.reflH.toUpperCase()+'\n'+E.refl.map(s=>`- ${s.t} (${s.w})`).join('\n')+'\n';
+  t+='\n'+U.profH.toUpperCase()+'\n'+T.axes.map((a,i)=>{const v=S.v[i];const st=Math.abs(v)===2?(v>0?a.poleA:a.poleB)+' · '+U.st.lock+(E.sideTag(i)?', '+E.sideTag(i):''):v===0?U.st.zero:(v>0?a.poleA:a.poleB)+' · '+U.st.tend;return `- ${a.name}: ${st}`}).join('\n')+'\n';
+  return t+'\n'+U.pFoot1+'\n'+U.pFoot2;
 }
-function sumText(){
-  let t=U.sumTitle+'\n'+sumMeta()+'\n';
-  summary().forEach(x=>{t+='\n'+x.h.toUpperCase()+'\n'+x.l.map(y=>'- '+y.replace(/\n/g,'\n  ')).join('\n')+'\n'});
-  return t+'\n'+U.sumSource;
-}
-function copySum(){
-  const t=sumText(),msg=$('#copyMsg'),ta=$('#copyFallback');
+function copySum(E){
+  const t=sumText(E),msg=$('#copyMsg'),ta=$('#copyFallback');
   const ok=()=>{ta.hidden=true;msg.textContent=U.copied};
   const fb=()=>{ta.hidden=false;ta.value=t;ta.focus();ta.select();msg.textContent=U.copyFail};
   if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(ok,fb)}else fb();
 }
-function printSum(){
-  let h=`<h1>${esc(U.sumTitle)}</h1><p class="m">${esc(sumMeta())}</p>`;
-  summary().forEach(x=>{h+=`<h2>${esc(x.h)}</h2><ul>${x.l.map(y=>`<li>${esc(y).replace(/\n/g,'<br>')}</li>`).join('')}</ul>`});
-  h+=`<p class="m" style="margin-top:18px">${esc(U.sumSource)}</p>`;
-  $('#printSheet').innerHTML=h;
+function printSum(E){
+  const c=E.c;
+  const date=new Date().toLocaleDateString(L==='de'?'de-DE':'en-GB',{day:'numeric',month:'long',year:'numeric'});
+  const dots=v=>{const pos=v===2?4:v===1?3:v===-1?1:v===-2?0:-1;return[0,1,2,3,4].map(k=>`<span class="dot${k===pos?(Math.abs(v)===2?' lock':' on'):''}"></span>`).join('')};
+  const tagCls=E.verdict==='bug'?'':E.verdict==='feature'?' feature':' schwel';
+  let p1=`<section class="pg"><header><div><div class="kicker">${esc(fill(U.pKick1,{date}))}</div><h1>${U.p1H}</h1></div><img src="${LOGO_PRINT}" alt=""></header><main>`;
+  p1+=`<div class="pv"><div class="tag${tagCls}">${U.verdict[E.verdict]}</div><div class="count"><b>${esc(E.count)}</b> ${U.vtext[E.verdict]} ${esc(U.pRole[S.role])}${E.addressee?' '+esc(fill(U.pNext,{n:E.addressee})):''}${S.topic.trim()?' '+esc(fill(U.aboutTopic,c)):''}</div></div>`;
+  p1+=`<div class="pprof">`;let ld='';
+  T.axes.forEach((a,i)=>{if(a.dim!==ld){p1+=`<div class="pdim">${U.dims[a.dim]} · ${esc(T.bridges[a.dim].split(':').slice(1).join(':').trim())}</div>`;ld=a.dim}
+    const v=S.v[i],lock=Math.abs(v)===2;const who=lock?(E.sideTag(i)||'')+'':(v===0?U.st.zero:U.st.tend);
+    p1+=`<div class="prw"><div class="axis">${a.name}</div><div class="pole">${esc(a.poleB)}</div><div class="scale">${dots(v)}</div><div class="pole r">${esc(a.poleA)}</div><div class="who${lock?' lock':''}">${esc(who)}</div></div>`});
+  p1+=`</div>`;
+  if(E.top.length)p1+=`<div class="ples"><h2>${U.lesH}<span>.</span></h2>${E.top.map(i=>`<p><b>${T.axes[i].name}</b>${esc(E.line(i))}</p>`).join('')}</div>`;
+  p1+=`<div class="hypo"><b>${U.hypoH}</b><p style="margin:1mm 0 0">${esc(E.hypo||U.hypoNone)}</p></div>`;
+  E.opp.forEach(o=>{p1+=`<div class="hypo"><b>${U.oppH}</b><p style="margin:1mm 0 0">${esc(o)}</p></div>`});
+  if(E.nZero>=4)p1+=`<div class="hypo"><b>${U.unusedH}</b><p style="margin:1mm 0 0">${esc(fill(U.unused,{n:numw(E.nZero)}))}</p></div>`;
+  if(E.locked.length)p1+=`<div class="gegen"><b>${U.gegenH}</b> · ${U.gegen}</div>`;
+  p1+=`</main><footer><div>${U.pFoot1}</div><div>${U.pSite} · 1/2</div></footer></section>`;
+  const frame=S.role===1?fill(U.frame2,{other:(S.next===0?c.B:S.next===1?c.A:(L==='de'?'Die andere Seite':'The other side'))}):S.role===2?U.frame3:(E.nP>=E.nM?U.frame1P:U.frame1M);
+  const askH=E.addressee?fill(U.askHTo,{n:E.addressee}):(S.role===0?U.askHOther:U.askH);
+  let p2=`<section class="pg"><header><div><div class="kicker">${esc(fill(U.pKick2,{to:E.addressee?fill(U.pTo,{n:E.addressee}):''}))}</div><h1>${U.p2H}</h1></div><img src="${LOGO_PRINT}" alt=""></header><main>`;
+  p2+=`<div class="pframe"><h3>${U.frameH}</h3><p>${esc(frame)}</p></div>`;
+  p2+=`<div class="pblock"><h2>${U.sayH}<span>.</span></h2><ul class="say">${E.say.map(s=>`<li><span class="t">${esc(s.t)}</span><span class="why">${esc(s.w)}</span></li>`).join('')}</ul></div>`;
+  p2+=`<div class="two"><div class="pblock"><h2>${esc(askH)}<span>.</span></h2><ol>${E.ask.map(s=>`<li><span class="q">${esc(s.t)}</span><span class="why">${esc(s.w)}</span></li>`).join('')}</ol></div>`;
+  p2+=`<div class="pblock"><h2>${U.reflH}<span>.</span></h2><p class="small">${S.role===0?U.reflSubSelf:U.reflSub}</p><ol>${E.refl.map(s=>`<li><span class="q">${esc(s.t)}</span><span class="why">${esc(s.w)}</span></li>`).join('')}</ol></div></div>`;
+  if(E.locked.length)p2+=`<div class="gegen"><b>${U.gegenH}</b> · ${U.gegen}</div>`;
+  p2+=`</main><footer><div>${U.pFoot2}</div><div>${U.pCoach} · 2/2</div></footer></section>`;
+  $('#printSheet').innerHTML=p1+p2;
   window.print();
 }
+
+$('#foot').textContent=T.foot;
+show(0);
 
 /* iframe integration: report height and step changes to the parent page */
 (function(){
@@ -899,6 +940,5 @@ function printSum(){
   var _show=show;show=function(n){_show(n);try{parent.postMessage({jnApp:'top'},'*')}catch(e){};setTimeout(report,50)};
 })();
 </script>
-
 </body>
 </html>
