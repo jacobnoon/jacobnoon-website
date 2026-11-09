@@ -759,7 +759,7 @@ function renderAxis(sc,i){
   sc.innerHTML=h;
   const drawFollow=()=>{
     const f=$('#follow');f.innerHTML='';
-    if(Math.abs(S.v[i]||0)!==2)return;
+    if(!(S.v[i]||0))return;
     const F=T.follow;
     let x=`<div class="follow"><span class="fl">${F.q}</span><div class="mini" id="whoChips">
       <button class="chip${S.who[i]==='both'?' sel':''}" type="button" data-w="both">${F.both}</button>
@@ -776,7 +776,7 @@ function renderAxis(sc,i){
     $$('#whoChips .chip').forEach(b=>b.onclick=()=>{S.who[i]=b.dataset.w;if(S.who[i]==='both')S.other[i]=null;drawFollow();});
     $$('#otherChips .chip').forEach(b=>b.onclick=()=>{S.other[i]=+b.dataset.o;drawFollow();});
   };
-  $$('#chips .chip').forEach(b=>b.onclick=()=>{S.v[i]=+b.dataset.v;$$('#chips .chip').forEach(x=>x.classList.toggle('sel',x===b));if(Math.abs(S.v[i])!==2){S.who[i]=null;S.other[i]=null}drawFollow();setNext(true)});
+  $$('#chips .chip').forEach(b=>b.onclick=()=>{S.v[i]=+b.dataset.v;$$('#chips .chip').forEach(x=>x.classList.toggle('sel',x===b));if(!S.v[i]){S.who[i]=null;S.other[i]=null}drawFollow();setNext(true)});
   drawFollow();
   nav(sc,S.v[i]!==null);
 }
@@ -796,7 +796,7 @@ function evaluate(){
   const locked=[];S.v.forEach((v,i)=>{if(Math.abs(v)===2)locked.push(i)});
   const nP=locked.filter(i=>S.v[i]>0).length, nM=locked.length-nP;
   const nZero=S.v.filter(v=>v===0).length;
-  const isOpp=i=>typeof S.other[i]==='number'&&S.other[i]!==0&&Math.sign(S.other[i])!==Math.sign(S.v[i]);const nOpp=locked.filter(isOpp).length;
+  const isOpp=i=>typeof S.other[i]==='number'&&S.other[i]!==0&&Math.sign(S.other[i])!==Math.sign(S.v[i]);const answered=[];S.v.forEach((v,i)=>{if(v)answered.push(i)});const nOpp=answered.filter(isOpp).length;
   let verdict='feature';
   if(locked.length>=3){verdict=nM===locked.length?'schwel':'bug'}
   if(nOpp>=3)verdict='schief';
@@ -805,7 +805,7 @@ function evaluate(){
   const sorted=locked.slice().sort((a,b)=>rank(b)-rank(a)||b-a);
   const top=sorted.slice(0,locked.length>=5?3:2);
   const line=i=>S.v[i]>0?T.axes[i].lesP:T.axes[i].lesM;
-  const sideTag=i=>{if(S.role===0){if(S.who[i]==='A')return U.st.you;if(S.who[i]==='B')return U.st.otherSide;return U.st.both}if(S.who[i]==='A')return fill(U.st.mostly,{n:c.A});if(S.who[i]==='B')return fill(U.st.mostly,{n:c.B});return U.st.both};
+  const sideTag=i=>{if(S.who[i]===null||S.who[i]===undefined)return'';if(S.role===0){if(S.who[i]==='A')return U.st.you;if(S.who[i]==='B')return U.st.otherSide;return U.st.both}if(S.who[i]==='A')return fill(U.st.mostly,{n:c.A});if(S.who[i]==='B')return fill(U.st.mostly,{n:c.B});return U.st.both};
   // count line
   let count;
   if(locked.length===0)count=U.countZero;
@@ -816,7 +816,7 @@ function evaluate(){
   if(S.f1!==null&&S.f1<4&&S.f2!==null&&S.f2<4){hypo=fill(U.hypo,{f1:fill(T.func1.les[S.f1],S.role===0?{A:T.who.selfAd,B:T.who.selfBd}:c),f2:T.func2.les[S.f2]})}
   const f2txt=(S.f2!==null&&S.f2<4)?T.func2.les[S.f2]:null;
   // opposite lines
-  const oppAx=locked.filter(isOpp).map(i=>T.axes[i].name);
+  const oppAx=answered.filter(isOpp).map(i=>T.axes[i].name);
   const joinAnd=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+(L==='de'?' und ':' and ')+a[a.length-1];
   const opp=oppAx.length?[fill(oppAx.length>1?(S.role===0?U.oppManySelf:U.oppMany):(S.role===0?U.oppSelf:U.opp),{ax:joinAnd(oppAx),A:c.A,B:c.B})]:[];
   const vtext=U.vtext[verdict==='schief'&&S.role===0?'schiefSelf':verdict];
@@ -873,7 +873,7 @@ function renderResult(sc){
     const v=S.v[i];let st,cls='';
     if(Math.abs(v)===2){st=(v>0?a.poleA:a.poleB)+' · '+U.st.lock+(E.sideTag(i)?', '+E.sideTag(i):'');cls='lock'}
     else if(v===0)st=U.st.zero;
-    else st=(v>0?a.poleA:a.poleB)+' · '+U.st.tend;
+    else st=(v>0?a.poleA:a.poleB)+' · '+U.st.tend+(E.sideTag(i)?', '+E.sideTag(i):'');
     h+=`<div class="prow"><span class="ax">${a.name}</span><span class="st ${cls}">${esc(st)}</span></div>`;
   });
   h+=`</div></div>`;
@@ -900,7 +900,7 @@ function sumText(E){
   t+='\n'+U.sayH.toUpperCase()+'\n'+E.say.map(s=>`- „${s.t}" (${s.w})`).join('\n')+'\n';
   t+='\n'+(E.addressee?fill(U.askHTo,{n:E.addressee}):S.role===0?U.askHOther:U.askH).toUpperCase()+'\n'+E.ask.map(s=>`- ${s.t} (${s.w})`).join('\n')+'\n';
   if(E.refl.length)t+='\n'+U.reflH.toUpperCase()+'\n'+E.refl.map(s=>`- ${s.t} (${s.w})`).join('\n')+'\n';
-  t+='\n'+U.profH.toUpperCase()+'\n'+T.axes.map((a,i)=>{const v=S.v[i];const st=Math.abs(v)===2?(v>0?a.poleA:a.poleB)+' · '+U.st.lock+(E.sideTag(i)?', '+E.sideTag(i):''):v===0?U.st.zero:(v>0?a.poleA:a.poleB)+' · '+U.st.tend;return `- ${a.name}: ${st}`}).join('\n')+'\n';
+  t+='\n'+U.profH.toUpperCase()+'\n'+T.axes.map((a,i)=>{const v=S.v[i];const st=Math.abs(v)===2?(v>0?a.poleA:a.poleB)+' · '+U.st.lock+(E.sideTag(i)?', '+E.sideTag(i):''):v===0?U.st.zero:(v>0?a.poleA:a.poleB)+' · '+U.st.tend+(E.sideTag(i)?', '+E.sideTag(i):'');return `- ${a.name}: ${st}`}).join('\n')+'\n';
   return t+'\n'+U.pFoot1+'\n'+U.pFoot2;
 }
 function copySum(E){
@@ -918,7 +918,7 @@ function printSum(E){
   p1+=`<div class="pv"><div class="tag${tagCls}">${U.verdict[E.verdict]}</div><div class="count"><b>${esc(E.count)}</b> ${E.vtext} ${esc(U.pRole[S.role])}${E.addressee?' '+esc(fill(U.pNext,{n:E.addressee})):''}${S.topic.trim()?' '+esc(fill(U.aboutTopic,c)):''}</div></div>`;
   p1+=`<div class="pprof">`;let ld='';
   T.axes.forEach((a,i)=>{if(a.dim!==ld){p1+=`<div class="pdim">${U.dims[a.dim]} · ${esc(T.bridges[a.dim].split(':').slice(1).join(':').trim())}</div>`;ld=a.dim}
-    const v=S.v[i],lock=Math.abs(v)===2;const who=lock?(E.sideTag(i)||'')+'':(v===0?U.st.zero:U.st.tend);
+    const v=S.v[i],lock=Math.abs(v)===2;const who=lock?(E.sideTag(i)||'')+'':(v===0?U.st.zero:U.st.tend+(E.sideTag(i)&&E.sideTag(i)!==U.st.both?', '+E.sideTag(i):''));
     p1+=`<div class="prw"><div class="axis">${a.name}</div><div class="pole">${esc(a.poleB)}</div><div class="scale">${dots(v)}</div><div class="pole r">${esc(a.poleA)}</div><div class="who${lock?' lock':''}">${esc(who)}</div></div>`});
   p1+=`</div>`;
   if(E.top.length)p1+=`<div class="ples"><h2>${U.lesH}<span>.</span></h2>${E.top.map(i=>`<p><b>${T.axes[i].name}</b>${esc(E.line(i))}</p>`).join('')}</div>`;
