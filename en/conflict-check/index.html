@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bug or Feature? The Conflict Check – Jacob Noon</title>
+  <meta name="description" content="Is your conflict still productive or has it got stuck? Nine sliders based on Klaus Eidenschink's guiding distinctions show where it pays to stir up or calm down, and which conflict skill that takes.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://jacobnoon.com/en/conflict-check/">
+  <link rel="alternate" hreflang="de" href="https://jacobnoon.com/konflikt-check/">
+  <link rel="alternate" hreflang="en" href="https://jacobnoon.com/en/conflict-check/">
+  <link rel="alternate" hreflang="x-default" href="https://jacobnoon.com/konflikt-check/">
+  <meta name="author" content="Jacob Noon">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jacobnoon.com/en/conflict-check/">
+  <meta property="og:title" content="Bug or Feature? The Conflict Check">
+  <meta property="og:description" content="Nine sliders, one profile. Shows whether your conflict is still working or has got stuck, and where movement belongs.">
+  <meta property="og:image" content="https://jacobnoon.com/og-image.jpg">
+  <meta property="og:site_name" content="Jacob Noon">
+  <meta property="og:locale" content="en_GB">
+  <style>
+    .kc-frame{width:100%;border:0;display:block;min-height:720px;background:transparent}
+  </style>
+</head>
+<body>
+
+<section class="hero" style="padding:4rem 0 2.5rem;">
+  <div class="container">
+    <div class="hero__label">Conflict Check</div>
+    <h1>Bug or Feature?</h1>
+    <p class="hero__sub">Conflict isn't the problem. Conflict that's stuck is. In six minutes the check shows where your conflict has locked, whether it needs stirring up or calming down, and which skill that takes. Nothing is stored or sent.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:1rem;">
+  <div class="container" style="max-width:800px;">
+    <iframe id="kc" class="kc-frame" src="/konflikt-check/app.html?lang=en" title="Conflict Check: Bug or Feature?" loading="eager"></iframe>
+    <p style="margin-top:2rem;color:var(--text-muted);font-size:0.9rem;">Basis: Klaus Eidenschink, "Die Kunst des Konflikts" (The Art of Conflict, Carl-Auer, German only). The nine guiding distinctions are his; the questions, scoring and wording are Jacob Noon's. The check is a teaching tool, not a diagnosis.</p>
+  </div>
+</section>
+
+<script>
+  (function(){
+    var f=document.getElementById('kc');
+    window.addEventListener('message',function(e){
+      var d=e.data||{};
+      if(d.jnApp==='height'&&d.h){f.style.height=(d.h+4)+'px'}
+      if(d.jnApp==='top'){var y=f.getBoundingClientRect().top+window.pageYOffset-24;window.scrollTo({top:y,behavior:'smooth'})}
+    });
+  })();
+</script>
+<script src="/components.js"></script>
+</body>
+</html>
