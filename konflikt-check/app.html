@@ -116,6 +116,7 @@ body.embedded .wrap{padding:0 0 8px}
 .callout.dark .eyebrow{color:var(--green)}
 .moves{display:grid;gap:12px}
 .move{border:1.5px solid var(--line);padding:16px 18px;display:grid;gap:6px}
+.gloss{display:grid;gap:10px;margin-top:12px}.gl{display:grid;grid-template-columns:150px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--line);font-size:14.5px;line-height:1.45}.gl b{font-family:Oswald;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--green-deep)}@media (max-width:560px){.gl{grid-template-columns:1fr;gap:4px}}
 .move .n{font-family:Oswald;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 .move .t{font-size:17px}
 .move .w{font-size:14px;color:var(--ink-3)}
@@ -143,13 +144,13 @@ body.embedded .wrap{padding:0 0 8px}
   .wrap{display:none!important}
   #printSheet{display:block!important;font-family:"DM Sans",Arial,sans-serif;font-size:10.2pt;line-height:1.42;color:#111114}
   #printSheet *{box-sizing:border-box}
-  .pg{width:210mm;min-height:297mm;padding:14mm 16mm 12mm;page-break-after:always;display:flex;flex-direction:column}
+  .pg{width:210mm;height:297mm;overflow:hidden;padding:12mm 16mm 10mm;page-break-after:always;display:flex;flex-direction:column}
   .pg:last-child{page-break-after:auto}
   .pg header{display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:4mm;border-bottom:2.2px solid #4CC265}
   .pg .kicker{font-family:Oswald;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:8.5pt;color:#6B6F76}
   .pg h1{font-family:Oswald;font-weight:700;font-size:24pt;line-height:1;margin:1.5mm 0 0;text-transform:uppercase;letter-spacing:.01em}
   .pg header img{height:11mm;width:auto}
-  .pg main{flex:1;padding-top:5mm}
+  .pg main{flex:1;padding-top:4mm;min-height:0}
   .pg footer{border-top:2.2px solid #4CC265;padding-top:2.5mm;font-size:7.6pt;color:#6B6F76;display:flex;justify-content:space-between;gap:8mm}
   .pg h2{font-family:Oswald;font-weight:700;text-transform:uppercase;font-size:13pt;letter-spacing:.03em;margin:0 0 2mm;color:#111114}
   .pg h2 span{color:#4CC265}
@@ -159,7 +160,7 @@ body.embedded .wrap{padding:0 0 8px}
   .pv .tag{font-family:Oswald;font-weight:700;font-size:30pt;line-height:1;text-transform:uppercase;color:#D9552B}
   .pv .tag.schwel{color:#3B82C4}.pv .tag.feature{color:#2E9A48}
   .pv .count{font-size:10.5pt;max-width:120mm}
-  .pprof{margin:3mm 0 5mm;border:1px solid #E3E5E8;border-radius:3px;padding:3mm 4mm}
+  .pprof{margin:2.5mm 0 4mm;border:1px solid #E3E5E8;border-radius:3px;padding:3mm 4mm}
   .prw{display:grid;grid-template-columns:30mm 26mm 1fr 26mm 30mm;align-items:center;font-size:8.6pt;padding:1.1mm 0;border-bottom:1px solid #F9FAFB}
   .prw:last-child{border-bottom:0}
   .prw .axis{font-family:Oswald;font-weight:500;font-size:9pt;letter-spacing:.04em;text-transform:uppercase}
@@ -173,7 +174,7 @@ body.embedded .wrap{padding:0 0 8px}
   .pdim{font-family:Oswald;font-weight:500;font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#4CC265;padding:1.5mm 0 .5mm}
   .ples p{font-size:10.4pt}
   .ples p b{font-family:Oswald;font-weight:500;font-size:9pt;letter-spacing:.06em;text-transform:uppercase;color:#4CC265;margin-right:1.5mm}
-  .hypo{background:#F9FAFB;border-left:3px solid #3B82C4;padding:2.5mm 4mm;margin:3mm 0}
+  .hypo{background:#F9FAFB;border-left:3px solid #3B82C4;padding:2.2mm 4mm;margin:2.5mm 0}
   .hypo b{color:#3B82C4;font-family:Oswald;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:9pt}
   .gegen{border-left:3px solid #E6A817;padding:2mm 4mm;margin:3mm 0 0;font-size:9.6pt}
   .gegen b{color:#E6A817;font-family:Oswald;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:9pt}
@@ -190,6 +191,7 @@ body.embedded .wrap{padding:0 0 8px}
   .say li .why{display:block;padding-left:4mm;color:#6B6F76;font-size:8.4pt;margin-top:.6mm}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:7mm}
   .pframe{background:#111114;color:#fff;padding:3mm 4mm;border-radius:3px;margin-bottom:4mm}
+  .pgloss{margin-top:2.5mm;border-top:1px solid #E3E5E8;padding-top:2mm;font-size:8.2pt;line-height:1.3}.pgloss h3{font-family:Oswald;font-size:9.5pt;letter-spacing:.08em;text-transform:uppercase;margin:0 0 1.5mm;color:#111114}.pgloss p{margin:0 0 .9mm}.pgloss b{font-family:Oswald;letter-spacing:.04em;color:#2E9B47}
   .pframe h3{color:#4CC265;margin-bottom:1mm}
   .pframe p{margin:0;font-size:9.4pt}
   .small{font-size:8.6pt;color:#6B6F76}
@@ -419,8 +421,15 @@ de:{
     frameH:'Bevor du redest',
     frame2:'Du stehst daneben, aber es betrifft dich. Alles, was heimlich läuft, macht dich zur Partei. Der erste Satz ist deshalb kein Inhalt, sondern ein Rahmen: „{other} weiß, dass wir reden, und ich erzähle hinterher, worüber. Nicht jedes Detail, aber das Thema. Passt das für dich?"',
     frame3:'Nimm nicht die Sache in die Hand. Frag beide Seiten getrennt: „Was brauchst du von mir?" Und sag es weiter, nicht als Bote, sondern als Spiegel.',
-    frame1P:'Dein Werkzeug ist EAT: Einfühlen, Akzeptieren, Transformieren. Nenn zuerst, was du bei der anderen Seite wahrnimmst, ohne Fragezeichen. Erst wenn sie sich gesehen fühlt, kommt deine Frage. Dann dein FEED, und wieder hören.',
-    frame1M:'Dein Werkzeug ist FEED: Facts, Effect, Emotion, Direction. Vier Sätze, gewaltfrei und klar. Die Direction als Forderung, nicht als Bitte, damit eine Entscheidung fällig wird. Dann Stille.',
+    frame1P:'Dein erstes Werkzeug ist EAT: Einfühlen, Akzeptieren, Transformieren. Nenn zuerst, was du bei der anderen Seite wahrnimmst, ohne Fragezeichen. Erst wenn sie sich gesehen fühlt, kommt deine Frage. Dann dein FEED, und wieder hören. Beide Werkzeuge unten erklärt.',
+    frame1M:'Dein erstes Werkzeug ist FEED: Facts, Effect, Emotion, Direction. Vier Sätze, gewaltfrei und klar. Die Direction als Forderung, nicht als Bitte, damit eine Entscheidung fällig wird. Dann Stille, und mit EAT zuhören, was zurückkommt. Beide Werkzeuge unten erklärt.',
+    glossH:'Die Werkzeuge, kurz erklärt',
+    gloss:[
+      ['FEED','Facts, Effect, Emotion, Direction. Vier Sätze in dieser Reihenfolge, ohne Unterbrechung: „Gestern waren wir um neun verabredet, du kamst um zehn nach. Wir haben als Gruppe gewartet. Mich hat das genervt. Ich will, dass du pünktlich bist. Bekommst du das hin?“'],
+      ['EAT','Einfühlen, Akzeptieren, Transformieren. Die Antwort kommt: „Sorry, ich kriege mein Kind morgens nie rechtzeitig angezogen.“ Einfühlen: „Klingt, als wäre dein Morgen kaum planbar und ziemlich stressig.“ Akzeptieren: stehen lassen, ohne zuzustimmen, dass das die Verspätung rechtfertigt. Transformieren: „Was müsste morgens anders laufen, damit du es trotzdem schaffst?“'],
+      ['Schüren und Beruhigen','Die zwei Richtungen, in die sich ein Streit bewegen lässt. Beide sind nötig, keine ist die gute. Die Kunst ist, wechseln zu können.'],
+      ['Eingerastet','Eine Seite steht fest auf einem Pol und kann nicht mehr wechseln. Der Befund ist das Feststehen, nicht der Pol.']
+    ],
     sayFrame:'{other} weiß, dass wir reden, und ich erzähle hinterher, worüber.',
     sayEat:'Ich merke, dass dich {thema} nicht loslässt. Und dass du dich damit allein fühlst.',
     sayEatWhy:'Einfühlen ohne Fragezeichen. Erst wenn die andere Seite nickt, kommt deine Frage.',
@@ -641,8 +650,15 @@ en:{
     frameH:'Before you talk',
     frame2:'You are on the sidelines, but it affects you. Anything that runs in secret makes you a party. So the first sentence is not content but a frame: "{other} knows we are talking, and I will tell them afterwards what about. Not every detail, but the topic. Is that all right with you?"',
     frame3:'Do not take the matter into your own hands. Ask both sides separately: "What do you need from me?" And pass it on, not as a messenger but as a mirror.',
-    frame1P:'Your tool is EAT: Empathise, Accept, Transform. First name what you perceive in the other side, without a question mark. Only when they feel seen does your question come. Then your FEED, and listen again.',
-    frame1M:'Your tool is FEED: Facts, Effect, Emotion, Direction. Four sentences, non-violent and clear. The Direction as a demand, not a request, so that a decision becomes due. Then silence.',
+    frame1P:'Your first tool is EAT: Empathise, Accept, Transform. First name what you perceive in the other side, without a question mark. Only when they feel seen does your question come. Then your FEED, and listen again. Both tools are explained below.',
+    frame1M:'Your first tool is FEED: Facts, Effect, Emotion, Direction. Four sentences, non-violent and clear. The Direction as a demand, not a request, so that a decision becomes due. Then silence, and listen with EAT to what comes back. Both tools are explained below.',
+    glossH:'The tools, briefly explained',
+    gloss:[
+      ['FEED','Facts, Effect, Emotion, Direction. Four sentences in this order, without interruption: "Yesterday we agreed on nine, you arrived at ten past. The whole group waited. That annoyed me. I want you to be on time. Can you manage that?"'],
+      ['EAT','Empathise, Accept, Transform. The answer comes: "Sorry, I never get my kid dressed in time in the morning." Empathise: "Sounds like your mornings are barely plannable and pretty stressful." Accept: let it stand, without agreeing that it justifies being late. Transform: "What would have to change in the morning for you to make it anyway?"'],
+      ['Stirring up and calming down','The two directions a conflict can be moved in. Both are needed, neither is the good one. The skill is being able to switch.'],
+      ['Locked','One side stands fixed on a pole and can no longer switch. The finding is the fixedness, not the pole.']
+    ],
     sayFrame:'{other} knows we are talking, and I will tell them afterwards what about.',
     sayEat:'I can see that {thema} will not let you go. And that you feel alone with it.',
     sayEatWhy:'Empathising without a question mark. Only when the other side nods does your question come.',
@@ -882,6 +898,8 @@ function renderResult(sc){
     h+=`<div class="prow"><span class="ax">${a.name}</span><span class="st ${cls}">${esc(st)}</span></div>`;
   });
   h+=`</div></div>`;
+  // glossary
+  h+=`<div><h3>${U.glossH}</h3><div class="gloss">${U.gloss.map(g=>`<div class="gl"><b>${esc(g[0])}</b><span>${esc(g[1])}</span></div>`).join('')}</div></div>`;
   // export
   h+=`<div class="callout" style="background:var(--card);border:1.5px solid var(--line);border-left:5px solid var(--green)"><p class="eyebrow" style="color:var(--green-deep)">${U.exportH}</p><p>${U.exportNote}</p><div class="export-btns"><button class="btn primary" type="button" id="pdfBtn">${U.pdf}</button><button class="btn ghost" type="button" id="copyBtn">${U.copy}</button></div><p class="toast" id="copyMsg"></p><textarea class="ta" id="copyFallback" hidden></textarea></div>`;
   h+=`<div class="callout gold"><p class="eyebrow">${U.coachH}</p><p>${U.coach}</p><div class="export-btns"><a class="btn" href="${U.coachUrl}" target="_blank" rel="noopener">${U.coachBtn}</a></div></div>`;
@@ -902,6 +920,7 @@ function sumText(E){
   t+='\n'+U.hypoH.toUpperCase()+'\n'+(E.hypo||U.hypoNone)+'\n';
   E.opp.forEach(o=>{t+='\n'+U.oppH.toUpperCase()+'\n'+o+'\n'});
   if(E.locked.length)t+='\n'+U.gegenH.toUpperCase()+'\n'+U.gegen+'\n';
+  t+='\n'+U.glossH.toUpperCase()+'\n'+U.gloss.map(g=>`- ${g[0]}: ${g[1]}`).join('\n')+'\n';
   t+='\n'+U.sayH.toUpperCase()+'\n'+E.say.map(s=>`- ${QQ(s.t)} (${s.w})`).join('\n')+'\n';
   t+='\n'+(E.addressee?fill(U.askHTo,{n:E.addressee}):S.role===0?U.askHOther:U.askH).toUpperCase()+'\n'+E.ask.map(s=>`- ${s.t} (${s.w})`).join('\n')+'\n';
   if(E.refl.length)t+='\n'+U.reflH.toUpperCase()+'\n'+E.refl.map(s=>`- ${s.t} (${s.w})`).join('\n')+'\n';
@@ -930,7 +949,6 @@ function printSum(E){
   p1+=`<div class="hypo"><b>${U.hypoH}</b><p style="margin:1mm 0 0">${esc(E.hypo||U.hypoNone)}</p></div>`;
   E.opp.forEach(o=>{p1+=`<div class="hypo"><b>${U.oppH}</b><p style="margin:1mm 0 0">${esc(o)}</p></div>`});
   if(E.nZero>=4)p1+=`<div class="hypo"><b>${U.unusedH}</b><p style="margin:1mm 0 0">${esc(fill(U.unused,{n:numw(E.nZero)}))}</p></div>`;
-  if(E.locked.length)p1+=`<div class="gegen"><b>${U.gegenH}</b> · ${U.gegen}</div>`;
   p1+=`</main><footer><div>${U.pFoot1}</div><div>${U.pSite} · 1/2</div></footer></section>`;
   const frame=S.role===1?fill(U.frame2,{other:(S.next===0?c.B:S.next===1?c.A:(L==='de'?'Die andere Seite':'The other side'))}):S.role===2?U.frame3:(E.nP>=E.nM?U.frame1P:U.frame1M);
   const askH=E.addressee?fill(U.askHTo,{n:E.addressee}):(S.role===0?U.askHOther:U.askH);
@@ -940,6 +958,7 @@ function printSum(E){
   p2+=`<div class="two"><div class="pblock"><h2>${esc(askH)}<span>.</span></h2><ol>${E.ask.map(s=>`<li><span class="q">${esc(s.t)}</span><span class="why">${esc(s.w)}</span></li>`).join('')}</ol></div>`;
   p2+=`<div class="pblock"><h2>${U.reflH}<span>.</span></h2><p class="small">${S.role===0?U.reflSubSelf:U.reflSub}</p><ol>${E.refl.map(s=>`<li><span class="q">${esc(s.t)}</span><span class="why">${esc(s.w)}</span></li>`).join('')}</ol></div></div>`;
   if(E.locked.length)p2+=`<div class="gegen"><b>${U.gegenH}</b> · ${U.gegen}</div>`;
+  p2+=`<div class="pgloss"><h3>${U.glossH}</h3>${U.gloss.map(g=>`<p><b>${esc(g[0])}</b> ${esc(g[1])}</p>`).join('')}</div>`;
   p2+=`</main><footer><div>${U.pFoot2}</div><div>${U.pCoach} · 2/2</div></footer></section>`;
   $('#printSheet').innerHTML=p1+p2;
   window.print();
